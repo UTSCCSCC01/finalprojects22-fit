@@ -6,4 +6,4 @@
 | Matthew Melchior | melchi13 | 1005085541 | matthew.melchior@mail.utoronto.ca | discord / Whatsapp (647-242-9300) | extrafatmilk#4207 |
 | Ziyue Gong | gongziy3 | 1005710740 | joy.gong@mail.utoronto.ca | discord | gzyJoy#2860 |
 
-Discord group invite link: https://discord.gg/eJscKvFu
+Discord group invite link: https://discord.gg/NuvQG7MCN7

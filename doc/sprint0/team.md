@@ -1,3 +1,5 @@
+| Full Name | UTORID | Student ID | Email | Best Way to Contact | Discord Username |
+|-----------|--------|------------|-------|---------------------|------------------|
 | Shuhong Duan | duanshuh | 1005719803 | shuhong.duan@mail.utoronto.ca | phone#: 6478341314 |DrBETA#4043 |
 
 | Collin Hei Lok Chan | chancol7 | 1006200889 | collin.chan@mail.utoronto.ca | 6478662993 |  coch#1879 | 

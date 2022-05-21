@@ -2,9 +2,19 @@ PB
 https://www.mountaingoatsoftware.com/agile/user-stories
 As a < type of user >, I want < some goal > so that < some reason >.
 *conditions of satisfaction/doneness
-Basics features: user input food(type & size) & exercise data (type & time), data analysis & display(timeline charts, hour, day)
+
+Basics features: 
+user input food(type & size)
+exercise data (type & time)
+data analysis & display(timeline charts, hour, day)
+
 Desired features: 
+Create plans for exercises and meals
+Gamification( Rewards, Points, Interesting Visuals, etc)
+
 Delighters/distinguished features: 
+Tracking based on physical movement
+
 
 Personas 
 https://library.xtensio.com/fitness-app-user-persona-comparison-example

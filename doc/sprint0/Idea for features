@@ -4,17 +4,18 @@ As a < type of user >, I want < some goal > so that < some reason >.
 *conditions of satisfaction/doneness
 
 Basics features: 
-user input food(type & size)
+user input food (type & size)
 exercise data (type & time)
-data analysis & display(timeline charts, hour, day)
+data analysis & display (timeline charts, hour, day) - perhaps a calendar interface as Matthew suggested
 
 Desired features: 
 Create plans for exercises and meals
-Gamification( Rewards, Points, Interesting Visuals, etc)
+Gamification (Profile, Rewards, Points, Interesting Visuals, etc)
+Ability to interact with other users? (Having friends/followers for users)
 
 Delighters/distinguished features: 
 Tracking based on physical movement
-
+Night Mode for UI
 
 Personas 
 https://library.xtensio.com/fitness-app-user-persona-comparison-example

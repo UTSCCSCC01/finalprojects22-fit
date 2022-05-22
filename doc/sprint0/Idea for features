@@ -12,10 +12,13 @@ Desired features:
 Create plans for exercises and meals
 Gamification (Profile, Rewards, Points, Interesting Visuals, etc)
 Ability to interact with other users? (Having friends/followers for users)
+Login/Signup using Google account/FB (so users don't have to create and memorize more login credentials)
+Push notification reminder for water intake
 
 Delighters/distinguished features: 
 Tracking based on physical movement
 Night Mode for UI
+Use in-built camera to scan nutrition label on packaged foods (for easy nutrition data input) - (implementation-wise, use an api that is able to scan img and convert into text)
 
 Personas 
 https://library.xtensio.com/fitness-app-user-persona-comparison-example

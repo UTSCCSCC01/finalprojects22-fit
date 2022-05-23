@@ -1,5 +1,6 @@
 # finalprojects22-fit
 finalprojects22-fit created by GitHub Classroom
+
 ● Motivation: what is it, what problem(s) does it solve, and why it exists.
 
 FitApp is an android app providing nutrition & training daily plans and progress tracking based on users' goals. 

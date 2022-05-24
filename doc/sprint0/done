@@ -5,6 +5,9 @@ Administrative
 - Users can change FitApp account password using previous password
 - Users can reset FitApp account password via email (sending emails)
 - Users can provide feedback to the FitApp dev team.
+- Users can access to a reasonable UI and can change the settings
+	- i.e., dark mode, transition animation, etc.
+
 
 General
 

@@ -44,7 +44,7 @@ npm install
 # will open expo in a new page in your web browser
 npm start
 ```
-6. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the QR code on the expo web page.
+6. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the displayed QR code.
 
 ## Contribution:
 **Do you use git flow?**

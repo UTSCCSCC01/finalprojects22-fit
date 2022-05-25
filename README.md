@@ -31,21 +31,20 @@ npm -v
 ```
 git clone https://github.com/UTSCCSCC01/finalprojects22-fit.git
 ```
-2. Open your terminal and navigate to the directory on your local machine
+3. Open your terminal and navigate to the directory on your local machine
 ```
 cd finalprojects22-fit
 ```
-3. Install all required dependencies for the project
+4. Install all required dependencies for the project
 ```
 npm install
 ```
-4. Build and run the app
+5. Build and run the app
 ```
-# will open expo a new page in your web browser
+# will open expo in a new page in your web browser
 npm start
-# choose whichever option to run the app on the web page
 ```
-5. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device.
+6. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the QR code on the expo web page.
 
 ## Contribution:
 **Do you use git flow?**

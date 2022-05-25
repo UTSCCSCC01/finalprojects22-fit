@@ -23,12 +23,22 @@ FitApp is a mobile app providing nutrition & training daily plans and progress t
     * Custom Colour Themes
 
 ## Installation:
-1. clone project to android studio
-2. go to device manager > virtual > create device
-3. select device definition: phone, pixel XL(double click the row), next
-4. select latest android version, next
-5. click run icon (green arrow) to launch app on the virual device
-
+1. Clone this GitHub repo to your chosen directory in your local machine
+```
+git clone https://github.com/UTSCCSCC01/finalprojects22-fit.git
+```
+2. Open your terminal and navigate to the directory on your local machine
+```
+cd finalprojects22-fit
+```
+3. Make sure npm is installed
+```
+npm install
+```
+4. Build and run the app
+```
+react-native start
+```
 
 ## Contribution:
 **Do you use git flow?**

@@ -1,54 +1,51 @@
-# finalprojects22-fit
-finalprojects22-fit created by GitHub Classroom
+# Fit App
 
-● Motivation: <br />
-FitApp is an android app providing nutrition & training daily plans and progress tracking based on users' goals. 
+## Motivation
+FitApp is a mobile app providing nutrition & training daily plans and progress tracking based on users' goals. 
 
-For nutrition plan & tracking, a user can: <br />
-Set weight loss goals, get a food intake daily routine recommendation <br />
-Log meals (food with nutrition facts) in calendar system (*supporting scanning nutrition label on packeaged foods) <br />
-Categorize logs by breakfast, lunch, dinner and user-defined categories(snacks1, snack2, etc) <br />
-Nutrition breakdown <br />
-Get warning of nutrition limits <br />
-See trends of nutrition intake(day, week, month) <br />
+**For nutrition plan & tracking, a user can:**
+* Set weight loss goals, get a food intake daily routine recommendation
+* Log meals (food with nutrition facts) through a calendar interface
+* Categorize logs by breakfast, lunch, dinner and user-defined categories (snacks1, snack2, etc) 
+* Nutrition breakdown
+* Get warning of nutrition limits
+* See trends of nutrition intake (day, week, month)
 
-For phsical training plan & trakcing, a user can: <br />
-Log exercies metrics(type, time, amount, additional note) in calendar system <br />
-Prescribe daily routine based on goal, automatic fill calendar with it <br />
-read/(re)write previous/current/future logs <br />
-For Cardio, visualize workout on a map, live tracker, trends(from May to June ran 12% longer on average) <br />
+**For phsical training plan & tracking, a user can:**
+* Log exercie metrics (type, time, amount, additional note) in a calendar interface
+* Prescribe daily routine based on goal, automatic fill calendar with it
 
-Highlight features: <br />
-gamification: cutomized user profile with milestones displayed for goal-accomplishment, progress sharing on social media <br />
-Night Mode for UI <br />
+**Highlight features:**
+* Gamification
+    * cutomized user profile with achievements/medals displayed for goal-accomplishment, progress sharing
+* UI Customization
+    * Night Mode
+    * Custom Colour Themes
+
+## Installation:
+1. clone project to android studio
+2. go to device manager > virtual > create device
+3. select device definition: phone, pixel XL(double click the row), next
+4. select latest android version, next
+5. click run icon (green arrow) to launch app on the virual device
 
 
-● Installation: <br />
-clone project to android studio <br />
-go to device manager > virtual > create device <br />
-select device definition: phone, pixel XL(double click the row), next <br />
-select latest android version, next <br />
-click run icon (green arrow) to launch app on the virual device <br />
+## Contribution:
+**Do you use git flow?**
+* Master branch(1): used for new releases
+* Develop branch(1): created from the master branch, contains stable features for the next lease
+* Feature branch (as many as needed): integrate back to the develop branch when the feature is stable and tested
+    * Changes on the develop branch must be merged back into feature branches
+* Release branch (as many as needed): created from the develop branch, used to isolate and stabilize the releases
+* WIP branch (as many as needed): The work is in progress, and I am aware it will not finish soon
 
+**What do you name your branches?**
+* Branch type (as listed above)
+* Issue id
+* Short description to distinguish different tasks/actions for same issue (optional - separated by hyphens)
 
-● Contribution:<br />
-○ Do you use git flow? <br />
-Master branch(1): used for new releases <br />
-Develop branch(1): created from the master branch, contains stable features for the next lease <br />
-Feature branch(many as needed): integrate back to the develop branch when the feature is stable and tested <br />
-*changes on the develop branch must be merged back into feature branches <br />
-Release branch(many as needed): created from the develop branch, used to isolate and stabilize the releases <br />
-WIP branch(many as needed): The work is in progress, and I am aware it will not finish soon <br />
+**Do you use github issues or another ticketing website?**
+* Ticket Tracking in [Jira](https://cmsweb.utsc.utoronto.ca/cscc01s22/tutorials/jira/Jira%20Tutorial.html)
 
-○ What do you name your branches? <br />
-Branch type(as listed above) <br />
-Issue id <br />
-Short description to distinguish different tasks/actions for same issue(optional) <br />
-*separated by hyphens <br />
-
-○ Do you use github issues or another ticketing website? <br />
-Jira steps to log a ticket: https://cmsweb.utsc.utoronto.ca/cscc01s22/tutorials/jira/Jira%20Tutorial.html
-
-○ Do you use pull requests? <br />
-pull request with template 
-https://gist.github.com/jcserv/33f19818fde83c18e755b1c138eeac49
+**Do you use pull requests?**
+* Pull request with [template](https://gist.github.com/jcserv/33f19818fde83c18e755b1c138eeac49)

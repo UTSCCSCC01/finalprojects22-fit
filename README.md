@@ -23,7 +23,11 @@ FitApp is a mobile app providing nutrition & training daily plans and progress t
     * Custom Colour Themes
 
 ## Installation:
-1. Clone this GitHub repo to your chosen directory in your local machine
+1. Make sure Node.js and npm is installed on your local machine. You can check using the following command:
+```
+npm -v
+```
+2. Clone this GitHub repo to your chosen directory in your local machine
 ```
 git clone https://github.com/UTSCCSCC01/finalprojects22-fit.git
 ```
@@ -31,14 +35,17 @@ git clone https://github.com/UTSCCSCC01/finalprojects22-fit.git
 ```
 cd finalprojects22-fit
 ```
-3. Make sure npm is installed
+3. Install all required dependencies for the project
 ```
 npm install
 ```
 4. Build and run the app
 ```
-react-native start
+# will open expo a new page in your web browser
+npm start
+# choose whichever option to run the app on the web page
 ```
+5. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device.
 
 ## Contribution:
 **Do you use git flow?**

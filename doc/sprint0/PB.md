@@ -44,7 +44,7 @@ Priority: Medium
 
 Priority: Medium
 
-# Nutrition
+## Nutrition
 
 11 - As Andre and Tony, I want to be able to log the food I eat, so that I can keep track of my meal intake
 

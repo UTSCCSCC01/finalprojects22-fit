@@ -4,20 +4,20 @@
 
 **Product Owner**
 
-- Matthew
+- Matthew Melchior
 
 **Scrum Master**
 
-- Collin
+- Collin Chan
 
 **Scrum NoteTaker**
 
-- Joy
+- Ziyue Gong
 
 **Full-Stack Developer**
 
-- Vincent
-- Brandon
+- Vincent Liang
+- Shuhong Duan
 
 ### Meetings
 

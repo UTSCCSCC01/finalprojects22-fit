@@ -21,7 +21,7 @@
 
 ### Meetings
 
-We will be communicating mainly through discord, and also be holding our group meetings on discord. We will meet minimum 3 times a week, on Tuesday, Thursday and Saturday. During the meetings we will first each talk about what we have completed, sharing our screen to show our progress. Then we will provide feedback and discuss about our already completed work. Lastly, we will talk about what we will be working on until the next meeting.
+We will be communicating mainly through discord, and also be holding our group meetings on discord. We will meet minimum 3 times a week, on Tuesday, Thursday and Saturday at 11am. During the meetings we will first each talk about what we have completed, sharing our screen to show our progress. Then we will provide feedback and discuss about our already completed work. Lastly, we will talk about what we will be working on until the next meeting.
 
 ### Decision Making
 

@@ -17,12 +17,12 @@
 	- i.e., lose 1 lbs/week until X weight. 
 - Users can have nutritional/training advice depending on goals
 	- I.e., if weight loss of 1bs/week, set daily caloric budget at TDEE - 500cal.
-- Users can customize my profile with things I've unlocked
+- Users can customize their profile with things the user have unlocked
 - Users can add friends in app
 
 ### Gameification 
 
-- Users can see my progress abstracted in a fun yet meaningful way.
+- Users can see their progress abstracted in a fun yet meaningful way.
 	- Level system?
 - Users can see friends' work out achievements in the app
 - Users can share work out achievements in the app built-in social media
@@ -46,27 +46,27 @@
 - Users can sort their logs by day via a calendar system.
 - Users can modify past/present calendar days to record workouts
 - Users can modify future calendar days to set workouts
-- Users can record my physical indicators after training
+- Users can record their physical indicators after training
 	- i.e., body weight, BMI, etc.
 - Users can compare their most recent body status with past records
 	- i.e., visualize the records in a graph
 
 ### Training (Resistance training)
-- Users can access to a beginner routine for me based on my needs
+- Users can access to a beginner routine based on needs
 	- may include survey, likely to find out what user has access to. 
-- Users can get advice on what weights I should be using, what they should progress to
+- Users can get advice on what weights that the users should be using, what they should progress to
 - Users can create automated routines that will automatically fill future calendar days out with workouts.
 - Users can see workout metrics visualized (graphs of weights increasing per exercise, time spent at gym, etc.)
 
 ### Training (Cardio)
-- Users can track workouts live using a tracker(?)
-- Users can visualize my workouts on a map
-- Users can compare my workouts to each other
+- Users can track workouts live using a tracker (will do if there's abundant time)
+- Users can visualize their workouts on a map
+- Users can compare their workouts to each other
 - Users can see trends in workouts (i.e., from May to June ran 12% longer on average)
 
 ### Nutrition
-- Users can calculate and see my TDEE (Total daily energy expenditure)
-- Users can log the food I eat in a daily journal
+- Users can calculate and see their TDEE (Total daily energy expenditure)
+- Users can log the food the users eat in a daily journal
 - Users can see nutrition facts of each food recorded
 - Users can add custom food/nutrition values that saves.
 - The food added can be automatically deduct from daily calorie budget
@@ -82,7 +82,7 @@
 
 ### Water-drinking
 - Users can set up a goal for daily water drinking
-- Users can track how much water I drank today 
+- Users can track how much water they drank today 
 - Users can access to information of how much water they still need to drink
 - Users can set up notification for water drinking
 	- i.e., app built-in alarm clock reminder

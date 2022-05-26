@@ -2,17 +2,22 @@
 
 ### Team Roles
 
-**Database**
+**Product Owner**
 
-- person 1
+- Matthew
 
-**Backend**
+**Scrum Master**
 
-- person 2
+- Collin
 
-**Frontend**
+**Scrum NoteTaker**
 
-- person 3
+- Joy
+
+**Full-Stack Developer**
+
+- Vincent
+- Brandon
 
 ### Meetings
 

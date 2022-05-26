@@ -6,7 +6,7 @@
 
 Priority: High
 
-2 - As Andre, Tony and Rachael, I want to signup into  my account, so that I can save my plans and old exercise information cross devices
+2 - As Andre, Tony and Rachael, I want to sign up into my account, so that I can save my plans and old exercise information cross devices
 
 Priority: High
 
@@ -32,7 +32,7 @@ Priority: High
 
 Priority: High
 
-8 - As Andre, Tony and Rachael, I want to view a calender that shows future, past and present data, so that I can have an accessible way to access my data
+8 - As Andre, Tony and Rachael, I want to view a calender that shows future, past and present data, so that I can have an easier way to access my data
 
 Priority: High
 
@@ -62,7 +62,7 @@ Priority: Medium
 
 Priority: Medium
 
-15 - As Andre, Tony and Rachael, I want to recieve notification for my water intake, so that I can remain hydrated during my exercises
+15 - As Andre, Tony and Rachael, I want to recieve notification for my water intake, so that I can remain hydrated in casual time and during my exercises
 
 Priority: Low
 
@@ -72,7 +72,7 @@ Priority: Low
 
 ## Social
 
-17 - As Andre, Tony and Rachael, I want to friend other users, so that I can socialize with other users
+17 - As Andre, Tony and Rachael, I want to be friends with other users, so that I can stay socialized in the app
 
 Priority: Medium
 

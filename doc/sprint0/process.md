@@ -26,7 +26,7 @@ We would usually bring up difficulties, ideas or questions in the group chat, an
 
 When it came to the priority of user stories, we would individually look at each user story, discuss the specific feature it would implement and then we would vote on whether it was high, medium or low priority, going by the majority vote. The high priority means that this feature from the user story is a very basic feature that is necessary for our app. The medium priority means that this feature from the user story is a desired feature for our app and we plan on implementing this feature right after the basics are done. The low priority means that this feature from the user story is more of a delighter for our users and is a nice bonus for our app, but it's not necessary to have it completed by the end of the project.
 
-## Next Phase
+### Next Phase
 
 When completing our work, we realized that we assigned too big of a task given our time between meetings, since we only have 2 days to work in between the group meetings, we didn't always get the quality we wanted for our final submission, so we had to further edit and polish our work after each meeting in additional to other work we had assigned to us by the next meeting. So in the future, we need to assign more appropriate work given the time frame.
 

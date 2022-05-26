@@ -22,7 +22,7 @@ FitApp is a mobile app providing nutrition & training daily plans and progress t
     * Night Mode
     * Custom Colour Themes
 
-## Installation:
+## Installation
 1. Make sure Node.js and npm is installed on your local machine. You can check using the following command:
 ```
 npm -v
@@ -46,22 +46,29 @@ npm start
 ```
 6. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the displayed QR code.
 
-## Contribution:
-**Do you use git flow?**
-* Master branch(1): used for new releases
-* Develop branch(1): created from the master branch, contains stable features for the next lease
-* Feature branch (as many as needed): integrate back to the develop branch when the feature is stable and tested
-    * Changes on the develop branch must be merged back into feature branches
-* Release branch (as many as needed): created from the develop branch, used to isolate and stabilize the releases
-* WIP branch (as many as needed): The work is in progress, and the developer awares it will not finish soon
+## Contribution
+**Git Flow for Contribution**
 
-**How do you name your branches?**
-* Branch type (as listed above)
-* Issue id
-* Short description to distinguish different tasks/actions for same issue (optional - separated by hyphens)
+We use git for project contribution, following the steps below:
 
-**Do you use github issues or another ticketing website?**
-* Ticket Tracking in [Jira](https://cmsweb.utsc.utoronto.ca/cscc01s22/tutorials/jira/Jira%20Tutorial.html)
+1. Use ``git clone`` or ``git pull`` to fork the project.
+2. Use ``git checkout -b <branch name>`` to create a new branch from master for the changes made; one branch per topic/feature.
+3. Use ``git add`` and ``git commit`` with descriptive commit messages.
+4. Push this branch to GitHub project repo.
+5. When attempting to add changes to main branch, use GitHub's Pull Request option on the Project's GitHub page.
+6. The project owner merges or closes the [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). ([PR template](https://gist.github.com/jcserv/33f19818fde83c18e755b1c138eeac49))
+7. Sync the updated master back to your fork.
 
-**Do you use pull requests?**
-* Pull request with [template](https://gist.github.com/jcserv/33f19818fde83c18e755b1c138eeac49)
+**Branch Naming Conventions**
+* BranchType-IssueID-Description(optional)
+* BranchType as listed above:
+    * Master branch(1): used for new releases
+    * Develop branch(1): created from the master branch, contains stable features for the next lease
+    * Feature branch(many as needed): integrate back to the develop branch when the feature is stable and tested
+    * changes on the develop branch must be merged back into feature branches
+    * Release branch(many as needed): created from the develop branch, used to isolate and stabilize the releases
+    * WIP branch(many as needed): The work is in progress, and I am aware it will not finish soon
+
+**Logging Tickets**
+
+Jira [tut](https://cmsweb.utsc.utoronto.ca/cscc01s22/tutorials/jira/Jira%20Tutorial.html) about how to log a ticket

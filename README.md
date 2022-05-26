@@ -5,11 +5,11 @@ FitApp is a mobile app providing nutrition & training daily plans and progress t
 
 **For nutrition plan & tracking, a user can:**
 * Set weight loss goals, get a food intake daily routine recommendation
-* Log meals (food with nutrition facts) through a calendar interface
-* Categorize logs by breakfast, lunch, dinner and user-defined categories (snacks1, snack2, etc) 
+* Log meals (food with nutrition facts) in a calendar interface
+* Categorize logs by breakfast, lunch, dinner and user-defined categories (snacks1, snack2, etc.) 
 * Nutrition breakdown
 * Get warning of nutrition limits
-* See trends of nutrition intake (day, week, month)
+* See trends of nutrition intake (daily, weekly, monthly, etc.)
 
 **For phsical training plan & tracking, a user can:**
 * Log exercie metrics (type, time, amount, additional note) in a calendar interface
@@ -17,7 +17,7 @@ FitApp is a mobile app providing nutrition & training daily plans and progress t
 
 **Highlight features:**
 * Gamification
-    * cutomized user profile with achievements/medals displayed for goal-accomplishment, progress sharing
+    * Cutomized user profile with achievements/medals displayed for goal-accomplishment, progress sharing, etc.
 * UI Customization
     * Night Mode
     * Custom Colour Themes
@@ -53,9 +53,9 @@ npm start
 * Feature branch (as many as needed): integrate back to the develop branch when the feature is stable and tested
     * Changes on the develop branch must be merged back into feature branches
 * Release branch (as many as needed): created from the develop branch, used to isolate and stabilize the releases
-* WIP branch (as many as needed): The work is in progress, and I am aware it will not finish soon
+* WIP branch (as many as needed): The work is in progress, and the developer awares it will not finish soon
 
-**What do you name your branches?**
+**How do you name your branches?**
 * Branch type (as listed above)
 * Issue id
 * Short description to distinguish different tasks/actions for same issue (optional - separated by hyphens)

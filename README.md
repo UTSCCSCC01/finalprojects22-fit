@@ -23,6 +23,9 @@ FitApp is a mobile app providing nutrition & training daily plans and progress t
     * Custom Colour Themes
 
 ## Installation
+
+We will use [React Native](https://reactnative.dev/), [Node.js](https://nodejs.org/en/) and [MongoDB](https://www.mongodb.com/) to develop the app.
+
 1. Make sure Node.js and npm is installed on your local machine. You can check using the following command:
 ```
 npm -v

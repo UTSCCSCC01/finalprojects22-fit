@@ -76,14 +76,12 @@ export default function App() {
 	};
 	return (
 		<div className='app'>
+      <h1>FIT</h1>
+      <h2>Survey</h2>
 			{showResult ? (
 				<div className='result-section'>
-          <div className='plan-section'>
-            {results_plan.results}
-            
-          </div>
-					Your Result: {results}
-          <div><button onClick={() => restartSurvey()}>Restart Survey</button></div>
+					<h1>your Input: {results}</h1>
+          <h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
 				</div>
         
 			) : (

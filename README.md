@@ -38,16 +38,34 @@ git clone https://github.com/UTSCCSCC01/finalprojects22-fit.git
 ```
 cd finalprojects22-fit
 ```
-4. Install all required dependencies for the project
+### Setup for the Backend
+1. Navigate to the backend directory on your local machine
+```
+cd backend
+```
+2. Install all required dependencies
 ```
 npm install
 ```
-5. Build and run the app
+3. Start the node.js server
+```
+npm start
+```
+### Setup for the Frontend
+1. Navigate to the frontend directory on your local machine
+```
+cd frontend
+```
+2. Install all required dependencies
+```
+npm install
+```
+3. Build and run the app
 ```
 # will open expo in a new page in your web browser
 npm start
 ```
-6. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the displayed QR code.
+4. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the displayed QR code.
 
 ## Contribution
 **Git Flow for Contribution**

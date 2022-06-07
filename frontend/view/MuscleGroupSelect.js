@@ -3,7 +3,6 @@ import { View, Button, TextInput, Alert } from 'react-native';
 import { styles } from '../style/styles';
 
 export function MuscleGroupSelect({ navigation }) {
-  //const [onChangeText] = React.useState(null);
 
   return (
     <View style={styles.container}>

@@ -21,4 +21,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+    borderWidth: 1,
+  },
 });

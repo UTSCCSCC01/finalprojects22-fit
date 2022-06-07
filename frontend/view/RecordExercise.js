@@ -46,6 +46,7 @@ export function RecordExercise({ route, navigation }) {
         </View>
       <Button
         title="Log Exercise"
+        onPress={() => navigation.popToTop()}
       />
       <Button
         title="Go back"

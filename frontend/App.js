@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ExerciseSelect } from './view/ExerciseSelect'
+import { MuscleGroupSelect } from './view/MuscleGroupSelect'
+import { RecordExercise } from './view/RecordExercise';
+import { ExerciseLog } from './view/ExerciseLog';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Exercise Log">
+        <Stack.Screen name="Exercise Log" component={ExerciseLog} />
+        <Stack.Screen name="Select Muscle Group" component={MuscleGroupSelect} />
+        <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
+        <Stack.Screen name="Record Exercise" component={RecordExercise} />
+      </Stack.Navigator>
+  </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

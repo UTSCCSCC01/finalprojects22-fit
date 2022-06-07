@@ -58,7 +58,7 @@ let config = {
 };
 ...
 ```
-Contact @chancollin5101 to request access to MongoDB Atlas database.
+Contact [Collin](https://github.com/chancollin5101) to request access to MongoDB Atlas database.
 
 4. Start the node.js server
 ```

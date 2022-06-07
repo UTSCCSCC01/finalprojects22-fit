@@ -47,7 +47,20 @@ cd backend
 ```
 npm install
 ```
-3. Start the node.js server
+3. Fill in credentials for access to the MongoDB Atlast database in config.js file
+```js
+let config = {
+    // Values to insert:
+    // <username>, <password>, <database-name>
+    // all values could be found on MongoDB Atlas Dashboard
+    dbUrl:
+      "mongodb+srv://<username>:<password>@cluster0.8dilqlw.mongodb.net/<database-name>?retryWrites=true&w=majority",
+};
+...
+```
+Contact @chancollin5101 to request access to MongoDB Atlas database.
+
+4. Start the node.js server
 ```
 npm start
 ```

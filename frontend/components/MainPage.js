@@ -9,7 +9,7 @@ class MainPage extends Component{
                 <View>
                     <Text>Here's your progress today</Text>
                     <ScrollView>
-                        {this.progressList}
+                        {this.progressList()}
                     </ScrollView>
                     <Button
                     title='Track Metrics'></Button>
@@ -17,40 +17,50 @@ class MainPage extends Component{
                 <View>
                     <Text>Daily Goals</Text>
                     <ScrollView>
-                        {this.dailyGoalList}
+                        {this.dailyGoalList()}
                     </ScrollView>
                 </View>
                 <View>
                     <Text>Long Term Goals</Text>
                     <ScrollView>
-                        {this.longTermGoalList}
+                        {this.longTermGoalList()}
                     </ScrollView>
                 </View>            
             </View>
         );  
     }
 
-    progressList = () => {
-        <View>
-            <Text>700 calories to burn</Text>
-            <Text>800L water to go</Text>
-            <Text>2km to run</Text>
-            <Text>5 push-ups to do</Text>
-        </View>
+    progressList(){
+        return(
+            
+                <View>
+                    <Text>700 calories to burn</Text>
+                    <Text>800L water to go</Text>
+                    <Text>2km to run</Text>
+                    <Text>5 push-ups to do</Text>
+                </View>
+            
+        );
+        
         
     }
 
-    dailyGoalList = () => {
-        <View>
-            <Text>Do 3/5 push-ups</Text>
-            <Text>drink 0.6/2L water</Text>
-        </View>
+    dailyGoalList(){
+        return(
+            <View>
+                <Text>Do 3/5 push-ups</Text>
+                <Text>drink 0.6/2L water</Text>
+            </View>
+        );
+        
     }
 
-    longTermGoalList = () => {
-        <View>
-            <Text>Lose 10/50 kg</Text>
-        </View>
+    longTermGoalList(){
+        return( 
+            <View>
+                <Text>Lose 10/50 kg</Text>
+            </View>
+        );
     }
 
 

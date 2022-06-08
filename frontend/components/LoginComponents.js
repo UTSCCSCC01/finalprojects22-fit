@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import MainPage from './MainPage';
-import { NavigationContainer } from '@react-navigation/native';
 //import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //const Stack = createNativeStackNavigator();
 
@@ -27,18 +26,22 @@ class Login extends Component {
                     case 0:
                         return(
                             <View>
+                                <Text>Login</Text>
                                 <TextInput>Username</TextInput>
                                 <TextInput>Password</TextInput>
-                                <Button onPress={()=>this.registerClk()} title="New User? Click here to log in"></Button>
+                                <Button onPress={()=>this.registerClk()} title="New User? Click here to register"></Button>
                                 <Button title="Login" onPress={()=>this.loginToMain()}></Button>
                             </View>
                         );
                     default: 
                         return(
                             <View>
+                                <Text>Register</Text>
                                 <TextInput>Enter your username</TextInput>
+                                <TextInput>Enter your Email address</TextInput>
                                 <TextInput>Enter your password</TextInput>
-                                <Button onPress={()=>this.loginButtonClk()} title="Register">Register</Button>
+                                <Button onPress={()=>this.loginButtonClk()} title="Already have an account? Click here to login"></Button>
+                                <Button onPress={()=>this.registered()} title="Register">Register</Button>
                             </View>
                         );
                 }
@@ -68,6 +71,10 @@ class Login extends Component {
     
     loginToMain(){
         this.props.navigation.navigate('MainPage');
+    }
+
+    registered(){
+        this.props.navigation.navigate('Survey');
     }
 }
 

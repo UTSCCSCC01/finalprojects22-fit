@@ -38,16 +38,47 @@ git clone https://github.com/UTSCCSCC01/finalprojects22-fit.git
 ```
 cd finalprojects22-fit
 ```
-4. Install all required dependencies for the project
+### Setup for the Backend
+1. Navigate to the backend directory on your local machine
+```
+cd backend
+```
+2. Install all required dependencies
 ```
 npm install
 ```
-5. Build and run the app
+3. Fill in credentials for access to the MongoDB Atlast database in config.js file
+```js
+let config = {
+    // Values to insert:
+    // <username>, <password>, <database-name>
+    // all values could be found on MongoDB Atlas Dashboard
+    dbUrl:
+      "mongodb+srv://<username>:<password>@cluster0.8dilqlw.mongodb.net/<database-name>?retryWrites=true&w=majority",
+};
+...
+```
+Contact [Collin](https://github.com/chancollin5101) to request access to MongoDB Atlas database.
+
+4. Start the node.js server
+```
+npm start
+```
+### Setup for the Frontend
+1. Navigate to the frontend directory on your local machine
+```
+cd frontend
+```
+2. Install all required dependencies
+```
+npm install
+```
+3. Build and run the app
 ```
 # will open expo in a new page in your web browser
 npm start
 ```
-6. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the displayed QR code.
+4. If you choose to run the app on a mobile device, then make sure to install the expo app on the mobile device and scan the displayed QR code.
 
 ## Contribution
 **Git Flow for Contribution**

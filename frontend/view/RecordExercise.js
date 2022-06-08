@@ -3,9 +3,11 @@ import { Text, View, Button, TextInput} from 'react-native';
 import { styles } from '../style/styles';
 
 export function RecordExercise({ route, navigation }) {
-  const { exerciseName } = route.params;
+  /* Create hooks */
   const [weight, setWeight] = React.useState(0);
   const [reps, setReps] = React.useState(0);
+
+  const { exerciseName } = route.params;
 
   return (
     <View style={styles.container}>

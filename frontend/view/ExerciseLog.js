@@ -1,33 +1,39 @@
 import * as React from 'react';
-import { View, Button, FlatList, Text } from 'react-native';
+import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
 import { styles } from '../style/styles';
 
 export function ExerciseLog({ navigation }) {
+  /* Create hooks */
+  const [isLoading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
+
+  /* Pull user's sets */
+  /* TO DO - GET USER DATA INSTEAD OF HARD COADING USER ID */
+  const getSets = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/set/629fb406dce35a2490193a84');
+      const json = await response.json();
+      setData(json.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  React.useEffect(() => {
+    getSets();
+  }, []);
 
   return (
     <View style={styles.container}>
+      {isLoading ? <ActivityIndicator/> : (
       <FlatList
-        data={[
-          {key: 'ex1'},
-          {key: 'ex2'},
-          {key: 'ex3'},
-          {key: 'ex4'},
-          {key: 'ex5'},
-          {key: 'ex6'},
-          {key: 'ex7'},
-          {key: 'ex8'},
-          {key: 'ex9'},
-          {key: 'ex10'},
-          {key: 'ex11'},
-          {key: 'ex12'},
-          {key: 'ex13'},
-          {key: 'ex14'},
-          {key: 'ex15'},
-          {key: 'ex16'},
-          
-        ]}
-        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+        data={data}
+        keyExtractor={({ id }, index) => id}
+        renderItem={({item}) => <Text style={styles.item}>{item.exercise_name},{item.first_value}</Text>}
       />
+      )}
       <Button
         title="Log a new exercise"
         onPress={() => navigation.navigate('Select Muscle Group')}

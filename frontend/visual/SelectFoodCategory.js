@@ -6,7 +6,7 @@ export function SelectFoodCategory({ navigation }) {
     return (
          <View style={styles.container}>
             <TextInput
-              style={styles.input}
+              style={styles.testInput}
               onSubmitEditing ={(event) => (Alert.alert(event.nativeEvent.text))}
               placeholder="Search for food"
             />

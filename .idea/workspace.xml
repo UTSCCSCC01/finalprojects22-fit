@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f144f13e-5466-4ccb-a91f-2865ca81ed3f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/style.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/visual/SelectFood.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/visual/SelectFoodCategory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FOOD GROUP.csv" beforeDir="false" afterPath="$PROJECT_DIR$/FOOD GROUP.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/visual/RecordFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/visual/SelectFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/visual/SelectFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/visual/SelectFoodCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/visual/SelectFoodCategory.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +61,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

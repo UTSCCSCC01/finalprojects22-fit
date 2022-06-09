@@ -1,15 +1,37 @@
-const { application } = require('express')
+const express = require("express")
+const router = express.Router()
+const resultPlan = [
+    {'Gain weight/build muscle.Yes.<= 3 days/week.': 'plan1'},
+  {'Lose weight/burn fat.Yes.<= 3 days/week.': 'plan2'},
+  {'Improve Strength.Yes.<= 3 days/week.': 'plan3'},
+  {'Improve Cardio.Yes.<= 3 days/week.' : 'plan4'},
+  {'General Health.Yes.<= 3 days/week.' : 'plan5'},
+  {'Gain weight/build muscle.No.<= 3 days/week.' : 'plan6'},
+  {'Lose weight/burn fat.No.<= 3 days/week.' : 'plan7'},
+  {'Improve Strength.No.<= 3 days/week.' : 'plan8'},
+  {'Improve Cardio.No.<= 3 days/week.' : 'plan9'},
+  {'General Health.No.<= 3 days/week.' : 'plan10'},
+  {'Gain weight/build muscle.Yes.>4 days/week.' : 'plan11'},
+  {'Lose weight/burn fat.Yes.>4 days/week.' : 'plan12'},
+  {'Improve Strength.Yes.>4 days/week.' : 'plan13'},
+  {'Improve Cardio.Yes.>4 days/week.' : 'plan14'},
+  {'General Health.Yes.>4 days/week.' : 'plan15'},
+  {'Gain weight/build muscle.No.>4 days/week.' : 'plan16'},
+  {'Lose weight/burn fat.No.>4 days/week.' : 'plan17'},
+  {'Improve Strength.No.>4 days/week.' : 'plan18'},
+  {'Improve Cardio.No.>4 days/week.' : 'plan19'},
+  {'General Health.No.>4 days/week.' : 'plan20'}
+]
 
-const express = require('express'),
-ResultPlan = express()
 
-require('dotenv').config()
-ResultPlan.set('view engine', 'ejs')
-ResultPlan.use('/ResultPlan/',require('./routes/ResultPlan'))
-
-const PORT = process.env.PORT || 3000
-
-ResultPlan.listen(PORT, ()=> {
-    const url = `http://localhost: ${PORT}`
-    console.log(`Listening on ${url}`)
+router.param("result", (req, res, next, id)=> {
+    req.plan = resultPlan[result]
+    next()
 })
+
+router.get('/:result', (req, res) => {
+    req.params.result
+    res.send(`Plan recommended for your result ${req.params}`)
+})
+
+module.exports = router

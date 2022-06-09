@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-//import './App.css';
-//import { ResultPlan } from './components/ResultPlan';
+import './SurveyFormat.css';
+import { ResultPlan } from '../components/ResultPlan';
 
 export function Survey() {
 	const questions = [
@@ -11,7 +11,7 @@ export function Survey() {
 				{ answerText: 'Lose weight/burn fat.'},
 				{ answerText: 'Improve Strength.'},
 				{ answerText: 'Improve Cardio.'},
-        { answerText: 'General Health.'},
+                { answerText: 'General Health.'},
 			],
 		},
 		{

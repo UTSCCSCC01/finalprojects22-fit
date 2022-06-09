@@ -32,6 +32,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/users", usersRouter); // define request route
 
+// resultPlan route
+const resultPlanRouter = require('./routes/resultPlan')
+app.use('/resultPlan', resultPlanRouter)
+
 app.listen(port, function () {
   console.log("Runnning on " + port);
 });

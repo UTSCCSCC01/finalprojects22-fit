@@ -10,6 +10,8 @@ const port = 3000;
 const config = require("./config");
 // import defined users route
 const usersRouter = require("./routes/users");
+// import defined resultPlan route
+const resultPlanRouter = require('./routes/resultPlan')
 
 app.use(logger("dev"));
 
@@ -33,7 +35,6 @@ app.use(bodyParser.json());
 app.use("/users", usersRouter); // define request route
 
 // resultPlan route
-const resultPlanRouter = require('./routes/resultPlan')
 app.use('/resultPlan', resultPlanRouter)
 
 app.listen(port, function () {

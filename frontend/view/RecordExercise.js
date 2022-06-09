@@ -90,7 +90,7 @@ export function RecordExercise({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-        <Text>exerciseName: {cleanString(exercise_name)}</Text>
+        <Text>{cleanString(exercise_name)}</Text>
         <Text>{cleanString(exercise_group) === 'Cardio' ? 'Time' : 'Weight'}</Text>
         <View style={styles.exerciseInput}>
           <Button

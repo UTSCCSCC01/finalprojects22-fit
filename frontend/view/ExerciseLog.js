@@ -26,31 +26,16 @@ export function ExerciseLog({ navigation }) {
   /* Delete selected set */
   const deleteSets = async (id) => {
     const setId = cleanString(id);
-    fetch('http://localhost:3000/set/'.concat(setId), {method: 'DELETE'})
-    .then(getSets());
-  }
-
-  /* Update selected set */
-  const patchSets = async (id) => {
-    const setId = cleanString(id);
-    fetch('http://localhost:3000/set/'.concat(setId), {
-      method: 'PATCH',
-      headers: {
-        Accept: 'application/json',
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        first_value: 20,
-        second_value: 5,
-      })
-    })
-    .then(getSets());
+    const response = await fetch('http://localhost:3000/set/'.concat(setId), {method: 'DELETE'})
+    const json = await response.json();
+    getSets();
   }
 
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
     if (logMode === 'delete'){
-      deleteSets(item._id);
+      Promise.resolve(deleteSets(item._id))
+      .then(getSets());
     }
     else if (logMode === 'update'){
       navigation.navigate('Record Exercise', {

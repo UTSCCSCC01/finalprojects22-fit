@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { styles } from '../style/styles';
+import { cleanString } from '../utility/format.js';
 
 export function ExerciseSelect({ route, navigation }) {
   /* Create hooks */
@@ -10,8 +11,8 @@ export function ExerciseSelect({ route, navigation }) {
   const { exerciseType, SearchType } = route.params;
 
   /* stringify and clean route params */
-  const exerciseTypeClean = JSON.stringify(exerciseType).replace(/['"]+/g, '');
-  const SearchTypeClean = JSON.stringify(SearchType).replace(/['"]+/g, '');
+  const exerciseTypeClean = cleanString(exerciseType);
+  const SearchTypeClean = cleanString(SearchType);
 
   /* Search by muscle group (including cardio) */
   const getGroupExercises = async () => {
@@ -50,22 +51,23 @@ export function ExerciseSelect({ route, navigation }) {
   }, []);
 
 /* Navigates to next page  */
-const getItem = (name) => {
+const getItem = (item) => {
  
   navigation.navigate('Record Exercise', {
-    exerciseName: name,
+    exercise_name: item.ExerciseName,
+    exercise_group: item.MuscleGroup,
   })
 
 }
 
   return (
     <View style={styles.container}>
-      <Text>exerciseType: {JSON.stringify(exerciseType)}</Text>
       {isLoading ? <ActivityIndicator/> : (
       <FlatList
         data={data}
         keyExtractor={({ id }, index) => id}
-        renderItem={({item}) => <Text style={styles.item} onPress={()=> getItem(item.ExerciseName)}>{item.ExerciseName}</Text>}
+        /* need to also pull muscle group into get item to push it into next page to check if cardio*/
+        renderItem={({item}) => <Text style={styles.item} onPress={()=> getItem(item)}>{item.ExerciseName}</Text>}
       />
       )}
     </View>

@@ -1,18 +1,72 @@
 import * as React from 'react';
 import { Text, View, Button, TextInput} from 'react-native';
 import { styles } from '../style/styles';
+import { cleanString, numberToTime } from '../utility/format.js';
 
 export function RecordExercise({ route, navigation }) {
   /* Create hooks */
   const [weight, setWeight] = React.useState(0);
   const [reps, setReps] = React.useState(0);
 
-  const { exerciseName } = route.params;
+  const { exercise_name, exercise_group } = route.params;
+
+  /* Search by muscle group (including cardio) */
+  const postSet = async () => {
+
+    /* Set body parameters */
+    const currentDate = new Date();
+    const exerciseName = cleanString(exercise_name);
+    const firstValue = cleanString(weight);
+    const secondValue = cleanString(reps);
+    const isCardio = cleanString(exercise_group) === 'Cardio' ? 'true' : 'false';
+
+    /* Send Post Request */
+    fetch('http://localhost:3000/set', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId: '629fb406dce35a2490193a84',
+        exercise_name: exerciseName,
+        is_cardio: isCardio,
+        first_value: firstValue,
+        second_value: secondValue,
+        date: currentDate.getTime()
+      })
+    });
+  }
+
+  /* Determines which format to use to represent first_value */
+  const cardioTimeConverter = () => {
+    if (cleanString(exercise_group) === 'Cardio'){
+      return numberToTime(weight);
+    }
+    else{
+      return cleanString(weight)
+    }
+  }
+
+  const cardioDistConverter = () => {
+    if (cleanString(exercise_group) === 'Cardio'){
+      return cleanString(reps / 10) + ' KM';
+    }
+    else{
+      return cleanString(reps)
+    }
+  }
+
+  /* Create new set in database and navigate back to the log */
+  const addNewSet = () => {
+    postSet();
+    navigation.popToTop()
+  }
 
   return (
     <View style={styles.container}>
-        <Text>exerciseName: {JSON.stringify(exerciseName)}</Text>
-        <Text>Weight</Text>
+        <Text>exerciseName: {cleanString(exercise_name)}</Text>
+        <Text>{cleanString(exercise_group) === 'Cardio' ? 'Time' : 'Weight'}</Text>
         <View style={styles.exerciseInput}>
           <Button
             title="-"
@@ -20,8 +74,8 @@ export function RecordExercise({ route, navigation }) {
           />
           <TextInput
             style={styles.textInput}
-            value={JSON.stringify(weight)}
-            onChangeText={text => text == '' ? setWeight(0) : setWeight(parseInt(text))}
+            value={cardioTimeConverter()}
+            onChangeText={text => text === '' ? setWeight(0) : setWeight(parseInt(text))}
             keyboardType="numeric"
           />
           <Button
@@ -29,7 +83,7 @@ export function RecordExercise({ route, navigation }) {
             onPress={() => setWeight(weight + 5)}
           />
         </View>
-        <Text>Reps</Text>
+        <Text>{cleanString(exercise_group) === 'Cardio' ? 'Distance' : 'Reps'}</Text>
         <View style={styles.exerciseInput}>
           <Button
             title="-"
@@ -37,7 +91,7 @@ export function RecordExercise({ route, navigation }) {
           />
           <TextInput
             style={styles.textInput}
-            value={JSON.stringify(reps)}
+            value={cardioDistConverter()}
             onChangeText={text => text == '' ? setReps(0) : setReps(parseInt(text))}
             keyboardType="numeric"
           />
@@ -48,11 +102,7 @@ export function RecordExercise({ route, navigation }) {
         </View>
       <Button
         title="Log Exercise"
-        onPress={() => navigation.popToTop()}
-      />
-      <Button
-        title="Go back"
-        onPress={() => navigation.goBack()}
+        onPress={() => addNewSet()}
       />
     </View>
   );

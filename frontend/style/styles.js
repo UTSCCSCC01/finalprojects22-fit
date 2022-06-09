@@ -27,4 +27,18 @@ export const styles = StyleSheet.create({
     height: 44,
     borderWidth: 1,
   },
+  deleteItem: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+    borderWidth: 1,
+    borderColor: 'red',
+  },
+  updateItem: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+    borderWidth: 1,
+    borderColor: 'green',
+  },
 });

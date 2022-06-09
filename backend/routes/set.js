@@ -46,4 +46,52 @@ router.get("/:userId", async (req, res) => {
     } 
 });
 
+// PATCH - Update the set given the id from the Set Collection
+router.patch("/:setId", async (req, res) => {
+    try {
+        let set = await Set.findByIdAndUpdate(req.params.setId, req.body, {
+            new: true,
+        });
+        if (set) {
+            res.status(200).json({
+                status: 200,
+                data: set,
+            });
+        } else {
+            res.status(400).json({
+                status: 400, 
+                message: "Set not found/Update cannot be done",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    }
+});
+
+// DELETE - Delete the set given the id from the Set Collection
+router.delete("/:setId", async (req, res) => {
+    try {
+        let set = await Set.findByIdAndRemove(req.params.setId);
+        if (set) {
+            res.status(200).json({
+                status: 200,
+                message: "Successfully deleted set",
+            });
+        } else {
+            res.status(400).json({
+                status: 400,
+                message: "Set cannot be deleted/Set not found"
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    }
+});
+
 module.exports = router;

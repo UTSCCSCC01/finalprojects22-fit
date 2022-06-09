@@ -46,6 +46,7 @@ export function RecordFood({ route, navigation }) {
         </View>
       <Button
         title="Log Food"
+        onPress={() => navigation.popToTop()}
       />
       <Button
         title="Go back"

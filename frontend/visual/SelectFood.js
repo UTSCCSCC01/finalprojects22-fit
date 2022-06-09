@@ -10,7 +10,7 @@ export function SelectFood({ route, navigation }) {
             <Button
               title="Apple"
               onPress={() => navigation.navigate('Record Food', {
-                exerciseName: 'Apple'
+                foodName: 'Apple'
               })}
             />
         </View>

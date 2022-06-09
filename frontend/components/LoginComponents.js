@@ -1,8 +1,8 @@
 import React, { Component, useState } from 'react';
-import { Text, View, TextInput, Button } from 'react-native';
+import { Text, View, TextInput, Button, FlatList } from 'react-native';
 import MainPage from './MainPage';
 import axios from 'axios';
-const baseURL = '127.0.0.1:3000'
+const baseURL = 'http://10.0.2.2:3000'
 //import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //const Stack = createNativeStackNavigator();
 
@@ -13,35 +13,44 @@ class Login extends Component {
         login: 0,
         username: '',
         email: '',
-        password: ''
+        password: '',
+        displayName: '',
+        logindata:{}
     }
 
     render() {
         return (
             <View>
-                {this.loginPage()}
+                {this.LoginPage()}
             </View>
         );
     }   
-    TextHandler = () => {
+
+    TextHandler = ()=>{
         const [username, setUserName] = useState('');
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
+        const [displayName, setdisplayName] = useState('');
         
         
         
         return (
             <View>
-                <TextInput onChangeText={(text)=>{setUserName(text); this.setState({username: username}); }} placeholder='Enter your username'/>
-                <TextInput onChangeText={(text)=>{setEmail(text); this.setState({username: email});}} placeholder='Enter your Email address'/>
-                <TextInput onChangeText={(text)=>{setPassword(text); this.setState({password: password});}} placeholder='Enter your password'/>
+                <TextInput onChangeText={(text)=>{
+                    setUserName(text); }} placeholder='Enter your username'/>
+                <TextInput onChangeText={(text)=>{
+                    setEmail(text);}} placeholder='Enter your Email address'/>
+                <TextInput onChangeText={(text)=>{
+                    setPassword(text);}} placeholder='Enter your password'/>
+                <TextInput onChangeText={(text)=>{
+                    setdisplayName(text);}} placeholder='Enter your preferred display name'/>
                 <Button onPress={()=>this.loginButtonClk()} title="Already have an account? Click here to login"></Button>
-                <Button onPress={()=>this.registered(username, email, password)} title="Register">Register</Button>
+                <Button onPress={()=>this.registered(username, email, password, displayName)} title="Register">Register</Button>
             </View>
         );
       }
 
-    loginPage() {
+    LoginPage(){
         switch(this.state.login){
             case 0:
                 switch(this.state.register){
@@ -49,8 +58,16 @@ class Login extends Component {
                         return(
                             <View>
                                 <Text>Login</Text>
-                                <TextInput placeholder='Username'/>
-                                <TextInput placeholder='Password'/>
+                                <TextInput onChangeText={(text)=>{
+                                    var loginUserName = text;
+                                    this.setState({
+                                        email: loginUserName
+                                    })}} placeholder='Email'/>
+                                <TextInput onChangeText={(text)=>{
+                                    var loginPassword = text;                              
+                                    this.setState({
+                                        password: loginPassword
+                                    })}} placeholder='Password'/>
                                 <Button onPress={()=>this.registerClk()} title="New User? Click here to register"></Button>
                                 <Button title="Login" onPress={()=>this.loginToMain()}></Button>
                             </View>
@@ -90,10 +107,31 @@ class Login extends Component {
     }
     
     loginToMain(){
-        this.props.navigation.navigate('MainPage');
+        var loginIndicator = 0;
+        const api = axios.create({
+            baseURL: baseURL
+        })
+        api.get('/users/list').then(res => {
+            //console.log(res.data.data);
+            for(var i = 0; i < res.data.data.length; i++){
+                if(res.data.data[i].email == this.state.email){
+                    if(res.data.data[i].password == this.state.password){
+                        loginIndicator = 1;
+                        this.props.navigation.navigate('MainPage');
+                    }else{
+                        alert('Email or password invalid!');
+                        break;
+                    }
+                }
+            }
+            if(loginIndicator == 0){
+                alert('Email or password invalid!');
+            }
+        })
+        
     }
 
-    registered(username, email, password){
+    registered(username, email, password, displayName){
         console.log(email);
         if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
             alert("Email address invalid")
@@ -110,7 +148,7 @@ class Login extends Component {
                         if(!/[A-Z]/.test(password)){
                             alert("Password must contain 1 uppercase letter")
                         }else{
-                            this.wut();
+                            this.wut(username, email, password, displayName);
                             this.props.navigation.navigate('Survey');
                         }
                     }
@@ -120,18 +158,16 @@ class Login extends Component {
     }
 
 
-    async wut(){
-        const username = this.state.username.toString;
-        const email = this.state.email.toString;
-        const password = this.state.password.toString;
+    async wut(username, email, password, displayName){
         const api = axios.create({
-            baseURL: 'http://10.0.2.2:3000'
+            baseURL: baseURL
         })
         await api.post('/users', {
             username: username,
+            display_name: displayName,
             email: email,
             password: password
-        })
+        });
         
         // try{
         //     await fetch('http://localhost:3000/users/',

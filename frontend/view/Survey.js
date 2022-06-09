@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ResultPlan } from './components/ResultPlan';
-import {Survey} from './view/Survey.js';
+//import './App.css';
+//import { ResultPlan } from './components/ResultPlan';
 
-
-export default function App() {
+export function Survey() {
 	const questions = [
 		{
 			questionText: 'What is your primary fitness goal?',
@@ -35,15 +32,14 @@ export default function App() {
 
    /* Resets the game back to default */
    const restartSurvey = () => {
-    setCurrentQuestion(0);
-    setShowResult(false);
-    setResults([]);
-  };
+       setCurrentQuestion(0);
+       setShowResult(false);
+       setResults([]);
+    };
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showResult, setShowResult] = useState(false);
     const [results, setResults] = useState([]);
-  //const[plan, setPlan] = useState([]);
 
 	const handleAnswerOptionClick = (answerText) => {
 		setResults(oldArray => [...oldArray, answerText]);
@@ -54,8 +50,9 @@ export default function App() {
 			setShowResult(true);
 		}
 	};
+
 	return (
-		<div className='app'>
+      <div className='Survey'>
       <h1>FIT</h1>
       <h2>Survey</h2>
 			{showResult ? (

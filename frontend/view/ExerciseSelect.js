@@ -56,6 +56,9 @@ const getItem = (item) => {
   navigation.navigate('Record Exercise', {
     exercise_name: item.ExerciseName,
     exercise_group: item.MuscleGroup,
+    exercise_id: 'N/A',
+    first_value: 0,
+    second_value: 0,
   })
 
 }

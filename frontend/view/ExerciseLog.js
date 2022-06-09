@@ -53,7 +53,14 @@ export function ExerciseLog({ navigation }) {
       deleteSets(item._id);
     }
     else if (logMode === 'update'){
-      patchSets(item._id);
+      navigation.navigate('Record Exercise', {
+        exercise_name: item.exercise_name,
+        exercise_group: item.is_cardio ? 'Cardio' : 'Not Cardio',
+        exercise_id: item._id,
+        first_value: item.first_value,
+        second_value: item.second_value,
+      })
+      //patchSets(item._id);
     }
     setLogMode('select')
   }

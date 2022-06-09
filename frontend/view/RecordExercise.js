@@ -8,16 +8,14 @@ export function RecordExercise({ route, navigation }) {
   const [weight, setWeight] = React.useState(0);
   const [reps, setReps] = React.useState(0);
 
-  const { exercise_name, exercise_group } = route.params;
+  const { exercise_name, exercise_group, exercise_id, first_value, second_value } = route.params;
 
-  /* Search by muscle group (including cardio) */
+  /* create new set */
   const postSet = async () => {
 
     /* Set body parameters */
     const currentDate = new Date();
     const exerciseName = cleanString(exercise_name);
-    const firstValue = cleanString(weight);
-    const secondValue = cleanString(reps);
     const isCardio = cleanString(exercise_group) === 'Cardio' ? 'true' : 'false';
 
     /* Send Post Request */
@@ -28,12 +26,28 @@ export function RecordExercise({ route, navigation }) {
           'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userId: '629fb406dce35a2490193a84',
+        userId: '629fb406dce35a2490193a84', // TO DO: dont hardcode this
         exercise_name: exerciseName,
         is_cardio: isCardio,
-        first_value: firstValue,
-        second_value: secondValue,
+        first_value: weight,
+        second_value: reps,
         date: currentDate.getTime()
+      })
+    });
+  }
+
+  /* Update set */
+  const patchSet = async () => {
+    const setId = cleanString(exercise_id);
+    fetch('http://localhost:3000/set/'.concat(setId), {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        first_value: weight,
+        second_value: reps,
       })
     });
   }
@@ -62,6 +76,17 @@ export function RecordExercise({ route, navigation }) {
     postSet();
     navigation.popToTop()
   }
+
+  /* Update set in database and navigate back to the log */
+  const updateSet = () => {
+    patchSet();
+    navigation.popToTop()
+  }
+
+  React.useEffect(() => {
+    setWeight(first_value);
+    setReps(second_value);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -101,8 +126,8 @@ export function RecordExercise({ route, navigation }) {
           />
         </View>
       <Button
-        title="Log Exercise"
-        onPress={() => addNewSet()}
+        title={cleanString(exercise_id) === 'N/A' ? 'Log Exercise' : 'Update Exercise'}
+        onPress={() => cleanString(exercise_id) === 'N/A' ? addNewSet() : updateSet()}
       />
     </View>
   );

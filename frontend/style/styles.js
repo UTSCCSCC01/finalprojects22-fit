@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
   fixToText: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   item: {
     padding: 10,
@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
+    color: 'red',
     borderWidth: 1,
     borderColor: 'red',
   },
@@ -38,6 +39,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
+    color: 'green',
     borderWidth: 1,
     borderColor: 'green',
   },

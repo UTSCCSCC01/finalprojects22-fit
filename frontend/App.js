@@ -9,6 +9,10 @@ import HomeScreen from './view/HomeScreen.js';
 
 const Tabbar = createBottomTabNavigator();
 
+const primaryOrange = '#FF8C42'
+const primaryPurple = '#4E598C'
+const secondaryPurple = '#717FC0'
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -22,16 +26,27 @@ export default function App() {
                 ? 'home'
                 : 'home';
             } else if (route.name === 'Profile') {
-              iconName = focused ? 'person-pin' : 'person-pin';
+              iconName = focused ? 'account-circle' : 'account-circle';
             }
-            return <MaterialIcons name={iconName} size={size} color={color} />;
+            return <MaterialIcons name={iconName} size={35} color={color} />;
           },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: primaryOrange,
+          tabBarInactiveTintColor: secondaryPurple,
+          tabBarStyle: {
+            height: 80,
+            borderRadius: 40,
+            paddingTop: 15,
+            backgroundColor: primaryPurple
+          }
         })}
       >
-        <Tabbar.Screen name="Home" component={HomeScreen} />
-        <Tabbar.Screen name="Profile" component={ProfileScreen} />
+        <Tabbar.Screen 
+          name="Home" 
+          component={HomeScreen} />
+        <Tabbar.Screen 
+          name="Profile" 
+          component={ProfileScreen} />
       </Tabbar.Navigator>
     </NavigationContainer>
   );

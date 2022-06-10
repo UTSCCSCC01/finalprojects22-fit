@@ -76,7 +76,7 @@ Subtasks:
 ## Team Capacity
 
 - Vincent Liang - 16 hours
-- Brandon Duan - 
-- Joy Gong - 
-- Matthew Melchior - 
-- Collin Chan - 
+- Brandon Duan - 25 hours
+- Joy Gong - 14 hours
+- Matthew Melchior - 24 hours
+- Collin Chan - 20 hours

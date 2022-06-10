@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Button, TextInput } from 'react-native';
 import { styles } from '../style/styles';
 
-export function MuscleGroupSelect({ navigation }) {
+export function ExerciseGroupSelect({ navigation }) {
 
   return (
     <View style={styles.container}>

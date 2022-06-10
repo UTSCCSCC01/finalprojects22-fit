@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString } from '../utility/format.js';
+import { getExercisesByGroup, getExercisesBySearch } from '../controller/exerciseSelectController.js'
 
 export function ExerciseSelect({ route, navigation }) {
   /* Create hooks */
@@ -17,8 +18,7 @@ export function ExerciseSelect({ route, navigation }) {
   /* Search by muscle group (including cardio) */
   const getGroupExercises = async () => {
     try {
-      const response = await fetch('http://localhost:3000/exercises/Groups/'.concat(exerciseTypeClean));
-      const json = await response.json();
+      const json = await getExercisesByGroup(exerciseTypeClean);
       setData(json.data);
     }catch (error) {
       console.error(error);
@@ -30,8 +30,7 @@ export function ExerciseSelect({ route, navigation }) {
   /* Search via the search bar */
   const searchExercises = async () => {
     try {
-      const response = await fetch('http://localhost:3000/exercises/Search/'.concat(exerciseTypeClean));
-      const json = await response.json();
+      const json = await getExercisesBySearch(exerciseTypeClean);
       setData(json.data);
     }catch (error) {
       console.error(error);
@@ -69,7 +68,6 @@ const getItem = (item) => {
       <FlatList
         data={data}
         keyExtractor={({ id }, index) => id}
-        /* need to also pull muscle group into get item to push it into next page to check if cardio*/
         renderItem={({item}) => <Text style={styles.item} onPress={()=> getItem(item)}>{item.ExerciseName}</Text>}
       />
       )}

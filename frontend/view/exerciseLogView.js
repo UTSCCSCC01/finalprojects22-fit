@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
+import { getExerciseSets, deleteExerciseSet } from '../controller/exerciseLogController' 
 
 export function ExerciseLog({ navigation }) {
   /* Create hooks */
@@ -10,11 +11,9 @@ export function ExerciseLog({ navigation }) {
   const [logMode, setLogMode] = React.useState('select');
 
   /* Pull user's sets */
-  /* TO DO - GET USER DATA INSTEAD OF HARDCODING USER ID */
   const getSets = async () => {
     try {
-      const response = await fetch('http://localhost:3000/set/629fb406dce35a2490193a84');
-      const json = await response.json();
+      const json = await getExerciseSets();
       setData(json.data);
     } catch (error) {
       console.error(error);
@@ -25,16 +24,18 @@ export function ExerciseLog({ navigation }) {
   
   /* Delete selected set */
   const deleteSets = async (id) => {
-    const setId = cleanString(id);
-    const response = await fetch('http://localhost:3000/set/'.concat(setId), {method: 'DELETE'})
-    const json = await response.json();
-    getSets();
+    try {
+      const json = await deleteExerciseSet(id);
+      getSets();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
     if (logMode === 'delete'){
-      Promise.resolve(deleteSets(item._id))
+      Promise.resolve(deleteSets(cleanString(item._id)))
       .then(getSets());
     }
     else if (logMode === 'update'){
@@ -45,7 +46,6 @@ export function ExerciseLog({ navigation }) {
         first_value: item.first_value,
         second_value: item.second_value,
       })
-      //patchSets(item._id);
     }
     setLogMode('select')
   }
@@ -91,7 +91,7 @@ export function ExerciseLog({ navigation }) {
       <View style={styles.fixToText}>
         <Button
           title="Log a new exercise"
-          onPress={() => navigation.navigate('Select Muscle Group')}
+          onPress={() => navigation.navigate('Select Exercise Group')}
         />
         <Button
           title="Update an exercise"

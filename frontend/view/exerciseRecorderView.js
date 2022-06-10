@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Text, View, Button, TextInput} from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
+import { postSet, patchSet } from '../controller/exerciseRecorderController.js'
 
-export function RecordExercise({ route, navigation }) {
+export function ExerciseRecorder({ route, navigation }) {
   /* Create hooks */
   const [weight, setWeight] = React.useState(0);
   const [reps, setReps] = React.useState(0);
@@ -11,45 +12,47 @@ export function RecordExercise({ route, navigation }) {
   const { exercise_name, exercise_group, exercise_id, first_value, second_value } = route.params;
 
   /* create new set */
-  const postSet = async () => {
+  const createSet = async () => {
 
-    /* Set body parameters */
+    /* Clean/set body parameters */
     const currentDate = new Date();
     const exerciseName = cleanString(exercise_name);
     const isCardio = cleanString(exercise_group) === 'Cardio' ? 'true' : 'false';
 
-    /* Send Post Request */
-    fetch('http://localhost:3000/set', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        userId: '629fb406dce35a2490193a84', // TO DO: dont hardcode this
-        exercise_name: exerciseName,
-        is_cardio: isCardio,
-        first_value: weight,
-        second_value: reps,
-        date: currentDate.getTime()
-      })
+    /* bundle parameters into JSON format */
+    const body = JSON.stringify({
+      userId: '629fb406dce35a2490193a84', 
+      exercise_name: exerciseName,
+      is_cardio: isCardio,
+      first_value: weight,
+      second_value: reps,
+      date: currentDate.getTime()
     });
+    
+    /* Post set */
+    const json = await postSet(body);
+  
+    /* go back to exercise log page */
+    navigation.popToTop()
   }
 
   /* Update set */
-  const patchSet = async () => {
+  const updateSet = async () => {
+
+    /* Clean parameter */
     const setId = cleanString(exercise_id);
-    fetch('http://localhost:3000/set/'.concat(setId), {
-      method: 'PATCH',
-      headers: {
-        Accept: 'application/json',
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        first_value: weight,
-        second_value: reps,
-      })
+
+    /* bundle parameters into JSON format */
+    const body = JSON.stringify({
+      first_value: weight,
+      second_value: reps,
     });
+
+    /* patch st */
+    const json = patchSet(setId, body);
+
+    /* go back to exercise log page */
+    navigation.popToTop()
   }
 
   /* Determines which format to use to represent first_value */
@@ -69,18 +72,6 @@ export function RecordExercise({ route, navigation }) {
     else{
       return cleanString(reps)
     }
-  }
-
-  /* Create new set in database and navigate back to the log */
-  const addNewSet = () => {
-    postSet();
-    navigation.popToTop()
-  }
-
-  /* Update set in database and navigate back to the log */
-  const updateSet = () => {
-    patchSet();
-    navigation.popToTop()
   }
 
   React.useEffect(() => {
@@ -127,7 +118,7 @@ export function RecordExercise({ route, navigation }) {
         </View>
       <Button
         title={cleanString(exercise_id) === 'N/A' ? 'Log Exercise' : 'Update Exercise'}
-        onPress={() => cleanString(exercise_id) === 'N/A' ? addNewSet() : updateSet()}
+        onPress={() => cleanString(exercise_id) === 'N/A' ? createSet() : updateSet()}
       />
     </View>
   );

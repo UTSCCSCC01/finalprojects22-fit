@@ -20,17 +20,18 @@ export const styles = StyleSheet.create({
   fixToText: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    elevation: 3,
   },
   item: {
     padding: 10,
     fontSize: 18,
-    height: 44,
+    height: 80,
     borderWidth: 1,
   },
   deleteItem: {
     padding: 10,
     fontSize: 18,
-    height: 44,
+    height: 80,
     color: 'red',
     borderWidth: 1,
     borderColor: 'red',
@@ -38,7 +39,7 @@ export const styles = StyleSheet.create({
   updateItem: {
     padding: 10,
     fontSize: 18,
-    height: 44,
+    height: 80,
     color: 'green',
     borderWidth: 1,
     borderColor: 'green',

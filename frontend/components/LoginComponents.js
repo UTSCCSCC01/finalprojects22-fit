@@ -1,5 +1,6 @@
 import React, { Component, useState } from 'react';
 import { Text, View, TextInput, Button, FlatList } from 'react-native';
+import { styles } from '../style';
 import MainPage from './MainPage';
 import axios from 'axios';
 const baseURL = 'http://10.0.2.2:3000'
@@ -36,16 +37,34 @@ class Login extends Component {
         
         return (
             <View>
-                <TextInput onChangeText={(text)=>{
+                <TextInput
+                    style={styles.textInput} 
+                    onChangeText={(text)=>{
                     setUserName(text); }} placeholder='Enter your username'/>
-                <TextInput onChangeText={(text)=>{
+                <TextInput 
+                    style={styles.textInput}
+                    onChangeText={(text)=>{
                     setEmail(text);}} placeholder='Enter your Email address'/>
-                <TextInput onChangeText={(text)=>{
+                <TextInput 
+                    style={styles.textInput}
+                    onChangeText={(text)=>{
                     setPassword(text);}} placeholder='Enter your password'/>
-                <TextInput onChangeText={(text)=>{
+                <TextInput 
+                    style={styles.textInput}
+                    onChangeText={(text)=>{
                     setdisplayName(text);}} placeholder='Enter your preferred display name'/>
-                <Button onPress={()=>this.loginButtonClk()} title="Already have an account? Click here to login"></Button>
-                <Button onPress={()=>this.registered(username, email, password, displayName)} title="Register">Register</Button>
+                <View style={styles.container}>
+                    <Button 
+                        style={styles.button}
+                        onPress={()=>this.loginButtonClk()} 
+                        title="Already have an account? Click here to login"></Button>
+                </View>
+                <View style={styles.container}>
+                    <Button 
+                        style={styles.button}
+                        onPress={()=>this.registered(username, email, password, displayName)} 
+                        title="Register">Register</Button>
+                </View>
             </View>
         );
       }
@@ -57,25 +76,39 @@ class Login extends Component {
                     case 0:
                         return(
                             <View>
-                                <Text>Login</Text>
-                                <TextInput onChangeText={(text)=>{
+                                <Text style={styles.title}>Login</Text>
+                                <TextInput 
+                                    style={styles.textInput}
+                                    onChangeText={(text)=>{
                                     var loginUserName = text;
                                     this.setState({
                                         email: loginUserName
                                     })}} placeholder='Email'/>
-                                <TextInput onChangeText={(text)=>{
+                                <TextInput 
+                                    style={styles.textInput}
+                                    onChangeText={(text)=>{
                                     var loginPassword = text;                              
                                     this.setState({
                                         password: loginPassword
                                     })}} placeholder='Password'/>
-                                <Button onPress={()=>this.registerClk()} title="New User? Click here to register"></Button>
-                                <Button title="Login" onPress={()=>this.loginToMain()}></Button>
+                                <View style={styles.container}>
+                                    <Button 
+                                        style={styles.button}
+                                        onPress={()=>this.registerClk()} 
+                                        title="New User? Click here to register"></Button>
+                                </View>
+                                <View style={styles.container}>
+                                    <Button 
+                                        style={styles.button}
+                                        title="Login" 
+                                        onPress={()=>this.loginToMain()}></Button>
+                                </View>
                             </View>
                         );
                     default: 
                         return(
                             <View>
-                                <Text>Register</Text>
+                                <Text style={styles.title}>Register</Text>
                                 <this.TextHandler/>
                             </View>
                         );

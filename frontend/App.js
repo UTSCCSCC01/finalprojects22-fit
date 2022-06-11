@@ -10,6 +10,7 @@ const Stack = createNativeStackNavigator();
 
 
 const App = () => {
+  //routing for the whole app
   return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Welcome">

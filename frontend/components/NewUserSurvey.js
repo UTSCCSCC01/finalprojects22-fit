@@ -3,7 +3,8 @@ import { Text, View, TextInput, Button, ScrollView } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 class UserSurvey extends Component{
-
+    //The whole page is only for demo and for display purposes. Should be replaced by a well designed page
+    //by another developer.
     state = {
         surveystage: 0,
         unit: 1,

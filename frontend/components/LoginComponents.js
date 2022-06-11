@@ -8,10 +8,10 @@ const baseURL = 'http://10.0.2.2:3000'
 //const Stack = createNativeStackNavigator();
 
 class Login extends Component {
-    
+    //this component handles both login and register.
+    //it will return different elements when this.state.register indicates differently
     state = {
         register: 0,
-        login: 0,
         username: '',
         email: '',
         password: '',
@@ -28,6 +28,8 @@ class Login extends Component {
     }   
 
     TextHandler = ()=>{
+        //this handles the interface for registration. Use the states to save the user input 
+        //and send the input to the register handler
         const [username, setUserName] = useState('');
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
@@ -70,69 +72,59 @@ class Login extends Component {
       }
 
     LoginPage(){
-        switch(this.state.login){
+        //when this.state.register indicate 0, returns the login page. When indicates 1, returns the register page
+        switch(this.state.register){
             case 0:
-                switch(this.state.register){
-                    case 0:
-                        return(
-                            <View>
-                                <Text style={styles.title}>Login</Text>
-                                <TextInput 
-                                    style={styles.textInput}
-                                    onChangeText={(text)=>{
-                                    var loginUserName = text;
-                                    this.setState({
-                                        email: loginUserName
-                                    })}} placeholder='Email'/>
-                                <TextInput 
-                                    style={styles.textInput}
-                                    onChangeText={(text)=>{
-                                    var loginPassword = text;                              
-                                    this.setState({
-                                        password: loginPassword
-                                    })}} placeholder='Password'/>
-                                <View style={styles.container}>
-                                    <Button 
-                                        style={styles.button}
-                                        onPress={()=>this.registerClk()} 
-                                        title="New User? Click here to register"></Button>
-                                </View>
-                                <View style={styles.container}>
-                                    <Button 
-                                        style={styles.button}
-                                        title="Login" 
-                                        onPress={()=>this.loginToMain()}></Button>
-                                </View>
-                            </View>
-                        );
-                    default: 
-                        return(
-                            <View>
-                                <Text style={styles.title}>Register</Text>
-                                <this.TextHandler/>
-                            </View>
-                        );
-                }
-            default:
                 return(
                     <View>
-                        <MainPage/>
+                        <Text style={styles.title}>Login</Text>
+                        <TextInput 
+                            style={styles.textInput}
+                            onChangeText={(text)=>{
+                            var loginUserName = text;
+                            this.setState({
+                                email: loginUserName
+                            })}} placeholder='Email'/>
+                        <TextInput 
+                            style={styles.textInput}
+                            onChangeText={(text)=>{
+                            var loginPassword = text;                              
+                            this.setState({
+                                password: loginPassword
+                            })}} placeholder='Password'/>
+                        <View style={styles.container}>
+                            <Button 
+                                style={styles.button}
+                                onPress={()=>this.registerClk()} 
+                                title="New User? Click here to register"></Button>
+                        </View>
+                        <View style={styles.container}>
+                            <Button 
+                                style={styles.button}
+                                title="Login" 
+                                onPress={()=>this.loginToMain()}></Button>
+                        </View>
+                    </View>
+                );
+            default: 
+                return(
+                    <View>
+                        <Text style={styles.title}>Register</Text>
+                        <this.TextHandler/>
                     </View>
                 );
         }
-
-        
-
     }
 
     loginButtonClk() {
+        //set register to 0 to let the main view return the login page
         this.setState({
             register: 0
         });
     }
 
     registerClk() {
-        
+        //set register to 1 to let the main view return the register page
         this.setState({
             register: 1
         });
@@ -140,6 +132,9 @@ class Login extends Component {
     }
     
     loginToMain(){
+        //this is the login handler, get the user list with axio api and find 
+        //if the user input and the user list in the db are the same.If there's a match, 
+        //return the user home page, if not, return 'Email or password invalid!'
         var loginIndicator = 0;
         const api = axios.create({
             baseURL: baseURL
@@ -165,7 +160,9 @@ class Login extends Component {
     }
 
     registered(username, email, password, displayName){
-        console.log(email);
+        //This is the register handler. Check if the email and the password matches the 
+        //requirements. If not, return which requirements is invalid.
+        //Else, use the method post(username, email, password, displayName) to add the user information to the database.
         if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
             alert("Email address invalid")
         }else{
@@ -181,7 +178,7 @@ class Login extends Component {
                         if(!/[A-Z]/.test(password)){
                             alert("Password must contain 1 uppercase letter")
                         }else{
-                            this.wut(username, email, password, displayName);
+                            this.post(username, email, password, displayName);
                             this.props.navigation.navigate('Survey');
                         }
                     }
@@ -191,7 +188,9 @@ class Login extends Component {
     }
 
 
-    async wut(username, email, password, displayName){
+    async post(username, email, password, displayName){
+        //This is the post request handler. This uses the axios api to post a request to
+        //the database.
         const api = axios.create({
             baseURL: baseURL
         })
@@ -201,46 +200,6 @@ class Login extends Component {
             email: email,
             password: password
         });
-        
-        // try{
-        //     await fetch('http://localhost:3000/users/',
-        //     {
-        //         method: 'post',
-        //         mode: 'no-cors',
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-type':'application/json'
-        //         },
-        //         body: JSON.stringify(
-        //             {
-        //                 username: username,
-        //                 email: email,
-        //                 password: password
-        //             }
-        //         )
-        //     })
-
-        // }catch(e){
-        //     console.log(e);
-        // }
-        
-        // setIsLoading(true);
-        // try {
-        //   const response = await axios.post(`${baseUrl}/users`, {
-        //     username,
-        //     email,
-        //     password
-        //   });
-        //   if (response.status === 201) {
-        //     alert(` You have created: ${JSON.stringify(response.data)}`);
-        //     setIsLoading(false);
-        //   } else {
-        //     throw new Error("An error has occurred");
-        //   }
-        // } catch (error) {
-        //   alert("An error has occurred");
-        //   setIsLoading(false);
-        // }
     };
 }
 

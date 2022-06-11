@@ -31,8 +31,8 @@ class MainPage extends Component{
     }
 
     progressList(){
-        return(
-            
+        //Returns the progress list. Mock data by now and awaits for further implementation
+        return(           
                 <View>
                     <Text>700 calories to burn</Text>
                     <Text>800L water to go</Text>
@@ -46,6 +46,7 @@ class MainPage extends Component{
     }
 
     dailyGoalList(){
+        //Returns the daily goal list. Mock data by now and awaits for further implementation
         return(
             <View>
                 <Text>Do 3/5 push-ups</Text>
@@ -56,6 +57,7 @@ class MainPage extends Component{
     }
 
     longTermGoalList(){
+        //Returns the long term goal list. Mock data by now and awaits for further implementation
         return( 
             <View>
                 <Text>Lose 10/50 kg</Text>

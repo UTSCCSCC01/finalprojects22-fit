@@ -2,7 +2,7 @@
 
 ## Sprint Goal
 
-The goal to finish for this sprint is to finish the user stories FIT-4, FIT-5, FIT-7, FIT-8, FIT-9, FIT-10, so we can have the foundation of our application complete, so we can work on more features in future sprints.
+The goal to finish for this sprint is to finish the user stories FIT-4, FIT-5, FIT-6, FIT-7, FIT-8, FIT-9, FIT-10, so we can have the foundation of our application complete, so we can work on more features in future sprints.
 
 ## Tasks Breakdown
 
@@ -10,9 +10,27 @@ The goal to finish for this sprint is to finish the user stories FIT-4, FIT-5, F
 
 Assigned to: Brandon Duan
 
+Subtasks:
+
+- FIT-39 Register Page/Features set up 
+
 ### User Story: FIT-5 Account Log-in
 
 Assigned to: Brandon Duan
+
+Subtasks:
+
+- FIT-37 Set up survey page
+- FIT-38 Login Page/Features set up
+
+### User Story: FIT-6 Authentication Screen Setup
+
+Assigned to: Brandon Duan
+
+Subtasks:
+
+- FIT-35 Create Login/Sign up frontend page allowing users to interact with the db 
+- FIT-36 Initial App page set to Login/Sign up page
 
 ### User Story: FIT-7 Profile Setup
 

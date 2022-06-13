@@ -3,7 +3,8 @@ import { Text, View, TextInput, Button, FlatList } from 'react-native';
 import { styles } from '../style';
 import MainPage from './MainPage';
 import axios from 'axios';
-const baseURL = 'http://10.0.2.2:3000'
+import { storeUserId } from '../utility/dataHandler.js'
+const baseURL = 'http://localhost:3000'
 //import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //const Stack = createNativeStackNavigator();
 
@@ -145,6 +146,7 @@ class Login extends Component {
                 if(res.data.data[i].email == this.state.email){
                     if(res.data.data[i].password == this.state.password){
                         loginIndicator = 1;
+                        storeUserId(res.data.data[i]._id);
                         this.props.navigation.navigate('MainPage');
                     }else{
                         alert('Email or password invalid!');

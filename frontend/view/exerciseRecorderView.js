@@ -3,6 +3,7 @@ import { Text, View, Button, TextInput} from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
 import { postSet, patchSet } from '../controller/exerciseRecorderController.js'
+import { retrieveUserId } from '../utility/dataHandler.js'
 
 export function ExerciseRecorder({ route, navigation }) {
   /* Create hooks */
@@ -18,10 +19,11 @@ export function ExerciseRecorder({ route, navigation }) {
     const currentDate = new Date();
     const exerciseName = cleanString(exercise_name);
     const isCardio = cleanString(exercise_group) === 'Cardio' ? 'true' : 'false';
+    const userId = await retrieveUserId();
 
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
-      userId: '629fb406dce35a2490193a84', 
+      userId: userId, 
       exercise_name: exerciseName,
       is_cardio: isCardio,
       first_value: weight,
@@ -33,7 +35,7 @@ export function ExerciseRecorder({ route, navigation }) {
     const json = await postSet(body);
   
     /* go back to exercise log page */
-    navigation.popToTop()
+    navigation.navigate("Exercise Log");
   }
 
   /* Update set */
@@ -52,7 +54,7 @@ export function ExerciseRecorder({ route, navigation }) {
     const json = patchSet(setId, body);
 
     /* go back to exercise log page */
-    navigation.popToTop()
+    navigation.navigate("Exercise Log");
   }
 
   /* Determines which format to use to represent first_value */

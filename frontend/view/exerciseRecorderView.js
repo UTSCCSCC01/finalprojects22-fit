@@ -59,6 +59,10 @@ export function ExerciseRecorder({ route, navigation }) {
 
   /* Determines which format to use to represent first_value */
   const cardioTimeConverter = () => {
+    if (weight < 0){      
+      setWeight(0);
+    }
+
     if (cleanString(exercise_group) === 'Cardio'){
       return numberToTime(weight);
     }
@@ -69,10 +73,10 @@ export function ExerciseRecorder({ route, navigation }) {
 
   const cardioDistConverter = () => {
     if (cleanString(exercise_group) === 'Cardio'){
-      return cleanString(reps / 10) + ' KM';
+      return cleanString(reps) + 'KM';
     }
     else{
-      return cleanString(reps)
+      return cleanString(reps);
     }
   }
 
@@ -88,7 +92,7 @@ export function ExerciseRecorder({ route, navigation }) {
         <View style={styles.exerciseInput}>
           <Button
             title="-"
-            onPress={() => setWeight(weight - 5)}
+            onPress={() => weight <= 0 ? setWeight(0) : setWeight(weight - 5)}
           />
           <TextInput
             style={styles.textInput}
@@ -105,7 +109,7 @@ export function ExerciseRecorder({ route, navigation }) {
         <View style={styles.exerciseInput}>
           <Button
             title="-"
-            onPress={() => setReps(reps - 1)}
+            onPress={() => reps <= 0 ? setReps(0) : setReps(reps - 1)}
           />
           <TextInput
             style={styles.textInput}

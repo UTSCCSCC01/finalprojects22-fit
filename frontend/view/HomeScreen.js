@@ -7,7 +7,7 @@ return (
     <Text>Home!</Text>
     <Button
         title="Go to Profile"
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('ProfileTab')}
     />
     </View>
 );

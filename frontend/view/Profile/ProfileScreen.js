@@ -1,7 +1,18 @@
 import React, { Component, useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, TouchableOpacity, Text, View, ScrollView } from 'react-native';
+import { 
+  ActivityIndicator, 
+  Dimensions, 
+  FlatList, 
+  Image, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Text, 
+  View, 
+  ScrollView } from 'react-native';
 import * as Progress from 'react-native-progress';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useFocusEffect } from '@react-navigation/native';
+import { LineChart } from "react-native-chart-kit";
 import axios from 'axios';
 
 export default function ProfileScreen ({ route, navigation }) {
@@ -36,9 +47,27 @@ export default function ProfileScreen ({ route, navigation }) {
     .finally(() => setLoading(false))
   }
 
-  //useEffect(() => {
-  //  getUser();
-  //}, []);
+  const chartData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
+    datasets: [
+      {
+        data: [20, 45, 28, 80, 99, 43],
+        color: () => primaryOrange, // optional
+        strokeWidth: 1.5 // optional
+      }
+    ]
+  };
+
+  const chartConfig = {
+    backgroundGradientFrom: "#FFFF",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#FFFF",
+    backgroundGradientToOpacity: 0.5,
+    color: () => primaryOrange,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false // optional
+  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -83,13 +112,21 @@ export default function ProfileScreen ({ route, navigation }) {
     },
     level: {
       padding: 5,
-      marginLeft: 30,
+      marginTop: -20,
+      marginLeft: 95,
       width: 30,
       height: 30,
       borderWidth: 2,
       borderRadius: 30/2,
       borderColor: primaryPurple,
       alignItems: "center"
+   },
+   pImg: {
+    marginLeft: 30,
+    width: 80,
+    height: 80,
+    justiftyContent:"center", 
+    alignItems:"center"
    }
   });
 
@@ -97,8 +134,20 @@ export default function ProfileScreen ({ route, navigation }) {
     <View style={{ paddingTop: 20 }}>
       {isLoading ? <ActivityIndicator/> :(
         <View>
+          <View style={styles.pImg}>
+            <Image 
+              source={require('../../assets/default_p_img.png')}
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: 50,
+                overflow: 'hidden',
+                borderWidth: 4,
+                borderColor: primaryPurple,
+              }} />
+          </View>
           <View style={styles.level}>
-              <Text>{userLvl}</Text>
+            <Text style={{color: primaryPurple, fontWeight: "bold"}}>{userLvl}</Text>
           </View>
           <View style={{paddingLeft: 30, paddingRight: 30, flexDirection: "row"}}>
             <View style={{paddingTop: 10}}>
@@ -106,7 +155,7 @@ export default function ProfileScreen ({ route, navigation }) {
             </View>
             
             <View style={{position: 'absolute', right: 30}}>
-              <Text style={{color: primaryPurple}}>{userLvl*10000 - user.xp} more xp to level {userLvl + 1}</Text>
+              <Text style={{color: primaryPurple, left: 20}}>{userLvl*10000 - user.xp} more xp to level {userLvl + 1}</Text>
               <Progress.Bar 
                 progress={user.xp % 10000 / 10000} 
                 width={200}
@@ -125,12 +174,29 @@ export default function ProfileScreen ({ route, navigation }) {
             >
               <Text style={styles.appButtonText}>Edit Profile</Text>
             </TouchableOpacity>
+
+            {/* Bio Section */}
             <View style={{paddingTop: 20}}>
               <Text style={styles.sectionTitle}>Bio</Text>
               <View
                 style={styles.displayContainer}
               >
                 <Text style={styles.displayText}>{user.bio}</Text>
+              </View>
+            </View>
+
+            {/* Height Section */}
+            <View style={{paddingTop: 20}}>
+              <Text style={styles.sectionTitle}>Height</Text>
+              <View
+                style={styles.displayContainer}
+              >
+                <LineChart 
+                  data={chartData}
+                  width={Dimensions.get("window").width-100}
+                  height={180}
+                  chartConfig={chartConfig} 
+                />
               </View>
             </View>
           </View>

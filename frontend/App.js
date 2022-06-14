@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SelectFoodCategory } from './visual/SelectFoodCategory'
-import { SelectFood } from './visual/SelectFood'
-import { RecordFood } from './visual/RecordFood'
-import { FoodLog } from './visual/FoodLog';
+import { SelectFoodCategory } from './view/SelectFoodCategory'
+import { SelectFood } from './view/SelectFood'
+import { RecordFood } from './view/RecordFood'
+import { FoodLog } from './view/FoodLog';
 
 const Stack = createNativeStackNavigator();
 

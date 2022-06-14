@@ -16,15 +16,33 @@ export const styles = StyleSheet.create({
    foodInput: {
        flexDirection: 'row',
        justifyContent: 'center',
+       elevation: 3,
    },
    fixToText: {
        flexDirection: 'row',
        justifyContent: 'space-between',
+       elevation: 3,
    },
    item: {
        padding: 10,
        fontSize: 18,
-       height: 44,
+       height: 80,
        borderWidth: 1,
    },
+    deleteItem: {
+       padding: 10,
+       fontSize: 18,
+       height: 80,
+       color: 'red',
+       borderWidth: 1,
+       borderColor: 'red',
+    },
+    updateItem: {
+       padding: 10,
+       fontSize: 18,
+       height: 80,
+       color: 'green',
+       borderWidth: 1,
+       borderColor: 'green',
+    },
 });

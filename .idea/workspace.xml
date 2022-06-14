@@ -5,11 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f144f13e-5466-4ccb-a91f-2865ca81ed3f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/models/Food.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/SavedFood.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/food.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/savedfood.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/controller/RecordFoodController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/controller/SelectFoodController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/utility/format.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOOD GROUP.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOOD NAME.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/visual/RecordFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/visual/RecordFood.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/visual/SelectFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/visual/SelectFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/visual/FoodLog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/visual/RecordFood.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/visual/SelectFood.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/visual/SelectFoodCategory.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
 import { getExerciseSets, deleteExerciseSet } from '../controller/exerciseLogController' 
@@ -53,23 +53,35 @@ export function ExerciseLog({ navigation }) {
   /* Change colour of the borders depending on the queued action */
   const selectStyle = () => {
     if (logMode === 'delete'){
-      return styles.deleteItem;
+      return styles.flatListDeleteItem;
     }
     else if (logMode === 'update') {
-      return styles.updateItem;
+      return styles.flatListUpdateItem;
     }
     else{
-      return styles.item;
+      return styles.flatListItem;
     }
   }
 
   /* TO DO: need to be able to change metrics based on user preferences */
   const formatCell = (item) => {
     if (item.is_cardio){
-      return item.exercise_name + ' - Time: ' + numberToTime(item.first_value) + ', Distance: ' + (item.second_value / 10) + ' km ';
+      return (
+        <View style={styles.flatListTextContainer}>
+          <Text style={styles.flatListText}>Exercise Name: {item.exercise_name}</Text>
+          <Text style={styles.flatListText}>Time: {numberToTime(item.first_value)}</Text>
+          <Text style={styles.flatListText}>Distance: {item.second_value} km</Text>
+        </View>
+      );
     }
     else{
-      return item.exercise_name + ' - Weight: ' + item.first_value + ' kg ' + ', Reps: ' + item.second_value;
+      return (
+        <View style={styles.flatListTextContainer}>
+          <Text style={styles.flatListText}>Exercise Name: {item.exercise_name}</Text>
+          <Text style={styles.flatListText}>Weight: {numberToTime(item.first_value)} kg</Text>
+          <Text style={styles.flatListText}>Reps: {item.second_value} </Text>
+        </View>
+      );
     }
   }
 
@@ -81,26 +93,38 @@ export function ExerciseLog({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {isLoading ? <ActivityIndicator/> : (
-      <FlatList
-        data={data}
-        keyExtractor={(item, index) => item._id}
-        renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
-      />
-      )}
-      <View style={styles.fixToText}>
-        <Button
-          title="Log a new exercise"
-          onPress={() => navigation.navigate('Select Exercise Group')}
+      <View style={styles.exerciseLogButtonsContainer}>
+        <View style={styles.rowContainer}>
+          <TouchableOpacity
+            style={styles.generalButton}
+            onPress={() => navigation.navigate('Select Exercise Group')}
+          >
+            <Text style={styles.generalButtonFont}> Log new exercise </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.generalButton}
+            onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
+          >
+            <Text style={styles.generalButtonFont}> Update an exercise </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.rowContainer}>
+          <TouchableOpacity
+            style={styles.generalButton}
+            onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
+          >
+            <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.flatListContainer}>
+        {isLoading ? <ActivityIndicator/> : (
+        <FlatList
+          data={data}
+          keyExtractor={(item, index) => item._id}
+          renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
         />
-        <Button
-          title="Update an exercise"
-          onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
-        />
-        <Button
-          title="Delete an exercise"
-          onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
-        />
+        )}
       </View>
     </View>
   );

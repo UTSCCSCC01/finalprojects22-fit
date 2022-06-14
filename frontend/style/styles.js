@@ -54,7 +54,6 @@ export const styles = StyleSheet.create({
   },
   flatListText: {
     fontSize: 14,
-    color: '#717FC0',
   },
   flatListDeleteItem: {
     flex: 1,
@@ -88,6 +87,7 @@ export const styles = StyleSheet.create({
     borderColor: '#F9C784',
     borderWidth: 2,
     borderRadius: 10,
+    margin: 2,
     height: 40,
     padding: 10,
     textAlign: 'center',
@@ -108,6 +108,7 @@ export const styles = StyleSheet.create({
     borderColor: '#F9C784',
     borderWidth: 2,
     borderRadius: 10,
+    margin: 2,
     height: 40,
     width: 40,
     justifyContent: 'center',

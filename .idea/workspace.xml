@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85a491e2-4309-49cf-ad80-f0aed0590e56" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Food.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/SavedFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/SavedFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/food.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/savedfood.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/savedfood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utility/format.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utility/format.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/RecordFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/RecordFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/SelectFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/SelectFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/SelectFoodCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/SelectFoodCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +40,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="2AZZi9XLEy04WO4EdE3iuTUBOzv" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fit-exercisefeature" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="85a491e2-4309-49cf-ad80-f0aed0590e56" name="Changes" comment="" />
+      <created>1655219195059</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655219195059</updated>
+    </task>
     <servers />
   </component>
   <component name="UnknownFeatures">

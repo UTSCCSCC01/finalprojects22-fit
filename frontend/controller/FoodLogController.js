@@ -1,5 +1,5 @@
 export const getFoodSavedPlans = async () => {
-  const response = await fetch('http://localhost:3000/savedfood/62a4d21342622fa510066af9');
+  const response = await fetch('http://localhost:3000/savedfood/62a8aed17a8cd32ad4e43907');
   const json = await response.json();
   return json;
 }

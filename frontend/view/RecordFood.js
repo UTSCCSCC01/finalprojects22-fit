@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { Text, View, Button, TextInput} from 'react-native';
 import { styles } from '../style';
-import { cleanString} from '../utility/format.js';
-import { postSet, patchSet } from '../controller/RecordFoodController.js'
+import { cleanString, cleanNum } from '../utility/format.js';
+import { postSavedFood, patchSavedFood } from '../controller/RecordFoodController.js'
 
 
 export function RecordFood({ route, navigation }) {
 
-  const [carbohydrate, setCarbohydrate] = React.useState(0);
-  const [fat, setFat] = React.useState(0);
-  const [protein, setProtein] = React.useState(0);
+  const [carbs, setCarbohydrate] = React.useState(0);
+  const [fats, setFat] = React.useState(0);
+  const [prots, setProtein] = React.useState(0);
 
-  const { food_name, food_group, food_id, carbs, fats, prots } = route.params;
+  const { food_name, food_group, food_id, carbohydrate, fat, protein } = route.params;
 
-  const createSet = async () => {
+  const createSavedFood = async () => {
 
       /* Clean/set body parameters */
       const currentDate = new Date();
@@ -21,7 +21,7 @@ export function RecordFood({ route, navigation }) {
 
       /* bundle parameters into JSON format */
       const body = JSON.stringify({
-        userId: '62a4d21342622fa510066af9',
+        userId: '62a8aed17a8cd32ad4e43907',
         food_name: foodName,
         carbohydrate: carbs,
         fat: fats,
@@ -50,68 +50,70 @@ export function RecordFood({ route, navigation }) {
       });
 
       /* patch st */
-      const json = patchSet(savedfoodId, body);
+      const json = patchSavedFood (savedfoodId, body);
 
       /* go back to food log page */
       navigation.popToTop()
     }
 
     React.useEffect(() => {
-      setCarbohydrate(carbs);
-      setFat(fats);
-      setProtein(prots);
+      setCarbohydrate(cleanNum(carbohydrate));
+      setFat(cleanNum(fat));
+      setProtein(cleanNum(protein));
     }, []);
 
     return (
       <View style={styles.container}>
           <Text>{cleanString(food_name)}</Text>
-          <Text>{cleanString(food_group)}</Text>
+          <Text>{'Carbohydrates'}</Text>
           <View style={styles.foodInput}>
             <Button
               title="-"
-              onPress={() => setCarbohydrate(carbohydrate - 1)}
+              onPress={() => setCarbohydrate(carbs - 1)}
             />
             <TextInput
               style={styles.textInput}
-              value={cleanString(carbohydrate)}
-              onChangeText={text => text === '' ? setCarbohydrate(0) : setCarbohydrate(parseInt(text))}
+              value={cleanNum(carbs) + ' g'}
+              onChangeText={text => text === '' ? setCarbohydrate(carbs) : setCarbohydrate(parseFloat(text))}
               keyboardType="numeric"
             />
             <Button
               title="+"
-              onPress={() => setCarbohydrate(carbohydrate + 1)}
+              onPress={() => setCarbohydrate(carbs + 1)}
             />
           </View>
+          <Text>{'Fats'}</Text>
           <View style={styles.foodInput}>
             <Button
               title="-"
-              onPress={() => setFat(fat - 1)}
+              onPress={() => setFat(fats - 1)}
             />
             <TextInput
               style={styles.textInput}
-              value={cleanString(fat)}
-              onChangeText={text => text == '' ? setFat(0) : setFat(parseInt(text))}
+              value={cleanNum(fats) + ' g'}
+              onChangeText={text => text == '' ? setFat(fats) : setFat(parseFloat(text))}
               keyboardType="numeric"
             />
             <Button
               title='+'
-              onPress={() => setFat(fat + 1)}
+              onPress={() => setFat(fats + 1)}
             />
           </View>
+          <Text>{'Protein'}</Text>
           <View style={styles.foodInput}>
              <Button
                 title="-"
-                onPress={() => setProtein(protein - 1)}
+                onPress={() => setProtein(prots - 1)}
              />
              <TextInput
                 style={styles.textInput}
-                value={cleanString(protein)}
-                onChangeText={text => text == '' ? setProtein(0) : setFat(parseInt(text))}
+                value={cleanNum(prots) + ' g'}
+                onChangeText={text => text == '' ? setProtein(prots) : setFat(parseFloat(text))}
                 keyboardType="numeric"
              />
              <Button
                 title='+'
-                onPress={() => setProtein(protein + 1)}
+                onPress={() => setProtein(prots + 1)}
              />
           </View>
         <Button

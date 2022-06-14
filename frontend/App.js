@@ -22,17 +22,6 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Welcome">
           <Stack.Group>
-            <Stack.Screen name="Welcome" component={Login} />
-            <Stack.Screen name="MainPage" component={MainPage} />
-            <Stack.Screen name="Survey" component={UserSurvey} />
-          </Stack.Group>
-          <Stack.Group>
-            <Stack.Screen name="Exercise Log" component={ExerciseLog} />
-            <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
-            <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
-            <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
-          </Stack.Group>
-          <Stack.Group>
             <Stack.Screen name="Food Log" component={FoodLog} />
             <Stack.Screen name="Select Food Category" component={SelectFoodCategory} />
             <Stack.Screen name="Select Food" component={SelectFood} />

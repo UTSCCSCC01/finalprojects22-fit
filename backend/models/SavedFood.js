@@ -11,14 +11,14 @@ let savedfoodScheme = new Schema(
     type: String,
   },
   carbohydrate: {
-    type: Number,
+    type: mongoose.Types.Decimal128,
   },
   fat: {
-    type: Number,
+    type: mongoose.Types.Decimal128,
   },
   protein: {
-    type: Number,
-  }
+    type: mongoose.Types.Decimal128,
+  },
   date: {
     type: Date,
   }
@@ -26,6 +26,6 @@ let savedfoodScheme = new Schema(
 );
 
 // specify the collection for this model from the DB
-let SavedFood = mongoose.model("SavedFood", savedfoodSchemeScheme, "SavedFoods");
+let SavedFood = mongoose.model("SavedFood", savedfoodScheme, "SavedFoods");
 
 module.exports = SavedFood;

@@ -6,19 +6,19 @@ import { getFoodSavedPlans, deleteFoodSavedPlans } from '../controller/FoodLogCo
 
 export function FoodLog({ navigation }) {
   /* Create hooks */
-  const [isLoading, setLoading] = React.useState(true);
-  const [data, setData] = React.useState([]);
-  const [logMode, setLogMode] = React.useState('select');
+  const [isLoading, savedplanLoading] = React.useState(true);
+  const [data, savedplanData] = React.useState([]);
+  const [logMode, savedplanLogMode] = React.useState('select');
 
   /* Pull user's saved plans */
   const getSavedPlans = async () => {
     try {
       const json = await getFoodSavedPlans();
-      setData(json.data);
+      savedplanData(json.data);
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      savedplanLoading(false);
     }
   }
 
@@ -36,7 +36,7 @@ export function FoodLog({ navigation }) {
   const doEvent = (item) => {
     if (logMode === 'delete'){
       Promise.resolve(deleteSavedPlans(cleanString(item._id)))
-      .then(getSets());
+      .then(getSavedPlans());
     }
     else if (logMode === 'update'){
       navigation.navigate('Record Food', {
@@ -47,7 +47,7 @@ export function FoodLog({ navigation }) {
         protein: item.protein,
       })
     }
-    setLogMode('select')
+    savedplanLogMode('select')
   }
 
   /* Change colour of the borders depending on the queued action */
@@ -63,11 +63,8 @@ export function FoodLog({ navigation }) {
     }
   }
 
-  /* TO DO: need to be able to change metrics based on user preferences */
   const formatCell = (item) => {
-  if (item.is_cardio){
-    return item.food_name + ' - Carbohydrates: ' +item.carbohydrate + 'g, Fat: ' + item.fat + 'g, Protein: ' + item.protein + 'g';
-  }
+     return item.food_name;
   }
 
   React.useEffect(() => {
@@ -92,11 +89,11 @@ export function FoodLog({ navigation }) {
         />
         <Button
           title="Update an food"
-          onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
+          onPress={() => savedplanLogMode(logMode === 'update' ? 'select' : 'update')}
         />
         <Button
           title="Delete an food"
-          onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
+          onPress={() => savedplanLogMode(logMode === 'delete' ? 'select' : 'delete')}
         />
       </View>
     </View>

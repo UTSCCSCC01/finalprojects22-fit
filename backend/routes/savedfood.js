@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/", async (req, res) => {
     try {
         let savedfood = new SavedFood(req.body);
-        post = await set.save();
+        post = await savedfood.save();
         res.status(200).json({
             status: 200,
             data: post,
@@ -25,7 +25,7 @@ router.get("/:userId", async (req, res) => {
         let savedfood = await SavedFood.find({
           userId: req.params.userId,
         });
-        if (set) {
+        if (savedfood) {
             res.status(200).json({
                 status: 200,
                 data: savedfood,
@@ -46,9 +46,9 @@ router.get("/:userId", async (req, res) => {
 });
 
 // PATCH - Update the set given the id from the Set Collection
-router.patch("/:setId", async (req, res) => {
+router.patch("/:savedfoodId", async (req, res) => {
     try {
-        let savedfood = await SavedFood.findByIdAndUpdate(req.params.setId, req.body, {
+        let savedfood = await SavedFood.findByIdAndUpdate(req.params.savedfoodId, req.body, {
             new: true,
         });
         if (savedfood) {
@@ -71,9 +71,9 @@ router.patch("/:setId", async (req, res) => {
 });
 
 // DELETE - Delete the set given the id from the Set Collection
-router.delete("/:setId", async (req, res) => {
+router.delete("/:savedfoodId", async (req, res) => {
     try {
-        let savedfood = await SavedFood.findByIdAndRemove(req.params.setId);
+        let savedfood = await SavedFood.findByIdAndRemove(req.params.savedfoodId);
         if (savedfood) {
             res.status(200).json({
                 status: 200,

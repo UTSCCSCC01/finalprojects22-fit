@@ -15,7 +15,7 @@ export function SelectFood({ route, navigation }) {
 
      const getGroupFoods = async () => {
         try {
-          const json = await getFoodByGroup(foodTypeClean);
+          const json = await getFoodsByGroup(foodTypeClean);
           setData(json.data);
         }catch (error) {
           console.error(error);
@@ -23,6 +23,7 @@ export function SelectFood({ route, navigation }) {
           setLoading(false);
         }
      }
+
      const searchFoods = async () => {
         try {
           const json = await getFoodsBySearch(foodTypeClean);
@@ -49,9 +50,9 @@ export function SelectFood({ route, navigation }) {
          food_name: item.FoodName,
          food_group: item.FoodGroup,
          food_id: 'N/A',
-         carbs: item.Carbohydrate,
-         fats: item.Fat,
-         prots: item.Protein,
+         carbohydrate: item.Carbohydrate,
+         fat: item.Fat,
+         protein: item.Protein,
        })
 
      }

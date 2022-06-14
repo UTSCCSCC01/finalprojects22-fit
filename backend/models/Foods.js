@@ -11,13 +11,13 @@ let foodSchema = new Schema(
       type: String,
     },
     Carbohydrate: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
     },
     Fat: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
     },
     Protein: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
     }
   }
 );

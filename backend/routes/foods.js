@@ -1,5 +1,5 @@
 const express = require("express");
-const Food = require("../models/Food");
+const Food = require("../models/Foods");
 const router = express.Router();
 
 // GET - Fetch all exercises from the exercises Collection
@@ -19,7 +19,7 @@ router.get("/list", async (req, res) => {
 });
 
 // GET - Fetch the foods given the food group
-router.get("/Groups/:MuscleGroup", async (req, res) => {
+router.get("/Groups/:FoodGroup", async (req, res) => {
     try {
         let foods = await Food.find({
           FoodGroup: { $regex: req.params.FoodGroup},
@@ -81,7 +81,7 @@ router.get("/:Carbohydrate", async (req, res) => {
       } else {
           res.status(400).json({
               status: 400,
-              message: "no foods found",
+              message: 0,
           });
       }
   } catch (err) {
@@ -106,7 +106,7 @@ router.get("/:Fat", async (req, res) => {
       } else {
           res.status(400).json({
               status: 400,
-              message: "no foods found",
+              message: 0,
           });
       }
   } catch (err) {
@@ -131,7 +131,7 @@ router.get("/:Protein", async (req, res) => {
       } else {
           res.status(400).json({
               status: 400,
-              message: "no foods found",
+              message: 0,
           });
       }
   } catch (err) {

@@ -67,7 +67,7 @@ const getItem = (item) => {
       <FlatList
         data={data}
         keyExtractor={(item, index) => item._id}
-        renderItem={({item}) => <Text style={styles.flatListItem} onPress={()=> getItem(item)}>{item.ExerciseName}</Text>}
+        renderItem={({item}) => <Text style={styles.flatListSearchItem} onPress={()=> getItem(item)}>{item.ExerciseName}</Text>}
       />
       )}
     </View>

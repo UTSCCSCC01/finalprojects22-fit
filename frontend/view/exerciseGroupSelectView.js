@@ -15,7 +15,7 @@ export function ExerciseGroupSelect({ navigation }) {
         placeholder="Search for exercises"
       />
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Abdominals',
           SearchType: 'Group',
@@ -24,7 +24,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Abdominals </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Back',
           SearchType: 'Group',
@@ -33,7 +33,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Back </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Biceps',
           SearchType: 'Group',
@@ -42,7 +42,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Biceps </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Calves',
           SearchType: 'Group',
@@ -51,7 +51,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Calves </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Cardio',
           SearchType: 'Group',
@@ -60,7 +60,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Cardio </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Chest',
           SearchType: 'Group',
@@ -69,7 +69,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Chest </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Legs',
           SearchType: 'Group',
@@ -78,7 +78,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Legs </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Shoulders',
           SearchType: 'Group',
@@ -87,7 +87,7 @@ export function ExerciseGroupSelect({ navigation }) {
         <Text style={styles.generalButtonFont}> Shoulders </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.stretchButton}
+        style={styles.generalButton}
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Triceps',
           SearchType: 'Group',

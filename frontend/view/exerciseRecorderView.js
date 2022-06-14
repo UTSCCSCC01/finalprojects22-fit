@@ -86,10 +86,12 @@ export function ExerciseRecorder({ route, navigation }) {
   }, []);
 
   return (
-    <View style={styles.container}>
+      <View style={styles.recorderContainer}>
         <Text style={styles.header1}>{cleanString(exercise_name)}</Text>
-        <View style={styles.exerciseInput}>
+        <View style={styles.headercontainer2}>
           <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Time: ' : 'Weight: '}</Text>
+        </View>
+        <View style={styles.exerciseInputContainer}>
           <TouchableOpacity
             style={styles.sideButton}
             onPress={() => weight <= 0 ? setWeight(0) : setWeight(weight - 5)}
@@ -109,8 +111,10 @@ export function ExerciseRecorder({ route, navigation }) {
             <Text style={styles.sideButtonFont}> + </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.exerciseInput}>
+        <View style={styles.headercontainer2}>
           <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Distance: ' : 'Reps: '}</Text>
+        </View>
+        <View style={styles.exerciseInputContainer}>
           <TouchableOpacity
             style={styles.sideButton}
             onPress={() => reps <= 0 ? setReps(0) : setReps(reps - 1)}
@@ -130,10 +134,12 @@ export function ExerciseRecorder({ route, navigation }) {
             <Text style={styles.sideButtonFont}> + </Text>
           </TouchableOpacity>
         </View>
-      <Button
-        title={cleanString(exercise_id) === 'N/A' ? 'Log Exercise' : 'Update Exercise'}
-        onPress={() => cleanString(exercise_id) === 'N/A' ? createSet() : updateSet()}
-      />
-    </View>
+        <TouchableOpacity
+            style={styles.generalButton}
+            onPress={() => cleanString(exercise_id) === 'N/A' ? createSet() : updateSet()}
+          >
+          <Text style={styles.generalButtonFont}> {cleanString(exercise_id) === 'N/A' ? 'Log Exercise' : 'Update Exercise'} </Text>
+        </TouchableOpacity>
+      </View>
   );
 }

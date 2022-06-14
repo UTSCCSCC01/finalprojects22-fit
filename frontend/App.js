@@ -16,10 +16,16 @@ const App = () => {
   //routing for the whole app
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Navigator 
+          screenOptions={{
+            headerStyle: { backgroundColor: '#4E598C' },
+            headerTintColor: '#fff',
+        }}
+        initialRouteName="Welcome"
+        >
           <Stack.Group>
             <Stack.Screen name="Welcome" component={Login} />
-            <Stack.Screen name="MainPage" component={MainPage} />
+            <Stack.Screen name="Main Page" component={MainPage} />
             <Stack.Screen name="Survey" component={UserSurvey} />
           </Stack.Group>
           <Stack.Group>

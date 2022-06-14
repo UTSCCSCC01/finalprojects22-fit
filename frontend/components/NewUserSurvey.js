@@ -20,7 +20,7 @@ class UserSurvey extends Component{
                         surveystage: this.state.surveystage+1
                     })
                     if(this.state.surveystage == 5){
-                        this.props.navigation.navigate('MainPage');
+                        this.props.navigation.navigate('Main Page');
                     }
                 }}></Button>
             </View>

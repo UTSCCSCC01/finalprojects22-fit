@@ -78,7 +78,7 @@ export function ExerciseLog({ navigation }) {
       return (
         <View style={styles.flatListTextContainer}>
           <Text style={styles.flatListText}>Exercise Name: {item.exercise_name}</Text>
-          <Text style={styles.flatListText}>Weight: {numberToTime(item.first_value)} kg</Text>
+          <Text style={styles.flatListText}>Weight: {item.first_value} kg</Text>
           <Text style={styles.flatListText}>Reps: {item.second_value} </Text>
         </View>
       );
@@ -92,40 +92,40 @@ export function ExerciseLog({ navigation }) {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.exerciseLogButtonsContainer}>
-        <View style={styles.rowContainer}>
-          <TouchableOpacity
-            style={styles.generalButton}
-            onPress={() => navigation.navigate('Select Exercise Group')}
-          >
-            <Text style={styles.generalButtonFont}> Log new exercise </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.generalButton}
-            onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
-          >
-            <Text style={styles.generalButtonFont}> Update an exercise </Text>
-          </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.exerciseLogButtonsContainer}>
+          <View style={styles.rowContainer}>
+            <TouchableOpacity
+              style={styles.generalButton}
+              onPress={() => navigation.navigate('Select Exercise Group')}
+            >
+              <Text style={styles.generalButtonFont}> Log new exercise </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
+              onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
+            >
+              <Text style={styles.generalButtonFont}> Update an exercise </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.rowContainer}>
+            <TouchableOpacity
+              style={styles.generalButton}
+              onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
+            >
+              <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.rowContainer}>
-          <TouchableOpacity
-            style={styles.generalButton}
-            onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
-          >
-            <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
-          </TouchableOpacity>
+        <View style={styles.flatListContainer}>
+          {isLoading ? <ActivityIndicator/> : (
+          <FlatList
+            data={data}
+            keyExtractor={(item, index) => item._id}
+            renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
+          />
+          )}
         </View>
       </View>
-      <View style={styles.flatListContainer}>
-        {isLoading ? <ActivityIndicator/> : (
-        <FlatList
-          data={data}
-          keyExtractor={(item, index) => item._id}
-          renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
-        />
-        )}
-      </View>
-    </View>
   );
 }

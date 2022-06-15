@@ -111,23 +111,24 @@ export default function ProfileScreen ({ route, navigation }) {
       paddingBottom: 10,
     },
     level: {
-      padding: 5,
-      marginTop: -20,
+      padding: 3.5,
+      marginTop: -30,
       marginLeft: 95,
-      width: 30,
-      height: 30,
+      width: 25,
+      height: 25,
       borderWidth: 2,
-      borderRadius: 30/2,
+      borderRadius: 25/2,
       borderColor: primaryPurple,
-      alignItems: "center"
-   },
-   pImg: {
-    marginLeft: 30,
-    width: 80,
-    height: 80,
-    justiftyContent:"center", 
-    alignItems:"center"
-   }
+      alignItems: "center",
+      backgroundColor: "white"
+    },
+    pImg: {
+      marginLeft: 30,
+      width: 80,
+      height: 80,
+      justiftyContent:"center", 
+      alignItems:"center"
+    }
   });
 
   return (
@@ -142,12 +143,12 @@ export default function ProfileScreen ({ route, navigation }) {
                 height: 80,
                 borderRadius: 50,
                 overflow: 'hidden',
-                borderWidth: 4,
+                borderWidth: 3,
                 borderColor: primaryPurple,
               }} />
           </View>
           <View style={styles.level}>
-            <Text style={{color: primaryPurple, fontWeight: "bold"}}>{userLvl}</Text>
+            <Text style={{color: primaryPurple, fontWeight: "bold", fontSize: 12}}>{userLvl}</Text>
           </View>
           <View style={{paddingLeft: 30, paddingRight: 30, flexDirection: "row"}}>
             <View style={{paddingTop: 10}}>

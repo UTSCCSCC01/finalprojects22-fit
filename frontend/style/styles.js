@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-const primaryOrange = '#FF8C42'
-const secondaryOrange ='F9C784'
-const primaryPurple = '#4E598C'
-const secondaryPurple = '#717FC0'
-const lightGray = '#CFD1D0'
+// The colours should probably go into their own "constants" file.
+
+export const primaryOrange = '#FF8C42'
+export const secondaryOrange ='F9C784'
+export const primaryPurple = '#4E598C'
+export const secondaryPurple = '#717FC0'
+export const lightGray = '#CFD1D0'
 
 export const styles = StyleSheet.create({
   recorderContainer: {

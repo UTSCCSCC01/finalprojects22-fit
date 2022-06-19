@@ -9,6 +9,8 @@ import { ExerciseSelect } from './view/exerciseSelectView';
 import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
 import { ExerciseRecorder } from './view/exerciseRecorderView';
 import { ExerciseLog } from './view/exerciseLogView';
+import { Calendar } from './view/calendarView';
+import { TrackActivitySelect } from './view/trackActivitySelectView';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,10 @@ const App = () => {
             <Stack.Screen name="Welcome" component={Login} />
             <Stack.Screen name="Main Page" component={MainPage} />
             <Stack.Screen name="Survey" component={UserSurvey} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name="Calendar" component={Calendar} />
+            <Stack.Screen name="Track Activity Select" component={TrackActivitySelect} />
           </Stack.Group>
           <Stack.Group>
             <Stack.Screen name="Exercise Log" component={ExerciseLog} />

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
 import { postSet, patchSet } from '../controller/exerciseRecorderController.js'
@@ -10,13 +10,12 @@ export function ExerciseRecorder({ route, navigation }) {
   const [weight, setWeight] = React.useState(0);
   const [reps, setReps] = React.useState(0);
 
-  const { exercise_name, exercise_group, exercise_id, first_value, second_value } = route.params;
+  const { exercise_name, exercise_group, exercise_id, first_value, second_value, date } = route.params;
 
   /* create new set */
   const createSet = async () => {
 
     /* Clean/set body parameters */
-    const currentDate = new Date();
     const exerciseName = cleanString(exercise_name);
     const isCardio = cleanString(exercise_group) === 'Cardio' ? 'true' : 'false';
     const userId = await retrieveUserId();
@@ -28,14 +27,14 @@ export function ExerciseRecorder({ route, navigation }) {
       is_cardio: isCardio,
       first_value: weight,
       second_value: reps,
-      date: currentDate.getTime()
+      date: date
     });
     
     /* Post set */
     const json = await postSet(body);
   
     /* go back to exercise log page */
-    navigation.navigate("Exercise Log");
+    navigation.navigate("Exercise Log", {date : date});
   }
 
   /* Update set */
@@ -54,7 +53,7 @@ export function ExerciseRecorder({ route, navigation }) {
     const json = patchSet(setId, body);
 
     /* go back to exercise log page */
-    navigation.navigate("Exercise Log");
+    navigation.navigate("Exercise Log", {date : date});
   }
 
   /* Determines which format to use to represent first_value */

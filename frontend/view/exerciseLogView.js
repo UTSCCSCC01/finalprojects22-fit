@@ -2,23 +2,37 @@ import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
-import { getExerciseSets, deleteExerciseSet } from '../controller/exerciseLogController' 
+import { getExerciseSets, deleteExerciseSet, postUserActivity, getUserActivity, patchUserActivity } from '../controller/exerciseLogController' 
+import { retrieveUserId } from '../utility/dataHandler.js'
 
-export function ExerciseLog({ navigation }) {
+export function ExerciseLog({ navigation, route }) {
   /* Create hooks */
   const [isLoading, setLoading] = React.useState(true);
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState(null);
+  const [activityData, setActivityData] = React.useState(null);
   const [logMode, setLogMode] = React.useState('select');
+
+  const { date } = route.params;
 
   /* Pull user's sets */
   const getSets = async () => {
     try {
-      const json = await getExerciseSets();
+      const json = await getExerciseSets(cleanString(date));
       setData(json.data);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  }
+
+  /* Pull activity for today */
+  const getActivity = async () => {
+    try {
+      const json = await getUserActivity(cleanString(date));
+      setActivityData(json.data);
+    } catch (error) {
+      console.error(error);
     }
   }
   
@@ -32,11 +46,37 @@ export function ExerciseLog({ navigation }) {
     }
   }
 
+  const createUserActivity = async () => {
+    const userId = await retrieveUserId();
+    const has_exercise = cleanString(data) === "[]" ? false : true;
+    /* bundle parameters into JSON format */
+    const body = JSON.stringify({
+      userId: userId, 
+      exercise_activity: has_exercise,
+      date: date,
+    });
+
+    const json = await postUserActivity(body);
+  }
+
+  const updateUserActivity = async (id) => {
+    const userId = await retrieveUserId();
+    const has_exercise = cleanString(data) === "[]" ? false : true;
+    /* bundle parameters into JSON format */
+    const body = JSON.stringify({
+      userId: userId, 
+      exercise_activity: has_exercise,
+      date: date,
+    });
+
+    const json = await patchUserActivity(id, body);
+  }
+
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
     if (logMode === 'delete'){
       Promise.resolve(deleteSets(cleanString(item._id)))
-      .then(getSets());
+      .then(() => getSets());
     }
     else if (logMode === 'update'){
       navigation.navigate('Record Exercise', {
@@ -45,6 +85,7 @@ export function ExerciseLog({ navigation }) {
         exercise_id: item._id,
         first_value: item.first_value,
         second_value: item.second_value,
+        date: item.date,
       })
     }
     setLogMode('select')
@@ -85,11 +126,35 @@ export function ExerciseLog({ navigation }) {
     }
   }
 
+  // Create activity if none exists. Update as necessary if it does
+  const addExerciseActivity = () => {
+    if (cleanString(activityData) === '[]'){
+      createUserActivity();
+    }
+    else {
+      const activity = JSON.stringify(activityData[0]);
+      var json = JSON.parse(activity);
+      var id = JSON.stringify(json._id);
+      updateUserActivity(cleanString(id));
+    }
+  }
+
+  // perform event upon focusing back onto the page
   React.useEffect(() => {
     navigation.addListener('focus', () => {
       getSets();
+      getActivity();
     });
   }, []);
+
+
+  React.useEffect(() => {
+    if (activityData != null){
+      if (data != null){
+        addExerciseActivity();
+      }
+    }
+  }, [activityData]);
 
   return (
       <View style={styles.container}>
@@ -97,7 +162,9 @@ export function ExerciseLog({ navigation }) {
           <View style={styles.rowContainer}>
             <TouchableOpacity
               style={styles.generalButton}
-              onPress={() => navigation.navigate('Select Exercise Group')}
+              onPress={() => navigation.navigate('Select Exercise Group', {
+                date: date,
+              })}
             >
               <Text style={styles.generalButtonFont}> Log new exercise </Text>
             </TouchableOpacity>

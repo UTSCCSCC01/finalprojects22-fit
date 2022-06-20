@@ -60,7 +60,9 @@ export function Calendar({ navigation }) {
 
       <TouchableOpacity
         style={styles.generalButton}
-        onPress={() => navigation.navigate('Track Activity Select')}
+        onPress={() => navigation.navigate('Track Activity Select', {
+          date: startDate
+        })}
       >
         <Text style={styles.generalButtonFont}> Track activity for: {formatDate(startDate)} </Text>
       </TouchableOpacity>

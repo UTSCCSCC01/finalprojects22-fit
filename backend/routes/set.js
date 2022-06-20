@@ -46,6 +46,38 @@ router.get("/:userId", async (req, res) => {
     } 
 });
 
+
+// GET - Fetch the Sets given a userId and date
+router.get("/:userId/:date", async (req, res) => {
+    try {
+        let set = await Set.find({
+          userId: req.params.userId,
+          date:{
+            $gte: new Date(req.params.date).setHours(0,0,0,0), 
+            $lt: new Date(req.params.date).setHours(24,0,0,0),
+        }
+        });
+        if (set) {
+            // user set history is found
+            res.status(200).json({
+                status: 200,
+                data: set,
+            });
+        } else {
+            // user set history cannot be found in db
+            res.status(400).json({
+                status: 400,
+                message: "User not found",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    } 
+});
+
 // PATCH - Update the set given the id from the Set Collection
 router.patch("/:setId", async (req, res) => {
     try {

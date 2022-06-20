@@ -2,7 +2,9 @@ import * as React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { styles } from '../style/styles';
 
-export function TrackActivitySelect({ navigation }) {
+export function TrackActivitySelect({ navigation, route }) {
+
+  const { date } = route.params;
 
   return (
     <View style={styles.trackActivityContainer}>
@@ -25,7 +27,9 @@ export function TrackActivitySelect({ navigation }) {
       <View style={styles.rowContainer}> 
         <TouchableOpacity
             style={styles.roundButton}
-            onPress={() => navigation.navigate('Exercise Log')}
+            onPress={() => navigation.navigate('Exercise Log', {
+              date: date
+            })}
           >
             <Text style={styles.roundButtonFont}> Exercise</Text>
           </TouchableOpacity>

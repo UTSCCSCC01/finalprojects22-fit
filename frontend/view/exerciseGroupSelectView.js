@@ -2,7 +2,8 @@ import * as React from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../style/styles';
 
-export function ExerciseGroupSelect({ navigation }) {
+export function ExerciseGroupSelect({ navigation, route }) {
+  const { date } = route.params;
 
   return (
     <View style={styles.container}>
@@ -11,6 +12,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onSubmitEditing ={(event) => navigation.navigate('Select Exercise', {
           exerciseType: event.nativeEvent.text,
           SearchType: 'Search',
+          date: date,
         })}
         placeholder="Search for exercises"
       />
@@ -19,6 +21,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Abdominals',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Abdominals </Text>
@@ -28,6 +31,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Back',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Back </Text>
@@ -37,6 +41,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Biceps',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Biceps </Text>
@@ -46,6 +51,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Calves',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Calves </Text>
@@ -55,6 +61,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Cardio',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Cardio </Text>
@@ -64,6 +71,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Chest',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Chest </Text>
@@ -73,6 +81,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Legs',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Legs </Text>
@@ -82,6 +91,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Shoulders',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Shoulders </Text>
@@ -91,6 +101,7 @@ export function ExerciseGroupSelect({ navigation }) {
         onPress={() => navigation.navigate('Select Exercise', {
           exerciseType: 'Triceps',
           SearchType: 'Group',
+          date: date,
         })}
         >
         <Text style={styles.generalButtonFont}> Triceps </Text>

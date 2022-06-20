@@ -12,7 +12,14 @@ export const styles = StyleSheet.create({
   recorderContainer: {
     marginHorizontal: 16,
     padding: 10,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
+  },
+  trackActivityContainer:{
+    flex: 1,
+    marginHorizontal: 16,
+    padding: 10,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   container: {
     flex: 1,
@@ -135,6 +142,22 @@ export const styles = StyleSheet.create({
   generalButtonFont:{
     fontSize: 16,
     color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  roundButton:{
+    width: 120,
+    height: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: primaryOrange,
+  },
+  roundButtonFont:{
+    fontSize: 22,
+    color: primaryOrange,
     fontWeight: 'bold',
     textAlign: 'center',
   },

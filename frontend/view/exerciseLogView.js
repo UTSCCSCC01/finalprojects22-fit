@@ -75,8 +75,10 @@ export function ExerciseLog({ navigation, route }) {
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
     if (logMode === 'delete'){
+      setActivityData(null);
       Promise.resolve(deleteSets(cleanString(item._id)))
-      .then(() => getSets());
+      .then(() => getSets())
+      .then(() => getActivity());
     }
     else if (logMode === 'update'){
       navigation.navigate('Record Exercise', {
@@ -142,8 +144,10 @@ export function ExerciseLog({ navigation, route }) {
   // perform event upon focusing back onto the page
   React.useEffect(() => {
     navigation.addListener('focus', () => {
-      getSets();
-      getActivity();
+      // Reset activityData so event is triggered later
+      setActivityData(null);
+      Promise.resolve(getSets())
+      .then(() => getActivity());
     });
   }, []);
 

@@ -1,48 +1,50 @@
 import React, { useState } from 'react';
 import './SurveyFormat.css';
-import { ResultPlan } from '../components/ResultPlan';
+import { result } from './global';
 
-export function Survey() {
+export function Survey ({navigation}) {
+	
 	const questions = [
 		{
 			questionText: 'What is your primary fitness goal?',
 			answerOptions: [
-				{ answerText: 'Gain weight/build muscle.'},
-				{ answerText: 'Lose weight/burn fat.'},
-				{ answerText: 'Improve Strength.'},
-				{ answerText: 'Improve Cardio.'},
-                { answerText: 'General Health.'},
+				{ answerText: 'Gain weight/build muscle'},
+				{ answerText: 'Lose weight/burn fat'},
+				{ answerText: 'Improve Strength'},
+				{ answerText: 'Improve Cardio'},
+                { answerText: 'General Health'},
 			],
 		},
 		{
 			questionText: 'Will you have access to gym equipment?',
 			answerOptions: [
-				{ answerText: 'Yes.'},
-				{ answerText: 'No.'},
+				{ answerText: 'Yes'},
+				{ answerText: 'No'},
 			],
 		},
 		{
 			questionText: 'How many days per week would you prefer to work-out?',
 			answerOptions: [
-				{ answerText: '<= 3 days/week.'},
-				{ answerText: '>4 days/week'},
+				{ answerText: 'less than or equal to 3 days per week'},
+				{ answerText: 'more than 4 days per week'},
 			],
 		},
 	];
-
-   /* Resets the game back to default */
-   const restartSurvey = () => {
-       setCurrentQuestion(0);
-       setShowResult(false);
-       setResults([]);
-    };
-
+    // for switching between survey questions
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showResult, setShowResult] = useState(false);
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState("");
+
+
+	const restartSurvey = () => {
+		setCurrentQuestion(0);
+		setShowResult(false);
+		setResults([]);
+	 };
 
 	const handleAnswerOptionClick = (answerText) => {
 		setResults(oldArray => [...oldArray, answerText]);
+		// result.push(answerText);
 		const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
@@ -50,15 +52,23 @@ export function Survey() {
 			setShowResult(true);
 		}
 	};
+    
+	// set global var
+	const setresult = () => {
+		result.result = results.toString();
+	}
 
 	return (
       <div className='Survey'>
-      <h1>FIT</h1>
-      <h2>Survey</h2>
+         <h1>FIT</h1>
+         <h2>Survey</h2>
 			{showResult ? (
 				<div className='result-section'>
-					<h1>your Input: {results}</h1>
-          <h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
+					<h2>your input: {results} </h2>
+					<h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
+					<h2><button onClick={() => setresult()}>Find Plan</button></h2>
+					<h2><button onClick={() => navigation.navigate('Plan')}>Reveal Plan</button></h2>
+                    
 				</div>
         
 			) : (
@@ -79,3 +89,4 @@ export function Survey() {
 		</div>
 	);
 }
+

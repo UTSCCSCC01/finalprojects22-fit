@@ -1,20 +1,22 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Text, View, ActivityIndicator } from 'react-native';
 import { globalVar_results } from './global';
 
 export const Plan = () => {
-  const [plan, setPlan] = useState("");
+  const [plan, setPlan] = React.useState("");
+  const [isLoading, setLoading] = React.useState(true);
 
   // data req
   const getPlan = async (planId) => {
     try {
       const response = await axios.get(
-        'http://localhost:3000/plans/'.concat(planId),
-      );
-      setPlan(response.data.data.planContent);
-      
+        'http://localhost:3000/plans/'.concat(planId));
+        await setPlan(response.data.data.planContent);
     } catch (error) {
-      // handle error
+      console.log(error);
+    } finally{
+      setLoading(false);
     }
   };
   
@@ -54,7 +56,7 @@ export const Plan = () => {
       React.useEffect(() => { getPlan("p11"); }, [])
       break;
     case "Lose weight/burn fat,Yes,more than 4 days per week":
-      React.seEffect(() => { getPlan("p12"); }, [])
+      React.useEffect(() => { getPlan("p12"); }, [])
       break;
     case "Improve Strength,Yes,more than 4 days per week":
       React.useEffect(() => { getPlan("p13"); }, [])
@@ -80,11 +82,13 @@ export const Plan = () => {
     default:
       React.useEffect(() => { getPlan("p20"); }, [])
   }
+
   return (
-    <div className='plan-recommendation'>
-					<h2> Your input is: {globalVar_results.results}. </h2>
-					<h2> Plan recommended is {plan}. </h2>
-		</div>
+    <View>
+			<Text> Your input is: {globalVar_results.results} </Text>
+      {isLoading ? <ActivityIndicator/> : (
+      <Text> Plan recommended is {plan}. </Text>)}
+    </View>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './SurveyFormat.css';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { styles } from '../styles';
 import { globalVar_results } from './global';
 
 export function Survey ({navigation}) {
@@ -60,31 +61,46 @@ export function Survey ({navigation}) {
 	}
 
 	return (
-      <div className='Survey'>
-         <h1>FIT</h1>
-         <h2>Survey</h2>
-			{showResult ? (
-				<div className='result-section'>
-					<h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
-					<h2><button onClick={() => setresult()}>Find Plan</button></h2>
-				</div>
-        
-			) : (
-				<>
-					<div className='question-section'>
-						<div className='question-count'>
-							<span>Question {currentQuestion + 1}</span>/{questions.length}
-						</div>
-						<div className='question-text'>{questions[currentQuestion].questionText}</div>
-					</div>
-					<div className='answer-section'>
+		<View>
+			<View>
+				<Text>FIT</Text>
+				<Text>Survey</Text>
+			</View>
+			<View>
+				{showResult ? 
+				(<View> 
+					<TouchableOpacity 
+						style={styles.generalButton}
+						onPress={() => restartSurvey()} >
+						<Text  style={styles.generalButtonFont}> Restart Survey </Text>
+					</TouchableOpacity > 
+					<TouchableOpacity 
+						style={styles.generalButton}
+						onPress={() => setresult()} >
+						<Text  style={styles.generalButtonFont}> Find Plan </Text>
+					</TouchableOpacity > 
+				</View>) :
+				(
+				<View>
+					<View>
+						<Text> Question {currentQuestion + 1} </Text>
+						<Text> {questions[currentQuestion].questionText} </Text>
+					</View>
+					<View>
 						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerOptionClick(answerOption.answerText)}>{answerOption.answerText}</button>
+						<TouchableOpacity
+							style={styles.generalButton}
+						  key = {answerOption.answerText}
+							onPress={() => handleAnswerOptionClick(answerOption.answerText)} >
+							<Text style={styles.generalButtonFont}> {answerOption.answerText} </Text>
+						</TouchableOpacity>
 						))}
-					</div>
-				</>
-			)}
-		</div>
+					</View>
+				</View>
+				)}
+			</View>
+		</View>
+
 	);
 }
 

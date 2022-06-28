@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SurveyFormat.css';
-import { result } from './global';
+import { globalVar_results } from './global';
 
 export function Survey ({navigation}) {
 	
@@ -53,9 +53,10 @@ export function Survey ({navigation}) {
 		}
 	};
     
-	// set global var
+	// set global var & navigate to plan
 	const setresult = () => {
-		result.result = results.toString();
+		globalVar_results.results = results.toString();
+		navigation.navigate('Plan');
 	}
 
 	return (
@@ -64,11 +65,8 @@ export function Survey ({navigation}) {
          <h2>Survey</h2>
 			{showResult ? (
 				<div className='result-section'>
-					<h2>your input: {results} </h2>
 					<h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
 					<h2><button onClick={() => setresult()}>Find Plan</button></h2>
-					<h2><button onClick={() => navigation.navigate('Plan')}>Reveal Plan</button></h2>
-                    
 				</div>
         
 			) : (

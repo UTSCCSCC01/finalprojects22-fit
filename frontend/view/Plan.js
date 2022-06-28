@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { result } from './global';
+import { globalVar_results } from './global';
 
 export const Plan = () => {
   const [plan, setPlan] = useState("");
 
-  console.log(result.result)
   // data req
   const getPlan = async (planId) => {
     try {
@@ -20,7 +19,7 @@ export const Plan = () => {
   };
   
   // trigger req
-  switch(result.result) {
+  switch(globalVar_results.results) {
     case "Gain weight/build muscle,Yes,less than or equal to 3 days per week":
       React.useEffect(() => { getPlan("p1"); }, [])
       break;
@@ -82,7 +81,10 @@ export const Plan = () => {
       React.useEffect(() => { getPlan("p20"); }, [])
   }
   return (
-    <><h2>{plan}</h2></>
+    <div className='plan-recommendation'>
+					<h2> Your input is: {globalVar_results.results}. </h2>
+					<h2> Plan recommended is {plan}. </h2>
+		</div>
   );
 }
 

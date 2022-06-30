@@ -14,6 +14,18 @@ export const storeUserId = async (userId) => {
   }
 };
 
+export const storeUserMetrics = async (metric) => {
+  try {
+
+    await AsyncStorage.setItem(
+      'preferredMetric',
+      metric
+    );
+  } catch (error) {
+    // Error saving data
+  }
+};
+
 // Fetching data:
 
 export const retrieveUserId = async () => {
@@ -21,6 +33,20 @@ export const retrieveUserId = async () => {
     const value = await AsyncStorage.getItem('userId');
     if (value !== null) {
       return value;
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
+};
+
+export const retrieveUserMetrics = async () => {
+  try {
+    const value = await AsyncStorage.getItem('preferredMetric');
+    if (value !== null) {
+      return value;
+    }
+    else {
+      return "1"; // return metric by defaults
     }
   } catch (error) {
     // Error retrieving data

@@ -3,7 +3,7 @@ import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
 import { postSet, patchSet } from '../controller/exerciseRecorderController.js'
-import { retrieveUserId } from '../utility/dataHandler.js'
+import { retrieveUserId, retrieveUserMetrics } from '../utility/dataHandler.js'
 
 export function ExerciseRecorder({ route, navigation }) {
   /* Create hooks */
@@ -12,6 +12,7 @@ export function ExerciseRecorder({ route, navigation }) {
   const [hours, setHours] = React.useState(0);
   const [minutes, setMinutes] = React.useState(0);
   const [seconds, setSeconds] = React.useState(0);
+  const [unit, setUnits] = React.useState(1)
 
   const { exercise_name, exercise_group, exercise_id, first_value, second_value, date } = route.params;
 
@@ -90,12 +91,19 @@ export function ExerciseRecorder({ route, navigation }) {
     }
   }
 
+  const getPreferredUnits = async () => {
+    const unit = await retrieveUserMetrics();
+    console.log(unit);
+    setUnits(unit);
+  }
+
   React.useEffect(() => {
     setFirstValue(first_value);
     setSecondValue(second_value);
     setHours(Math.floor(first_value / 3600));
     setMinutes(Math.floor((first_value % 3600) / 60));
     setSeconds((first_value % 3600) % 60);
+    getPreferredUnits();
   }, []);
 
   React.useEffect(() => {
@@ -110,11 +118,32 @@ export function ExerciseRecorder({ route, navigation }) {
     updateTime();
   }, [seconds]);
 
+  const firstValueHeader = () => {
+    let displayedUnit = unit == 1 ? "kg" : "lbs";
+    if ( cleanString(exercise_group) === 'Cardio' ) {
+      return 'Time (HH:MM:SS): ';
+    }
+    else {
+      return 'Weight: (' + displayedUnit + ')';
+    }
+  }
+
+  const secondValueHeader = () => {
+    let displayedUnit = unit == 1 ? "km" : "mi";
+    if ( cleanString(exercise_group) === 'Cardio' ) {
+      return 'Distance (' + displayedUnit + ')';
+    }
+    else {
+      return 'Reps: ';
+    }
+  }
+
   return (
       <View style={styles.recorderContainer}>
         <Text style={styles.header1}>{cleanString(exercise_name)}</Text>
         <View style={styles.headercontainer2}>
-          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Time (HH:MM:SS): ' : 'Weight: '}</Text>
+          <Text style={styles.header2}>{firstValueHeader()}
+           </Text>
         </View>
         <View style={styles.exerciseInputContainer}>
           {cleanString(exercise_group) === 'Cardio' ? 
@@ -181,7 +210,7 @@ export function ExerciseRecorder({ route, navigation }) {
           }
         </View>
         <View style={styles.headercontainer2}>
-          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Distance (KM): ' : 'Reps: '}</Text>
+          <Text style={styles.header2}>{secondValueHeader()}</Text>
         </View>
         <View style={styles.exerciseInputContainer}>
           <TouchableOpacity

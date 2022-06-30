@@ -140,6 +140,7 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+
     defaultConfig {
         applicationId "com.frontend"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -219,6 +220,7 @@ android {
             }
         }
     }
+
 
     splits {
         abi {

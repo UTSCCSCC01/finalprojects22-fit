@@ -12,6 +12,8 @@ const config = require("./config");
 // import defined users route
 const usersRouter = require("./routes/users");
 const plansRouter = require("./routes/plans");
+const exercisesRouter = require("./routes/exercises");
+const setRouter = require("./routes/set");
 
 
 app.use(logger("dev"));
@@ -35,7 +37,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/users", usersRouter); // define request route
 app.use("/plans", plansRouter);
-
+app.use("/exercises", exercisesRouter); // define request route
+app.use("/set", setRouter); // define request route
 
 app.listen(port, function () {
   console.log("Runnning on " + port);

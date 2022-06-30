@@ -25,8 +25,14 @@ let userSchema = new Schema(
     password: {
       type: String,
     },
+    email: {
+      type: String,
+    },
     display_name: {
       type: String,
+    },
+    bio: {
+      type: String
     },
     xp: {
       type: Number,

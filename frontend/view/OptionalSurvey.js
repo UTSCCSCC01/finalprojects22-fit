@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SurveyFormat.css';
 import { globalVar_results } from './global';
 
-export function Survey ({navigation}) {
+export function OptionalSurvey ({navigation}) {
 	
 	const questions = [
 		{
@@ -60,7 +60,7 @@ export function Survey ({navigation}) {
 	}
 
 	return (
-      <div className='Survey'>
+      <div className='OptionalSurvey'>
          <h1>FIT</h1>
          <h2>Survey</h2>
 			{showResult ? (

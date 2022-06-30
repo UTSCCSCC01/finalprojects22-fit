@@ -93,7 +93,6 @@ export function ExerciseRecorder({ route, navigation }) {
 
   const getPreferredUnits = async () => {
     const unit = await retrieveUserMetrics();
-    console.log(unit);
     setUnits(unit);
   }
 

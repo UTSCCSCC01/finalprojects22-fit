@@ -111,6 +111,15 @@ export const styles = StyleSheet.create({
     padding: 10,
     textAlign: 'center',
   },
+  exerciseTimeInput: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 10,
+    marginHorizontal: 2,
+    height: 40,
+    width: 40,
+    textAlign: 'center',
+  },
   searchBarInput: {
     borderColor: 'black',
     borderBottomWidth: 1,
@@ -120,6 +129,14 @@ export const styles = StyleSheet.create({
   },
   sideButton:{
     backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 2,
+    height: 40,
+    width: 40,
+    justifyContent: 'center',
+  },
+  sideButtonGray:{
+    backgroundColor: lightGray,
     borderRadius: 10,
     margin: 2,
     height: 40,

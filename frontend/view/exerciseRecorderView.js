@@ -7,8 +7,11 @@ import { retrieveUserId } from '../utility/dataHandler.js'
 
 export function ExerciseRecorder({ route, navigation }) {
   /* Create hooks */
-  const [weight, setWeight] = React.useState(0);
-  const [reps, setReps] = React.useState(0);
+  const [firstValue, setFirstValue] = React.useState(0);
+  const [secondValue, setSecondValue] = React.useState(0);
+  const [hours, setHours] = React.useState(0);
+  const [minutes, setMinutes] = React.useState(0);
+  const [seconds, setSeconds] = React.useState(0);
 
   const { exercise_name, exercise_group, exercise_id, first_value, second_value, date } = route.params;
 
@@ -25,8 +28,8 @@ export function ExerciseRecorder({ route, navigation }) {
       userId: userId, 
       exercise_name: exerciseName,
       is_cardio: isCardio,
-      first_value: weight,
-      second_value: reps,
+      first_value: firstValue,
+      second_value: secondValue,
       date: date
     });
     
@@ -45,8 +48,8 @@ export function ExerciseRecorder({ route, navigation }) {
 
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
-      first_value: weight,
-      second_value: reps,
+      first_value: firstValue,
+      second_value: secondValue,
     });
 
     /* patch st */
@@ -56,79 +59,147 @@ export function ExerciseRecorder({ route, navigation }) {
     navigation.navigate("Exercise Log", {date : date});
   }
 
-  /* Determines which format to use to represent first_value */
-  const cardioTimeConverter = () => {
-    if (weight < 0){      
-      setWeight(0);
-    }
+  const updateTime = () => {
+    setFirstValue(
+    hours * 3600 +
+    minutes * 60 + 
+    seconds);
+  }
 
-    if (cleanString(exercise_group) === 'Cardio'){
-      return numberToTime(weight);
-    }
-    else{
-      return cleanString(weight)
+  /* bound hours between 0 and 99*/
+  const validateHours = (hours) => {
+    if (0 <= hours && hours < 100)
+    {
+      setHours(hours);
     }
   }
 
-  const cardioDistConverter = () => {
-    if (cleanString(exercise_group) === 'Cardio'){
-      return cleanString(reps) + 'KM';
+  /* bound minutes between 0 and 59 */
+  const validateMinutes = (minutes) => {
+    if (0 <= minutes && minutes < 60)
+    {
+      setMinutes(minutes);
     }
-    else{
-      return cleanString(reps);
+  }
+
+  /* bound seconds between 0 and 59 */
+  const validateSeconds = (seconds) => {
+    if (0 <= seconds && seconds < 60)
+    {
+      setSeconds(seconds);
     }
   }
 
   React.useEffect(() => {
-    setWeight(first_value);
-    setReps(second_value);
+    setFirstValue(first_value);
+    setSecondValue(second_value);
+    setHours(Math.floor(first_value / 3600));
+    setMinutes(Math.floor((first_value % 3600) / 60));
+    setSeconds((first_value % 3600) % 60);
   }, []);
+
+  React.useEffect(() => {
+    updateTime();
+  }, [hours]);
+
+  React.useEffect(() => {
+    updateTime();
+  }, [minutes]);
+
+  React.useEffect(() => {
+    updateTime();
+  }, [seconds]);
 
   return (
       <View style={styles.recorderContainer}>
         <Text style={styles.header1}>{cleanString(exercise_name)}</Text>
         <View style={styles.headercontainer2}>
-          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Time: ' : 'Weight: '}</Text>
+          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Time (HH:MM:SS): ' : 'Weight: '}</Text>
         </View>
         <View style={styles.exerciseInputContainer}>
+          {cleanString(exercise_group) === 'Cardio' ? 
           <TouchableOpacity
-            style={styles.sideButton}
-            onPress={() => weight <= 0 ? setWeight(0) : setWeight(weight - 5)}
+            style={styles.sideButtonGray}
+            disabled={true}
             >
             <Text style={styles.sideButtonFont}> - </Text>
           </TouchableOpacity>
-          <TextInput
-            style={styles.exerciseMetricsInput}
-            value={cardioTimeConverter()}
-            onChangeText={text => text === '' ? setWeight(0) : setWeight(parseInt(text))}
-            keyboardType="numeric"
-          />
+          :
           <TouchableOpacity
             style={styles.sideButton}
-            onPress={() => setWeight(weight + 5)}
+            onPress={() => firstValue <= 0 ? setFirstValue(0) : setFirstValue(firstValue - 5)}
+            >
+            <Text style={styles.sideButtonFont}> - </Text>
+          </TouchableOpacity>
+          }
+          {cleanString(exercise_group) === 'Cardio' ? 
+          <View style={styles.exerciseInputContainer}>
+            <TextInput
+              style={styles.exerciseTimeInput}
+              value={cleanString(hours)}
+              selectTextOnFocus={true}
+              onChangeText={text => text === '' ? setHours(0) : validateHours(parseInt(text))}
+              keyboardType="numeric"
+            />
+            <TextInput
+              style={styles.exerciseTimeInput}
+              value={cleanString(minutes)}
+              selectTextOnFocus={true}
+              onChangeText={text => text === '' ? setMinutes(0) : validateMinutes(parseInt(text))}
+              keyboardType="numeric"
+            />
+            <TextInput
+              style={styles.exerciseTimeInput}
+              value={cleanString(seconds)}
+              selectTextOnFocus={true}
+              onChangeText={text => text === '' ? setSeconds(0) : validateSeconds(parseInt(text))}
+              keyboardType="numeric"
+            />
+          </View>
+          :
+            <TextInput
+              style={styles.exerciseMetricsInput}
+              value={cleanString(firstValue)}
+              onChangeText={text => text === '' ? setFirstValue(0) : setFirstValue(parseInt(text))}
+              keyboardType="numeric"
+            />
+          }
+          {cleanString(exercise_group) === 'Cardio' ? 
+          <TouchableOpacity
+            style={styles.sideButtonGray}
+            disabled={true}
           >
             <Text style={styles.sideButtonFont}> + </Text>
           </TouchableOpacity>
+          :
+          <TouchableOpacity
+            style={styles.sideButton}
+            onPress={() => setFirstValue(firstValue + 5)}
+          >
+            <Text style={styles.sideButtonFont}> + </Text>
+          </TouchableOpacity>
+          }
         </View>
         <View style={styles.headercontainer2}>
-          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Distance: ' : 'Reps: '}</Text>
+          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Distance (KM): ' : 'Reps: '}</Text>
         </View>
         <View style={styles.exerciseInputContainer}>
           <TouchableOpacity
             style={styles.sideButton}
-            onPress={() => reps <= 0 ? setReps(0) : setReps(reps - 1)}
+            onPress={() => secondValue <= 0 ? setSecondValue(0) : setSecondValue(secondValue - 1)}
             >
             <Text style={styles.sideButtonFont}> - </Text>
           </TouchableOpacity>
           <TextInput
             style={styles.exerciseMetricsInput}
-            value={cardioDistConverter()}
-            onChangeText={text => text == '' ? setReps(0) : setReps(parseInt(text))}
+            selectTextOnFocus={true}
+            value={cleanString(secondValue)}
+            onChangeText={text => text == '' ? setSecondValue(0) : setSecondValue(parseInt(text))}
             keyboardType="numeric"
           />
           <TouchableOpacity
             style={styles.sideButton}
-            onPress={() => setReps(reps + 1)}
+            onPress={() => setSecondValue(secondValue + 1)}
           >
             <Text style={styles.sideButtonFont}> + </Text>
           </TouchableOpacity>

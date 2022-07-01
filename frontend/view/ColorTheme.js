@@ -6,16 +6,11 @@ import {StyleSheet, View} from 'react-native';
 import { globalVar_colorTheme} from './global';
 
 export function ColorTheme({navigation}) {
-  // const [color,setColor]=useState('');
   const handleSelect=(e)=>{
-    //setColor(e);
     globalVar_colorTheme.colorTheme = e;
     navigation.navigate('Survey');
   }
-//   const gotoSurvey = () => {
-//     globalVar_colorTheme.colorTheme = color.toString();
-//     navigation.navigate('Survey');
-// }
+
   return (
     <View>
           <div className="ColorTheme">

@@ -3,6 +3,7 @@ import { Text, View, Button, TextInput} from 'react-native';
 import { styles } from '../style';
 import { cleanString, cleanNum } from '../utility/format.js';
 import { postSavedFood, patchSavedFood } from '../controller/RecordFoodController.js'
+import { retrieveUserId } from '../utility/dataHandler.js'
 
 
 export function RecordFood({ route, navigation }) {
@@ -19,10 +20,11 @@ export function RecordFood({ route, navigation }) {
       /* Clean/set body parameters */
       const currentDate = new Date();
       const foodName = cleanString(food_name);
+      const userId = await retrieveUserId();
 
       /* bundle parameters into JSON format */
       const body = JSON.stringify({
-        userId: '62a8aed17a8cd32ad4e43907',
+        userId: userId,
         food_name: foodName,
         calorie: cals,
         carbohydrate: carbs,
@@ -49,14 +51,14 @@ export function RecordFood({ route, navigation }) {
         calorie: cals,
         carbohydrate: carbs,
         fat: fats,
-        protein: proteins,
+        protein: prots,
       });
 
       /* patch st */
       const json = patchSavedFood (savedfoodId, body);
 
       /* go back to food log page */
-      navigation.popToTop()
+      navigation.navigate("Food Log")
     }
 
     React.useEffect(() => {
@@ -65,12 +67,6 @@ export function RecordFood({ route, navigation }) {
       setProtein(cleanNum(protein));
       setCalorie(calorie);
     }, []);
-
-    const changecal = async () => {
-        setCarbohydrate(cleanNum(carbohydrate) * (cals/100));
-        setFat(cleanNum(fat) * (cals/100));
-        setProtein(cleanNum(protein) * (cals/100));
-    }
 
     return (
       <View style={styles.container}>
@@ -83,8 +79,8 @@ export function RecordFood({ route, navigation }) {
             />
             <TextInput
               style={styles.textInput}
-              value={cals + ' g'}
-              onChangeText={text => text === '' ? setCalorie(cals) : setCalorie(parseFloat(text))}
+              value={cleanString(cals) + ' g'}
+              onChangeText={text => text === '' ? setCalorie(cals) : setCalorie(parseInt(text))}
               keyboardType="numeric"
             />
              <Button
@@ -115,7 +111,7 @@ export function RecordFood({ route, navigation }) {
              <TextInput
                 style={styles.textInput}
                 value={cleanNum(prots) + ' g'}
-                onChangeText={text => text == '' ? setProtein(prots) : setFat(parseFloat(text))}
+                onChangeText={text => text == '' ? setProtein(prots) : setProtein(parseFloat(text))}
                 keyboardType="numeric"
              />
           </View>

@@ -4,7 +4,7 @@ import { styles } from '../style';
 import MainPage from './MainPage';
 import axios from 'axios';
 import { storeUserId } from '../utility/dataHandler.js'
-const baseURL = 'http://192.168.2.69:3000'
+const baseURL = 'http://localhost:3000'
 //import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //const Stack = createNativeStackNavigator();
 

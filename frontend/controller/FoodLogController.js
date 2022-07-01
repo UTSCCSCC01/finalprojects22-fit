@@ -1,11 +1,14 @@
+import { retrieveUserId } from '../utility/dataHandler.js'
+
 export const getFoodSavedPlans = async () => {
-  const response = await fetch('http://192.168.2.69:3000/savedfood/62a8aed17a8cd32ad4e43907');
+  const userId = await retrieveUserId();
+  const response = await fetch('http://localhost:3000/savedfood/'.concat(userId));
   const json = await response.json();
   return json;
 }
 
 export const deleteFoodSavedPlans = async (id) => {
-  const response = await fetch('http://192.168.2.69:3000/savedfood/'.concat(id), {method: 'DELETE'})
+  const response = await fetch('http://localhost:3000/savedfood/'.concat(id), {method: 'DELETE'})
   const json = await response.json();
   return json;
 }

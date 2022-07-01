@@ -42,6 +42,7 @@ export function FoodLog({ navigation }) {
       navigation.navigate('Record Food', {
         food_name: item.food_name,
         food_id: item._id,
+        calorie: item.calorie,
         carbohydrate: item.carbohydrate,
         fat: item.fat,
         protein: item.protein,

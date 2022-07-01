@@ -15,6 +15,10 @@ import { ExerciseRecorder } from './view/exerciseRecorderView';
 import { ExerciseLog } from './view/exerciseLogView';
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
+import { SelectFoodCategory } from './view/SelectFoodCategory'
+import { SelectFood } from './view/SelectFood'
+import { RecordFood } from './view/RecordFood'
+import { FoodLog } from './view/FoodLog';
 
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
@@ -108,6 +112,12 @@ const App = () => {
             <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
             <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
             <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name="Food Log" component={FoodLog} />
+            <Stack.Screen name="Select Food Category" component={SelectFoodCategory} />
+            <Stack.Screen name="Select Food" component={SelectFood} />
+            <Stack.Screen name="Record Food" component={RecordFood} />
           </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>

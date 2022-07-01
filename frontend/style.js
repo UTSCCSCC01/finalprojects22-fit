@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
+
     title: {
         fontSize: 40,
         padding: 10
@@ -35,5 +36,21 @@ export const styles = StyleSheet.create({
     button:{
         padding: 10,
         justifyContent: 'left',
-    }
+    },
+    deleteItem: {
+       padding: 10,
+       fontSize: 18,
+       height: 80,
+       color: 'red',
+       borderWidth: 1,
+       borderColor: 'red',
+    },
+    updateItem: {
+       padding: 10,
+       fontSize: 18,
+       height: 80,
+       color: 'green',
+       borderWidth: 1,
+       borderColor: 'green',
+    },
 });

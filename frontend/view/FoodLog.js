@@ -78,7 +78,7 @@ export function FoodLog({ navigation }) {
       {isLoading ? <ActivityIndicator/> : (
       <FlatList
         data={data}
-        keyExtractor={({ id }, index) => id}
+        keyExtractor={(item,index) => item._id}
         renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
       />
       )}

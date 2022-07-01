@@ -10,6 +10,9 @@ let foodSchema = new Schema(
     FoodName: {
       type: String,
     },
+    Calorie: {
+       type: Number,
+    },
     Carbohydrate: {
       type: mongoose.Types.Decimal128,
     },

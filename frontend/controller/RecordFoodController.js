@@ -1,5 +1,5 @@
 export const postSavedFood = async (body) => {
-  const response = await fetch('http://localhost:3000/savedfood', {
+  const response = await fetch('http://192.168.2.69:3000/savedfood', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -12,7 +12,7 @@ export const postSavedFood = async (body) => {
 }
 
 export const patchSavedFood = async (id, body) => {
-  const response = await fetch('http://localhost:3000/savedfood/'.concat(id), {
+  const response = await fetch('http://192.168.2.69:3000/savedfood/'.concat(id), {
     method: 'PATCH',
     headers: {
       Accept: 'application/json',

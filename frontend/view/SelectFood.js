@@ -45,11 +45,11 @@ export function SelectFood({ route, navigation }) {
      }, []);
 
      const getItem = (item) => {
-
        navigation.navigate('Record Food', {
          food_name: item.FoodName,
          food_group: item.FoodGroup,
          food_id: 'N/A',
+         calorie: 100,
          carbohydrate: item.Carbohydrate,
          fat: item.Fat,
          protein: item.Protein,
@@ -62,7 +62,7 @@ export function SelectFood({ route, navigation }) {
               {isLoading ? <ActivityIndicator/> : (
                   <FlatList
                     data={data}
-                    keyExtractor={({ id }, index) => id}
+                    keyExtractor={(item, index) => item._id}
                     renderItem={({item}) => <Text style={styles.item} onPress={()=> getItem(item)}>{item.FoodName}</Text>}
                   />
               )}

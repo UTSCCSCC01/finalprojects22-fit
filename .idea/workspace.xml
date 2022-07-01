@@ -12,24 +12,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a491e2-4309-49cf-ad80-f0aed0590e56" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Food.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Foods.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Foods.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/models/SavedFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/SavedFood.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/food.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/savedfood.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/savedfood.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/LoginComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/LoginComponents.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utility/format.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utility/format.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/controller/RecordFoodController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/RecordFoodController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/controller/SelectFoodController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/SelectFoodController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/view/RecordFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/RecordFood.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/view/SelectFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/SelectFood.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/view/SelectFoodCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/SelectFoodCategory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,8 +66,5 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

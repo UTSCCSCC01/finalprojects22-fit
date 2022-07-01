@@ -1,134 +1,54 @@
 import React, { Component, useContext, useState } from 'react';
-import { Text, View, TextInput, Button, Pressable, Image } from 'react-native';
+import { Text, View, TextInput, Button, FlatList } from 'react-native';
 import { styles } from '../style';
+import MainPage from './MainPage';
+import LoginCredHandler from './LoginCredHandler';
 import axios from 'axios';
 const baseURL = 'http://10.0.2.2:3000'
-import { UserContext, UpdateUserContext } from '../context/UserContext';
+import { SetContext,useUpdateUserContext, useUserContext, UserContext, UpdateUserContext } from '../context/UserContext';
 
 //import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //const Stack = createNativeStackNavigator();
 
-export const SetContextComp = (content) => {
-    //console.log("call set context: " + content.content);
-    const use = useContext(UpdateUserContext);
-    const loginCred = useContext(UserContext);
-    //console.log("check if the same: "+loginCred + content.content)
-    if(content.content != loginCred){       
-        use(content.content);
-    }
-    return(null);
-}
-
-export const LogOutComp = (content) => {
-    //console.log("Log out: " + content.content);
-    const use = useContext(UpdateUserContext);
-    const loginCred = useContext(UserContext);
-    if(content.content == false && loginCred != false){
-        use(false);
-    }
-    return(null);
-}
+// export const SetContext = (content) => {
+//     console.log("reday");
+//     const use = useContext(UpdateUserContext);
+//     use(content);
+//     return(
+//         <View></View>
+//     );
+// }
 
 
-class Login extends Component {
+export const Login = (navigation) => {
     //this component handles both login and register.
     //it will return different elements when this.state.register indicates differently
 
 
-    state = {
-        register: 0,
-        username: '',
-        email: '',
-        password: '',
-        displayName: '',
-        checkIn: 0,
-        logindata:{},
-        login: false
-    }
+
+    const [register,setRegister] = useState(0);
+    const [username,setUsername] = useState('');
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [displayName,setDisplayName] = useState('');
+    const [logindata,setLogindata] = useState({});
+    const [login,setLogin] = useState(false);
+      
 
     static contextType=UserContext; 
 
-    
 
-    render() {
-        if(this.state.login != false || this.state.checkIn == 1){
-            return(
-                <View style={{
-                    backgroundColor:'#FFFFFF',
-                    padding: 5,
-                    height: '100%'
-                }}>
-                    <this.LoginCheck/>
-                </View>
-            )
-        }
-        return (
-            <View style={{
-                backgroundColor:'#FFFFFF',
-                padding: 5,
-                height: '100%'
-            }}>
-                <this.GreetingInterface/>
-            </View>
-        )
-    }   
+    return (
+        <View>
+            <LoginCheck/>
+        </View>
+    );
+}
 
-    GreetingInterface = () => {
-        return(
-            <View style={styles.mainInterface}>
-                <View style={
-                    {
-                        alignItems: 'center'
-                    }
-                }>
-                    <Image 
-                        style={{
-                            resizeMode: 'contain',
-                            width: 250,
-                            height: 250,
-                            alignItems:'center'
-                            }}
-                        source={require('../assets/icon.png')}/>
-                    <Text style={
-                        {
-                            color:'#4E598C',
-                            fontSize: 20
-                        }
-                    }>Making fitness easier for every one</Text>
-                </View>
-                
-                <View style={{
-                    marginTop: 80
-                }}>
-                    <View style={styles.container}>
-                        <Pressable 
-                            style={styles.mainPressable}
-                            onPress={()=>(this.setState({
-                                checkIn: 1,
-                                login: 0
-                            }))}>
-                                <Text style={styles.textInPressable}>Login</Text>
-                            </Pressable>
-                        <Text style={styles.breakingLine}></Text>
-                        <Pressable 
-                            style={styles.subPressable}
-                            onPress={()=>(this.setState({
-                                checkIn: 1,
-                                login: 1
-                            }))}>
-                                <Text style={styles.textInPressable}>Register</Text>
-                            </Pressable>
-                    </View>
-                </View>
-                
-            </View>
-            
-        );
-    }
 
     
 
-    TextHandler = ()=>{
+    const TextHandler = ()=>{
         //this handles the interface for registration. Use the states to save the user input 
         //and send the input to the register handler
         const [username, setUserName] = useState('');
@@ -139,7 +59,7 @@ class Login extends Component {
         
         
         return (
-            <View style={styles.mainInterface}>
+            <View style={styles.userInteractArea}>
                 <TextInput
                     style={styles.textInput} 
                     onChangeText={(text)=>{
@@ -157,31 +77,29 @@ class Login extends Component {
                     onChangeText={(text)=>{
                     setdisplayName(text);}} placeholder='Enter your preferred display name'/>
                 <View style={styles.container}>
-                    <Pressable 
-                        style={styles.mainPressable}
+                    <Button 
+                        style={styles.button}
                         onPress={()=>this.loginButtonClk()} 
-                        >
-                            <Text style={styles.textInPressable}>Already have an account? Click here to login</Text>
-                        </Pressable>
-                    <Text style={styles.breakingLine}></Text>
-                    <Pressable 
-                        style={styles.subPressable}
-                        onPress={()=>this.registered(username, email, password, displayName)}>
-                            <Text style={styles.textInPressable}>Register</Text>
-                        </Pressable>
+                        title="Already have an account? Click here to login"></Button>
+                </View>
+                <View style={styles.container}>
+                    <Button 
+                        style={styles.button}
+                        onPress={()=>this.registered(username, email, password, displayName)} 
+                        title="Register">Register</Button>
                 </View>
             </View>
         );
       }
 
-    LoginPageComp(){
+    function LoginPageComp(register){
         //when this.state.register indicate 0, returns the login page. When indicates 1, returns the register page
             if(this.state.register == 0){
                 return(
                     <View>
-                        <Text style={styles.title}>Welcome Back</Text>
-                        <View style={styles.mainInterface}>
-                            <View style={styles.mainInterface}>
+                        <Text style={styles.title}>Login</Text>
+                        <View>
+                            <View>
                                 <TextInput 
                                     style={styles.textInput}
                                     onChangeText={(text)=>{
@@ -196,20 +114,17 @@ class Login extends Component {
                                     this.setState({
                                         password: loginPassword
                                     })}} placeholder='Password'/>
-                                
                                 <View style={styles.container}>
-                                    <Pressable 
-                                        style={styles.mainPressable}
-                                        onPress={()=>this.registerClk()} >
-                                            <Text style={styles.textInPressable}>New User? Click here to register</Text>
-                                        </Pressable>
-                                        <Text style={styles.breakingLine}></Text>
-                                        <this.LoginToMain/>
+                                    <Button 
+                                        style={styles.button}
+                                        onPress={()=>this.registerClk()} 
+                                        title="New User? Click here to register"></Button>
+                                </View>
+                                <View style={styles.container}>
+                                    <this.LoginToMain/>
                                 </View>
                             </View>
-                            
-                            
-                        </View> 
+                        </View>  
                     </View>
                 );
             }else{
@@ -225,8 +140,10 @@ class Login extends Component {
 
 
     LoginCheck = ()=>{
+        
+        var userLoginCheck = this.context;
 
-        //console.log("login check:"+this.context);
+        console.log(userLoginCheck);
         if(this.context == false){
             return(
                 <View>
@@ -234,19 +151,14 @@ class Login extends Component {
                 </View>
             )
         }else{
-            //console.log("login:"+userLoginCheck+"\n");
-            
+            console.log("login:"+userLoginCheck);
+            this.props.navigation.navigate('MainPage');
             return(
                 <View>
                     <Text>Logged in successfully!</Text>
                     <Button title='Log out' onPress={()=>{
-                       this.setState({login: false,
-                    checkIn: 0});
+                        this.context = false;
                     }}></Button>
-                    <Button title='Direct to main page' onPress={()=>{
-                       this.props.navigation.navigate('MainPage');
-                    }}></Button>
-                    <LogOutComp content = {this.state.login}/>
                 </View>
             )
         }
@@ -272,12 +184,18 @@ class Login extends Component {
         //if the user input and the user list in the db are the same.If there's a match, 
         //return the user home page, if not, return 'Email or password invalid!'
         const [login, setLogin] = useState(0);
-        const [loginCred, setLoginCred] = useState(this.context);
+        const [loginCred, setLoginCred] = useState(false);
 
+        const setContext = ()=>{
+            console.log("reday");
+            useUpdateUserContext(loginCred);
+            
+        };
         //useUserContext();
         ///useUpdateUserContext();
         
         if(login == 1){
+            console.log("???");
             var loginIndicator = 0;
             const api = axios.create({
                 baseURL: baseURL
@@ -288,8 +206,8 @@ class Login extends Component {
                     if(res.data.data[i].email == this.state.email){
                         if(res.data.data[i].password == this.state.password){
                             loginIndicator = 1;
-                            this.setState({login: res.data.data[i].email});
-                            //console.log("found yeah\n"+ res.data.data[i].email);
+                            setLoginCred(res.data.data[i].email);
+                            console.log("yeah\n"+ res.data.data[i].email);
                             this.props.navigation.navigate('MainPage');
                             setLogin(0);
                         }
@@ -299,23 +217,30 @@ class Login extends Component {
                     alert('Email or password invalid!');
                     setLogin(0);
                 }else{
-                    //console.log("cnmshould work")
+                    return(
+                        <View>
+                            <Button 
+                                style={styles.button}
+                                title="Login" 
+                                onPress={()=>{
+                                    setLogin(1)}}></Button>
+                            <LoginCredHandler val={loginCred}/>
+                                
+                        </View>
+                    );
                 }
             })
         }
         
 
         return(
-            
             <View>
-                <Pressable 
-                    style={styles.subPressable} 
+                <Button 
+                    style={styles.button}
+                    title="Login" 
                     onPress={() => {
                         setLogin(1);
-                    }}>
-                        <Text style={styles.textInPressable}>Login</Text>
-                    </Pressable>
-                <SetContextComp content = {this.state.login}/>
+                    }}></Button>
             </View>
         );
         

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Text, View, Button, ScrollView } from 'react-native';
+import { UserContext } from '../context/UserContext';
 
 class MainPage extends Component{
+    static contextType = UserContext;
+
     render(){
         return(
             <View>
-                <Text>Welcome, User!</Text>
+                <Text>Welcome, {this.context}!</Text>
                 <View>
                     <Text>Here's your progress today</Text>
                     <ScrollView>

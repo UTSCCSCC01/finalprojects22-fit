@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Button, TextInput} from 'react-native';
+import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
 import { postSet, patchSet } from '../controller/exerciseRecorderController.js'
@@ -86,46 +86,60 @@ export function ExerciseRecorder({ route, navigation }) {
   }, []);
 
   return (
-    <View style={styles.container}>
-        <Text>{cleanString(exercise_name)}</Text>
-        <Text>{cleanString(exercise_group) === 'Cardio' ? 'Time' : 'Weight'}</Text>
-        <View style={styles.exerciseInput}>
-          <Button
-            title="-"
+      <View style={styles.recorderContainer}>
+        <Text style={styles.header1}>{cleanString(exercise_name)}</Text>
+        <View style={styles.headercontainer2}>
+          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Time: ' : 'Weight: '}</Text>
+        </View>
+        <View style={styles.exerciseInputContainer}>
+          <TouchableOpacity
+            style={styles.sideButton}
             onPress={() => weight <= 0 ? setWeight(0) : setWeight(weight - 5)}
-          />
+            >
+            <Text style={styles.sideButtonFont}> - </Text>
+          </TouchableOpacity>
           <TextInput
-            style={styles.textInput}
+            style={styles.exerciseMetricsInput}
             value={cardioTimeConverter()}
             onChangeText={text => text === '' ? setWeight(0) : setWeight(parseInt(text))}
             keyboardType="numeric"
           />
-          <Button
-            title="+"
+          <TouchableOpacity
+            style={styles.sideButton}
             onPress={() => setWeight(weight + 5)}
-          />
+          >
+            <Text style={styles.sideButtonFont}> + </Text>
+          </TouchableOpacity>
         </View>
-        <Text>{cleanString(exercise_group) === 'Cardio' ? 'Distance' : 'Reps'}</Text>
-        <View style={styles.exerciseInput}>
-          <Button
-            title="-"
+        <View style={styles.headercontainer2}>
+          <Text style={styles.header2}>{cleanString(exercise_group) === 'Cardio' ? 'Distance: ' : 'Reps: '}</Text>
+        </View>
+        <View style={styles.exerciseInputContainer}>
+          <TouchableOpacity
+            style={styles.sideButton}
             onPress={() => reps <= 0 ? setReps(0) : setReps(reps - 1)}
-          />
+            >
+            <Text style={styles.sideButtonFont}> - </Text>
+          </TouchableOpacity>
           <TextInput
-            style={styles.textInput}
+            style={styles.exerciseMetricsInput}
             value={cardioDistConverter()}
             onChangeText={text => text == '' ? setReps(0) : setReps(parseInt(text))}
             keyboardType="numeric"
           />
-          <Button
-            title='+'
+          <TouchableOpacity
+            style={styles.sideButton}
             onPress={() => setReps(reps + 1)}
-          />
+          >
+            <Text style={styles.sideButtonFont}> + </Text>
+          </TouchableOpacity>
         </View>
-      <Button
-        title={cleanString(exercise_id) === 'N/A' ? 'Log Exercise' : 'Update Exercise'}
-        onPress={() => cleanString(exercise_id) === 'N/A' ? createSet() : updateSet()}
-      />
-    </View>
+        <TouchableOpacity
+            style={styles.generalButton}
+            onPress={() => cleanString(exercise_id) === 'N/A' ? createSet() : updateSet()}
+          >
+          <Text style={styles.generalButtonFont}> {cleanString(exercise_id) === 'N/A' ? 'Log Exercise' : 'Update Exercise'} </Text>
+        </TouchableOpacity>
+      </View>
   );
 }

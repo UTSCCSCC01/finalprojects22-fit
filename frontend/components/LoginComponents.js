@@ -147,7 +147,7 @@ class Login extends Component {
                     if(res.data.data[i].password == this.state.password){
                         loginIndicator = 1;
                         storeUserId(res.data.data[i]._id);
-                        this.props.navigation.navigate('MainPage');
+                        this.props.navigation.navigate('Main TabBar');
                     }else{
                         alert('Email or password invalid!');
                         break;

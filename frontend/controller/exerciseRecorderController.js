@@ -1,6 +1,7 @@
+import { baseURI } from '../utility/constants.js';
 
 export const postSet = async (body) => {
-  const response = await fetch('http://localhost:3000/set', {
+  const response = await fetch(baseURI.concat('/set'), {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -13,7 +14,7 @@ export const postSet = async (body) => {
 }
 
 export const patchSet = async (id, body) => {
-  const response = await fetch('http://localhost:3000/set/'.concat(id), {
+  const response = await fetch(baseURI.concat('/set/').concat(id), {
     method: 'PATCH',
     headers: {
       Accept: 'application/json',

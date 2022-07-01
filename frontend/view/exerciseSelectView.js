@@ -9,7 +9,7 @@ export function ExerciseSelect({ route, navigation }) {
   const [isLoading, setLoading] = React.useState(true);
   const [data, setData] = React.useState([]);
 
-  const { exerciseType, SearchType } = route.params;
+  const { exerciseType, SearchType, date } = route.params;
 
   /* stringify and clean route params */
   const exerciseTypeClean = cleanString(exerciseType);
@@ -57,6 +57,7 @@ const getItem = (item) => {
     exercise_id: 'N/A',
     first_value: 0,
     second_value: 0,
+    date: date,
   })
 
 }

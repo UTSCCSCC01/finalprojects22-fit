@@ -1,16 +1,25 @@
 import { StyleSheet } from 'react-native';
 
-const primaryOrange = '#FF8C42'
-const secondaryOrange ='F9C784'
-const primaryPurple = '#4E598C'
-const secondaryPurple = '#717FC0'
-const lightGray = '#CFD1D0'
+// The colours should probably go into their own "constants" file.
+
+export const primaryOrange = '#FF8C42'
+export const secondaryOrange ='F9C784'
+export const primaryPurple = '#4E598C'
+export const secondaryPurple = '#717FC0'
+export const lightGray = '#CFD1D0'
 
 export const styles = StyleSheet.create({
   recorderContainer: {
     marginHorizontal: 16,
     padding: 10,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
+  },
+  trackActivityContainer:{
+    flex: 1,
+    marginHorizontal: 16,
+    padding: 10,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   container: {
     flex: 1,
@@ -102,6 +111,15 @@ export const styles = StyleSheet.create({
     padding: 10,
     textAlign: 'center',
   },
+  exerciseTimeInput: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 10,
+    marginHorizontal: 2,
+    height: 40,
+    width: 40,
+    textAlign: 'center',
+  },
   searchBarInput: {
     borderColor: 'black',
     borderBottomWidth: 1,
@@ -111,6 +129,14 @@ export const styles = StyleSheet.create({
   },
   sideButton:{
     backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 2,
+    height: 40,
+    width: 40,
+    justifyContent: 'center',
+  },
+  sideButtonGray:{
+    backgroundColor: lightGray,
     borderRadius: 10,
     margin: 2,
     height: 40,
@@ -133,6 +159,22 @@ export const styles = StyleSheet.create({
   generalButtonFont:{
     fontSize: 16,
     color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  roundButton:{
+    width: 120,
+    height: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: primaryOrange,
+  },
+  roundButtonFont:{
+    fontSize: 22,
+    color: primaryOrange,
     fontWeight: 'bold',
     textAlign: 'center',
   },

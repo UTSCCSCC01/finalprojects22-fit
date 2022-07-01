@@ -13,6 +13,8 @@ import { ExerciseSelect } from './view/exerciseSelectView';
 import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
 import { ExerciseRecorder } from './view/exerciseRecorderView';
 import { ExerciseLog } from './view/exerciseLogView';
+import { Calendar } from './view/calendarView';
+import { TrackActivitySelect } from './view/trackActivitySelectView';
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
 import { SelectFoodCategory } from './view/SelectFoodCategory'
@@ -106,6 +108,10 @@ const App = () => {
               options={{headerShown: false}}
               />
             <Stack.Screen name="Survey" component={UserSurvey} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name="Calendar" component={Calendar} />
+            <Stack.Screen name="Track Activity Select" component={TrackActivitySelect} />
           </Stack.Group>
           <Stack.Group>
             <Stack.Screen name="Exercise Log" component={ExerciseLog} />

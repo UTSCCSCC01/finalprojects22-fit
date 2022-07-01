@@ -15,8 +15,8 @@ class MainPage extends Component{
                         title='Track Metrics'>             
                     </Button>
                     <Button
-                        title='Log Exercises'                        
-                        onPress={() => this.props.navigation.navigate('Exercise Log')}>    
+                        title='Calendar'                        
+                        onPress={() => this.props.navigation.navigate('Calendar')}>    
                     </Button>
                     <Button
                         title='Log Foods'

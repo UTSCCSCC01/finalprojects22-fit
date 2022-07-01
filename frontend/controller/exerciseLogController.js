@@ -1,27 +1,28 @@
 import { retrieveUserId } from '../utility/dataHandler.js'
+import { baseURI } from '../utility/constants.js';
 
 export const getExerciseSets = async (date) => {
   const userId = await retrieveUserId();
-  const response = await fetch('http://localhost:3000/set/'.concat(userId).concat("/").concat(date));
+  const response = await fetch(baseURI.concat('/set/').concat(userId).concat("/").concat(date));
   const json = await response.json();
   return json;
 }
 
 export const getUserActivity = async (date) => {
   const userId = await retrieveUserId();
-  const response = await fetch('http://localhost:3000/userActivity/'.concat(userId).concat("/").concat(date))
+  const response = await fetch(baseURI.concat('/userActivity/').concat(userId).concat("/").concat(date))
   const json = await response.json();
   return json;
 }
 
 export const deleteExerciseSet = async (id) => {
-  const response = await fetch('http://localhost:3000/set/'.concat(id), {method: 'DELETE'})
+  const response = await fetch(baseURI.concat('/set/').concat(id), {method: 'DELETE'})
   const json = await response.json();
   return json;
 }
 
 export const postUserActivity = async (body) => {
-  const response = await fetch('http://localhost:3000/userActivity/', {
+  const response = await fetch(baseURI.concat('/userActivity/'), {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -34,7 +35,7 @@ export const postUserActivity = async (body) => {
 }
 
 export const patchUserActivity = async (id, body) => {
-  const response = await fetch('http://localhost:3000/userActivity/'.concat(id), {
+  const response = await fetch(baseURI.concat('/userActivity/').concat(id), {
     method: 'PATCH',
     headers: {
       Accept: 'application/json',

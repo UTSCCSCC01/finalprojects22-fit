@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from '../../style/styles';
 import { cleanString } from '../../utility/format.js';
-import { patchBMetric } from '../../controller/bodyMetricRecorderController'
-import { retrieveUserId } from '../../utility/dataHandler.js'
+import { patchAddBMetric, patchUpdateBMetric } from '../../controller/BodyMetric/bodyMetricRecorderController'
 
 export function BodyMetricRecorder({ route, navigation }) {
   /* Create hooks */
@@ -11,24 +10,40 @@ export function BodyMetricRecorder({ route, navigation }) {
 
   const { metricType, metricRecord } = route.params;
 
-  /* create new set */
-  const createSet = async () => {
+  /* create new body metric record */
+  const createBodyMetric = async () => {
 
     /* Clean/set body parameters */
     const currentDate = new Date();
-    const userId = await retrieveUserId();
 
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
-      metricType: metricType,
+      metric: metricType,
       value: value,
       date: currentDate.setHours(0, 0, 0, 0),
     });
     
-    /* Post set */
-    const json = await patchBMetric(body);
+    /* Post body metric */
+    const json = await patchAddBMetric(body);
   
     /* go back to exercise log page */
+    navigation.goBack();
+  }
+
+  /* update body metric record */
+  const updateBodyMetric = async () => {
+
+    const bid = metricRecord[0]._id;
+
+    /* bundle parameters into JSON format */
+    const body = JSON.stringify({
+        value: value,
+    });
+
+    /* patch body metric record */
+    const json = patchUpdateBMetric(body, bid);
+
+    /* go back to body metric category log page */
     navigation.goBack();
   }
 
@@ -45,7 +60,11 @@ export function BodyMetricRecorder({ route, navigation }) {
   }
 
   React.useEffect(() => {
-    setValue(value);
+    if (metricRecord.length == 0) {
+        setValue(value);
+    } else {
+        setValue(metricRecord[0].value);
+    }
   }, []);
 
   return (
@@ -76,9 +95,9 @@ export function BodyMetricRecorder({ route, navigation }) {
         </View>
         <TouchableOpacity
             style={styles.generalButton}
-            onPress={() => cleanString(exercise_id) === 'N/A' ? createSet() : updateSet()}
+            onPress={() => metricRecord.length == 0 ? createBodyMetric() : updateBodyMetric()}
           >
-          <Text style={styles.generalButtonFont}>{metricRecord === [] ? 'Save Measurement' : 'Edit Measurement'}</Text>
+          <Text style={styles.generalButtonFont}>{metricRecord.length == 0 ? 'Save Measurement' : 'Edit Measurement'}</Text>
         </TouchableOpacity>
       </View>
   );

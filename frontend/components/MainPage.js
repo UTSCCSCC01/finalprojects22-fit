@@ -22,6 +22,10 @@ class MainPage extends Component{
                         title='Track Body Metrics'                        
                         onPress={() => this.props.navigation.navigate('Body Metric Log')}>    
                     </Button>
+                    <Button
+                        title='Log Foods'
+                        onPress={() => this.props.navigation.navigate('Food Log')}>
+                    </Button>
                 </View>
                 <View>
                     <Text>Daily Goals</Text>

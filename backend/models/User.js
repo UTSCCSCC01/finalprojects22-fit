@@ -6,14 +6,11 @@ const bodymetrics = new Schema({
   metric: {
     type: String,
   },
-  unit: {
-    type: String,
-  },
   value: {
     type: Number,
   },
   date: {
-    type: String,
+    type: Date,
   }
 });
 

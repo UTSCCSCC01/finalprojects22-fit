@@ -19,6 +19,9 @@ import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
 import { ExerciseRecorder } from './view/exerciseRecorderView';
 import { ExerciseLog } from './view/exerciseLogView';
 
+import { BodyMetricLog } from './view/BodyMetric/BodyMetricLogView';
+import { BodyMetricRecorder } from './view/BodyMetric/BodyMetricRecorder';
+
 import { SelectFoodCategory } from './view/SelectFoodCategory'
 import { SelectFood } from './view/SelectFood'
 import { RecordFood } from './view/RecordFood'

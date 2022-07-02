@@ -13,19 +13,21 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 
 * Exercises.js: Contains models for exercises.
 * Set.js: contains models for sets.
-* User.js: contains models for users
-* Plan.js: contains models for plans
-* Foods.js: contains models for foods
-* SaveFood.js: contains models for SaveFoods
+* User.js: contains models for users.
+* Plan.js: contains models for plans.
+* Foods.js: contains models for foods.
+* SaveFood.js: contains models for SaveFoods.
+* UserActivity.js: contains models for tracking user activity.
 
 **routes:** directory that contains files that define server endpoints.
 
-* exercises.js: defines endpoints for fetching exercise data by various means
-* set.js: defines endpoints for getting, updating, creating, and deleting sets
-* users.js: defines endpoints for getting, updating, creating and deleting users
-* plan.js: defines endpoints for getting plans
-* foods.js: defines endpoints for getting foods
-* savefodd.js: defines endpoints for getting, updating, creating and deleting savefoods
+* exercises.js: defines endpoints for fetching exercise data by various means.
+* set.js: defines endpoints for getting, updating, creating, and deleting sets.
+* users.js: defines endpoints for getting, updating, creating and deleting users.
+* plan.js: defines endpoints for getting plans.
+* foods.js: defines endpoints for getting foods.
+* savefodd.js: defines endpoints for getting, updating, creating and deleting savefoods.
+* userActivity.js: defines enpoints for getting, updating, and creating user activity.
 
 **config.js:** config file that holds the credentials to connect to the MongoDB Atlas database
 
@@ -64,6 +66,8 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 * exerciseLogView.js: A user's personalized log page containing all of their recorded exercise
 * exerciseRecorderView.js: A page which allows user to record exercise metrics and save them into their log
 * exerciseSelectView.js: A page that appears after exerciseGroupSelectView, shows all exercises that followed from previous query
+* calendarView.js: A page containing a calendar that acts as an interface for tracking user activity.
+* trackActivitySelectView.js: Intermediary page between the calendar page and tracking pages
 
 **controller**: directory that contains js files corresponding to views that handles database calls.
 
@@ -73,6 +77,8 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 * exerciseLogController.js: handles database calls for exerciseLogView.js
 * exerciseRecorderController.js: handles database calls for exerciseRecorderView.js
 * exerciseSelectController.js: handles database calls for exerciseSelectView.js
+* userActivityController.js: handles database calls dealing with keeping track of a user's general activity
+* calendarController.js: handles database calls for the calendar page.
 
 **style**: directory containing stylesheets
 
@@ -81,6 +87,8 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 **utility**: directory containing general helper functions
 
 * format.js: contains functions for formatting, cleaning, and converting objects.
+* constants.js: contains constants that are frequently used throughout the application
+* dataHandler.js: contains variables that can be changed across different uses of the application but are otherwise used throughout
 
 **App.js**: entry point of the react native frontend (contains tab bar navigation)
 

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
 import { styles } from '../style';
 import { cleanString, numberToTime } from '../utility/format.js';
-import { getFoodSavedPlans, deleteFoodSavedPlans, postUserActivity, getUserActivity, patchUserActivity } from '../controller/FoodLogController'
+import { getFoodSavedPlans, deleteFoodSavedPlans } from '../controller/FoodLogController'
+import { postUserActivity, getUserActivity, patchUserActivity } from '../controller/userActivityController'
 import { retrieveUserId } from '../utility/dataHandler.js'
 
 export function FoodLog({ navigation, route }) {

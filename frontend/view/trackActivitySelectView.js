@@ -20,7 +20,9 @@ export function TrackActivitySelect({ navigation, route }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.roundButton}
-          // TO DO - navigate to Body metrics
+          onPress={() => navigation.navigate('Body Metric Log', {
+            date: date
+          })}
         >
           <Text style={styles.roundButtonFont}> Body Metrics</Text>
         </TouchableOpacity>

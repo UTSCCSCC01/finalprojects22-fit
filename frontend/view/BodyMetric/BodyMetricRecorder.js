@@ -8,19 +8,16 @@ export function BodyMetricRecorder({ route, navigation }) {
   /* Create hooks */
   const [value, setValue] = React.useState(0);
 
-  const { metricType, metricRecord } = route.params;
+  const { metricType, metricRecord, date } = route.params;
 
   /* create new body metric record */
   const createBodyMetric = async () => {
-
-    /* Clean/set body parameters */
-    const currentDate = new Date();
 
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
       metric: metricType,
       value: value,
-      date: currentDate.setHours(0, 0, 0, 0),
+      date: date,
     });
     
     /* Post body metric */

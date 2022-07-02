@@ -1,8 +1,9 @@
 import { retrieveUserId } from '../../utility/dataHandler.js'
+import { baseURI } from '../../utility/constants.js';
   
 export const patchAddBMetric = async (body) => {
     const userId = await retrieveUserId();
-    const response = await fetch('http://localhost:3000/users/'.concat(userId)+'/bmetric', {
+    const response = await fetch(baseURI.concat('/users/').concat(userId)+'/bmetric', {
         method: 'PUT',
         headers: {
         Accept: 'application/json',
@@ -16,7 +17,7 @@ export const patchAddBMetric = async (body) => {
 
 export const patchUpdateBMetric = async (body, bid) => {
     const userId = await retrieveUserId();
-    const response = await fetch('http://localhost:3000/users/'.concat(userId)+'/bmetric/'.concat(bid), {
+    const response = await fetch(baseURI.concat('/users/').concat(userId)+'/bmetric/'.concat(bid), {
         method: 'PUT',
         headers: {
         Accept: 'application/json',

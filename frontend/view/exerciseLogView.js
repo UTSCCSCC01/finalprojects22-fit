@@ -2,7 +2,8 @@ import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
-import { getExerciseSets, deleteExerciseSet, postUserActivity, getUserActivity, patchUserActivity } from '../controller/exerciseLogController' 
+import { getExerciseSets, deleteExerciseSet } from '../controller/exerciseLogController' 
+import { postUserActivity, getUserActivity, patchUserActivity } from '../controller/userActivityController'
 import { retrieveUserId } from '../utility/dataHandler.js'
 
 export function ExerciseLog({ navigation, route }) {

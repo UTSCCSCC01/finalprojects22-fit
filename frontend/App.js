@@ -78,17 +78,21 @@ const App = () => {
           <Stack.Screen name="Track Activity Select" component={TrackActivitySelect} />
         </Stack.Group>
         <Stack.Group>
-            <Stack.Screen name="Exercise Log" component={ExerciseLog} />
-            <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
-            <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
-            <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
-          </Stack.Group>
+          <Stack.Screen name="Exercise Log" component={ExerciseLog} />
+          <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
+          <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
+          <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
+        </Stack.Group>
         <Stack.Group>
-            <Stack.Screen name="Food Log" component={FoodLog} />
-            <Stack.Screen name="Select Food Category" component={SelectFoodCategory} />
-            <Stack.Screen name="Select Food" component={SelectFood} />
-            <Stack.Screen name="Record Food" component={RecordFood} />
-          </Stack.Group>
+          <Stack.Screen name="Food Log" component={FoodLog} />
+          <Stack.Screen name="Select Food Category" component={SelectFoodCategory} />
+          <Stack.Screen name="Select Food" component={SelectFood} />
+          <Stack.Screen name="Record Food" component={RecordFood} />
+        </Stack.Group>
+        <Stack.Group>
+          <Stack.Screen name="Body Metric Log" component={BodyMetricLog}/>
+          <Stack.Screen name="Record Body Metric" component={BodyMetricRecorder}/>
+        </Stack.Group>
       </Stack.Navigator>
     )
   }

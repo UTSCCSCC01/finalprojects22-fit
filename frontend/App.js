@@ -15,6 +15,8 @@ import { ExerciseRecorder } from './view/exerciseRecorderView';
 import { ExerciseLog } from './view/exerciseLogView';
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
+import { BodyMetricLog } from './view/BodyMetric/BodyMetricLogView';
+import { BodyMetricRecorder } from './view/BodyMetric/BodyMetricRecorder';
 
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
@@ -108,6 +110,10 @@ const App = () => {
             <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
             <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
             <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name="Body Metric Log" component={BodyMetricLog}/>
+            <Stack.Screen name="Record Body Metric" component={BodyMetricRecorder}/>
           </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>

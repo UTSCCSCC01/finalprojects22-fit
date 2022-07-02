@@ -54,7 +54,12 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 
 **view**: directory that contains all js files of the main screens of the mobile app
 
-* Profile folder: Profile pages display & editing
+* Profile folder:
+    * ProfileScreen.js: User Profile page
+    * EditProfileScreen.js: Edit Profile page 
+* BodyMetric folder:
+    * BodyMetricLogView.js: Page containing categories of body metrics for users to input
+    * BodyMetricRecorder.js: Page containing components for user input (ie. text input, buttons for adjusting input...etc)
 * exerciseGroupSelectView.js: page containing search bar and exercise groups allowing users to narrow their search
 * exerciseLogView.js: A user's personalized log page containing all of their recorded exercise
 * exerciseRecorderView.js: A page which allows user to record exercise metrics and save them into their log
@@ -62,6 +67,9 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 
 **controller**: directory that contains js files corresponding to views that handles database calls.
 
+* BodyMetric foldeR:
+    * bodyMetricLogController.js: handles database calls for BodyMetricLogView.js
+    * bodyMetricRecorderController.js: handles database calls for BodyMetricRecorder.js
 * exerciseLogController.js: handles database calls for exerciseLogView.js
 * exerciseRecorderController.js: handles database calls for exerciseRecorderView.js
 * exerciseSelectController.js: handles database calls for exerciseSelectView.js

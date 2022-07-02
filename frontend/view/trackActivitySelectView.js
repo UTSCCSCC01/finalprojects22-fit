@@ -12,14 +12,15 @@ export function TrackActivitySelect({ navigation, route }) {
         <TouchableOpacity
           style={styles.roundButton}
           // TO DO - navigate to food log
-          //onPress={() => navigation.navigate('')}
+          onPress={() => navigation.navigate('Food Log', {
+            date: date
+          })}
         >
           <Text style={styles.roundButtonFont}> Diet</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.roundButton}
-          // TO DO - navigate to body metrics
-          //onPress={() => navigation.navigate('')}
+          // TO DO - navigate to Body metrics
         >
           <Text style={styles.roundButtonFont}> Body Metrics</Text>
         </TouchableOpacity>

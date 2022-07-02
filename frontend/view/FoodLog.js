@@ -3,17 +3,20 @@ import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
 import { styles } from '../style';
 import { cleanString, numberToTime } from '../utility/format.js';
 import { getFoodSavedPlans, deleteFoodSavedPlans } from '../controller/FoodLogController'
+import { retrieveUserId } from '../utility/dataHandler.js'
 
-export function FoodLog({ navigation }) {
+export function FoodLog({ navigation, route }) {
   /* Create hooks */
   const [isLoading, savedplanLoading] = React.useState(true);
   const [data, savedplanData] = React.useState([]);
   const [logMode, savedplanLogMode] = React.useState('select');
 
+  const { date } = route.params;
+
   /* Pull user's saved plans */
   const getSavedPlans = async () => {
     try {
-      const json = await getFoodSavedPlans();
+      const json = await getFoodSavedPlans(cleanString(date));
       savedplanData(json.data);
     } catch (error) {
       console.error(error);
@@ -46,6 +49,7 @@ export function FoodLog({ navigation }) {
         carbohydrate: item.carbohydrate,
         fat: item.fat,
         protein: item.protein,
+        date: item.date,
       })
     }
     savedplanLogMode('select')
@@ -86,7 +90,9 @@ export function FoodLog({ navigation }) {
       <View style={styles.fixToText}>
         <Button
           title="Log a new food"
-          onPress={() => navigation.navigate('Select Food Category')}
+          onPress={() => navigation.navigate('Select Food Category', {
+            date: date,
+          })}
         />
         <Button
           title="Update an food"

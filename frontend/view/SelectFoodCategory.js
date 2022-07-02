@@ -2,7 +2,9 @@ import * as React from 'react';
 import { View, Button, TextInput, Alert } from 'react-native';
 import { styles } from '../style';
 
-export function SelectFoodCategory({ navigation }) {
+export function SelectFoodCategory({ navigation, route }) {
+  const { date } = route.params;
+
     return (
          <View style={styles.container}>
             <TextInput
@@ -10,6 +12,7 @@ export function SelectFoodCategory({ navigation }) {
               onSubmitEditing ={(event) => navigation.navigate('Select Food', {
                     foodType: event.nativeEvent.text,
                     SearchType: 'Search',
+                    date: date,
               })}
               placeholder="Search for food"
             />
@@ -18,6 +21,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Dairy and Egg Products',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -25,6 +29,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Spices and Herbs',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -32,6 +37,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Babyfoods',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -39,6 +45,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Fats and Oils',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -46,6 +53,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Poultry Products',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -53,6 +61,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Soups, Sauces and Gravies',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -60,6 +69,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Sausages and Luncheon meats',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -67,6 +77,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Breakfast cereals',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -74,6 +85,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Fruits',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -81,6 +93,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Pork Products',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -88,6 +101,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Vegetables and Vegetable Products',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -95,6 +109,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Nuts and Seeds',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -102,6 +117,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Beef',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -109,6 +125,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Beverages',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -116,6 +133,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Finfish and Shellfish Products',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -123,6 +141,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Legumes and Legume Products',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -130,6 +149,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Lamb, Veal and Game',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -137,6 +157,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Baked Products',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -144,6 +165,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Sweets',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -151,6 +173,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Cereals, Grains and Pasta',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -158,6 +181,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Fast Foods',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -165,6 +189,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Mixed Dishes',
                 SearchType: 'Group',
+                date: date,
               })}
             />
             <Button
@@ -172,6 +197,7 @@ export function SelectFoodCategory({ navigation }) {
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Snacks',
                 SearchType: 'Group',
+                date: date,
               })}
             />
          </View>

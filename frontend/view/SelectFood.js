@@ -8,7 +8,7 @@ export function SelectFood({ route, navigation }) {
     const [isLoading, setLoading] = React.useState(true);
     const [data, setData] = React.useState([]);
 
-    const { foodType, SearchType } = route.params;
+    const { foodType, SearchType, date } = route.params;
 
     const foodTypeClean = cleanString(foodType);
     const SearchTypeClean = cleanString(SearchType);
@@ -53,6 +53,7 @@ export function SelectFood({ route, navigation }) {
          carbohydrate: item.Carbohydrate,
          fat: item.Fat,
          protein: item.Protein,
+         date: date,
        })
 
      }

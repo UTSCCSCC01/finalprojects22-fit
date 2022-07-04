@@ -84,8 +84,7 @@ export const Plan = () => {
       React.useEffect(() => { getPlan("p20"); }, [])
   }
   return (
-    // <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
-    <View>
+    <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
       <Text>
 					Your input is: {globalVar_results.results}.
 		  </Text>

@@ -21,7 +21,7 @@ class UserSurvey extends Component{
                     })
                     if(this.state.surveystage == 5){
                         //this.props.navigation.navigate('Main Page');
-                        this.props.navigation.navigate('Optional Survey');
+                        this.props.navigation.navigate('Color Theme');
                     }
                 }}></Button>
             </View>

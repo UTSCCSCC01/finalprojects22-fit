@@ -5,14 +5,6 @@ import { globalVar_colorTheme } from './global';
 import { Text, View, Button} from 'react-native';
 
 export function Survey ({navigation}) {
-	
-	// bg color
-	// const style = require('../Style/style.js');
-	// const [color, setColor] = useState("");
-	// // setColor(globalVar_colorTheme.colorTheme);
-	// setColor ("pink");
-	// console.log(color);
-
 	const questions = [
 		{
 			questionText: 'What is your primary fitness goal?',
@@ -68,8 +60,8 @@ export function Survey ({navigation}) {
 	}
 
 	return (
-		// <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
-		<View>
+		<View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
+		
 		    {showResult ? (
 						<View>
 							{/* <h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>

@@ -92,6 +92,10 @@ export const Plan = () => {
       <Text>
         Plan recommended is: {plan}.
       </Text>
+      <Button
+          title='Main Page'
+          onPress={() =>navigation.navigate('Main Page')}>
+      </Button>
     </View>
   );
 }

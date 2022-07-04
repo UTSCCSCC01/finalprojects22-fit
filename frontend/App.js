@@ -119,8 +119,8 @@ const App = () => {
             <Stack.Screen name= "ColorTheme" component={ColorTheme} />
           </Stack.Group> */}
           <Stack.Group>
-            <Stack.Screen name= "OptionalSurvey" component={Survey} />
-            <Stack.Screen name = "Plan" component = {Plan} />
+            <Stack.Screen name= "Optional Survey" component={Survey} />
+            <Stack.Screen name = "Plan Recommendation" component = {Plan} />
           </Stack.Group>
           <Stack.Group>
             <Stack.Screen name="Exercise Log" component={ExerciseLog} />

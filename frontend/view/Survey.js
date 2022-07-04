@@ -64,7 +64,7 @@ export function Survey ({navigation}) {
 	// set global var & navigate to plan
 	const setresult = () => {
 		globalVar_results.results = results.toString();
-		navigation.navigate('Plan');
+		navigation.navigate('Plan Recommendation');
 	}
 
 	return (
@@ -87,7 +87,7 @@ export function Survey ({navigation}) {
 					) : (
 						<View>
 							<Text>
-							  Question {currentQuestion + 1}{questions.length}
+							  Question {currentQuestion + 1}
 							</Text>
 							<Text>
 							  {questions[currentQuestion].questionText}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 // import './SurveyFormat.css';
 import { globalVar_results } from './global';
-import {StyleSheet, View} from 'react-native';
 import { globalVar_colorTheme } from './global';
+import { Text, View, Button} from 'react-native';
 
 export function Survey ({navigation}) {
 	
@@ -68,35 +68,75 @@ export function Survey ({navigation}) {
 	}
 
 	return (
-    //   <View style={style.grey}>
-	<View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
-			<div className='Survey'>
-				<h1>FIT</h1>
-				<h2>Survey</h2>
-
-				{showResult ? (
-					<div className='result-section'>
-						<h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
-						<h2><button onClick={() => setresult()}>Find Plan</button></h2>
-					</div>
-
-				) : (
-					<>
-						<div className='question-section'>
-							<div className='question-count'>
-								<span>Question {currentQuestion + 1}</span>/{questions.length}
-							</div>
-							<div className='question-text'>{questions[currentQuestion].questionText}</div>
-						</div>
-						<div className='answer-section'>
+		// <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
+		<View>
+		    {showResult ? (
+						<View>
+							{/* <h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
+							<h2><button onClick={() => setresult()}>Find Plan</button></h2> */}
+							<Button 
+                                title="Restart Survey" 
+                                onPress={()=>restartSurvey()}>
+							</Button>
+							<Button 
+                                title="Find Plan" 
+                                onPress={()=>setresult()}>
+							</Button>
+						</View>
+	
+					) : (
+						<View>
+							<Text>
+							  Question {currentQuestion + 1}{questions.length}
+							</Text>
+							<Text>
+							  {questions[currentQuestion].questionText}
+							</Text>
+							<Text>
 							{questions[currentQuestion].answerOptions.map((answerOption) => (
-								<button onClick={() => handleAnswerOptionClick(answerOption.answerText)}>{answerOption.answerText}</button>
-							))}
-						</div>
-					</>
-				)}
-			</div>
-	</View>
-	);
+									// <button onClick={() => handleAnswerOptionClick(answerOption.answerText)}>{answerOption.answerText}</button>
+									<Button 
+                                      title={answerOption.answerText} 
+                                      onPress={()=>handleAnswerOptionClick(answerOption.answerText)}>
+							        </Button>
+								))}
+							</Text>
+						</View>
+					)}
+		</View>
+		
+		);
+	// return (
+    // //   <View style={style.grey}>
+	// <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
+	// 		<div className='Survey'>
+	// 			<h1>FIT</h1>
+	// 			<h2>Survey</h2>
+
+	// 			{showResult ? (
+	// 				<div className='result-section'>
+	// 					<h2><button onClick={() => restartSurvey()}>Restart Survey</button></h2>
+	// 					<h2><button onClick={() => setresult()}>Find Plan</button></h2>
+	// 				</div>
+
+	// 			) : (
+	// 				<>
+	// 					<div className='question-section'>
+	// 						<div className='question-count'>
+	// 							<span>Question {currentQuestion + 1}</span>/{questions.length}
+	// 						</div>
+	// 						<div className='question-text'>{questions[currentQuestion].questionText}</div>
+	// 					</div>
+	// 					<div className='answer-section'>
+	// 						{questions[currentQuestion].answerOptions.map((answerOption) => (
+	// 							<button onClick={() => handleAnswerOptionClick(answerOption.answerText)}>{answerOption.answerText}</button>
+	// 						))}
+	// 					</div>
+	// 				</>
+	// 			)}
+	// 		</div>
+	// </View>
+	
+	// );
 };
 

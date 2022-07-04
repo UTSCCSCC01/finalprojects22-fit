@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { globalVar_results } from './global';
-import {StyleSheet, View} from 'react-native';
 import { globalVar_colorTheme } from './global';
+import { Text, View, Button} from 'react-native';
 
 export const Plan = () => {
   
@@ -84,11 +84,14 @@ export const Plan = () => {
       React.useEffect(() => { getPlan("p20"); }, [])
   }
   return (
-    <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
-      <div className='Plan'>
-					<h2> Your input is: {globalVar_results.results}. </h2>
-					<h2> Plan recommended is: {plan}. </h2>
-		  </div>
+    // <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
+    <View>
+      <Text>
+					Your input is: {globalVar_results.results}.
+		  </Text>
+      <Text>
+        Plan recommended is: {plan}.
+      </Text>
     </View>
   );
 }

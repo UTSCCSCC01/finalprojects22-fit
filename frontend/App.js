@@ -26,7 +26,7 @@ import { FoodLog } from './view/FoodLog';
 
 import {Survey} from './view/Survey.js';
 import {Plan} from './view/Plan.js';
-import {ColorTheme} from './view/ColorTheme.js';
+//import {ColorTheme} from './view/ColorTheme.js';
 
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
@@ -115,11 +115,11 @@ const App = () => {
               />
             <Stack.Screen name="Survey" component={UserSurvey} />
           </Stack.Group>
-          <Stack.Group>
+          {/* <Stack.Group>
             <Stack.Screen name= "ColorTheme" component={ColorTheme} />
-          </Stack.Group>
+          </Stack.Group> */}
           <Stack.Group>
-            <Stack.Screen name= "Survey" component={Survey} />
+            <Stack.Screen name= "OptionalSurvey" component={Survey} />
             <Stack.Screen name = "Plan" component = {Plan} />
           </Stack.Group>
           <Stack.Group>

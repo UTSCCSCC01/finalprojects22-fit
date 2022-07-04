@@ -24,7 +24,7 @@ import { SelectFood } from './view/SelectFood'
 import { RecordFood } from './view/RecordFood'
 import { FoodLog } from './view/FoodLog';
 
-import {Survey} from './view/Survey.js';
+import {OptionalSurvey} from './view/Survey.js';
 import {Plan} from './view/Plan.js';
 import ColorTheme from './view/ColorTheme.js';
 
@@ -119,7 +119,7 @@ const App = () => {
             <Stack.Screen name= "Color Theme" component={ColorTheme} />
           </Stack.Group>
           <Stack.Group>
-            <Stack.Screen name= "Optional Survey" component={Survey} />
+            <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
             <Stack.Screen name = "Plan Recommendation" component = {Plan} />
           </Stack.Group>
           <Stack.Group>

@@ -4,12 +4,13 @@ import { globalVar_results } from './global';
 import { globalVar_colorTheme } from './global';
 import { Text, View, Button} from 'react-native';
 
-export const Plan = () => {
+export const Plan = ({navigation}) => {
   
   const [plan, setPlan] = useState("");
 
   // data req
   const getPlan = async (planId) => {
+    console.log(here);
     try {
       const response = await axios.get(
         'http://localhost:3000/plans/'.concat(planId),
@@ -24,64 +25,64 @@ export const Plan = () => {
   // trigger req
   switch(globalVar_results.results) {
     case "Gain weight/build muscle,Yes,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p1"); }, [])
+      React.useEffect(() => { getPlan("p1"); }, []);
       break;
     case "Lose weight/burn fat,Yes,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p2"); }, [])
+      React.useEffect(() => { getPlan("p2"); }, []);
       break;
     case "Improve Strength,Yes,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p3"); }, [])
+      React.useEffect(() => { getPlan("p3"); }, []);
       break;
     case "Improve Cardio,Yes,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p4"); }, [])
+      React.useEffect(() => { getPlan("p4"); }, []);
       break;
     case "General Health,Yes,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p5"); }, [])
+      React.useEffect(() => { getPlan("p5"); }, []);
       break;
     case "Gain weight/build muscle,No,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p6"); }, [])
+      React.useEffect(() => { getPlan("p6"); }, []);
       break;
     case "Lose weight/burn fat,No,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p7"); }, [])
+      React.useEffect(() => { getPlan("p7"); }, []);
       break;
     case "Improve Strength,No,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p8"); }, [])
+      React.useEffect(() => { getPlan("p8"); }, []);
       break;
     case "Improve Cardio,No,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p9"); }, [])
+      React.useEffect(() => { getPlan("p9"); }, []);
       break;
     case "General Health,No,less than or equal to 3 days per week":
-      React.useEffect(() => { getPlan("p10"); }, [])
+      React.useEffect(() => { getPlan("p10"); }, []);
       break;
     case "Gain weight/build muscle,Yes,more than 4 days per week":
-      React.useEffect(() => { getPlan("p11"); }, [])
+      React.useEffect(() => { getPlan("p11"); }, []);
       break;
     case "Lose weight/burn fat,Yes,more than 4 days per week":
-      React.seEffect(() => { getPlan("p12"); }, [])
+      React.useEffect(() => { getPlan("p12"); }, []);
       break;
     case "Improve Strength,Yes,more than 4 days per week":
-      React.useEffect(() => { getPlan("p13"); }, [])
+      React.useEffect(() => { getPlan("p13"); }, []);
       break;
     case "Improve Cardio,Yes,more than 4 days per week":
-      React.useEffect(() => { getPlan("p14"); }, [])
+      React.useEffect(() => { getPlan("p14"); }, []);
       break;
     case "General Health,Yes,more than 4 days per week":
-      React.useEffect(() => { getPlan("p15"); }, [])
+      React.useEffect(() => { getPlan("p15"); }, []);
       break;
     case "Gain weight/build muscle,No,more than 4 days per week":
-      React.useEffect(() => { getPlan("p16"); }, [])
+      React.useEffect(() => { getPlan("p16"); }, []);
       break;
     case "Lose weight/burn fat,No,more than 4 days per week":
-      React.useEffect(() => { getPlan("p17"); }, [])
+      React.useEffect(() => { getPlan("p17"); }, []);
       break;
     case "Improve Strength,No,more than 4 days per week":
-      React.useEffect(() => { getPlan("p18"); }, [])
+      React.useEffect(() => { getPlan("p18"); }, []);
       break;
     case "Improve Cardio,No,more than 4 days per week":
-      React.useEffect(() => { getPlan("p19"); }, [])
+      React.useEffect(() => { getPlan("p19"); }, []);
       break;
     default:
-      React.useEffect(() => { getPlan("p20"); }, [])
+      React.useEffect(() => { getPlan("p20"); }, []);
   }
   return (
     <View style={{backgroundColor: globalVar_colorTheme.colorTheme}}>
@@ -93,9 +94,8 @@ export const Plan = () => {
       </Text>
       <Button
           title='Main Page'
-          onPress={() =>navigation.navigate('Main Page')}>
+          onPress={() => navigation.navigate('Main Page')}>
       </Button>
     </View>
   );
 }
-

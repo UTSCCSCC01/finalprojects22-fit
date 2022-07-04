@@ -1,0 +1,210 @@
+# Product Backlog
+
+## Sprint1 User Stories
+
+**Account & Login**
+
+1 - As Andre, Tony and Rachael, I want to login to my account, so that I can get to my personalized fitness homepage
+
+Priority: High
+
+FIT-4 
+
+
+2 - As Andre, Tony and Rachael, I want to sign up into my account, so that I can save my plans and old exercise information cross devices
+
+Priority: High
+
+FIT-5
+
+
+4 - As a new user, I want to set up my profile with basic information and metrics **(added)**
+
+Priority: Medium
+
+FIT-7
+
+
+5 - Create an initial authentication screen that allows users to log-in/sign-up **(added)**
+
+Priority: High
+
+FIT-6
+
+
+**Exercise**
+
+4 - As Andre, Tony and Rachael, I want to be able to choose from a large list of exercises to do, so that I can work on that exercise
+
+Priority: High
+
+FIT-9
+
+
+10 - As Rachael, I want to get recommended beginner exercise plans, so that I can easily get into exercise
+
+Priority: Medium
+
+FIT-8
+
+
+**Nutrition**
+
+11 - As Andre and Tony, I want to be able to log the food I eat, so that I can keep track of my meal intake
+
+Priority: High
+
+FIT-10
+
+
+
+## Sprint1 Unfinished Stories
+
+FIT-8, added FIT-48 to sprint2
+
+As Rachael, I want to see a personalized plan after completing survey, so I can follow the plan prescribed to achieve my goal
+
+Priority: Medium
+
+FIT-48
+
+
+## Sprint2 User Stories
+
+**Account & Login**
+
+3 - As Andre, Tony and Rachael, I want to create my profile with my information, so that I can introduce myself to others on the platform
+
+Priority: Medium
+
+FIT-45
+
+
+6 - As a user trying to lose weight, I want to log my daily body metrics **(added)**
+
+Priority: Medium
+
+FIT-46
+
+
+7 - As a frequent user of the app, I want the option to stay logged in **(added)**
+
+Priority: Medium
+
+FIT-47
+
+
+**Exercise**
+
+8 - As Andre, Tony and Rachael, I want to view a calender that shows future, past and present data, so that I can have an easier way to access my data **(added)**
+
+Priority: High
+
+FIT-41
+
+
+11 - As Rachael, I want to see a personalized plan after completing survey, so I can follow the plan prescribed to achieve my goal **(added)**
+
+Priority: Medium
+
+FIT-48
+
+
+**Nutrition**
+
+13 - As Andre, I want to get advanced data such as my macronutrient intake, so that I can better plan and prepare for future meals
+
+Priority: Medium
+
+FIT-42
+
+
+**Gamification**
+
+22 - As Tony, I want to switch between different colour themes, so that I can choose a colour palette that fits my preferences
+
+Priority: Medium
+
+FIT-44
+
+
+
+## User Stories Yet to Work on
+
+
+**Exercise**
+
+5 - As Andre, I want to add custom exercises and manually input the data, so that I can keep track of my any personalized exercise
+
+Priority: High
+
+
+6 - As Andre, Tony and Rachael, I want to view my past exercises, so that I can keep track of my progress
+
+Priority: High
+
+
+7 - As Andre, Tony and Rachael, I want to set up future exercise plans, so that I can prepare ahead of time for my exercise
+
+Priority: High
+
+
+9 - As Andre, Tony and Rachael, I want to get analytics from my exercises like calories burnt, so that I can get a better understanding of my progress
+
+Priority: Medium
+
+
+**Nutrition**
+
+12 - As Andre and Tony, I want to plan out my future meals, so that I can prepare and remind myself of my meal plans
+
+Priority: High
+
+
+13 - As Andre, I want to get advanced data such as my macronutrient intake, so that I can better plan and prepare for future meals
+
+Priority: Medium
+
+
+15 - As Andre, Tony and Rachael, I want to recieve notification for my water intake, so that I can remain hydrated in casual time and during my exercises
+
+Priority: Low
+
+
+16 - As Andre and Tony, I want to scan nutrition labels, so that I don't have to manually input that data
+
+Priority: Low
+
+
+**Social**
+
+17 - As Andre, Tony and Rachael, I want to be friends with other users, so that I can stay socialized in the app
+
+Priority: Medium
+
+
+18 - As Andre and Tony, I want to share my personal exercise and meal data with others, so that I can help other people with their exercise journey
+
+Priority: Medium
+
+
+19 - As Tony and Rachael, I want to see other users plans and data, so that I can use it as reference for my own plans
+
+Priority: Medium
+
+
+**Gamification**
+
+21 - As Tony, I want to see interesting visuals and a unique UI, so that I can stay engaged with the app
+
+Priority: Medium
+
+
+22 - As Tony, I want to switch between different colour themes, so that I can choose a colour palette that fits my preferences
+
+Priority: Medium
+
+
+23 - As Tony, I want to unlock badges and titles for my exercise and nutritional achievements, so that I can gain more confidence and motivation and share these on my profile
+
+Priority: Low

@@ -1,61 +1,144 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Button, Text, View } from 'react-native';
+import Login from './components/LoginComponents';
+import { styles, lightGray } from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MainPage from './components/MainPage';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import UserSurvey from './components/NewUserSurvey';
+import { ExerciseSelect } from './view/exerciseSelectView';
+import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
+import { ExerciseRecorder } from './view/exerciseRecorderView';
+import { ExerciseLog } from './view/exerciseLogView';
+import ProfileScreen from './view/Profile/ProfileScreen.js';
+import EditProfileScreen from './view/Profile/EditProfileScreen';
+
+import { BodyMetricLog } from './view/BodyMetric/BodyMetricLogView';
+import { BodyMetricRecorder } from './view/BodyMetric/BodyMetricRecorder';
+
+import { SelectFoodCategory } from './view/SelectFoodCategory'
+import { SelectFood } from './view/SelectFood'
+import { RecordFood } from './view/RecordFood'
+import { FoodLog } from './view/FoodLog';
+
 import {Survey} from './view/Survey.js';
 import {Plan} from './view/Plan.js';
 import {ColorTheme} from './view/ColorTheme.js';
 
 const Stack = createNativeStackNavigator();
+const Tabbar = createBottomTabNavigator();
+const ProfileStack = createStackNavigator();
+
+const primaryOrange = "#FF8C42";
+const secondaryPurple = "#717FC0";
+const primaryPurple = "#4E598C";
 
 const App = () => {
+  //routing for the whole app
+  const Profile_Stack = () => {
+    return (
+      <ProfileStack.Navigator>
+        <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+        <ProfileStack.Screen
+          name="Edit Profile"
+          component={EditProfileScreen}
+          options= {{
+            headerRightContainerStyle: {
+              paddingRight: 10,
+            },
+            headerLeftContainerStyle: {
+              paddingLeft: 10,
+            },
+            headerTintColor: 'black',
+            headerBackTitleVisible: false
+          }}/>
+      </ProfileStack.Navigator>
+    )
+  }
+
+  const Tabbar_Stack = () => {
+    return (
+      <Tabbar.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === 'MainPage') {
+                iconName = focused
+                  ? 'home'
+                  : 'home';
+              } else if (route.name === 'ProfileTab') {
+                iconName = focused ? 'account-circle' : 'account-circle';
+              }
+              return <MaterialIcons name={iconName} size={35} color={color} />;
+            },
+            tabBarShowLabel: false,
+            tabBarActiveTintColor: primaryOrange,
+            tabBarInactiveTintColor: secondaryPurple,
+            tabBarStyle: {
+              height: 80,
+              borderRadius: 40,
+              paddingTop: 15,
+              backgroundColor: primaryPurple
+            }
+          })}
+        >
+          <Tabbar.Screen
+            name="MainPage"
+            component={MainPage} />
+          <Tabbar.Screen
+            name="ProfileTab"
+            component={Profile_Stack}
+            options={{headerShown: false}} />
+      </Tabbar.Navigator>
+    )
+  }
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName= "ColorTheme">
-        <Stack.Group>
-          <Stack.Screen name= "ColorTheme" component={ColorTheme} />
-        </Stack.Group>
-        <Stack.Group>
-          <Stack.Screen name= "Survey" component={Survey} />
-          <Stack.Screen name = "Plan" component = {Plan} />
-        </Stack.Group>
-      </Stack.Navigator>
-  </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: '#4E598C' },
+            headerTintColor: '#fff',
+        }}
+        initialRouteName="Welcome"
+        >
+          <Stack.Group>
+            <Stack.Screen name="Welcome" component={Login} />
+            <Stack.Screen name="Main Page" component={MainPage} />
+            <Stack.Screen
+              name="Main TabBar"
+              component={Tabbar_Stack}
+              options={{headerShown: false}}
+              />
+            <Stack.Screen name="Survey" component={UserSurvey} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name= "ColorTheme" component={ColorTheme} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name= "Survey" component={Survey} />
+            <Stack.Screen name = "Plan" component = {Plan} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name="Exercise Log" component={ExerciseLog} />
+            <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
+            <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
+            <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
+          </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name="Body Metric Log" component={BodyMetricLog}/>
+            <Stack.Screen name="Record Body Metric" component={BodyMetricRecorder}/>
+            <Stack.Screen name="Food Log" component={FoodLog} />
+            <Stack.Screen name="Select Food Category" component={SelectFoodCategory} />
+            <Stack.Screen name="Select Food" component={SelectFood} />
+            <Stack.Screen name="Record Food" component={RecordFood} />
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 };
 
 export default App;
-
-
-// import React,{useState} from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import DropdownButton from 'react-bootstrap/DropdownButton';
-// import Dropdown from 'react-bootstrap/Dropdown'
-
-
-// function App() {
-//   const [value,setValue]=useState('');
-//   const handleSelect=(e)=>{
-//     console.log(e);
-//     setValue(e)
-//   }
-//   return (
-//     <div className="App container">
-      
-//       <DropdownButton
-//       alignRight
-//       title="Dropdown right"
-//       id="dropdown-menu-align-right"
-//       onSelect={handleSelect}
-//         >
-//               <Dropdown.Item eventKey="option-1">option-1</Dropdown.Item>
-//               <Dropdown.Item eventKey="option-2">option-2</Dropdown.Item>
-//               <Dropdown.Item eventKey="option-3">option 3</Dropdown.Item>
-//               <Dropdown.Divider />
-//               <Dropdown.Item eventKey="some link">some link</Dropdown.Item>
-//       </DropdownButton>
-//       <h4>You selected {value}</h4>
-//     </div>
-//   );
-// }
-
-// export default App;

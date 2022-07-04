@@ -11,7 +11,14 @@ const config = require("./config");
 
 // import defined users route
 const usersRouter = require("./routes/users");
+
 const plansRouter = require("./routes/plans");
+
+
+const exercisesRouter = require("./routes/exercises");
+const setRouter = require("./routes/set");
+const savedfoodRouter = require("./routes/savedfood");
+const foodsRouter = require("./routes/foods");
 
 
 app.use(logger("dev"));
@@ -34,7 +41,14 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/users", usersRouter); // define request route
+
 app.use("/plans", plansRouter);
+
+
+app.use("/exercises", exercisesRouter); // define request route
+app.use("/set", setRouter); // define request route
+app.use("/savedfood", savedfoodRouter);
+app.use("/foods", foodsRouter);
 
 
 app.listen(port, function () {

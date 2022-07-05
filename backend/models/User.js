@@ -31,9 +31,6 @@ let userSchema = new Schema(
     display_name: {
       type: String,
     },
-    bio: {
-      type: String
-    },
     xp: {
       type: Number,
     },

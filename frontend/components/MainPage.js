@@ -15,12 +15,7 @@ class MainPage extends Component{
                         {this.progressList()}
                     </ScrollView>
                     <Button
-                        title='Track Metrics'>             
-                    </Button>
-                    <Button
-                        title='Log Exercises'                        
-                        onPress={() => this.props.navigation.navigate('Exercise Log')}>    
-                    </Button>
+                    title='Track Metrics'></Button>
                 </View>
                 <View>
                     <Text>Daily Goals</Text>

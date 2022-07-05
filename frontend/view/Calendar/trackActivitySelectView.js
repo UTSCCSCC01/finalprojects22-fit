@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
-import { styles } from '../style/styles';
+import { styles } from '../../style/styles';
 
 export function TrackActivitySelect({ navigation, route }) {
 

@@ -1,5 +1,5 @@
-import { retrieveUserId } from '../utility/dataHandler.js'
-import { baseURI } from '../utility/constants.js';
+import { retrieveUserId } from '../../utility/dataHandler.js'
+import { baseURI } from '../../utility/constants.js';
 
 export const getExerciseSets = async (date) => {
   const userId = await retrieveUserId();

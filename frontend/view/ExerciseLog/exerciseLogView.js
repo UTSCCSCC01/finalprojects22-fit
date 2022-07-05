@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
-import { styles } from '../style/styles';
-import { cleanString, numberToTime } from '../utility/format.js';
-import { getExerciseSets, deleteExerciseSet } from '../controller/exerciseLogController' 
-import { postUserActivity, getUserActivity, patchUserActivity } from '../controller/userActivityController'
-import { retrieveUserId } from '../utility/dataHandler.js'
+import { styles } from '../../style/styles';
+import { cleanString, numberToTime } from '../../utility/format.js';
+import { getExerciseSets, deleteExerciseSet } from '../../controller/Exercise/exerciseLogController' 
+import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/UserActivity/userActivityController'
+import { retrieveUserId } from '../../utility/dataHandler.js'
 
 export function ExerciseLog({ navigation, route }) {
   /* Create hooks */

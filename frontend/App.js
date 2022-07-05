@@ -11,21 +11,21 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MainPage from './components/MainPage';
 import UserSurvey from './components/NewUserSurvey';
 
-import { Calendar } from './view/calendarView'
-import { TrackActivitySelect } from './view/trackActivitySelectView'
+import { Calendar } from './view/Calendar/calendarView'
+import { TrackActivitySelect } from './view/Calendar/trackActivitySelectView'
 
-import { ExerciseSelect } from './view/exerciseSelectView';
-import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
-import { ExerciseRecorder } from './view/exerciseRecorderView';
-import { ExerciseLog } from './view/exerciseLogView';
+import { ExerciseSelect } from './view/ExerciseLog/exerciseSelectView';
+import { ExerciseGroupSelect } from './view/ExerciseLog/exerciseGroupSelectView';
+import { ExerciseRecorder } from './view/ExerciseLog/exerciseRecorderView';
+import { ExerciseLog } from './view/ExerciseLog/exerciseLogView';
 
 import { BodyMetricLog } from './view/BodyMetric/BodyMetricLogView';
 import { BodyMetricRecorder } from './view/BodyMetric/BodyMetricRecorder';
 
-import { SelectFoodCategory } from './view/SelectFoodCategory'
-import { SelectFood } from './view/SelectFood'
-import { RecordFood } from './view/RecordFood'
-import { FoodLog } from './view/FoodLog';
+import { SelectFoodCategory } from './view/FoodLog/SelectFoodCategory'
+import { SelectFood } from './view/FoodLog/SelectFood'
+import { RecordFood } from './view/FoodLog/RecordFood'
+import { FoodLog } from './view/FoodLog/FoodLog';
 
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';

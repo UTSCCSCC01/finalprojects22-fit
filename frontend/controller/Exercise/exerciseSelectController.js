@@ -1,4 +1,4 @@
-import { baseURI } from '../utility/constants.js';
+import { baseURI } from '../../utility/constants.js';
 
 export const getExercisesByGroup = async (group) => {
   const response = await fetch(baseURI.concat('/exercises/Groups/').concat(group));

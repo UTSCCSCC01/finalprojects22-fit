@@ -1,5 +1,5 @@
-import { retrieveUserId } from '../utility/dataHandler.js'
-import { baseURI } from '../utility/constants.js';
+import { retrieveUserId } from '../../utility/dataHandler.js'
+import { baseURI } from '../../utility/constants.js';
 
 export const getAllUserActivity = async () => {
   const userId = await retrieveUserId();

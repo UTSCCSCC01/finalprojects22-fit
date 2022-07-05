@@ -1,4 +1,4 @@
-import { baseURI } from '../utility/constants.js';
+import { baseURI } from '../../utility/constants.js';
 
 export const postSavedFood = async (body) => {
   const response = await fetch(baseURI.concat('/savedfood'), {

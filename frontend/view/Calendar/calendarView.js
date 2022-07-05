@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator  } from 'react-native';
-import { styles } from '../style/styles';
+import { styles } from '../../style/styles';
+import { getAllUserActivity } from '../../controller/Calendar/calendarController';
 import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
-import { getAllUserActivity } from '../controller/calendarController';
 
 export function Calendar({ navigation }) {
   const [selectedStartDate, setSelectedStartDate] = React.useState(moment());

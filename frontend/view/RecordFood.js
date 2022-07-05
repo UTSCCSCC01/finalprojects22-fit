@@ -13,12 +13,11 @@ export function RecordFood({ route, navigation }) {
   const [prots, setProtein] = React.useState(0);
   const [cals, setCalorie] = React.useState(0);
 
-  const { food_name, food_group, food_id, calorie, carbohydrate, fat, protein } = route.params;
+  const { food_name, food_group, food_id, calorie, carbohydrate, fat, protein, date } = route.params;
 
   const createSavedFood = async () => {
 
       /* Clean/set body parameters */
-      const currentDate = new Date();
       const foodName = cleanString(food_name);
       const userId = await retrieveUserId();
 
@@ -30,14 +29,14 @@ export function RecordFood({ route, navigation }) {
         carbohydrate: carbs,
         fat: fats,
         protein: prots,
-        date: currentDate.getTime()
+        date: date
       });
 
       /* Post Saved Food */
       const json = await postSavedFood(body);
 
       /* go back to exercise log page */
-      navigation.navigate("Food Log")
+      navigation.navigate("Food Log", {date : date});
     }
 
     /* Update set */
@@ -58,7 +57,7 @@ export function RecordFood({ route, navigation }) {
       const json = patchSavedFood (savedfoodId, body);
 
       /* go back to food log page */
-      navigation.navigate("Food Log")
+      navigation.navigate("Food Log", {date : date});
     }
 
     React.useEffect(() => {

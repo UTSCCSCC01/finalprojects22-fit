@@ -13,6 +13,7 @@ const config = require("./config");
 const usersRouter = require("./routes/users");
 const exercisesRouter = require("./routes/exercises");
 const setRouter = require("./routes/set");
+const userActivityRouter = require("./routes/userActivity");
 const savedfoodRouter = require("./routes/savedfood");
 const foodsRouter = require("./routes/foods");
 
@@ -35,14 +36,17 @@ mongoose.connect(dbUrl, options, (err) => {
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use("/users", usersRouter); // define request route
-app.use("/exercises", exercisesRouter); // define request route
-app.use("/set", setRouter); // define request route
+
+ // define request routes
+app.use("/users", usersRouter);
+app.use("/exercises", exercisesRouter);
+app.use("/set", setRouter);
+app.use("/userActivity", userActivityRouter);
 app.use("/savedfood", savedfoodRouter);
 app.use("/foods", foodsRouter);
 
 app.listen(port, function () {
-  console.log("Runnning on " + port);
+  console.log("Running on " + port);
 });
 
 module.exports = app;

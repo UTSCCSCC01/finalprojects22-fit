@@ -1,10 +1,10 @@
 import React, { Component, useState } from 'react';
 import { Text, View, TextInput, Button, FlatList } from 'react-native';
 import { styles } from '../style';
-import MainPage from './MainPage';
 import axios from 'axios';
 import { storeUserId } from '../utility/dataHandler.js'
-const baseURL = 'http://localhost:3000'
+import { baseURI } from '../utility/constants'; 
+
 //import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //const Stack = createNativeStackNavigator();
 
@@ -138,7 +138,7 @@ class Login extends Component {
         //return the user home page, if not, return 'Email or password invalid!'
         var loginIndicator = 0;
         const api = axios.create({
-            baseURL: baseURL
+            baseURL: baseURI
         })
         api.get('/users/list').then(res => {
             //console.log(res.data.data);
@@ -194,7 +194,7 @@ class Login extends Component {
         //This is the post request handler. This uses the axios api to post a request to
         //the database.
         const api = axios.create({
-            baseURL: baseURL
+            baseURL: baseURI
         })
         await api.post('/users', {
             username: username,

@@ -31,6 +31,7 @@ import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
+import { Settings } from './view/Settings/settings';
 
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
@@ -93,6 +94,9 @@ const App = () => {
           <Stack.Screen name="Body Metric Log" component={BodyMetricLog}/>
           <Stack.Screen name="Record Body Metric" component={BodyMetricRecorder}/>
         </Stack.Group>
+        <Stack.Group>
+          <Stack.Screen name="Settings" component={Settings}/>
+        </Stack.Group>
       </Stack.Navigator>
     )
   }
@@ -111,6 +115,8 @@ const App = () => {
                 iconName = focused ? 'account-circle' : 'account-circle';
               } else if (route.name === 'TrackingStack') {
                 iconName = focused ? 'calendar-today' : 'calendar-today';
+              } else if (route.name === 'Settings') {
+                iconName = focused ? 'settings' : 'settings';
               }
               return <MaterialIcons name={iconName} size={35} color={color} />;
             },
@@ -135,6 +141,11 @@ const App = () => {
           <Tabbar.Screen
             name="TrackingStack"
             component={Tracking_Stack}
+            options={{headerShown: false}}
+            />
+          <Tabbar.Screen
+            name="Settings"
+            component={Settings}
             options={{headerShown: false}}
             />
       </Tabbar.Navigator>

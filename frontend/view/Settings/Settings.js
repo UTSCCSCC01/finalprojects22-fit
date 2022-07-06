@@ -6,7 +6,21 @@ export function Settings({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text> Settings Page</Text>
+      <TouchableOpacity
+        style={styles.settingsOptionsContiner}
+        onPress={() => navigation.navigate('Create Exercise Plan')}
+      >
+      <View style={styles.settingsOption}>
+        <Text style={styles.flatListText}> Create Exercise Plan </Text>
+      </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.settingsOptionsContiner}
+      >
+      <View style={styles.settingsOption}>
+        <Text style={styles.flatListText}> Other settings... </Text>
+      </View>
+      </TouchableOpacity>
     </View>
   );
 }

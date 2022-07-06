@@ -51,11 +51,22 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     padding: 10,
   },
+  subheader1: {
+    color: 'gray',
+    fontSize: 14,
+    padding: 2,
+  },
   headercontainer2:{
     borderColor: 'gray',
     borderBottomWidth: 1,
   },
   exerciseInputContainer: {
+    marginBottom: 10,
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  multiOptionContainer: {
     marginBottom: 10,
     marginTop: 10,
     flexDirection: 'row',
@@ -82,6 +93,10 @@ export const styles = StyleSheet.create({
     padding: 5,
     justifyContent: 'center',
   },
+  saveButtonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   flatListText: {
     fontSize: 14,
   },
@@ -94,13 +109,22 @@ export const styles = StyleSheet.create({
     height: 70,
   },
   flatListUpdateItem: {
-
     backgroundColor: '#BBD794',
     borderColor: 'gray',
     borderBottomWidth: 1,
     padding: 10,
     margin: 2,
     height: 70,
+  },
+  settingsOptionsContiner: {
+    justifyContent: 'left',
+  },
+  settingsOption: {
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+    padding: 10,
+    margin: 2,
+    height: 35,
   },
   exerciseMetricsInput: {
     borderColor: 'gray',
@@ -135,6 +159,14 @@ export const styles = StyleSheet.create({
     width: 40,
     justifyContent: 'center',
   },
+  sideButtonAlt:{
+    backgroundColor: primaryOrange,
+    borderRadius: 10,
+    margin: 2,
+    height: 40,
+    width: 40,
+    justifyContent: 'center',
+  },
   sideButtonGray:{
     backgroundColor: lightGray,
     borderRadius: 10,
@@ -156,10 +188,29 @@ export const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
   },
+  generalButtonGray:{
+    backgroundColor: lightGray,
+    borderRadius: 10,
+    margin: 5,
+    height: 40,
+    justifyContent: 'center',
+  },
   generalButtonFont:{
     fontSize: 16,
     color: 'white',
     fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  generalButtonSmall:{
+    backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 5,
+    height: 20,
+    justifyContent: 'center',
+  },
+  generalButtonFontSmall:{
+    fontSize: 12,
+    color: 'white',
     textAlign: 'center',
   },
   roundButton:{
@@ -177,5 +228,8 @@ export const styles = StyleSheet.create({
     color: primaryOrange,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  spacingSmall:{
+    padding: 10,
   },
 });

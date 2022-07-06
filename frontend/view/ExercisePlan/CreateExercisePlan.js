@@ -3,12 +3,20 @@ import { View, ScrollView, TextInput, TouchableOpacity, Text } from 'react-nativ
 import { cleanString } from '../../utility/format.js';
 import { styles } from '../../style/styles';
 
-export function CreateExercisePlan({ navigation }) {
+export const workouts = Array.apply(null, Array(7)).map(function (x, i) { return []; })
+
+export function CreateExercisePlan({ navigation, route }) {
+
+  const { day } = route.params;
 
   const [frequency, setFrequency] = React.useState(0);
   const [duration, setDuration] = React.useState(1);
   const [canSave, setCanSave] = React.useState(false);
+
+  // Use this array to dynamically create buttons
   const arr = [1,2,3,4,5,6,7];
+  // Initialize workout spots for max number of days
+  const workoutDay = cleanString(day);
 
   // Handlers for dynamic styling
   const getFrequencyButtonStyle = (num) => {
@@ -46,6 +54,14 @@ export function CreateExercisePlan({ navigation }) {
 
   }
 
+  const renderWarning = (day) => {
+    if (workouts[day].length == 0){
+      return <View>
+        <Text> Need at least one exercise per workout </Text>
+        </View>
+    }
+  }
+
   // Generate the workout day components 
   const renderWorkoutDays = () => {
     return Array.apply(null, Array(frequency)).map(function (x, i) { return i; });
@@ -57,6 +73,11 @@ export function CreateExercisePlan({ navigation }) {
       setCanSave(true);
     }
   }, [frequency]);
+
+  // Perform event when workoutDay updates
+  React.useEffect(() => {
+
+  }, [workoutDay]);
 
   return (
     <View style={styles.container}>
@@ -77,17 +98,22 @@ export function CreateExercisePlan({ navigation }) {
           </TouchableOpacity>
           })}
         </View>
-        <View tyle={styles.multiOptionContainer}>
+        <View>
           {renderWorkoutDays().map(i=>{
-          return <TouchableOpacity
-            style={styles.generalButtonSmall}
-            onPress={() => navigation.navigate('Create Workout')}
-            key={i}
-          >
-            <View>
-              <Text style={styles.generalButtonFontSmall} key={i}> Edit workout {i + 1} </Text>
-            </View>
-          </TouchableOpacity>
+          return <View>
+            <TouchableOpacity
+              style={styles.generalButtonSmall}
+              onPress={() => navigation.navigate('Create Workout', {
+                day : i + 1,
+              })}
+              key={i}
+            >
+              <View>
+                <Text style={styles.generalButtonFontSmall} key={i}> Edit workout {i + 1} </Text>
+              </View>
+            </TouchableOpacity>
+            {renderWarning(i)}
+          </View>
           })}
         </View>
         <View style={styles.spacingSmall}></View>

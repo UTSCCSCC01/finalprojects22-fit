@@ -8,7 +8,9 @@ export function Settings({ navigation }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.settingsOptionsContiner}
-        onPress={() => navigation.navigate('Create Exercise Plan')}
+        onPress={() => navigation.navigate('Create Exercise Plan', {
+          day : 0,
+        })}
       >
       <View style={styles.settingsOption}>
         <Text style={styles.flatListText}> Create Exercise Plan </Text>

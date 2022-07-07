@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { View, LogBox } from 'react-native';
+LogBox.ignoreAllLogs();
 import Login from './components/LoginComponents';
-import { styles, lightGray } from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -33,12 +33,6 @@ import EditProfileScreen from './view/Profile/EditProfileScreen';
 import { UserProvider } from './context/UserContext';
 
 const Stack = createNativeStackNavigator();
-const Tabbar = createBottomTabNavigator();
-const ProfileStack = createStackNavigator();
-
-const primaryOrange = "#FF8C42";
-const secondaryPurple = "#717FC0";
-const primaryPurple = "#4E598C";
 
 const App = () => {
 
@@ -168,3 +162,4 @@ const App = () => {
 };
 
 export default App;
+

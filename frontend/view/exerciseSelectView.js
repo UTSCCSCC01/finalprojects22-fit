@@ -51,6 +51,7 @@ export function ExerciseSelect({ route, navigation }) {
 
 /* Navigates to next page  */
 const getItem = (item) => {
+ 
   navigation.navigate('Record Exercise', {
     exercise_name: item.ExerciseName,
     exercise_group: item.MuscleGroup,
@@ -67,8 +68,8 @@ const getItem = (item) => {
       {isLoading ? <ActivityIndicator/> : (
       <FlatList
         data={data}
-        keyExtractor={(item, index) => item._id}
-        renderItem={({item}) => <Text style={styles.flatListSearchItem} onPress={()=> getItem(item)}>{item.ExerciseName}</Text>}
+        keyExtractor={({ id }, index) => id}
+        renderItem={({item}) => <Text style={styles.item} onPress={()=> getItem(item)}>{item.ExerciseName}</Text>}
       />
       )}
     </View>

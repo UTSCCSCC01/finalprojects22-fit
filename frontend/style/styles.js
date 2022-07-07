@@ -24,71 +24,39 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 16,
-    padding: 10,
-  },
-  flatListContainer:{
-    flex: 4,
-  },
-  exerciseLogButtonsContainer:{
-    flex: 1,
-  },
-  rowContainer: {
-    flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  addLogContainer: {
-  },
-  header1: {
-    color: primaryOrange,
-    fontSize: 28,
+  textInput: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
     padding: 10,
-    fontWeight: "bold",
-    justifyContent: 'center',
     textAlign: 'center',
   },
-  header2: {
-    color: 'gray',
-    fontSize: 20,
-    padding: 10,
-  },
-  headercontainer2:{
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-  },
-  exerciseInputContainer: {
-    marginBottom: 10,
-    marginTop: 10,
+  exerciseInput: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  flatListSearchItem: {
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-    padding: 10,
-    margin: 2,
-    fontSize: 16,
-    height: 45,
-    fontSize: 16,
-  },
-  flatListItem: {
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-    padding: 10,
-    margin: 2,
-    height: 70,
-  },
-  flatListTextContainer: {
-    margin: 2,
-    padding: 5,
     justifyContent: 'center',
   },
-  flatListText: {
-    fontSize: 14,
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    elevation: 3,
   },
-  flatListDeleteItem: {
-    backgroundColor: '#FF7272',
-    borderColor: 'gray',
-    borderBottomWidth: 1,
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 80,
+    borderWidth: 1,
+  },
+  deleteItem: {
+    padding: 10,
+    fontSize: 18,
+    height: 80,
+    color: 'red',
+    borderWidth: 1,
+    borderColor: 'red',
+  },
+  updateItem: {
     padding: 10,
     margin: 2,
     height: 70,

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { LogBox  } from 'react-native';
 import Login from './components/LoginComponents';
+LogBox.ignoreAllLogs();
 import { styles, lightGray } from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

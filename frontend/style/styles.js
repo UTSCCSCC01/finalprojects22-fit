@@ -232,4 +232,9 @@ export const styles = StyleSheet.create({
   spacingSmall:{
     padding: 10,
   },
+  finePrintWarning:{
+    fontSize: 10,
+    textAlign: "center",
+    color: "red",
+  },
 });

@@ -12,6 +12,9 @@ export function CreateExercisePlan({ navigation, route }) {
   const [frequency, setFrequency] = React.useState(0);
   const [duration, setDuration] = React.useState(1);
   const [canSave, setCanSave] = React.useState(false);
+  const [, updateState] = React.useState();
+
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   // Use this array to dynamically create buttons
   const arr = [1,2,3,4,5,6,7];
@@ -57,7 +60,7 @@ export function CreateExercisePlan({ navigation, route }) {
   const renderWarning = (day) => {
     if (workouts[day].length == 0){
       return <View>
-        <Text> Need at least one exercise per workout </Text>
+        <Text style={styles.finePrintWarning}> Need at least one exercise per workout </Text>
         </View>
     }
   }
@@ -67,17 +70,34 @@ export function CreateExercisePlan({ navigation, route }) {
     return Array.apply(null, Array(frequency)).map(function (x, i) { return i; });
   }
 
+  // 
+  const checkSaveAvailability = () => {
+    if (frequency == 0 ){
+      return false;
+    }
+    for (let i = 0; i < frequency; i++)
+    {
+      if (workouts[i].length == 0){
+         return false;
+      }
+    }
+    return true;
+  }
+
+  /* This is a hack to cause components to rerender after navigatin back to page */
+  const triggerUpdate = () => {
+    setUpdate(update + 1);
+  }
+
   // Allow user to save once they select a workout frequency
   React.useEffect(() => {
-    if (frequency != 0) {
-      setCanSave(true);
-    }
+    navigation.addListener('focus', () => {
+      setCanSave(checkSaveAvailability());
+      forceUpdate();
+    });
+    setCanSave(checkSaveAvailability());
+    forceUpdate();
   }, [frequency]);
-
-  // Perform event when workoutDay updates
-  React.useEffect(() => {
-
-  }, [workoutDay]);
 
   return (
     <View style={styles.container}>
@@ -90,10 +110,10 @@ export function CreateExercisePlan({ navigation, route }) {
           return <TouchableOpacity
             style={getFrequencyButtonStyle(i)}
             onPress={() => setFrequency(i)}
-            key={i}
+            key={"button " + i}
           >
             <View>
-              <Text style={styles.generalButtonFont} key={i}> {i} </Text>
+              <Text style={styles.generalButtonFont} key={"text1 " + i}> {i} </Text>
             </View>
           </TouchableOpacity>
           })}
@@ -106,10 +126,10 @@ export function CreateExercisePlan({ navigation, route }) {
               onPress={() => navigation.navigate('Create Workout', {
                 day : i + 1,
               })}
-              key={i}
+              key={"workout " + i}
             >
               <View>
-                <Text style={styles.generalButtonFontSmall} key={i}> Edit workout {i + 1} </Text>
+                <Text style={styles.generalButtonFontSmall} key={"text2 " + i}> Edit workout {i + 1} </Text>
               </View>
             </TouchableOpacity>
             {renderWarning(i)}

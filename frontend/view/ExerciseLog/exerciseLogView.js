@@ -91,19 +91,29 @@ export function ExerciseLog({ navigation, route }) {
         date: item.date,
       })
     }
+    else if (logMode === 'complete')
+    {
+      item.completed = true;
+    }
     setLogMode('select')
   }
 
   /* Change colour of the borders depending on the queued action */
-  const selectStyle = () => {
-    if (logMode === 'delete'){
-      return styles.flatListDeleteItem;
-    }
-    else if (logMode === 'update') {
-      return styles.flatListUpdateItem;
+  const selectStyle = (item) => {
+    if (item.completed == true)
+    {
+      if (logMode === 'delete'){
+        return styles.flatListDeleteItem;
+      }
+      else if (logMode === 'update') {
+        return styles.flatListUpdateItem;
+      }
+      else{
+        return styles.flatListItem;
+      }
     }
     else{
-      return styles.flatListItem;
+      return styles.flatListIncompleteItem;
     }
   }
 
@@ -166,7 +176,7 @@ export function ExerciseLog({ navigation, route }) {
         <View style={styles.exerciseLogButtonsContainer}>
           <View style={styles.rowContainer}>
             <TouchableOpacity
-              style={styles.generalButton}
+              style={styles.ExerciseLogUtilityButton}
               onPress={() => navigation.navigate('Select Exercise Group', {
                 date: date,
               })}
@@ -174,7 +184,7 @@ export function ExerciseLog({ navigation, route }) {
               <Text style={styles.generalButtonFont}> Log new exercise </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.generalButton}
+              style={styles.ExerciseLogUtilityButton}
               onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
             >
               <Text style={styles.generalButtonFont}> Update an exercise </Text>
@@ -182,10 +192,16 @@ export function ExerciseLog({ navigation, route }) {
           </View>
           <View style={styles.rowContainer}>
             <TouchableOpacity
-              style={styles.generalButton}
+              style={styles.ExerciseLogUtilityButton}
               onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
             >
               <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.ExerciseLogUtilityButton}
+              onPress={() => setLogMode(logMode === 'complete' ? 'select' : 'complete')}
+            >
+              <Text style={styles.generalButtonFont}> Mark Completed </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -194,7 +210,7 @@ export function ExerciseLog({ navigation, route }) {
           <FlatList
             data={data}
             keyExtractor={(item, index) => item._id}
-            renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
+            renderItem={({item}) => <Text style= {selectStyle(item)} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
           />
           )}
         </View>

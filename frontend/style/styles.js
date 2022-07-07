@@ -126,6 +126,14 @@ export const styles = StyleSheet.create({
     margin: 2,
     height: 70,
   },
+  flatListIncompleteItem: {
+    backgroundColor: '#c7c7c7',
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+    padding: 10,
+    margin: 2,
+    height: 70,
+  },
   settingsOptionsContiner: {
     justifyContent: 'left',
   },
@@ -198,6 +206,14 @@ export const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
   },
+  ExerciseLogUtilityButton:{
+    backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 5,
+    height: 40,
+    width: 150,
+    justifyContent: 'center',
+  },
   generalButtonGray:{
     backgroundColor: lightGray,
     borderRadius: 10,
@@ -246,5 +262,10 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     color: "red",
+  },
+  finePrintConfirmation:{
+    fontSize: 10,
+    textAlign: "center",
+    color: "green",
   },
 });

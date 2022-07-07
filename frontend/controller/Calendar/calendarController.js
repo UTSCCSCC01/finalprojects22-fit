@@ -7,3 +7,10 @@ export const getAllUserActivity = async () => {
   const json = await response.json();
   return json;
 }
+
+export const getUserWorkoutPlan = async () => {
+  const userId = await retrieveUserId();
+  const response = await fetch(baseURI.concat('/users/').concat(userId).concat('/workoutPlan'));
+  const json = await response.json();
+  return json;
+}

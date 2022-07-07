@@ -81,6 +81,16 @@ export const styles = StyleSheet.create({
     height: 45,
     fontSize: 16,
   },
+  flatListSearchDeleteItem: {
+    backgroundColor: '#FF7272',
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+    padding: 10,
+    margin: 2,
+    fontSize: 16,
+    height: 45,
+    fontSize: 16,
+  },
   flatListItem: {
     borderColor: 'gray',
     borderBottomWidth: 1,

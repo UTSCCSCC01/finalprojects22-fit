@@ -14,12 +14,14 @@ export function CreateExercisePlan({ navigation, route }) {
   const [canSave, setCanSave] = React.useState(false);
   const [, updateState] = React.useState();
 
-  const forceUpdate = React.useCallback(() => updateState({}), []);
-
   // Use this array to dynamically create buttons
   const arr = [1,2,3,4,5,6,7];
+
   // Initialize workout spots for max number of days
   const workoutDay = cleanString(day);
+
+  // Function for forcing components to update
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   // Handlers for dynamic styling
   const getFrequencyButtonStyle = (num) => {
@@ -34,29 +36,8 @@ export function CreateExercisePlan({ navigation, route }) {
     styles.generalButtonGray
   }
 
-  // Handlers for touchable components
-  const incrementDuration = () => {
-    duration >= 52 ? setDuration(52) : setDuration(duration + 1);
-  }
-
-  const decrementDuration = () => {
-    duration <= 1 ? setDuration(1) : setDuration(duration - 1);
-  }
-
-  const changeTextHandler = (weeks) => {
-    setDuration(parseInt(weeks));
-    if (weeks == '' || parseInt(weeks) < 1){
-      setDuration(1);
-    }
-    else if (parseInt(weeks) > 52){
-      setDuration(52);
-    }
-  }
-
-  const saveHandler = () => {
-
-  }
-
+  // Functions for creating dynamic components
+  // Create warnings if a workout doesn't have at least one exercise
   const renderWarning = (day) => {
     if (workouts[day].length == 0){
       return <View>
@@ -70,7 +51,34 @@ export function CreateExercisePlan({ navigation, route }) {
     return Array.apply(null, Array(frequency)).map(function (x, i) { return i; });
   }
 
-  // 
+  // Handlers for touchable components
+  // Increase workout plan duration
+  const incrementDuration = () => {
+    duration >= 52 ? setDuration(52) : setDuration(duration + 1);
+  }
+
+  // Decrease workout plan duration
+  const decrementDuration = () => {
+    duration <= 1 ? setDuration(1) : setDuration(duration - 1);
+  }
+
+  // Handle logic for manually changing workout plan duration
+  const changeTextHandler = (weeks) => {
+    setDuration(parseInt(weeks));
+    if (weeks == '' || parseInt(weeks) < 1){
+      setDuration(1);
+    }
+    else if (parseInt(weeks) > 52){
+      setDuration(52);
+    }
+  }
+
+  // Handle logic for saving workout
+  const saveHandler = () => {
+
+  }
+
+  // Enable save option if conditions are met.
   const checkSaveAvailability = () => {
     if (frequency == 0 ){
       return false;
@@ -82,11 +90,6 @@ export function CreateExercisePlan({ navigation, route }) {
       }
     }
     return true;
-  }
-
-  /* This is a hack to cause components to rerender after navigatin back to page */
-  const triggerUpdate = () => {
-    setUpdate(update + 1);
   }
 
   // Allow user to save once they select a workout frequency

@@ -24,39 +24,71 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 16,
+    padding: 10,
+  },
+  flatListContainer:{
+    flex: 4,
+  },
+  exerciseLogButtonsContainer:{
+    flex: 1,
+  },
+  rowContainer: {
+    flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  textInput: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
+  addLogContainer: {
+  },
+  header1: {
+    color: primaryOrange,
+    fontSize: 28,
     padding: 10,
+    fontWeight: "bold",
+    justifyContent: 'center',
     textAlign: 'center',
   },
-  exerciseInput: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+  header2: {
+    color: 'gray',
+    fontSize: 20,
+    padding: 10,
   },
-  fixToText: {
+  headercontainer2:{
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+  },
+  exerciseInputContainer: {
+    marginBottom: 10,
+    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    elevation: 3,
   },
-  item: {
+  flatListSearchItem: {
+    borderColor: 'gray',
+    borderBottomWidth: 1,
     padding: 10,
-    fontSize: 18,
-    height: 80,
-    borderWidth: 1,
+    margin: 2,
+    fontSize: 16,
+    height: 45,
+    fontSize: 16,
   },
-  deleteItem: {
+  flatListItem: {
+    borderColor: 'gray',
+    borderBottomWidth: 1,
     padding: 10,
-    fontSize: 18,
-    height: 80,
-    color: 'red',
-    borderWidth: 1,
-    borderColor: 'red',
+    margin: 2,
+    height: 70,
   },
-  updateItem: {
+  flatListTextContainer: {
+    margin: 2,
+    padding: 5,
+    justifyContent: 'center',
+  },
+  flatListText: {
+    fontSize: 14,
+  },
+  flatListDeleteItem: {
+    backgroundColor: '#FF7272',
+    borderColor: 'gray',
+    borderBottomWidth: 1,
     padding: 10,
     margin: 2,
     height: 70,

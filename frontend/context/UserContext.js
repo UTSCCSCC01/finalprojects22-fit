@@ -1,6 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { LogBox } from "react-native";
-LogBox.ignoreLogs(['Warning: ...'])
 
 export const UserContext = createContext()
 

@@ -1,21 +1,32 @@
-import React, { Component, useContext, useState } from 'react';
+import React, { Component, useContext, useEffect, useState } from 'react';
 import { Text, View, TextInput, Button, Pressable, Image } from 'react-native';
 import { styles } from '../style';
 import axios from 'axios';
 const baseURL = 'http://10.0.2.2:3000'
 import { UserContext, UpdateUserContext } from '../context/UserContext';
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();
 
 //import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //const Stack = createNativeStackNavigator();
 
 export const SetContextComp = (content) => {
-    //console.log("call set context: " + content.content);
     const use = useContext(UpdateUserContext);
     const loginCred = useContext(UserContext);
     //console.log("check if the same: "+loginCred + content.content)
-    if(content.content != loginCred){       
-        use(content.content);
-    }
+    console.log("call set context: " + content.content + " " + loginCred);
+    useEffect(()=>{
+        let isMounted = true
+        console.log("useEffect: "+ isMounted)
+        if(content.content != loginCred && isMounted == true && content.content != undefined && content.indicator == true){     
+            console.log("set "+this.context);
+            use(content.content);
+        }
+        return(()=>{
+            isMounted=false
+        })
+    })
+    
     return(null);
 }
 
@@ -23,9 +34,14 @@ export const LogOutComp = (content) => {
     //console.log("Log out: " + content.content);
     const use = useContext(UpdateUserContext);
     const loginCred = useContext(UserContext);
-    if(content.content == false && loginCred != false){
-        use(false);
-    }
+    useEffect(()=>{
+        let isMounted = true;
+        if(content.content == false && loginCred != false && isMounted == true){
+            use(false);
+        }
+        return(()=>{isMounted =false;});
+    })
+
     return(null);
 }
 
@@ -241,7 +257,9 @@ class Login extends Component {
                     <Text>Logged in successfully!</Text>
                     <Button title='Log out' onPress={()=>{
                        this.setState({login: false,
-                    checkIn: 0});
+                    checkIn: 0,
+                    email: '',
+                    password: ''});
                     }}></Button>
                     <Button title='Direct to main page' onPress={()=>{
                        this.props.navigation.navigate('MainPage');
@@ -273,36 +291,46 @@ class Login extends Component {
         //return the user home page, if not, return 'Email or password invalid!'
         const [login, setLogin] = useState(0);
         const [loginCred, setLoginCred] = useState(this.context);
+        const [found, setFound] = useState(false);
 
         //useUserContext();
         ///useUpdateUserContext();
-        
-        if(login == 1){
-            var loginIndicator = 0;
-            const api = axios.create({
-                baseURL: baseURL
-            })
-            api.get('/users/list').then((res) => {
-                //console.log(res.data.data);
-                for(var i = 0; i < res.data.data.length; i++){
-                    if(res.data.data[i].email == this.state.email){
-                        if(res.data.data[i].password == this.state.password){
-                            loginIndicator = 1;
-                            this.setState({login: res.data.data[i].email});
-                            //console.log("found yeah\n"+ res.data.data[i].email);
-                            this.props.navigation.navigate('MainPage');
-                            setLogin(0);
+        useEffect(()=>{
+            if(login == 1){
+                let isAPISubscribed = true
+                var loginIndicator = 0;
+                const api = axios.create({
+                    baseURL: baseURL
+                })
+                api.get('/users/list').then((res) => {
+                    //console.log(res.data.data);
+                    if(isAPISubscribed){
+                        for(var i = 0; i < res.data.data.length; i++){
+                            if(res.data.data[i].email == this.state.email){
+                                if(res.data.data[i].password == this.state.password){
+                                    loginIndicator = 1;
+                                    this.setState({login: res.data.data[i].email});
+                                    console.log("found yeah\n"+ res.data.data[i].email);
+                                    setLogin(0);
+                                    setFound(true);                                    
+                                    setFound(false);
+                                    this.props.navigation.navigate('MainPage');
+                                    
+                                }
+                            }
                         }
-                    }
-                }
-                if(loginIndicator == 0){
-                    alert('Email or password invalid!');
-                    setLogin(0);
-                }else{
-                    //console.log("cnmshould work")
-                }
-            })
-        }
+                        if(loginIndicator == 0){
+                            alert('Email or password invalid!');
+                            setLogin(0);
+                        }else{
+                            //console.log("cnmshould work")
+                        }
+                    } 
+                })
+            }
+            return(()=>{isAPISubscribed = false})
+        })
+        
         
 
         return(
@@ -315,7 +343,7 @@ class Login extends Component {
                     }}>
                         <Text style={styles.textInPressable}>Login</Text>
                     </Pressable>
-                <SetContextComp content = {this.state.login}/>
+                <SetContextComp content = {this.state.login} indicator = {found}/>
             </View>
         );
         
@@ -344,7 +372,7 @@ class Login extends Component {
                             this.props.navigation.navigate('Survey');
                         }
                     }
-                }
+                }   
             }
         }   
     }

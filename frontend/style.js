@@ -76,6 +76,9 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#FFFFFF',
     },
+    primaryOrangeText:{
+        color: primaryOrange
+    },
     breakingLine: {
         marginVertical: 8,
         textAlign: 'left',
@@ -83,4 +86,13 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 1, 
         fontSize:0
     },
+    mainPageElement:{
+        padding:10,
+        marginVertical:10,
+        backgroundColor: '#FFFFFF'
+    },
+    mainPageText:{
+        fontSize:15,
+        fontWeight: 'bold'
+    }
 });

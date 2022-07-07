@@ -13,6 +13,7 @@ import * as Progress from 'react-native-progress';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LineChart } from "react-native-chart-kit";
+import { getUserProfile } from '../../controller/Profile/profileController';
 import axios from 'axios';
 
 export default function ProfileScreen ({ route, navigation }) {
@@ -36,7 +37,20 @@ export default function ProfileScreen ({ route, navigation }) {
   const url = 'http://localhost:3000'
   const userId = '629d5b035a1cbd7d22664018'
 
-  const getUser = () => {
+  const getUserP = async () => {
+    try {
+      const json = await getUserProfile();
+      setUser(json.data)
+      navigation.setOptions({ title: json.data.username });
+      setUserLvl(Math.floor(json.data.xp / 10000) + 1);
+    } catch (error) {
+        console.error(error);
+    } finally {
+      setLoading(false)
+    }
+  }
+
+/*   const getUser = () => {
     axios.get(`${url}/users/${userId}`)
     .then((res) => {
       setUser(res.data.data);
@@ -45,7 +59,7 @@ export default function ProfileScreen ({ route, navigation }) {
     })
     .catch(err => console.log(err))
     .finally(() => setLoading(false))
-  }
+  } */
 
   const chartData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
@@ -71,7 +85,7 @@ export default function ProfileScreen ({ route, navigation }) {
 
   useFocusEffect(
     React.useCallback(() => {
-      getUser();
+      getUserP();
     }, [])
   );
 

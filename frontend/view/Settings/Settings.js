@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../../style/styles';
 
 export function Settings({ navigation }) {
@@ -8,9 +8,7 @@ export function Settings({ navigation }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.settingsOptionsContiner}
-        onPress={() => navigation.navigate('Create Exercise Plan', {
-          day : 0,
-        })}
+        onPress={() => navigation.navigate('Create Exercise Plan')}
       >
       <View style={styles.settingsOption}>
         <Text style={styles.flatListText}> Create Exercise Plan </Text>

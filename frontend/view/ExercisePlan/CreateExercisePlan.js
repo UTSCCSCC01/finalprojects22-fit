@@ -7,9 +7,7 @@ import { postExercisePlan, patchUserWorkoutPlan } from '../../controller/Exercis
 
 export const workouts = Array.apply(null, Array(7)).map(function (x, i) { return []; })
 
-export function CreateExercisePlan({ navigation, route }) {
-
-  const { day } = route.params;
+export function CreateExercisePlan({ navigation }) {
 
   const [frequency, setFrequency] = React.useState(0);
   const [duration, setDuration] = React.useState(1);

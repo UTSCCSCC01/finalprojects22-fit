@@ -22,7 +22,6 @@ export function Calendar({ navigation }) {
 
       const json = await getUserWorkoutPlan();
       setPlanId(json.data);
-      console.log(json.data);
     } catch (error) {
       console.error(error);
     }
@@ -143,9 +142,11 @@ const hasActivity = (activity) => {
   }
 
   return (
-    <View>
-      { getExercisePlanStatue() }
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View>
+        { getExercisePlanStatue() }
+      </View>
+      <View>
         {isLoading ? <ActivityIndicator/> : (<CalendarPicker
           todayBackgroundColor='transparent'
           selectedDayColor='#FF8C42'

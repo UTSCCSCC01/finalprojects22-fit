@@ -135,7 +135,7 @@ export const styles = StyleSheet.create({
     height: 70,
   },
   settingsOptionsContiner: {
-    justifyContent: 'left',
+    justifyContent: 'flex-start',
   },
   settingsOption: {
     borderColor: 'gray',

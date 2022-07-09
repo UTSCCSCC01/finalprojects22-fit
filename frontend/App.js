@@ -32,6 +32,11 @@ import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
 
+import Settings from './view/Settings/Settings.js'
+import {OptionalSurvey} from './view/Settings/Survey'
+import {Plan} from './view/Settings/Plan.js'
+import ColorTheme  from './view/Settings/ColorTheme.js';
+
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
 const ProfileStack = createStackNavigator();
@@ -153,8 +158,15 @@ const App = () => {
         >
           <Stack.Group>
             <Stack.Screen name="Welcome" component={Login} />
+
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
+            <Stack.Screen name = "Plan" component = {Plan} />
+            <Stack.Screen name="Color Theme" component={ColorTheme} />
+
             <Stack.Screen name="Main Page" component={MainPage} />
             <Stack.Screen name="Survey" component={UserSurvey} />
+            
             <Stack.Screen
               name="Main TabBar"
               component={Tabbar_Stack}

@@ -2,6 +2,8 @@ import * as React from 'react';
 import { View, ScrollView, TextInput, TouchableOpacity, Text } from 'react-native';
 import { cleanString } from '../../utility/format.js';
 import { styles } from '../../style/styles';
+import { retrieveUserId } from '../../utility/dataHandler.js'
+import { postExercisePlan, patchUserWorkoutPlan } from '../../controller/Exercise/workoutPlanController.js';
 
 export const workouts = Array.apply(null, Array(7)).map(function (x, i) { return []; })
 
@@ -17,8 +19,38 @@ export function CreateExercisePlan({ navigation, route }) {
   // Use this array to dynamically create buttons
   const arr = [1,2,3,4,5,6,7];
 
-  // Initialize workout spots for max number of days
-  const workoutDay = cleanString(day);
+  // Set up 2D array for storing workout data
+  const workoutData = [[], [], [], [], [], [], []];
+
+  const addPlanToUser = async (planId) => {
+    // bundle parameters into JSON format 
+    const body = JSON.stringify({
+      workout_plan : planId,
+    });
+
+    // Patch set
+    const json = await patchUserWorkoutPlan(body);
+  }
+
+  // Create the workout plan and associate it with user
+  const CreateWorkout = async () => {
+    // Set parameters
+    const workoutArray = workouts.splice(0, frequency);
+    const userId = await retrieveUserId();
+    const workoutDuration = cleanString(duration)
+
+    const parameters = JSON.stringify({
+      userId: userId,
+      workout_length: workoutDuration,
+      workout_counter: 0,
+      workouts: workoutArray
+    });
+
+    const json = await postExercisePlan(parameters);
+    const planId = cleanString(json.data._id);
+    // Associate plan with the user
+    addPlanToUser(planId);
+  }
 
   // Function for forcing components to update
   const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -73,9 +105,15 @@ export function CreateExercisePlan({ navigation, route }) {
     }
   }
 
+  const navigateHandler = (index) => {
+    navigation.navigate('Create Workout', {
+      day : index + 1,
+    });
+  }
+
   // Handle logic for saving workout
   const saveHandler = () => {
-
+    CreateWorkout();
   }
 
   // Enable save option if conditions are met.
@@ -102,8 +140,14 @@ export function CreateExercisePlan({ navigation, route }) {
     forceUpdate();
   }, [frequency]);
 
+  React.useEffect(() => {
+    navigation.addListener('focus', () => {
+    });
+}, [])
+
   return (
     <View style={styles.container}>
+      <Text> {workoutData} </Text>
       <ScrollView>
         <View style={styles.headercontainer2}>
           <Text style={styles.subheader1}> Select Workouts Per Week </Text>
@@ -126,9 +170,7 @@ export function CreateExercisePlan({ navigation, route }) {
           return <View>
             <TouchableOpacity
               style={styles.generalButtonSmall}
-              onPress={() => navigation.navigate('Create Workout', {
-                day : i + 1,
-              })}
+              onPress={() => navigateHandler(i)}
               key={"workout " + i}
             >
               <View>

@@ -31,7 +31,7 @@ import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
-import { Settings } from './view/Settings/settings';
+import { Settings } from './view/Settings/Settings';
 import { CreateExercisePlan } from './view/ExercisePlan/CreateExercisePlan';
 import { CreateWorkout } from './view/ExercisePlan/CreateWorkout';
 import { WorkoutExerciseSearch } from './view/ExercisePlan/WorkoutExerciseSearch';

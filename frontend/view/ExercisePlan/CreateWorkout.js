@@ -29,7 +29,6 @@ export function CreateWorkout({ navigation, route }) {
 
   /* Perform update/delete depending on queued action */
   const itemEvent = (index) => {
-    console.log(index);
     if (logState === 'delete'){
       console.log("deleting");
       workouts[workoutDay -1].splice(index, 1);

@@ -199,6 +199,32 @@ router.put("/:userId/bmetric/:bid", async (req, res) => {
     }
 });
 
+// PATCH - Update the user given the id from the Users Collection
+//       by updating their workout plan info
+router.patch("/:userId", async (req, res) => {
+    try {
+        let user = await User.findByIdAndUpdate(req.params.userId, req.body, {
+            new: true,
+        });
+        if (user) {
+            res.status(200).json({
+                status: 200,
+                data: user,
+            });
+        } else {
+            res.status(400).json({
+                status: 400, 
+                message: "User not found/Update cannot be done",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    }
+});
+
 // DELETE - Delete the user given the id from the Users Collection
 router.delete("/:userId", async (req, res) => {
     try {

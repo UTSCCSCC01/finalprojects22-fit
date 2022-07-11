@@ -38,7 +38,7 @@ let userSchema = new Schema(
       type: [bodymetrics],
     },
     workout_plan: {
-      type: mongoose.ObjectId, default: 0,
+      type: mongoose.ObjectId, default: null,
     },
   },
   { timestamps: true }

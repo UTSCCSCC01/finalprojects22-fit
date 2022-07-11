@@ -13,3 +13,9 @@ export const deleteExerciseSet = async (id) => {
   const json = await response.json();
   return json;
 }
+
+export const  getExerciseById = async (id) => {
+  const response = await fetch(baseURI.concat('/exercises/id/').concat(id));
+  const json = await response.json();
+  return json;
+}

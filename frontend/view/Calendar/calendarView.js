@@ -5,11 +5,12 @@ import { getAllUserActivity, getUserWorkoutPlan } from '../../controller/Calenda
 import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import { cleanString } from '../../utility/format';
+import { retrievePlanId, storeUserPlan } from '../../utility/dataHandler';
 
 export function Calendar({ navigation }) {
   const [selectedStartDate, setSelectedStartDate] = React.useState(moment());
   const [userActivity, setUserActivity] = React.useState([]);
-  const [planId, setPlanId] = React.useState(0);
+  const [planId, setPlanId] = React.useState(null);
   const [isLoading, setLoading] = React.useState(true);
   const [arrayLength, setArrayLength] = React.useState(0);
 
@@ -120,14 +121,6 @@ const hasActivity = (activity) => {
     }
   }
 
-  // Perform event upon navigation to screen
-  React.useEffect(() => {
-    navigation.addListener('focus', () => {
-      getUserActivity();
-      getWorkoutPlan();
-    });
-  }, []);
-
   const getExercisePlanStatue = () => {
     if (id == undefined || id == 0) {
       return <View>
@@ -140,6 +133,18 @@ const hasActivity = (activity) => {
     </View>
     }
   }
+
+  React.useEffect(() => {
+    storeUserPlan(planId);
+  }, [planId])
+
+  // Perform event upon navigation to screen
+  React.useEffect(() => {
+    navigation.addListener('focus', () => {
+      getUserActivity();
+      getWorkoutPlan();
+    });
+  }, []);
 
   return (
     <View style={styles.container}>

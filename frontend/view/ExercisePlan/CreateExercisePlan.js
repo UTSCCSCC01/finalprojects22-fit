@@ -3,7 +3,7 @@ import { View, ScrollView, TextInput, TouchableOpacity, Text } from 'react-nativ
 import { cleanString } from '../../utility/format.js';
 import { styles } from '../../style/styles';
 import { retrieveUserId } from '../../utility/dataHandler.js'
-import { postExercisePlan, patchUserWorkoutPlan } from '../../controller/Exercise/workoutPlanController.js';
+import { postExercisePlan, patchUser } from '../../controller/Exercise/workoutPlanController.js';
 
 export const workouts = Array.apply(null, Array(7)).map(function (x, i) { return []; })
 
@@ -27,7 +27,7 @@ export function CreateExercisePlan({ navigation }) {
     });
 
     // Patch set
-    const json = await patchUserWorkoutPlan(body);
+    const json = await patchUser(body);
   }
 
   // Create the workout plan and associate it with user
@@ -48,6 +48,7 @@ export function CreateExercisePlan({ navigation }) {
     const planId = cleanString(json.data._id);
     // Associate plan with the user
     addPlanToUser(planId);
+    navigation.navigate("Settings");
   }
 
   // Function for forcing components to update

@@ -72,4 +72,31 @@ router.get("/Search/:ExerciseName", async (req, res) => {
   } 
 });
 
+// GET - Fetch the exercises given the exercise ID
+router.get("/id/:exerciseId", async (req, res) => {
+    try {
+        let exercises = await Exercise.findOne({
+          _id: req.params.exerciseId,
+        });
+        if (exercises) {
+            // exercises are found
+            res.status(200).json({
+                status: 200,
+                data: exercises,
+            });
+        } else {
+            // user cannot be found in db
+            res.status(400).json({
+                status: 400,
+                message: "no exercises found",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    } 
+  });
+
 module.exports = router;

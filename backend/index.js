@@ -16,6 +16,7 @@ const setRouter = require("./routes/set");
 const userActivityRouter = require("./routes/userActivity");
 const savedfoodRouter = require("./routes/savedfood");
 const foodsRouter = require("./routes/foods");
+const customizedExercisesRouter = require("./routes/customizedExercises");
 
 app.use(logger("dev"));
 
@@ -44,6 +45,7 @@ app.use("/set", setRouter);
 app.use("/userActivity", userActivityRouter);
 app.use("/savedfood", savedfoodRouter);
 app.use("/foods", foodsRouter);
+app.use("/customizedExercises", customizedExercisesRouter);
 
 app.listen(port, function () {
   console.log("Running on " + port);

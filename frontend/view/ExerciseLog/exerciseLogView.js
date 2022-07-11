@@ -4,7 +4,7 @@ import { styles } from '../../style/styles';
 import { cleanString, numberToTime } from '../../utility/format.js';
 import { getExerciseSets, deleteExerciseSet, getExerciseById } from '../../controller/Exercise/exerciseLogController' 
 import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/UserActivity/userActivityController'
-import { retrievePlanId, retrieveUserId } from '../../utility/dataHandler.js'
+import { retrievePlanId, retrieveUserId, storeUserPlan } from '../../utility/dataHandler.js'
 import { getWorkoutPlan, patchWorkoutPlan, patchUser, deleteWorkoutPlan } from '../../controller/Exercise/workoutPlanController';
 import { postSet } from '../../controller/Exercise/exerciseRecorderController';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -74,6 +74,7 @@ export function ExerciseLog({ navigation, route }) {
       }
       else {
         setData(json.data);
+        setHasCompleted(true);
       }
     } catch (error) {
       console.error(error);
@@ -101,9 +102,12 @@ export function ExerciseLog({ navigation, route }) {
     }
   }
 
+  // Add exercise activity in today's user activity object
   const createUserActivity = async () => {
     const userId = await retrieveUserId();
-    const has_exercise = cleanString(data) === "[]" ? false : true;
+    // checks if page has exercise data, and if so, whether or not
+    // at least one exercise has been marked as completed
+    const has_exercise = cleanString(data) === "[]" ? false : hasCompleted;
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
       userId: userId, 
@@ -114,9 +118,11 @@ export function ExerciseLog({ navigation, route }) {
     const json = await postUserActivity(body);
   }
 
+  
+  // update exercise activity in today's user activity object
   const updateUserActivity = async (id) => {
     const userId = await retrieveUserId();
-    const has_exercise = cleanString(data) === "[]" ? false : true;
+    const has_exercise = cleanString(data) === "[]" ? false : hasCompleted;
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
       userId: userId, 
@@ -146,6 +152,7 @@ export function ExerciseLog({ navigation, route }) {
     }
   }
 
+  // Increment workout counter, and handle logic for completing workout
   const incrementWorkoutCounter = async () => {
     // get necessary workoutplan data
     const planId = await retrievePlanId();
@@ -162,8 +169,9 @@ export function ExerciseLog({ navigation, route }) {
       });
       patchUser(body);
 
-      // Delete workout plan from database
+      // Delete workout plan from database and storage
       deleteWorkoutPlan(planId)
+      storeUserPlan("null");
     }
     else {
       // Update workout counter
@@ -176,7 +184,6 @@ export function ExerciseLog({ navigation, route }) {
 
   // Marks the exercise as completed
   const markCompleted = (item) => {
-    console.log("reached mark completed...");
     item.completed = true;
 
     // Need to perform additional actions if this was the first
@@ -209,6 +216,19 @@ export function ExerciseLog({ navigation, route }) {
     }
     setLogMode('select')
   }
+
+    // Create activity if none exists. Update as necessary if it does
+    const addExerciseActivity = () => {
+      if (cleanString(activityData) === '[]'){
+        createUserActivity();
+      }
+      else {
+        const activity = JSON.stringify(activityData[0]);
+        var json = JSON.parse(activity);
+        var id = JSON.stringify(json._id);
+        updateUserActivity(cleanString(id));
+      }
+    }
 
   /* Change colour of the borders depending on the queued action */
   const selectStyle = (item) => {
@@ -283,18 +303,6 @@ export function ExerciseLog({ navigation, route }) {
     }
   }
 
-  // Create activity if none exists. Update as necessary if it does
-  const addExerciseActivity = () => {
-    if (cleanString(activityData) === '[]'){
-      createUserActivity();
-    }
-    else {
-      const activity = JSON.stringify(activityData[0]);
-      var json = JSON.parse(activity);
-      var id = JSON.stringify(json._id);
-      updateUserActivity(cleanString(id));
-    }
-  }
 
   // perform event upon focusing back onto the page
   React.useEffect(() => {
@@ -314,6 +322,13 @@ export function ExerciseLog({ navigation, route }) {
       }
     }
   }, [activityData]);
+
+
+  React.useEffect(() => {
+    if (activityData != null) {
+      addExerciseActivity()
+    }
+  }, [hasCompleted]);
 
   return (
       <View style={styles.container}>

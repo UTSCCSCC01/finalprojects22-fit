@@ -14,7 +14,7 @@ export function CreateWorkout({ navigation, route }) {
 
   const getDefaultMessage = () => {
     return <View>
-      <Text> Add exercises to create your workout </Text>
+      <Text style={styles.finePrintWarning}> Add exercises to create your workout </Text>
     </View>
   }
 

@@ -17,13 +17,13 @@ export function WorkoutExerciseSearch({ navigation, route }) {
   const getQueryState = () => {
     if (queryState === "default"){
       return <View>
-        <Text> Use the search bar to find exercises </Text>
+        <Text style={styles.finePrintWarning}> Use the search bar to find exercises </Text>
       </View>
     } else if (queryState === "loading") {
       return <ActivityIndicator/>
     } else if (queryState === "done"){
       return <View>
-      <Text> No results found  </Text>
+      <Text style={styles.finePrintWarning}> No results found  </Text>
     </View>
     }
   }

@@ -7,6 +7,7 @@ import { postUserActivity, getUserActivity, patchUserActivity } from '../../cont
 import { retrievePlanId, retrieveUserId } from '../../utility/dataHandler.js'
 import { getWorkoutPlan, patchWorkoutPlan, patchUser, deleteWorkoutPlan } from '../../controller/Exercise/workoutPlanController';
 import { postSet } from '../../controller/Exercise/exerciseRecorderController';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export function ExerciseLog({ navigation, route }) {
   /* Create hooks */
@@ -138,7 +139,8 @@ export function ExerciseLog({ navigation, route }) {
         is_cardio: data[i].is_cardio,
         first_value: data[i].first_value,
         second_value: data[i].second_value,
-        date: date
+        date: date,
+        completed: data[i].completed,
       });
       const json = await postSet(body);
     }
@@ -172,6 +174,20 @@ export function ExerciseLog({ navigation, route }) {
     }
   }
 
+  // Marks the exercise as completed
+  const markCompleted = (item) => {
+    console.log("reached mark completed...");
+    item.completed = true;
+
+    // Need to perform additional actions if this was the first
+    // exercise to be completed from a workout plan.
+    if (!hasCompleted){
+      savePlannedExercises();
+      incrementWorkoutCounter();
+      setHasCompleted(true);
+    }
+  }
+
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
     if (logMode === 'delete' && item.completed == true){
@@ -188,39 +204,22 @@ export function ExerciseLog({ navigation, route }) {
         first_value: item.first_value,
         second_value: item.second_value,
         date: item.date,
+        completed: item.completed
       })
-    }
-    else if (logMode === 'complete' && item.completed == false)
-    {
-      item.completed = true;
-      // Need to check if this is the first planned exercise is completed. If so,
-      // we need to save this exercises along with all the others and increment
-      // the workout counter.
-      if (!hasCompleted){
-        savePlannedExercises();
-        incrementWorkoutCounter();
-        setHasCompleted(true);
-      }
     }
     setLogMode('select')
   }
 
   /* Change colour of the borders depending on the queued action */
   const selectStyle = (item) => {
-    if (item.completed == true)
-    {
-      if (logMode === 'delete'){
-        return styles.flatListDeleteItem;
-      }
-      else if (logMode === 'update') {
-        return styles.flatListUpdateItem;
-      }
-      else{
-        return styles.flatListItem;
-      }
+    if (logMode === 'delete' && item.completed == true){
+      return styles.flatListDeleteItem;
+    }
+    else if (logMode === 'update' && item.completed == true) {
+      return styles.flatListUpdateItem;
     }
     else{
-      return styles.flatListIncompleteItem;
+      return styles.flatListItem;
     }
   }
 
@@ -228,19 +227,57 @@ export function ExerciseLog({ navigation, route }) {
   const formatCell = (item) => {
     if (item.is_cardio){
       return (
-        <View style={styles.flatListTextContainer}>
-          <Text style={styles.flatListText}>Exercise Name: {item.exercise_name}</Text>
-          <Text style={styles.flatListText}>Time: {numberToTime(item.first_value)}</Text>
-          <Text style={styles.flatListText}>Distance: {item.second_value} km</Text>
+        <View style={selectStyle(item)}>
+          <View style={styles.flatListTextContainer}>
+            <View style={styles.setInfoContainer}>
+              <Text style={styles.flatListText}>Exercise Name: {item.exercise_name}</Text>
+              <Text style={styles.flatListText}>Time: {numberToTime(item.first_value)}</Text>
+              <Text style={styles.flatListText}>Distance: {item.second_value} km</Text>
+            </View>
+            {!item.completed ?             
+              <View style={styles.saveButtonContainer}>
+                <Text style={styles.smallHeaderFont}>complete</Text>
+                <TouchableOpacity
+                    onPress={() => markCompleted(item)}
+                  >
+                  <MaterialIcons
+                    name='check-circle-outline'
+                    size={45}
+                    color='#CFD1D0'
+                  />
+                </TouchableOpacity>
+              </View> : 
+              <View/>
+            }
+          </View>
         </View>
       );
     }
     else{
       return (
-        <View style={styles.flatListTextContainer}>
-          <Text style={styles.flatListText}>Exercise Name: {item.exercise_name}</Text>
-          <Text style={styles.flatListText}>Weight: {item.first_value} kg</Text>
-          <Text style={styles.flatListText}>Reps: {item.second_value} </Text>
+        <View style={selectStyle(item)}>
+          <View style={styles.flatListTextContainer}>
+            <View style={styles.setInfoContainer}>
+              <Text style={styles.flatListText}>Exercise Name: {item.exercise_name}</Text>
+              <Text style={styles.flatListText}>Weight: {item.first_value} kg</Text>
+              <Text style={styles.flatListText}>Reps: {item.second_value} </Text>
+            </View>
+            {!item.completed ?             
+              <View style={styles.saveButtonContainer}>
+                <Text style={styles.smallHeaderFont}>complete</Text>
+                <TouchableOpacity
+                    onPress={() => markCompleted(item)}
+                  >
+                  <MaterialIcons
+                    name='check-circle-outline'
+                    size={45}
+                    color='#CFD1D0'
+                  />
+                </TouchableOpacity>
+              </View> : 
+              <View/>
+            }
+          </View>
         </View>
       );
     }
@@ -304,12 +341,6 @@ export function ExerciseLog({ navigation, route }) {
             >
               <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.ExerciseLogUtilityButton}
-              onPress={() => setLogMode(logMode === 'complete' ? 'select' : 'complete')}
-            >
-              <Text style={styles.generalButtonFont}> Mark Completed </Text>
-            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.flatListContainer}>
@@ -317,7 +348,7 @@ export function ExerciseLog({ navigation, route }) {
           <FlatList
             data={data}
             keyExtractor={(item, index) => item._id}
-            renderItem={({item}) => <Text style= {selectStyle(item)} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
+            renderItem={({item}) => <TouchableOpacity onPress={()=> doEvent(item)}>{formatCell(item)}</TouchableOpacity>}
           />
           )}
         </View>

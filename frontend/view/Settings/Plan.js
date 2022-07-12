@@ -84,6 +84,12 @@ export function Plan ({navigation}) {
       React.useEffect(() => { getPlan("p20"); }, []);
   }
 
+  return (
+    <View>
+      <Text> Plan recommended is: {plan}.</Text>
+    </View>
+  );
+
   // return (
   //   <View>
   //     <Text>Your input is: {globalVar_results.results}. </Text>
@@ -94,7 +100,5 @@ export function Plan ({navigation}) {
   //     </Button>
   //   </View>
   // );
-  
 
-  
 }

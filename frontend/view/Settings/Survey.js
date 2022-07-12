@@ -55,7 +55,7 @@ export function OptionalSurvey ({navigation}) {
 	// set global var & navigate to plan
 	const setresult = () => {
 		globalVar_results.results = results.toString();
-		navigation.navigate('Plan Recommendation');
+		navigation.navigate('Plan');
 	}
 
 	return (

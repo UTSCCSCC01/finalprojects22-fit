@@ -33,7 +33,6 @@ export function ExerciseSelect({ route, navigation }) {
     try {
       const json = await getCustomizedExercisesByGroup(exerciseTypeClean);
       setDataCustomized(json.data);
-      console.log(dataCustomized);
     } catch (error) {
       console.error(error);
     } finally {
@@ -91,17 +90,9 @@ export function ExerciseSelect({ route, navigation }) {
   }
 
   return (
-    // <View style={styles.container}>
-    //   {isLoading ? <ActivityIndicator/> : (
-    //   <FlatList
-    //     data={data.concat(dataCustomized)}
-    //     keyExtractor={(item, index) => item._id}
-    //     renderItem={({item}) => <Text style={styles.flatListSearchItem} onPress={()=> getItem(item)}>{item.ExerciseName}</Text>}
-    //   />
-    //   )}
-    // </View>
     <View>
-      <View style={styles.largeFlatListContainer}>
+      <Text style={styles.displayText}>default section</Text>
+      <View style={styles.flatListContainer}>
         {isLoading ? <ActivityIndicator /> : (
           <FlatList
             data={data}
@@ -110,8 +101,8 @@ export function ExerciseSelect({ route, navigation }) {
           />
         )}
       </View>
-      <Text>customized section</Text>
-      <View style={styles.largeFlatListContainer}>
+      <Text style={styles.displayText}>customized section</Text>
+      <View style={styles.flatListContainer}>
         {isLoading ? <ActivityIndicator /> : (
           <FlatList
             data={dataCustomized}

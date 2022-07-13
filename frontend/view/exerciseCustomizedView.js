@@ -10,21 +10,6 @@ export function ExerciseCustomized ({ navigation }) {
   const [MuscleGroup, onChangeMuscleGroup] = useState("");
   const [ExerciseName, onChangeExerciseName] = useState("");
   const [NeedsGym, onChangeNeedsGym] = useState("");
-
-
-  // const handleSave = async() => {
-  //   const userId = await retrieveUserId();
-  //   try {
-  //     axios.put(`${baseURI}/customizedExercises/`, { 
-  //       "userId": userId, "MuscleGroup": MuscleGroup, "ExerciseName": ExerciseName, "NeedsGym": NeedsGym})
-  //       .then((res) => {
-  //         // go back to the profile page and update profile
-  //         alert("Exercise Saved!");
-  //       })
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
   
   /* create exercise */
   const createExercise = async () => {
@@ -41,9 +26,6 @@ export function ExerciseCustomized ({ navigation }) {
     
     /* Post set */
     const json = await postCustomizedExercises(body);
-  
-    /* go back to exercise log page */
-    // navigation.navigate("Exercise Log", {date : date});
   }
 
 

@@ -33,33 +33,21 @@ export default function ProfileScreen ({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [user, setUser] = useState(INITIAL_USER);
   const [userLvl, setUserLvl] = useState(0);
+  const [xpProgress, setXpProgress] = useState(0);
 
-  const url = 'http://localhost:3000'
-  const userId = '629d5b035a1cbd7d22664018'
-
-  const getUserP = async () => {
+  const getUser = async () => {
     try {
       const json = await getUserProfile();
       setUser(json.data)
       navigation.setOptions({ title: json.data.username });
       setUserLvl(Math.floor(json.data.xp / 10000) + 1);
+      setXpProgress(user.xp % 10000 / 10000);
     } catch (error) {
-        console.error(error);
+      console.error(error);
     } finally {
       setLoading(false)
     }
   }
-
-/*   const getUser = () => {
-    axios.get(`${url}/users/${userId}`)
-    .then((res) => {
-      setUser(res.data.data);
-      navigation.setOptions({ title: res.data.data.username });
-      setUserLvl(Math.floor(res.data.data.xp / 10000) + 1);
-    })
-    .catch(err => console.log(err))
-    .finally(() => setLoading(false))
-  } */
 
   const chartData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
@@ -85,7 +73,7 @@ export default function ProfileScreen ({ route, navigation }) {
 
   useFocusEffect(
     React.useCallback(() => {
-      getUserP();
+      getUser();
     }, [])
   );
 
@@ -172,7 +160,7 @@ export default function ProfileScreen ({ route, navigation }) {
             <View style={{position: 'absolute', right: 30}}>
               <Text style={{color: primaryPurple, left: 20}}>{userLvl*10000 - user.xp} more xp to level {userLvl + 1}</Text>
               <Progress.Bar 
-                progress={user.xp % 10000 / 10000} 
+                progress={xpProgress} 
                 width={200}
                 color={primaryPurple}
                 borderWidth={1.5} />

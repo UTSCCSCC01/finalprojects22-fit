@@ -1,6 +1,15 @@
 import React, { Component, useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, TouchableOpacity, Text, TextInput, View, ScrollView } from 'react-native';
-import axios from 'axios';
+import { 
+  ActivityIndicator, 
+  Image,
+  FlatList, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Text, 
+  TextInput, 
+  View, 
+  ScrollView } from 'react-native';
+import { patchUserProfile } from '../../controller/Profile/editProfileController';
 
 export default function EditProfileScreen ({ route, navigation }) {
 
@@ -9,20 +18,21 @@ export default function EditProfileScreen ({ route, navigation }) {
   const [user, setUser] = useState(data)
   const [name, onChangeName] = useState(data.display_name);
   const [bio, onChangeBio] = useState(data.bio);
-  
-  const url = 'http://localhost:3000'
-  const userId = '629d5b035a1cbd7d22664018'
 
-  const handleSave = () => {
-    try {
-      axios.put(`${url}/users/${user._id}`, {"display_name": name, "bio": bio})
-        .then((res) => {
-          // go back to the profile page and update profile
-          alert("Profile Successfully Updated!");
-        })
-    } catch (err) {
-      console.log(err);
-    }
+  /* update user record */
+  const handleSave = async () => {
+
+    /* bundle parameters into JSON format */
+    const body = JSON.stringify({
+      display_name: name,
+      bio: bio,
+    });
+    
+    /* patch user profile record */
+    const json = await patchUserProfile(body);
+  
+    alert("Profile Successfully Updated!");
+    navigation.goBack();
   }
 
   const primaryOrange = '#FF8C42'
@@ -97,7 +107,6 @@ export default function EditProfileScreen ({ route, navigation }) {
         <TouchableOpacity
           onPress={() => {
             handleSave()
-            navigation.goBack();
           }}
           style={styles.appButtonContainer}
           >

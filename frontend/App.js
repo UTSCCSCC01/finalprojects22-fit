@@ -32,7 +32,10 @@ import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
 
-import { ExerciseCustomized } from './view/exerciseCustomizedView.js';
+import { Setting } from './view/Settings/settingView.js'
+import {OptionalSurvey} from './view/Settings/Survey'
+import {Plan} from './view/Settings/Plan.js'
+import ColorTheme  from './view/Settings/ColorTheme.js';
 
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
@@ -84,7 +87,6 @@ const App = () => {
           <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
           <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
           <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
-          <Stack.Screen name="Create Exercise" component={ExerciseCustomized} />
         </Stack.Group>
         <Stack.Group>
           <Stack.Screen name="Food Log" component={FoodLog} />
@@ -100,6 +102,22 @@ const App = () => {
     )
   }
 
+  const Setting_Stack = () => {
+    return (
+      <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: '#4E598C' },
+            headerTintColor: '#fff',
+        }}
+        initialRouteName="Setting"
+      >
+        <Stack.Screen name="Setting" component={Setting} />
+        {/* <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
+        <Stack.Screen name = "Plan" component = {Plan} /> */}
+        <Stack.Screen name="Color Theme" component={ColorTheme} />
+      </Stack.Navigator>
+    )
+  }
   const Tabbar_Stack = () => {
     return (
       <Tabbar.Navigator
@@ -114,6 +132,8 @@ const App = () => {
                 iconName = focused ? 'account-circle' : 'account-circle';
               } else if (route.name === 'TrackingStack') {
                 iconName = focused ? 'calendar-today' : 'calendar-today';
+              } else if (route.name ==='SettingStack') {
+                iconName = focused ? 'settings' : 'settings';
               }
               return <MaterialIcons name={iconName} size={35} color={color} />;
             },
@@ -140,6 +160,11 @@ const App = () => {
             component={Tracking_Stack}
             options={{headerShown: false}}
             />
+            <Tabbar.Screen
+            name="SettingStack"
+            component={Setting_Stack}
+            options={{headerShown: false}}
+            />
       </Tabbar.Navigator>
     )
   }
@@ -158,6 +183,7 @@ const App = () => {
             <Stack.Screen name="Welcome" component={Login} />
             <Stack.Screen name="Main Page" component={MainPage} />
             <Stack.Screen name="Survey" component={UserSurvey} />
+            
             <Stack.Screen
               name="Main TabBar"
               component={Tabbar_Stack}
@@ -171,40 +197,3 @@ const App = () => {
 };
 
 export default App;
-
-// import React from 'react';
-// import { View } from 'react-native';
-// import Login from './components/LoginComponents';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import MainPage from './components/MainPage';
-// import UserSurvey from './components/NewUserSurvey';
-// import { ExerciseSelect } from './view/exerciseSelectView';
-// import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
-// import { ExerciseRecorder } from './view/exerciseRecorderView';
-// import { ExerciseLog } from './view/exerciseLogView';
-
-// const Stack = createNativeStackNavigator();
-
-// const App = () => {
-//   //routing for the whole app
-//   return (
-//       <NavigationContainer>
-//         <Stack.Navigator initialRouteName="Welcome">
-//           <Stack.Group>
-//             <Stack.Screen name="Welcome" component={Login} />
-//             <Stack.Screen name="Main Page" component={MainPage} />
-//             <Stack.Screen name="Survey" component={UserSurvey} />
-//           </Stack.Group>
-//           <Stack.Group>
-//             <Stack.Screen name="Exercise Log" component={ExerciseLog} />
-//             <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
-//             <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
-//             <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
-//           </Stack.Group>
-//         </Stack.Navigator>
-//       </NavigationContainer>
-//   );
-// };
-
-// export default App;

@@ -1,4 +1,4 @@
-import { StyleSheet,StatusBar } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 // The colours should probably go into their own "constants" file.
 
@@ -178,16 +178,18 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  largeFlatListContainer:{
-    // width: 150, 
-    // height: 150,
+  pickerContainer: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
-  displayText: {
-    fontSize: 15,
-    alignItems: 'left',
-    color: primaryPurple,
-    fontWeight: "bold"
-  },
+  textStyle:{  
+      fontSize: 20,  
+      color: '#344953',
+      textAlign: 'left',  
+  },  
+  pickerStyle: {  
+      height: 150,
+      width: "80%",
+      color: '#344953',
+      justifyContent: 'center',  
+   },
 });

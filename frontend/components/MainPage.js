@@ -97,10 +97,10 @@ class MainPage extends Component{
                         <CircularProgress
                             activeStrokeColor = '#FF8C42'
                             radius={70}
-                            progressValueFontSize={15}
-                            value={0}
+                            titleFontSize={15}
                             maxValue={10}
-                            valueSuffix={'Add metrics'}/>
+                            title={'+ Add metrics'}
+                            showProgressValue={false}/>
                         <Text style={styles.primaryOrangeText}>1000 xp</Text>
                     </Pressable>
                 </View>

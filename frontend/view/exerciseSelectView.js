@@ -56,7 +56,6 @@ export function ExerciseSelect({ route, navigation }) {
     try {
       const json = await getCustomizedExercisesBySearch(exerciseTypeClean);
       setDataCustomized(json.data);
-      console.log(dataCustomized);
     } catch (error) {
       console.error(error);
     }finally {

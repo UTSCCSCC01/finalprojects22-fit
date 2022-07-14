@@ -90,7 +90,7 @@ export function ExerciseSelect({ route, navigation }) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.displayText}>default section</Text>
       <View style={styles.flatListContainer}>
         {isLoading ? <ActivityIndicator /> : (

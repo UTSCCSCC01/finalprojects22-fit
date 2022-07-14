@@ -32,8 +32,6 @@ import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
 
-import { ExerciseCustomized } from './view/exerciseCustomizedView.js';
-
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
 const ProfileStack = createStackNavigator();
@@ -84,7 +82,6 @@ const App = () => {
           <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
           <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
           <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
-          <Stack.Screen name="Create Exercise" component={ExerciseCustomized} />
         </Stack.Group>
         <Stack.Group>
           <Stack.Screen name="Food Log" component={FoodLog} />
@@ -171,40 +168,3 @@ const App = () => {
 };
 
 export default App;
-
-// import React from 'react';
-// import { View } from 'react-native';
-// import Login from './components/LoginComponents';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import MainPage from './components/MainPage';
-// import UserSurvey from './components/NewUserSurvey';
-// import { ExerciseSelect } from './view/exerciseSelectView';
-// import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
-// import { ExerciseRecorder } from './view/exerciseRecorderView';
-// import { ExerciseLog } from './view/exerciseLogView';
-
-// const Stack = createNativeStackNavigator();
-
-// const App = () => {
-//   //routing for the whole app
-//   return (
-//       <NavigationContainer>
-//         <Stack.Navigator initialRouteName="Welcome">
-//           <Stack.Group>
-//             <Stack.Screen name="Welcome" component={Login} />
-//             <Stack.Screen name="Main Page" component={MainPage} />
-//             <Stack.Screen name="Survey" component={UserSurvey} />
-//           </Stack.Group>
-//           <Stack.Group>
-//             <Stack.Screen name="Exercise Log" component={ExerciseLog} />
-//             <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
-//             <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
-//             <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
-//           </Stack.Group>
-//         </Stack.Navigator>
-//       </NavigationContainer>
-//   );
-// };
-
-// export default App;

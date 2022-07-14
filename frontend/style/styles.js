@@ -178,4 +178,18 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  pickerContainer: {
+    flex: 1,
+  },
+  textStyle:{  
+      fontSize: 20,  
+      color: '#344953',
+      textAlign: 'left',  
+  },  
+  pickerStyle: {  
+      height: 150,
+      width: "80%",
+      color: '#344953',
+      justifyContent: 'center',  
+   },
 });

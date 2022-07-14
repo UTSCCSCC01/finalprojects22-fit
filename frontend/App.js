@@ -32,6 +32,11 @@ import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
 
+import { Setting } from './view/Settings/settingView.js'
+import {OptionalSurvey} from './view/Settings/Survey'
+import {Plan} from './view/Settings/Plan.js'
+import ColorTheme  from './view/Settings/ColorTheme.js';
+
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
 const ProfileStack = createStackNavigator();
@@ -97,6 +102,22 @@ const App = () => {
     )
   }
 
+  const Setting_Stack = () => {
+    return (
+      <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: '#4E598C' },
+            headerTintColor: '#fff',
+        }}
+        initialRouteName="Setting"
+      >
+        <Stack.Screen name="Setting" component={Setting} />
+        {/* <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
+        <Stack.Screen name = "Plan" component = {Plan} /> */}
+        <Stack.Screen name="Color Theme" component={ColorTheme} />
+      </Stack.Navigator>
+    )
+  }
   const Tabbar_Stack = () => {
     return (
       <Tabbar.Navigator
@@ -111,6 +132,8 @@ const App = () => {
                 iconName = focused ? 'account-circle' : 'account-circle';
               } else if (route.name === 'TrackingStack') {
                 iconName = focused ? 'calendar-today' : 'calendar-today';
+              } else if (route.name ==='SettingStack') {
+                iconName = focused ? 'settings' : 'settings';
               }
               return <MaterialIcons name={iconName} size={35} color={color} />;
             },
@@ -137,6 +160,11 @@ const App = () => {
             component={Tracking_Stack}
             options={{headerShown: false}}
             />
+            <Tabbar.Screen
+            name="SettingStack"
+            component={Setting_Stack}
+            options={{headerShown: false}}
+            />
       </Tabbar.Navigator>
     )
   }
@@ -155,6 +183,7 @@ const App = () => {
             <Stack.Screen name="Welcome" component={Login} />
             <Stack.Screen name="Main Page" component={MainPage} />
             <Stack.Screen name="Survey" component={UserSurvey} />
+            
             <Stack.Screen
               name="Main TabBar"
               component={Tabbar_Stack}

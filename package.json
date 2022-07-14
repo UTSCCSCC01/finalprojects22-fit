@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "axios": "^0.27.2",
-    "mongoose": "^6.3.6"
+    "mongoose": "^6.3.6",
+    "react-native-circular-progress-indicator": "^4.3.0",
+    "react-native-svg": "^12.3.0"
   }
 }
-

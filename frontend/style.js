@@ -102,11 +102,23 @@ export const styles = StyleSheet.create({
     },
     mainPageElement:{
         padding:10,
-        marginVertical:10,
-        backgroundColor: '#FFFFFF'
+        marginVertical:12,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 17
     },
     mainPageText:{
-        fontSize:15,
+        fontSize:25,
         fontWeight: 'bold'
+    },
+    grid:{
+        margin:10,
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginHorizontal: "auto",
+    },
+    progressBar:{
+        margin: 10
     }
 });

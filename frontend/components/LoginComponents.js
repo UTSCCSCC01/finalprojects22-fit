@@ -15,11 +15,11 @@ export const SetContextComp = (content) => {
     const loginCred = useContext(UserContext);
     //console.log("check if the same: "+loginCred + content.content)
     console.log("call set context: " + content.content + " " + loginCred);
+    let isMounted = true;
     useEffect(()=>{
-        let isMounted = true
         console.log("useEffect: "+ isMounted)
-        if(content.content != loginCred && isMounted == true && content.content != undefined && content.indicator == true){     
-            console.log("set "+this.context);
+        if(loginCred == false && content.content != loginCred && isMounted == true && content.content != undefined && content.indicator == true ){     
+            console.log("set "+content.content + loginCred);
             use(content.content);
         }
         return(()=>{
@@ -297,6 +297,7 @@ class Login extends Component {
         ///useUpdateUserContext();
         useEffect(()=>{
             if(login == 1){
+                setLogin(0);
                 let isAPISubscribed = true
                 var loginIndicator = 0;
                 const api = axios.create({
@@ -311,7 +312,6 @@ class Login extends Component {
                                     loginIndicator = 1;
                                     this.setState({login: res.data.data[i].email});
                                     console.log("found yeah\n"+ res.data.data[i].email);
-                                    setLogin(0);
                                     setFound(true);                                    
                                     setFound(false);
                                     this.props.navigation.navigate('Main TabBar');
@@ -321,7 +321,6 @@ class Login extends Component {
                         }
                         if(loginIndicator == 0){
                             alert('Email or password invalid!');
-                            setLogin(0);
                         }else{
                             //console.log("cnmshould work")
                         }

@@ -37,6 +37,8 @@ import {OptionalSurvey} from './view/Settings/Survey'
 import {Plan} from './view/Settings/Plan.js'
 import ColorTheme  from './view/Settings/ColorTheme.js';
 
+import { ExerciseCustomized } from './view/exerciseCustomizedView.js';
+
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
 const ProfileStack = createStackNavigator();
@@ -87,6 +89,7 @@ const App = () => {
           <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
           <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
           <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
+          <Stack.Screen name="Create Exercise" component={ExerciseCustomized} />
         </Stack.Group>
         <Stack.Group>
           <Stack.Screen name="Food Log" component={FoodLog} />

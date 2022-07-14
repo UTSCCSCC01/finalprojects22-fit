@@ -192,4 +192,10 @@ export const styles = StyleSheet.create({
       color: '#344953',
       justifyContent: 'center',  
    },
+   displayText: {
+    fontSize: 15,
+    alignItems: 'left',
+    color: primaryPurple,
+    fontWeight: "bold"
+  },
 });

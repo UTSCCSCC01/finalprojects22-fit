@@ -3,11 +3,13 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { styles } from '../style/styles';
 import { cleanString } from '../utility/format.js';
 import { getExercisesByGroup, getExercisesBySearch } from '../controller/exerciseSelectController.js'
+import { getCustomizedExercisesByGroup, getCustomizedExercisesBySearch } from '../controller/exerciseCustomizedSelectController.js'
 
 export function ExerciseSelect({ route, navigation }) {
   /* Create hooks */
   const [isLoading, setLoading] = React.useState(true);
   const [data, setData] = React.useState([]);
+  const [dataCustomized, setDataCustomized] = React.useState([]);
 
   const { exerciseType, SearchType, date } = route.params;
 
@@ -27,6 +29,17 @@ export function ExerciseSelect({ route, navigation }) {
     }
   }
 
+  const getCustomizedGroupExercises = async () => {
+    try {
+      const json = await getCustomizedExercisesByGroup(exerciseTypeClean);
+      setDataCustomized(json.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   /* Search via the search bar */
   const searchExercises = async () => {
     try {
@@ -39,13 +52,27 @@ export function ExerciseSelect({ route, navigation }) {
     }
   }
 
+  const searchCustomizedExercises = async () => {
+    try {
+      const json = await getCustomizedExercisesBySearch(exerciseTypeClean);
+      setDataCustomized(json.data);
+      console.log(dataCustomized);
+    } catch (error) {
+      console.error(error);
+    }finally {
+      setLoading(false);
+    }
+  }
+
   /* Trigger Query */
   React.useEffect(() => {
     if (SearchTypeClean === 'Search'){
       searchExercises();
+      searchCustomizedExercises();
     }
     else{
       getGroupExercises();
+      getCustomizedGroupExercises();
     }
   }, []);
 

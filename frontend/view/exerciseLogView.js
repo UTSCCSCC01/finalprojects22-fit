@@ -180,7 +180,6 @@ export function ExerciseLog({ navigation, route }) {
               <Text style={styles.generalButtonFont}> Update an exercise </Text>
             </TouchableOpacity>
           </View>
-
           <View style={styles.rowContainer}>
             <TouchableOpacity
               style={styles.generalButton}
@@ -188,15 +187,8 @@ export function ExerciseLog({ navigation, route }) {
             >
               <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.generalButton}
-              onPress={() => navigation.navigate('Create Exercise')}
-            >
-              <Text style={styles.generalButtonFont}> Create Exercise </Text>
-            </TouchableOpacity>
           </View>
         </View>
-        
         <View style={styles.flatListContainer}>
           {isLoading ? <ActivityIndicator/> : (
           <FlatList
@@ -206,7 +198,6 @@ export function ExerciseLog({ navigation, route }) {
           />
           )}
         </View>
-
       </View>
   );
 }

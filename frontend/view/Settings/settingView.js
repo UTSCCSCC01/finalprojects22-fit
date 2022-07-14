@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Text, View, Button, ScrollView } from 'react-native';
+import React from 'react';
+import { View, Button } from 'react-native';
 import { styles } from '../../style';
 
 export function Setting ({ navigation }) {
@@ -16,5 +16,4 @@ export function Setting ({ navigation }) {
             }}></Button>
         </View>
     );  
-s
 }

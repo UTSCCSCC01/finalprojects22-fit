@@ -23,7 +23,8 @@ export default function ProfileScreen ({ route, navigation }) {
     display_name: "",
     username: "",
     xp: 0,
-    body_metrics: []
+    body_metrics: [],
+    bio: "",
   }
 
   const primaryOrange = '#FF8C42'
@@ -48,11 +49,25 @@ export default function ProfileScreen ({ route, navigation }) {
       navigation.setOptions({ title: json.data.username });
       setUserLvl(Math.floor(json.data.xp / 10000) + 1);
       setXpProgress(user.xp % 10000 / 10000);
+      getWeightData();
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false)
     }
+  }
+
+  const getWeightData = () => {
+    let weight = user.body_metrics.filter(function (entry) {
+      return entry.metric === 'Weight';
+    })
+    weight.sort(function(a, b) {
+      return parseFloat(a.date) - parseFloat(b.date);
+    });
+    weight = weight.map(function (a) {
+      return a.value;
+    });
+    console.log(weight);
   }
 
   const chartData = {

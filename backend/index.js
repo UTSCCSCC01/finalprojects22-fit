@@ -56,24 +56,38 @@ app.use("/foods", foodsRouter);
 
 app.get("/file/:filename", async (req, res) => {
   try {
-      const file = await gfs.files.findOne({ filename: req.params.filename });
-      const readStream = gfs.createReadStream(file.filename);
+      const file = await gfs.find({ filename: req.params.filename }).toArray()
+      if (file.length === 0) {
+        res.status(200).json({
+          status: 400,
+          message: "file not found"
+        })
+      }
+      const file_id = file[0]._id;
+      const obj_id = new mongoose.Types.ObjectId(file_id);
+      const downloadStream = gfs.openDownloadStream(obj_id);
       
       res.setHeader('Content-Type', 'application/json');
       const buffer = [];
       res.status(200);
-      readStream.on('data', (chunk) => {
+
+      downloadStream.on('data', (chunk) => {
         buffer.push(chunk);
-      })
-      readStream.on('end', function () {
+      });
+
+      downloadStream.on('error', async (error) => {
+        reject(error);
+      });
+
+      downloadStream.on('end', async () => {
         const fbuffer = Buffer.concat(buffer);
         const base64 = fbuffer.toString('base64');
         res.end(JSON.stringify({status: 200, img_data: base64}));
       });
-  } catch (error) {
+  } catch (err) {
     res.status(400).json({
       status: 400,
-      message: "not found",
+      message: err.message,
     });
   }
 });

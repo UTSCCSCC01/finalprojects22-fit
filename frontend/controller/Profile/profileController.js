@@ -14,3 +14,10 @@ export const getUserProfilePicture = async (uri) => {
   const json = await response.json();
   return json;
 }
+
+export const getUserSavedFoods = async (date) => {
+  const userId = await retrieveUserId();
+  const response = await fetch(baseURI.concat('/savedfood/').concat(userId).concat('/').concat(date));
+  const json = await response.json();
+  return json;
+}

@@ -24,7 +24,7 @@ export default function EditProfileScreen ({ route, navigation }) {
   const [name, onChangeName] = useState(data.display_name);
   const [bio, onChangeBio] = useState(data.bio);
   //const [saved, setSaved] = useState(false);
-  const [imageChanged, setImageChanged] = useState(true);
+  const [imageChanged, setImageChanged] = useState(false);
   const [pImg, setPImg] = useState(image);
   const [pImgURI, setPImgURI] = useState('');
 
@@ -40,8 +40,10 @@ export default function EditProfileScreen ({ route, navigation }) {
       form_data.append("file", {uri: photo.uri, name: 'image.jpg', type: 'image/png'})
       const res = await patchUserProfileImg(form_data);
       
-      // delete old profile picture from database
-      const del_res = await deleteUserProfileImg(user.profile_pic);
+      if (user.profile_pic !== '') {
+        // delete old profile picture from database (if there exists one)
+        const del_res = await deleteUserProfileImg(user.profile_pic);
+      }
     }
 
     const body = JSON.stringify({
@@ -115,8 +117,9 @@ export default function EditProfileScreen ({ route, navigation }) {
   return (
     <View style={{ paddingTop: 30 }}>
       <View style={styles.pImgEdit}>
-        <Image 
-          source={{ uri: 'data:image/png;base64,'.concat(pImg) }}
+        { pImg === '' 
+          ? <Image 
+          source={require('../../assets/default_p_img.png')}
           style={{
             width: 80,
             height: 80,
@@ -126,6 +129,18 @@ export default function EditProfileScreen ({ route, navigation }) {
             borderColor: primaryPurple,
             alignSelf: 'center',
           }} />
+          :  
+          <Image 
+          source={{ uri: 'data:image/png;base64,'.concat(pImg) }}
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: 50,
+            overflow: 'hidden',
+            borderWidth: 3,
+            borderColor: primaryPurple,
+            alignSelf: 'center',
+          }} />}
         <Button
           title="Upload Profile Picture"
           color={primaryOrange}

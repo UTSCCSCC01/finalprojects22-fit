@@ -20,9 +20,9 @@ Assigned to: Brandon Duan
 
 Subtasks:
 
--FIT-90 Display users' progress/goals on the main page
--FIT-91 Add Progress/Goal tracking button
--FIT-92 Display the corresponding user's data on the main page
+- FIT-90 Display users' progress/goals on the main page
+- FIT-91 Add Progress/Goal tracking button
+- FIT-92 Display the corresponding user's data on the main page
 
 ### User Story: FIT-43 Add friend
 

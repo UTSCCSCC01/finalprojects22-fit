@@ -36,6 +36,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  customExerciseSubContainer: {
+    flexDirection: 'row',
+  },
   addLogContainer: {
   },
   header1: {
@@ -60,6 +63,10 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  customExerciseComponentContainers: {
+    marginBottom: 12,
+    marginTop: 12,
   },
   flatListSearchItem: {
     borderColor: 'gray',
@@ -192,4 +199,39 @@ export const styles = StyleSheet.create({
       color: '#344953',
       justifyContent: 'center',  
    },
+   displayText: {
+    fontSize: 15,
+    alignItems: 'flex-start',
+    color: primaryPurple,
+    fontWeight: "bold"
+  },
+  nameInput: {
+    marginTop: -10,
+    marginLeft: 10,
+    height: 40,
+    borderBottomWidth: 1,
+    paddingBottom: 0
+  },
+  bioInput: {
+    height: 120,
+    marginLeft: 30,
+    borderWidth: 1,
+    padding: 10,
+  },
+  appButtonContainer: {
+    backgroundColor: primaryOrange,
+    borderRadius: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  appButtonText: {
+    fontSize: 15,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
+  customExerciseText: {
+    color: primaryPurple,
+    fontWeight: 'bold',
+  },
 });

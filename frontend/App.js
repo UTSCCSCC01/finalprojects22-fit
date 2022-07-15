@@ -10,9 +10,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import MainPage from './components/MainPage';
 import UserSurvey from './components/NewUserSurvey';
+import ColorTheme  from './view/Settings/ColorTheme.js';
 
-import { Calendar } from './view/calendarView'
-import { TrackActivitySelect } from './view/trackActivitySelectView'
+import { Calendar } from './view/calendarView';
+import { TrackActivitySelect } from './view/trackActivitySelectView';
 
 import { ExerciseSelect } from './view/exerciseSelectView';
 import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
@@ -22,9 +23,9 @@ import { ExerciseLog } from './view/exerciseLogView';
 import { BodyMetricLog } from './view/BodyMetric/BodyMetricLogView';
 import { BodyMetricRecorder } from './view/BodyMetric/BodyMetricRecorder';
 
-import { SelectFoodCategory } from './view/SelectFoodCategory'
-import { SelectFood } from './view/SelectFood'
-import { RecordFood } from './view/RecordFood'
+import { SelectFoodCategory } from './view/SelectFoodCategory';
+import { SelectFood } from './view/SelectFood';
+import { RecordFood } from './view/RecordFood';
 import { FoodLog } from './view/FoodLog';
 
 import ProfileScreen from './view/Profile/ProfileScreen.js';
@@ -32,10 +33,11 @@ import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
 
-import { Setting } from './view/Settings/settingView.js'
-import {OptionalSurvey} from './view/Settings/Survey'
-import {Plan} from './view/Settings/Plan.js'
-import ColorTheme  from './view/Settings/ColorTheme.js';
+import { Setting } from './view/Settings/settingView';
+import { OptionalSurvey } from './view/Settings/Survey';
+import { Plan } from './view/Settings/Plan.js';
+
+import { ExerciseCustomized } from './view/exerciseCustomizedView.js';
 
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
@@ -87,6 +89,7 @@ const App = () => {
           <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
           <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
           <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
+          <Stack.Screen name="Create Exercise" component={ExerciseCustomized} />
         </Stack.Group>
         <Stack.Group>
           <Stack.Screen name="Food Log" component={FoodLog} />
@@ -112,8 +115,8 @@ const App = () => {
         initialRouteName="Setting"
       >
         <Stack.Screen name="Setting" component={Setting} />
-        {/* <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
-        <Stack.Screen name = "Plan" component = {Plan} /> */}
+        <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
+        <Stack.Screen name ="Plan" component = {Plan} /> 
         <Stack.Screen name="Color Theme" component={ColorTheme} />
       </Stack.Navigator>
     )

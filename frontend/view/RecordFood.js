@@ -15,6 +15,10 @@ export function RecordFood({ route, navigation }) {
 
   const { food_name, food_group, food_id, calorie, carbohydrate, fat, protein, date } = route.params;
 
+  const per_carbohydrate = (Math.round(100*cleanNum(carbohydrate))/10000);
+  const per_fat = (Math.round(100*cleanNum(fat))/10000);
+  const per_protein = (Math.round(100*cleanNum(protein))/10000);
+
   const createSavedFood = async () => {
 
       /* Clean/set body parameters */
@@ -67,6 +71,13 @@ export function RecordFood({ route, navigation }) {
       setCalorie(calorie);
     }, []);
 
+    const changecalorie = (number) => {
+        setCalorie(number);
+        setCarbohydrate(Math.round(100*(cleanNum(per_carbohydrate) * number))/100);
+        setFat(Math.round(100*(cleanNum(per_fat) * number))/100);
+        setProtein(Math.round(100*(cleanNum(per_protein) * number))/100);
+    }
+
     return (
       <View style={styles.container}>
           <Text>{cleanString(food_name)}</Text>
@@ -74,17 +85,17 @@ export function RecordFood({ route, navigation }) {
           <View style={styles.foodInput}>
             <Button
               title="- 100g"
-              onPress={() => cals <= 99 ? setCalorie(0)  : setCalorie(cals - 100) }
+              onPress={() => cals <= 99 ? changecalorie(0)  : changecalorie(cals - 100) }
             />
             <TextInput
               style={styles.textInput}
               value={cleanString(cals) + ' g'}
-              onChangeText={text => text === '' ? setCalorie(cals) : setCalorie(parseInt(text))}
+              onChangeText={text => text === '' ? changecalorie(cals) : changecalorie(parseInt(text))}
               keyboardType="numeric"
             />
              <Button
                 title='+ 100g'
-                onPress={() => setCalorie(cals + 100)}
+                onPress={() => changecalorie(cals + 100)}
              />
           </View>
           <Text>{'Carbohydrates'}</Text>

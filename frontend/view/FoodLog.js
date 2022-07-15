@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
-import { styles } from '../style';
+import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
+import { styles } from '../style/styles';
 import { cleanString, numberToTime } from '../utility/format.js';
 import { getFoodSavedPlans, deleteFoodSavedPlans } from '../controller/FoodLogController'
 import { postUserActivity, getUserActivity, patchUserActivity } from '../controller/userActivityController'
@@ -144,29 +144,41 @@ export function FoodLog({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      {isLoading ? <ActivityIndicator/> : (
-      <FlatList
-        data={data}
-        keyExtractor={(item,index) => item._id}
-        renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
-      />
-      )}
-      <View style={styles.fixToText}>
-        <Button
-          title="Log a new food"
-          onPress={() => navigation.navigate('Select Food Category', {
-            date: date,
-          })}
-        />
-        <Button
-          title="Update an food"
-          onPress={() => savedplanLogMode(logMode === 'update' ? 'select' : 'update')}
-        />
-        <Button
-          title="Delete an food"
-          onPress={() => savedplanLogMode(logMode === 'delete' ? 'select' : 'delete')}
-        />
-      </View>
+       <View style={styles.exerciseLogButtonsContainer}>
+         <View style={styles.rowContainer}>
+           <TouchableOpacity
+             style={styles.generalButton}
+             onPress={() => navigation.navigate('Select Food Category', {
+             date: date,
+             })}
+           >
+             <Text style={styles.generalButtonFont}> Log a new Food </Text>
+           </TouchableOpacity>
+           <TouchableOpacity
+             style={styles.generalButton}
+             onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
+           >
+             <Text style={styles.generalButtonFont}> Update a Food </Text>
+           </TouchableOpacity>
+         </View>
+         <View style={styles.rowContainer}>
+           <TouchableOpacity
+             style={styles.generalButton}
+             onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
+           >
+             <Text style={styles.generalButtonFont}> Delete a Food </Text>
+           </TouchableOpacity>
+         </View>
+       </View>
+       <View style={styles.flatListContainer}>
+         {isLoading ? <ActivityIndicator/> : (
+         <FlatList
+           data={data}
+           keyExtractor={(item, index) => item._id}
+           renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
+         />
+         )}
+       </View>
     </View>
   );
 }

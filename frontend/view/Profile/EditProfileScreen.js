@@ -10,7 +10,7 @@ export default function EditProfileScreen ({ route, navigation }) {
   const [name, onChangeName] = useState(data.display_name);
   const [bio, onChangeBio] = useState(data.bio);
   
-  const url = 'http://localhost:3000'
+  const url = 'http://192.168.2.69:3000'
   const userId = '629d5b035a1cbd7d22664018'
 
   const handleSave = () => {

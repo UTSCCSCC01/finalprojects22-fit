@@ -14,14 +14,16 @@
   <component name="ChangeListManager">
     <list default="true" id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/LoginComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/LoginComponents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/controller/RecordFoodController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/RecordFoodController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/controller/SelectFoodController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/SelectFoodController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utility/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utility/constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/Profile/EditProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/Profile/EditProfileScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/Profile/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/Profile/ProfileScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/view/RecordFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/RecordFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/SelectFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/SelectFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/SelectFoodCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/SelectFoodCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/Settings/Plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/Settings/Plan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +56,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="85a491e2-4309-49cf-ad80-f0aed0590e56" name="Changes" comment="" />
+      <changelist id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="" />
       <created>1655219195059</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -75,5 +77,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

@@ -33,7 +33,7 @@ export default function ProfileScreen ({ route, navigation }) {
   const [user, setUser] = useState(INITIAL_USER);
   const [userLvl, setUserLvl] = useState(0);
 
-  const url = 'http://localhost:3000'
+  const url = 'http://192.168.2.69:3000'
   const userId = '629d5b035a1cbd7d22664018'
 
   const getUser = () => {

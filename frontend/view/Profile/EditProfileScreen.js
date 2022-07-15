@@ -11,7 +11,10 @@ import {
   View, 
   ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { patchUserProfile } from '../../controller/Profile/editProfileController';
+import { 
+  patchUserProfile, 
+  patchUserProfileImg,
+  deleteUserProfileImg } from '../../controller/Profile/editProfileController';
 
 export default function EditProfileScreen ({ route, navigation }) {
 
@@ -20,16 +23,25 @@ export default function EditProfileScreen ({ route, navigation }) {
   const [user, setUser] = useState(data)
   const [name, onChangeName] = useState(data.display_name);
   const [bio, onChangeBio] = useState(data.bio);
-  const [imageChanged, setImageChanged] = useState(false);
+  //const [saved, setSaved] = useState(false);
+  const [imageChanged, setImageChanged] = useState(true);
   const [pImg, setPImg] = useState(image);
+  const [pImgURI, setPImgURI] = useState('');
 
   /* update user record */
   const handleSave = async () => {
-    /* bundle parameters into JSON format */
+    // disables the Save button so users cannot accidentally submit more requests
+    //setSaved(true);
 
-    // handle updated image upload 
+    // handle update image upload 
     if (imageChanged) { 
-
+      let photo = { uri: pImgURI }
+      let form_data = new FormData();
+      form_data.append("file", {uri: photo.uri, name: 'image.jpg', type: 'image/png'})
+      const res = await patchUserProfileImg(form_data);
+      
+      // delete old profile picture from database
+      const del_res = await deleteUserProfileImg(user.profile_pic);
     }
 
     const body = JSON.stringify({
@@ -44,22 +56,24 @@ export default function EditProfileScreen ({ route, navigation }) {
     navigation.goBack();
   }
 
+  // set image data / metadata from ImagePicker result
   const pickImage = async () => {
     if (true) {
       let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          aspect: [1, 1],
-          quality: 1,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+        base64: true,
       });
 
       if (!result.cancelled) {
-          setImage(result.uri);
-          setImageChanged(true);
+        setPImgURI(result.uri);
+        setPImg(result.base64);
+        setImageChanged(true);
       }
     }
   };
-
 
   const primaryOrange = '#FF8C42'
   const primaryPurple = '#4E598C'

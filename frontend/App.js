@@ -129,14 +129,14 @@ const App = () => {
             name="MainPage"
             component={MainPage} />
           <Tabbar.Screen
-            name="ProfileTab"
-            component={Profile_Stack}
-            options={{headerShown: false}} />
-          <Tabbar.Screen
             name="TrackingStack"
             component={Tracking_Stack}
             options={{headerShown: false}}
             />
+          <Tabbar.Screen
+          name="ProfileTab"
+          component={Profile_Stack}
+          options={{headerShown: false}} />
       </Tabbar.Navigator>
     )
   }

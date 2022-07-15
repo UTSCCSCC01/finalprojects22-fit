@@ -12,7 +12,7 @@ Assigned to: Collin Chan
 
 Subtasks:
 
--FIT-75 Create assets for Medals / achievements
+- FIT-75 Create assets for Medals / achievements
 
 ### User Story: FIT-72 User Main Page
 

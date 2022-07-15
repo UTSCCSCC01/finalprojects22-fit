@@ -4,6 +4,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const multer = require('multer');
+const Grid = require("gridfs-stream");
 
 // specify port number here
 const port = 3000;
@@ -33,6 +35,12 @@ mongoose.connect(dbUrl, options, (err) => {
   if (err) console.log(err);
 });
 
+const conn = mongoose.connection;
+conn.once("open", function () {
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("photos");
+});
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -44,6 +52,45 @@ app.use("/set", setRouter);
 app.use("/userActivity", userActivityRouter);
 app.use("/savedfood", savedfoodRouter);
 app.use("/foods", foodsRouter);
+
+app.get("/file/:filename", async (req, res) => {
+  try {
+      const file = await gfs.files.findOne({ filename: req.params.filename });
+      const readStream = gfs.createReadStream(file.filename);
+      
+      res.setHeader('Content-Type', 'application/json');
+      const buffer = [];
+      res.status(200);
+      readStream.on('data', (chunk) => {
+        buffer.push(chunk);
+      })
+      readStream.on('end', function () {
+        const fbuffer = Buffer.concat(buffer);
+        const base64 = fbuffer.toString('base64');
+        res.end(JSON.stringify({status: 200, img_data: base64}));
+      });
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      message: "not found",
+    });
+  }
+});
+
+app.delete("/file/:filename", async (req, res) => {
+  try {
+      await gfs.files.deleteOne({ filename: req.params.filename });
+      res.status(200).json({
+        status: 200,
+        message: "Sucessfully deleted file",
+      });
+  } catch (err) {
+    res.status(400).json({
+      status: 400,
+      message: err.message,
+    });
+  }
+});
 
 app.listen(port, function () {
   console.log("Running on " + port);

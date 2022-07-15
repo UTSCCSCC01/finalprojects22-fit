@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/User");
 const router = express.Router();
+const upload = require("../middleware/upload");
 
 // POST - Creates new user in Users Collection
 router.post("/", async (req, res) => {
@@ -87,6 +88,36 @@ router.get("/:userId/bmetric", async (req, res) => {
             message: err.message,
         });
     } 
+});
+
+// PUT - Update the user's profile pic uri given the id from the Users Collection
+router.put("/:userId/img", upload.single("file"), async (req, res) => {
+    try {
+        const imgUrl = `http://localhost:3000/file/${req.file.filename}`;
+        let user = await User.findByIdAndUpdate(
+            { _id: req.params.userId},
+            { $set: {
+                "profile_pic": imgUrl
+            } },
+            { new: true },
+        );
+        if (user) {
+            res.status(200).json({
+                status: 200,
+                data: user,
+            });
+        } else {
+            res.status(400).json({
+                status: 400, 
+                message: "User not found/Update cannot be done",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    }
 });
 
 // PUT - Update the user given the id from the Users Collection

@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { 
   ActivityIndicator, 
+  Button,
   Image,
   FlatList, 
   StyleSheet, 
@@ -9,20 +10,28 @@ import {
   TextInput, 
   View, 
   ScrollView } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 import { patchUserProfile } from '../../controller/Profile/editProfileController';
 
 export default function EditProfileScreen ({ route, navigation }) {
 
   const [didChange, setDidChange] = useState(false);
-  const { data } = route.params;
+  const { data, image } = route.params;
   const [user, setUser] = useState(data)
   const [name, onChangeName] = useState(data.display_name);
   const [bio, onChangeBio] = useState(data.bio);
+  const [imageChanged, setImageChanged] = useState(false);
+  const [pImg, setPImg] = useState(image);
 
   /* update user record */
   const handleSave = async () => {
-
     /* bundle parameters into JSON format */
+
+    // handle updated image upload 
+    if (imageChanged) { 
+
+    }
+
     const body = JSON.stringify({
       display_name: name,
       bio: bio,
@@ -34,6 +43,23 @@ export default function EditProfileScreen ({ route, navigation }) {
     alert("Profile Successfully Updated!");
     navigation.goBack();
   }
+
+  const pickImage = async () => {
+    if (true) {
+      let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+      });
+
+      if (!result.cancelled) {
+          setImage(result.uri);
+          setImageChanged(true);
+      }
+    }
+  };
+
 
   const primaryOrange = '#FF8C42'
   const primaryPurple = '#4E598C'
@@ -65,10 +91,33 @@ export default function EditProfileScreen ({ route, navigation }) {
       fontWeight: "bold",
       alignSelf: "center",
     },
+    pImgEdit: {
+      justifyContent: "center", 
+      alignItems: "center",
+      flexDirection: 'column',
+    },
   });
 
   return (
     <View style={{ paddingTop: 30 }}>
+      <View style={styles.pImgEdit}>
+        <Image 
+          source={{ uri: 'data:image/png;base64,'.concat(pImg) }}
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: 50,
+            overflow: 'hidden',
+            borderWidth: 3,
+            borderColor: primaryPurple,
+            alignSelf: 'center',
+          }} />
+        <Button
+          title="Upload Profile Picture"
+          color={primaryOrange}
+          onPress={() => pickImage()}
+        /> 
+      </View>
       <View style={{flexDirection: "row", paddingTop: 20, paddingLeft: 30, paddingRight: 30}}>
         <View>
           <Text style={{ color: primaryPurple, fontSize: 15, fontWeight: "bold"}}>Name:</Text>  

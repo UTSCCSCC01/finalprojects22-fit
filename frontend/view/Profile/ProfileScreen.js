@@ -13,7 +13,7 @@ import * as Progress from 'react-native-progress';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LineChart } from "react-native-chart-kit";
-import { getUserProfile } from '../../controller/Profile/profileController';
+import { getUserProfile, getUserProfilePicture } from '../../controller/Profile/profileController';
 import axios from 'axios';
 
 export default function ProfileScreen ({ route, navigation }) {
@@ -34,10 +34,16 @@ export default function ProfileScreen ({ route, navigation }) {
   const [user, setUser] = useState(INITIAL_USER);
   const [userLvl, setUserLvl] = useState(0);
   const [xpProgress, setXpProgress] = useState(0);
+  const [image, setImage] = useState('');
 
   const getUser = async () => {
     try {
       const json = await getUserProfile();
+      const pImg_link = json.data.profile_pic;
+      if (pImg_link !== '') {
+        const pic = await getUserProfilePicture(pImg_link);
+        setImage(pic.img_data);
+      }
       setUser(json.data)
       navigation.setOptions({ title: json.data.username });
       setUserLvl(Math.floor(json.data.xp / 10000) + 1);
@@ -138,16 +144,30 @@ export default function ProfileScreen ({ route, navigation }) {
       {isLoading ? <ActivityIndicator/> :(
         <View>
           <View style={styles.pImg}>
-            <Image 
-              source={require('../../assets/default_p_img.png')}
-              style={{
-                width: 80,
-                height: 80,
-                borderRadius: 50,
-                overflow: 'hidden',
-                borderWidth: 3,
-                borderColor: primaryPurple,
-              }} />
+            {
+              image === undefined ? 
+                <Image
+                source={require('../../assets/default_p_img.png')}
+                style={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: 50,
+                  overflow: 'hidden',
+                  borderWidth: 3,
+                  borderColor: primaryPurple,
+                }} /> 
+                : 
+                <Image
+                  source={{uri: 'data:image/png;base64,'.concat(image) }}
+                  style={{
+                    width: 80,
+                    height: 80,
+                    borderRadius: 50,
+                    overflow: 'hidden',
+                    borderWidth: 3,
+                    borderColor: primaryPurple,
+                  }} />
+            }
           </View>
           <View style={styles.level}>
             <Text style={{color: primaryPurple, fontWeight: "bold", fontSize: 12}}>{userLvl}</Text>
@@ -170,7 +190,8 @@ export default function ProfileScreen ({ route, navigation }) {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('Edit Profile', { 
-                  data: user
+                  data: user,
+                  image: image
                 });
               }}
               style={styles.appButtonContainer}

@@ -194,7 +194,7 @@ export const styles = StyleSheet.create({
    },
    displayText: {
     fontSize: 15,
-    alignItems: 'left',
+    alignItems: 'flex-start',
     color: primaryPurple,
     fontWeight: "bold"
   },

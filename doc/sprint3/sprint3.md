@@ -30,7 +30,13 @@ Assigned to: Collin Chan
 
 ### User Story: FIT-73 TDEE Calculation
 
-Assigned to: Vince Liang
+Assigned to: Vincent Liang
+
+Subtasks:
+
+- FIT-99 Calculate TDEE feature
+- FIT-100 Set Daily Caloric Budget
+- FIT-101	Assign proper themes for pages
 
 ### User Story: FIT-71 Excercise Creation
 

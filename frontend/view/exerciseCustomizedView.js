@@ -4,6 +4,7 @@ import axios from 'axios';
 import { retrieveUserId } from '../utility/dataHandler.js'
 import { baseURI } from '../utility/constants.js';
 import { postCustomizedExercises } from '../controller/exerciseCustomerizedController'
+import { styles, primaryPurple } from '../style/styles.js';
 
 export function ExerciseCustomized ({ navigation }) {
 
@@ -27,6 +28,7 @@ export function ExerciseCustomized ({ navigation }) {
     else {
         createExercise();
         console.log("create");
+        navigation.goBack();
     }
   }
 
@@ -54,45 +56,14 @@ export function ExerciseCustomized ({ navigation }) {
     'Calves' || 'Cardio' || 'Legs' || 'Shoulders' || 'Triceps';
   }
 
-  const primaryOrange = '#FF8C42'
-  const primaryPurple = '#4E598C'
-  const secondaryPurple = '#717FC0'
-
-  const styles = StyleSheet.create({
-    nameInput: {
-      marginTop: -10,
-      marginLeft: 10,
-      height: 40,
-      borderBottomWidth: 1,
-      paddingBottom: 0
-    },
-    bioInput: {
-      height: 120,
-      marginLeft: 30,
-      borderWidth: 1,
-      padding: 10,
-    },
-    appButtonContainer: {
-      backgroundColor: primaryOrange,
-      borderRadius: 15,
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-    },
-    appButtonText: {
-      fontSize: 15,
-      color: "#fff",
-      fontWeight: "bold",
-      alignSelf: "center",
-    },
-  });
-
   return (
-    <View style={{ paddingTop: 30 }}>
-      <View style={{flexDirection: "row", paddingTop: 20, paddingLeft: 30, paddingRight: 30}}>
+    <View style={styles.container}>
+
+      <View style={styles.customExerciseComponentContainers}>
         <View>
-          <Text style={{ color: primaryPurple, fontSize: 15, fontWeight: "bold"}}>MuscleGroup:(Abdominals/Back/Biceps/Calves/Cardio/Chest/Legs/Shoulders/Triceps)</Text>  
+          <Text style={styles.customExerciseText}>Enter muscle group (One of Abdominals/Back/Biceps/Calves/Cardio/Chest/Legs/Shoulders/Triceps):</Text>  
         </View>
-        <View style={{flex:1}}>
+        <View style={styles.headercontainer2}>
           <TextInput
             value={MuscleGroup}
             onChangeText={onChangeMuscleGroup}
@@ -104,11 +75,11 @@ export function ExerciseCustomized ({ navigation }) {
         </View>
       </View>
      
-      <View style={{flexDirection: "row", paddingTop: 20, paddingLeft: 30, paddingRight: 30}}>
+      <View style={styles.customExerciseComponentContainers}>
         <View>
-          <Text style={{ color: primaryPurple, fontSize: 15, fontWeight: "bold"}}>ExerciseName:</Text>  
+          <Text style={styles.customExerciseText}>Enter exercise name:</Text>  
         </View>
-        <View style={{flex:1}}>
+        <View style={styles.headercontainer2}>
           <TextInput
             value={ExerciseName}
             onChangeText={onChangeExerciseName}
@@ -117,11 +88,11 @@ export function ExerciseCustomized ({ navigation }) {
         </View>
       </View>
 
-      <View style={{flexDirection: "row", paddingTop: 20, paddingLeft: 30, paddingRight: 30}}>
+      <View style={styles.customExerciseComponentContainers}>
         <View>
-          <Text style={{ color: primaryPurple, fontSize: 15, fontWeight: "bold"}}>NeedsGym:(Y/N)</Text>  
+          <Text style={styles.customExerciseText}>Does this exercise require gym equipment? (Y/N):</Text>  
         </View>
-        <View style={{flex:1}}>
+        <View style={styles.headercontainer2}>
           <TextInput
             value={NeedsGym}
             onChangeText={onChangeNeedsGym}
@@ -130,11 +101,10 @@ export function ExerciseCustomized ({ navigation }) {
         </View>
       </View>
 
-      <View style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 20}}>
+      <View style={styles.customExerciseComponentContainers}>
         <TouchableOpacity
           onPress={() => {
             tryCreateExercise();
-            navigation.goBack();
           }}
           style={styles.appButtonContainer}
           >

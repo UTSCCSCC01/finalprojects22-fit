@@ -49,6 +49,9 @@ let userSchema = new Schema(
     },
     body_metrics: {
       type: [bodymetrics],
+    },
+    medals: {
+      type: [String],
     }
   },
   { timestamps: true }

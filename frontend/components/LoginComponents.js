@@ -204,6 +204,8 @@ class Login extends Component {
             xp: 0,
             body_metrics: [],
             bio: "",
+            profile_pic: "",
+            medals: []
         });
     };
 }

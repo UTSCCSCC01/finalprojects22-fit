@@ -18,7 +18,7 @@ import {
   getUserProfilePicture,
   getUserSavedFoods
 } from '../../controller/Profile/profileController';
-import axios from 'axios';
+import { medalDict } from '../../utility/constants';
 
 export default function ProfileScreen ({ route, navigation }) {
 
@@ -131,18 +131,7 @@ export default function ProfileScreen ({ route, navigation }) {
     ]);
   }
 
-  const chartData = {
-    labels: weight.labels,
-    datasets: [
-      {
-        data: weight.data,
-        color: () => primaryOrange, // optional
-        strokeWidth: 1.5 // optional
-      }
-    ]
-  };
-
-  const chartConfig2 = {
+  const pChartConfig = {
     backgroundGradientFrom: "#1E2923",
     backgroundGradientFromOpacity: 0,
     backgroundGradientTo: "#08130D",
@@ -153,7 +142,7 @@ export default function ProfileScreen ({ route, navigation }) {
     useShadowColorFromDataset: false // optional
   }
 
-  const chartConfig = {
+  const lChartConfig = {
     backgroundGradientFrom: "#FFFF",
     backgroundGradientTo: "#FFFF",
     color: (opacity = 1) => primaryPurple,
@@ -262,6 +251,28 @@ export default function ProfileScreen ({ route, navigation }) {
                     }} />
               }
             </View>
+            
+            {/* Medals Section */}
+            <View style={{position: 'absolute', right: 30, flexDirection: 'row'}}>
+              { user.medals.slice(0,3).map(medal => {
+                const medalSrc = medalDict.find(m => m.name === medal).src;
+                return (
+                  <View key={medal} style={{ flexDirection: 'column', width: 60}}>
+                    <Image
+                      source={medalSrc}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: 50,
+                        overflow: 'hidden',
+                        marginBottom: 5,
+                        marginLeft: 10
+                      }} />
+                    <Text style={{color: primaryPurple, fontSize: 10, textAlign: "center", fontWeight: 'bold'}}>{medal}</Text>
+                  </View>
+                )
+              })}
+              </View>
             <View style={styles.level}>
               <Text style={{color: primaryPurple, fontWeight: "bold", fontSize: 12}}>{userLvl}</Text>
             </View>
@@ -269,7 +280,6 @@ export default function ProfileScreen ({ route, navigation }) {
               <View style={{paddingTop: 10}}>
                 <Text style={{color: primaryPurple}}>{user.display_name}</Text>
               </View>
-              
               <View style={{position: 'absolute', right: 30}}>
                 <Text style={{color: primaryPurple, left: 20}}>{userLvl*10000 - user.xp} more xp to level {userLvl + 1}</Text>
                 <Progress.Bar 
@@ -294,7 +304,7 @@ export default function ProfileScreen ({ route, navigation }) {
 
               {/* Bio Section */}
               <View style={{paddingTop: 20}}>
-                <Text style={styles.sectionTitle}>Bio</Text>
+                <Text style={styles.sectionTitle}>About Me</Text>
                 <View
                   style={styles.displayContainer}
                 >
@@ -325,7 +335,7 @@ export default function ProfileScreen ({ route, navigation }) {
                       }
                       width={Dimensions.get("window").width-100}
                       height={180}
-                      chartConfig={chartConfig}
+                      chartConfig={lChartConfig}
                       yAxisSuffix="KG"
                     />
                   }
@@ -344,7 +354,7 @@ export default function ProfileScreen ({ route, navigation }) {
                       data={food}
                       width={Dimensions.get("window").width-100}
                       height={220}
-                      chartConfig={chartConfig2}
+                      chartConfig={pChartConfig}
                       accessor={"value"}
                       paddingLeft={"5"}
                       center={[0, 0]}

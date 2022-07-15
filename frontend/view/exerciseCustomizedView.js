@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, Alert} from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, TouchableOpacity, Text, TextInput, View, ScrollView } from 'react-native';
 import axios from 'axios';
 import { retrieveUserId } from '../utility/dataHandler.js'
@@ -11,23 +11,48 @@ export function ExerciseCustomized ({ navigation }) {
   const [ExerciseName, onChangeExerciseName] = useState("");
   const [NeedsGym, onChangeNeedsGym] = useState("");
   
-  /* create exercise */
-  const createExercise = async () => {
-    
-    const userId = await retrieveUserId();
-
-    /* bundle parameters into JSON format */
-    const body = JSON.stringify({
-      userId: userId, 
-      MuscleGroup: MuscleGroup,
-      ExerciseName: ExerciseName,
-      NeedsGym: NeedsGym,
-    });
-    
-    /* Post set */
-    const json = await postCustomizedExercises(body);
+  /* check input validilty */
+  const tryCreateExercise = async () => {
+    console.log(MuscleGroup);
+    if (!((MuscleGroup === 'Abdominals') || (MuscleGroup ==='Back') || (MuscleGroup ==='Biceps') || 
+    (MuscleGroup ==='Calves') || (MuscleGroup ==='Cardio') || (MuscleGroup ==='Legs') || 
+    (MuscleGroup ==='Shoulders') || (MuscleGroup ==='Triceps'))) {
+        console.log("mgfault");
+        alert('please select a muscle group from the list');
+    }
+    else if (!((NeedsGym === 'Y')||(NeedsGym === 'N'))){
+        console.log("ngfault");
+        alert('please select Y or N');
+    }
+    else {
+        createExercise();
+        console.log("create");
+    }
   }
 
+  /* create exercise */
+  const createExercise = async () => {
+    // valid user input
+    const userId = await retrieveUserId();
+    const body = JSON.stringify({
+        userId: userId,
+        MuscleGroup: MuscleGroup,
+        ExerciseName: ExerciseName,
+        NeedsGym: NeedsGym,
+    });
+
+    /* Post set */
+    try{
+        const json = await postCustomizedExercises(body);
+        alert('exercise added succesfully')
+    } catch {
+    }
+  }
+  
+  const validateMuscleGroup = (MuscleGroup) => {
+    return MuscleGroup === 'Abdominals' || 'Back' || 'Biceps' || 
+    'Calves' || 'Cardio' || 'Legs' || 'Shoulders' || 'Triceps';
+  }
 
   const primaryOrange = '#FF8C42'
   const primaryPurple = '#4E598C'
@@ -71,6 +96,9 @@ export function ExerciseCustomized ({ navigation }) {
           <TextInput
             value={MuscleGroup}
             onChangeText={onChangeMuscleGroup}
+            // onChangeText={onChangeMuscleGroup => validateMuscleGroup ? onChangeMuscleGroup : 
+            //     Alert.alert('please select a muscle group from the list')}
+            // onChangeText={text => text === '' ? setHours(0) : validateHours(parseInt(text))}
             fontSize={15}
           />
         </View>
@@ -105,7 +133,7 @@ export function ExerciseCustomized ({ navigation }) {
       <View style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 20}}>
         <TouchableOpacity
           onPress={() => {
-            createExercise();
+            tryCreateExercise();
             navigation.goBack();
           }}
           style={styles.appButtonContainer}

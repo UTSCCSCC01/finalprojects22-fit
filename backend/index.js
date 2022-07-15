@@ -37,8 +37,9 @@ mongoose.connect(dbUrl, options, (err) => {
 
 const conn = mongoose.connection;
 conn.once("open", function () {
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection("photos");
+  gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: "photos"
+  });
 });
 
 app.use(cors());
@@ -79,11 +80,21 @@ app.get("/file/:filename", async (req, res) => {
 
 app.delete("/file/:filename", async (req, res) => {
   try {
-      await gfs.files.deleteOne({ filename: req.params.filename });
-      res.status(200).json({
-        status: 200,
-        message: "Sucessfully deleted file",
-      });
+      const file = await gfs.find({filename: req.params.filename}).toArray();
+      if (file.length > 0) {
+        const file_id = file[0]._id;
+        const obj_id = new mongoose.Types.ObjectId(file_id);
+        await gfs.delete(obj_id);
+        res.status(200).json({
+          status: 200,
+          message: "Sucessfully deleted file",
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          message: "file not found",
+        });
+      }
   } catch (err) {
     res.status(400).json({
       status: 400,

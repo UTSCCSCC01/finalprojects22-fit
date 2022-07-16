@@ -13,6 +13,10 @@ Assigned to: Collin Chan
 Subtasks:
 
 - FIT-75 Create assets for Medals / achievements
+- FIT-93 Create backend for image uploads with MongoDB (for profile picture)
+- FIT-94 Adjust frontend component for profile image
+- FIT-95 Fix initialization of the User object on Signup
+- FIT-98 Adjust frontend charts to reflect actual user data
 
 ### User Story: FIT-72 User Main Page
 

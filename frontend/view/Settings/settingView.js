@@ -12,7 +12,7 @@ export function Setting ({ navigation }) {
                 // navigation.navigate('Optional Survey')
             }}></Button>
             <Button style={styles.button} title='Set Calories Budget' onPress={()=>{
-                // navigation.navigate('Color Theme')
+                navigation.navigate('Calorie Budget', {navigation})
             }}></Button>
         </View>
     );  

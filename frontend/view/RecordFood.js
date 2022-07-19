@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Text, View, Button, TextInput} from 'react-native';
-import { styles } from '../style';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { styles } from '../style/styles';
 import { cleanString, cleanNum } from '../utility/format.js';
 import { postSavedFood, patchSavedFood } from '../controller/RecordFoodController.js'
 import { retrieveUserId } from '../utility/dataHandler.js'
@@ -79,56 +79,80 @@ export function RecordFood({ route, navigation }) {
     }
 
     return (
-      <View style={styles.container}>
-          <Text>{cleanString(food_name)}</Text>
-          <Text>{'Calories'}</Text>
-          <View style={styles.foodInput}>
-            <Button
-              title="- 100g"
+    <View style={styles.recorderContainer}>
+          <Text style={styles.header1}>{cleanString(food_name)}</Text>
+          <View style={styles.headercontainer2}>
+            <Text style={styles.header2}>{"Calories: (g)"}</Text>
+          </View>
+          <View style={styles.exerciseInputContainer}>
+            <TouchableOpacity
+              style={styles.sideButton}
               onPress={() => cals <= 99 ? changecalorie(0)  : changecalorie(cals - 100) }
-            />
+              >
+              <Text style={styles.sideButtonFont}> - 100g </Text>
+            </TouchableOpacity>
+
             <TextInput
-              style={styles.textInput}
-              value={cleanString(cals) + ' g'}
+              style={styles.exerciseMetricsInput}
+              selectTextOnFocus={true}
+              value={cleanString(cals)}
               onChangeText={text => text === '' ? changecalorie(cals) : changecalorie(parseInt(text))}
               keyboardType="numeric"
             />
-             <Button
-                title='+ 100g'
-                onPress={() => changecalorie(cals + 100)}
-             />
+            <TouchableOpacity
+              style={styles.sideButton}
+              onPress={() => changecalorie(cals + 100)}
+            >
+              <Text style={styles.sideButtonFont}> + 100g </Text>
+            </TouchableOpacity>
           </View>
-          <Text>{'Carbohydrates'}</Text>
-          <View style={styles.foodInput}>
+
+          <View style={styles.headercontainer2}>
+            <Text style={styles.header2}>{"Carbohydrates: (g)"}</Text>
+          </View>
+          <View style={styles.exerciseInputContainer}>
             <TextInput
-              style={styles.textInput}
-              value={cleanNum(carbs) + ' g'}
+              style={styles.exerciseMetricsInput}
+              selectTextOnFocus={true}
+              value={cleanNum(carbs)}
               onChangeText={text => text === '' ? setCarbohydrate(carbs) : setCarbohydrate(parseFloat(text))}
               keyboardType="numeric"
             />
           </View>
-          <Text>{'Fats'}</Text>
-          <View style={styles.foodInput}>
+
+          <View style={styles.headercontainer2}>
+            <Text style={styles.header2}>{"Fats: (g)"}</Text>
+          </View>
+          <View style={styles.exerciseInputContainer}>
             <TextInput
-              style={styles.textInput}
-              value={cleanNum(fats) + ' g'}
+              style={styles.exerciseMetricsInput}
+              selectTextOnFocus={true}
+              value={cleanNum(fats)}
               onChangeText={text => text == '' ? setFat(fats) : setFat(parseFloat(text))}
               keyboardType="numeric"
             />
           </View>
-          <Text>{'Protein'}</Text>
-          <View style={styles.foodInput}>
+
+          <View style={styles.headercontainer2}>
+            <Text style={styles.header2}>{"Proteins: (g)"}</Text>
+          </View>
+          <View style={styles.exerciseInputContainer}>
              <TextInput
-                style={styles.textInput}
-                value={cleanNum(prots) + ' g'}
+                style={styles.exerciseMetricsInput}
+                selectTextOnFocus={true}
+                value={cleanNum(prots)}
                 onChangeText={text => text == '' ? setProtein(prots) : setProtein(parseFloat(text))}
                 keyboardType="numeric"
              />
           </View>
-        <Button
-          title={cleanString(food_id) === 'N/A' ? 'Log Food' : 'Update Food'}
-          onPress={() => cleanString(food_id) === 'N/A' ? createSavedFood() : updateSavedFood()}
-        />
+
+          <TouchableOpacity
+              style={styles.generalButton}
+              onPress={() => cleanString(food_id) === 'N/A' ? createSavedFood() : updateSavedFood()}
+            >
+            <Text style={styles.generalButtonFont}> {cleanString(food_id) === 'N/A' ? 'Log Food' : 'Update Food'} </Text>
+          </TouchableOpacity>
       </View>
     );
   }
+

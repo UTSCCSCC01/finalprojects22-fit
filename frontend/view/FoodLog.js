@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../style/styles';
-import { cleanString, numberToTime } from '../utility/format.js';
+import { cleanString, numberToTime, cleanNum } from '../utility/format.js';
 import { getFoodSavedPlans, deleteFoodSavedPlans } from '../controller/FoodLogController'
 import { postUserActivity, getUserActivity, patchUserActivity } from '../controller/userActivityController'
 import { retrieveUserId } from '../utility/dataHandler.js'
 
 export function FoodLog({ navigation, route }) {
   /* Create hooks */
-  const [isLoading, savedplanLoading] = React.useState(true);
-  const [data, savedplanData] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState(null);
   const [activityData, setActivityData] = React.useState(null);
-  const [logMode, savedplanLogMode] = React.useState('select');
+  const [logMode, setLogMode] = React.useState('select');
 
   const { date } = route.params;
 
@@ -19,11 +19,11 @@ export function FoodLog({ navigation, route }) {
   const getSavedPlans = async () => {
     try {
       const json = await getFoodSavedPlans(cleanString(date));
-      savedplanData(json.data);
+      setData(json.data);
     } catch (error) {
       console.error(error);
     } finally {
-      savedplanLoading(false);
+      setLoading(false);
     }
   }
 
@@ -73,6 +73,18 @@ export function FoodLog({ navigation, route }) {
     const json = await patchUserActivity(id, body);
   }
 
+   const formatCell = (item) => {
+        return (
+          <View style={styles.flatListTextContainer}>
+            <Text style={styles.flatListText}>Food Name: {item.food_name}</Text>
+            <Text style={styles.flatListText}>Calorie: {cleanNum(item.calorie)} g</Text>
+            <Text style={styles.flatListText}>Carbohydrate: {cleanNum(item.carbohydrate)} g</Text>
+            <Text style={styles.flatListText}>Fat: {cleanNum(item.fat)} g</Text>
+            <Text style={styles.flatListText}>Protein: {cleanNum(item.protein)} g</Text>
+          </View>
+        );
+   }
+
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
     if (logMode === 'delete'){
@@ -92,7 +104,7 @@ export function FoodLog({ navigation, route }) {
         date: item.date,
       })
     }
-    savedplanLogMode('select')
+    setLogMode('select')
   }
 
   /* Change colour of the borders depending on the queued action */
@@ -108,12 +120,8 @@ export function FoodLog({ navigation, route }) {
     }
   }
 
-  const formatCell = (item) => {
-     return item.food_name;
-  }
-
   // Create activity if none exists. Update as necessary if it does
-  const addExerciseActivity = () => {
+  const addFoodActivity = () => {
     if (cleanString(activityData) === '[]'){
       createUserActivity();
     }
@@ -137,7 +145,7 @@ export function FoodLog({ navigation, route }) {
   React.useEffect(() => {
     if (activityData != null){
       if (data != null){
-        addExerciseActivity();
+        addFoodActivity();
       }
     }
   }, [activityData]);

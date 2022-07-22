@@ -6,7 +6,7 @@ import { getExerciseSets, deleteExerciseSet, getExerciseById } from '../../contr
 import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/UserActivity/userActivityController'
 import { retrievePlanId, retrieveUserId, storeUserPlan } from '../../utility/dataHandler.js'
 import { getWorkoutPlan, patchWorkoutPlan, patchUser, deleteWorkoutPlan } from '../../controller/Exercise/workoutPlanController';
-import { postSet } from '../../controller/Exercise/exerciseRecorderController';
+import { postSet, patchSet } from '../../controller/Exercise/exerciseRecorderController';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export function ExerciseLog({ navigation, route }) {
@@ -83,20 +83,34 @@ export function ExerciseLog({ navigation, route }) {
     }
   }
 
+  /* Update Set */
+  const updateSet = async (item) => {
+    try {
+      const body = JSON.stringify({
+        completed: item.completed
+      });
+
+      /* patch set */
+      const json = await patchSet(item._id, body);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  /* Delete selected set */
+  const deleteSets = async (id) => {
+    try {
+      const json = await deleteExerciseSet(id);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   /* Pull activity for today */
   const getActivity = async () => {
     try {
       const json = await getUserActivity(cleanString(date));
       setActivityData(json.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  
-  /* Delete selected set */
-  const deleteSets = async (id) => {
-    try {
-      const json = await deleteExerciseSet(id);
     } catch (error) {
       console.error(error);
     }
@@ -192,6 +206,10 @@ export function ExerciseLog({ navigation, route }) {
       savePlannedExercises();
       incrementWorkoutCounter();
       setHasCompleted(true);
+    } else {
+      // Need to still update the exercises...
+      Promise.resolve(updateSet(item))
+      .then(() => getSets());
     }
   }
 

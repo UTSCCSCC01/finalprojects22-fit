@@ -49,6 +49,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
+  exercisePlanViewHeader: {
+    color: primaryOrange,
+    fontSize: 22,
+    padding: 10,
+    fontWeight: "bold",
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   header2: {
     color: 'gray',
     fontSize: 20,
@@ -82,6 +90,15 @@ export const styles = StyleSheet.create({
   flatListSearchItem: {
     borderColor: 'gray',
     borderBottomWidth: 1,
+    padding: 10,
+    margin: 2,
+    fontSize: 16,
+    height: 45,
+    fontSize: 16,
+  },
+  flatListSearchItemHighlighted: {
+    borderColor: primaryOrange,
+    borderWidth: 2,
     padding: 10,
     margin: 2,
     fontSize: 16,

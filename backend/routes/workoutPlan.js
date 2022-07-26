@@ -29,11 +29,11 @@ router.get("/:planId", async (req, res) => {
     } 
 });
 
-// GET - Fetch all shared workout plans
-router.get("/", async (req, res) => {
+// GET - Fetch workout plans corresponding to a usr
+router.get("/userPlans/:userId", async (req, res) => {
     try {
         let workoutPlan = await WorkoutPlan.find({
-            shared_plan: true,
+            userId: req.params.userId,
         });
         if (workoutPlan) {
             // user set history is found
@@ -45,7 +45,7 @@ router.get("/", async (req, res) => {
             // user set history cannot be found in db
             res.status(400).json({
                 status: 400,
-                message: "User not found",
+                message: "Error in fetching workouts",
             });
         }
     } catch (err) {

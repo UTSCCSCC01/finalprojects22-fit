@@ -16,6 +16,14 @@ export function Setting({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.settingsOptionsContiner}
+          onPress={() => navigation.navigate('Select Exercise Plan')}
+        >
+        <View style={styles.settingsOption}>
+          <Text style={styles.flatListText}> Select Exercise Plan </Text>
+        </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.settingsOptionsContiner}
         >
         <View style={styles.settingsOption}>
           <Text style={styles.flatListText}> Set Caloric Budget </Text>

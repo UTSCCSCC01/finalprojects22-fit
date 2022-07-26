@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View} from 'react-native';
-import { styles } from '../style';
-import { cleanString } from '../utility/format.js';
-import { getFoodsByGroup, getFoodsBySearch } from '../controller/SelectFoodController.js'
+import { styles } from '../../style';
+import { cleanString } from '../../utility/format.js';
+import { getFoodsByGroup, getFoodsBySearch } from '../../controller/Food/SelectFoodController.js'
 
 export function SelectFood({ route, navigation }) {
     const [isLoading, setLoading] = React.useState(true);

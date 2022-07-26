@@ -26,6 +26,18 @@ export const storeUserMetrics = async (metric) => {
   }
 };
 
+export const storeUserPlan = async (planId) => {
+  try {
+
+    await AsyncStorage.setItem(
+      'planId',
+      planId
+    );
+  } catch (error) {
+    // Error saving data
+  }
+};
+
 // Fetching data:
 
 export const retrieveUserId = async () => {
@@ -47,6 +59,20 @@ export const retrieveUserMetrics = async () => {
     }
     else {
       return "1"; // return metric by defaults
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
+};
+
+export const retrievePlanId = async () => {
+  try {
+    const value = await AsyncStorage.getItem('planId');
+    if (value !== null) {
+      return value;
+    }
+    else {
+      return null; // default value
     }
   } catch (error) {
     // Error retrieving data

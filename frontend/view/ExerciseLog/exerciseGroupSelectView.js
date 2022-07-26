@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
-import { styles } from '../style/styles';
+import { styles } from '../../style/styles';
 
 export function ExerciseGroupSelect({ navigation, route }) {
   const { date } = route.params;

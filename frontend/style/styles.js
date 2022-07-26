@@ -54,6 +54,11 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     padding: 10,
   },
+  subheader1: {
+    color: 'gray',
+    fontSize: 14,
+    padding: 2,
+  },
   headercontainer2:{
     borderColor: 'gray',
     borderBottomWidth: 1,
@@ -68,6 +73,12 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
     marginTop: 12,
   },
+  multiOptionContainer: {
+    marginBottom: 10,
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
   flatListSearchItem: {
     borderColor: 'gray',
     borderBottomWidth: 1,
@@ -77,37 +88,74 @@ export const styles = StyleSheet.create({
     height: 45,
     fontSize: 16,
   },
-  flatListItem: {
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-    padding: 10,
-    margin: 2,
-    height: 70,
-  },
-  flatListTextContainer: {
-    margin: 2,
-    padding: 5,
-    justifyContent: 'center',
-  },
-  flatListText: {
-    fontSize: 14,
-  },
-  flatListDeleteItem: {
+  flatListSearchDeleteItem: {
     backgroundColor: '#FF7272',
     borderColor: 'gray',
     borderBottomWidth: 1,
     padding: 10,
     margin: 2,
-    height: 70,
+    fontSize: 16,
+    height: 45,
+    fontSize: 16,
+  },
+  flatListTextContainer: {
+    flex: 4,
+    margin: 2,
+    padding: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  setInfoContainer: {
+    flex: 4,
+    borderColor: 'black',
+    borderwidth: 1,
+    justifyContent: 'flex-start',
+  },
+  setButtonContainer: {
+    flex: 4,
+    borderColor: 'black',
+    borderwidth: 1,
+    justifyContent: 'flex-end',
+  },
+  saveButtonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  flatListText: {
+    fontSize: 14,
+  },
+  flatListItem: {
+    flex: 1,
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+  },
+  flatListDeleteItem: {
+    flex: 1,
+    backgroundColor: '#FF7272',
+    borderColor: 'gray',
+    borderBottomWidth: 1,
   },
   flatListUpdateItem: {
-
+    flex: 1,
     backgroundColor: '#BBD794',
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+  },
+  flatListIncompleteItem: {
+    flex: 1,
+    backgroundColor: '#c7c7c7',
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+  },
+  settingsOptionsContiner: {
+    justifyContent: 'flex-start',
+  },
+  settingsOption: {
     borderColor: 'gray',
     borderBottomWidth: 1,
     padding: 10,
     margin: 2,
-    height: 70,
+    height: 35,
   },
   exerciseMetricsInput: {
     borderColor: 'gray',
@@ -142,6 +190,14 @@ export const styles = StyleSheet.create({
     width: 40,
     justifyContent: 'center',
   },
+  sideButtonAlt:{
+    backgroundColor: primaryOrange,
+    borderRadius: 10,
+    margin: 2,
+    height: 40,
+    width: 40,
+    justifyContent: 'center',
+  },
   sideButtonGray:{
     backgroundColor: lightGray,
     borderRadius: 10,
@@ -163,10 +219,37 @@ export const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
   },
+  ExerciseLogUtilityButton:{
+    backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 5,
+    height: 40,
+    width: 150,
+    justifyContent: 'center',
+  },
+  generalButtonGray:{
+    backgroundColor: lightGray,
+    borderRadius: 10,
+    margin: 5,
+    height: 40,
+    justifyContent: 'center',
+  },
   generalButtonFont:{
     fontSize: 16,
     color: 'white',
     fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  generalButtonSmall:{
+    backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 5,
+    height: 20,
+    justifyContent: 'center',
+  },
+  generalButtonFontSmall:{
+    fontSize: 12,
+    color: 'white',
     textAlign: 'center',
   },
   roundButton:{
@@ -175,6 +258,16 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: primaryOrange,
+  },
+  smallRoundButton:{
+    height: 45,
+    width: 45,
+    elevation: 3,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
     borderRadius: 100,
     borderWidth: 1,
     borderColor: primaryOrange,
@@ -233,5 +326,28 @@ export const styles = StyleSheet.create({
   customExerciseText: {
     color: primaryPurple,
     fontWeight: 'bold',
+  },
+  smallRoundButtonFont:{
+    fontSize: 16,
+    color: primaryOrange,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  smallHeaderFont:{
+    fontSize: 10,
+    color:'gray',
+  },
+  spacingSmall:{
+    padding: 10,
+  },
+  finePrintWarning:{
+    fontSize: 10,
+    textAlign: "center",
+    color: "red",
+  },
+  finePrintConfirmation:{
+    fontSize: 10,
+    textAlign: "center",
+    color: "green",
   },
 });

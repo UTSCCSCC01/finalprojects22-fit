@@ -1,5 +1,5 @@
-import { retrieveUserId } from '../utility/dataHandler.js'
-import { baseURI } from '../utility/constants.js';
+import { retrieveUserId } from '../../utility/dataHandler.js'
+import { baseURI } from '../../utility/constants.js';
 
 export const getExerciseSets = async (date) => {
   const userId = await retrieveUserId();
@@ -10,6 +10,12 @@ export const getExerciseSets = async (date) => {
 
 export const deleteExerciseSet = async (id) => {
   const response = await fetch(baseURI.concat('/set/').concat(id), {method: 'DELETE'})
+  const json = await response.json();
+  return json;
+}
+
+export const  getExerciseById = async (id) => {
+  const response = await fetch(baseURI.concat('/exercises/id/').concat(id));
   const json = await response.json();
   return json;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Button, TextInput, Alert } from 'react-native';
-import { styles } from '../style';
+import { styles } from '../../style';
 
 export function SelectFoodCategory({ navigation, route }) {
   const { date } = route.params;

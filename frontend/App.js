@@ -12,28 +12,31 @@ import MainPage from './components/MainPage';
 import UserSurvey from './components/NewUserSurvey';
 import ColorTheme  from './view/Settings/ColorTheme.js';
 
-import { Calendar } from './view/calendarView';
-import { TrackActivitySelect } from './view/trackActivitySelectView';
+import { Calendar } from './view/Calendar/calendarView'
+import { TrackActivitySelect } from './view/Calendar/trackActivitySelectView'
 
-import { ExerciseSelect } from './view/exerciseSelectView';
-import { ExerciseGroupSelect } from './view/exerciseGroupSelectView';
-import { ExerciseRecorder } from './view/exerciseRecorderView';
-import { ExerciseLog } from './view/exerciseLogView';
+import { ExerciseSelect } from './view/ExerciseLog/exerciseSelectView';
+import { ExerciseGroupSelect } from './view/ExerciseLog/exerciseGroupSelectView';
+import { ExerciseRecorder } from './view/ExerciseLog/exerciseRecorderView';
+import { ExerciseLog } from './view/ExerciseLog/exerciseLogView';
 
 import { BodyMetricLog } from './view/BodyMetric/BodyMetricLogView';
 import { BodyMetricRecorder } from './view/BodyMetric/BodyMetricRecorder';
 
-import { SelectFoodCategory } from './view/SelectFoodCategory';
-import { SelectFood } from './view/SelectFood';
-import { RecordFood } from './view/RecordFood';
-import { FoodLog } from './view/FoodLog';
+import { SelectFoodCategory } from './view/FoodLog/SelectFoodCategory'
+import { SelectFood } from './view/FoodLog/SelectFood'
+import { RecordFood } from './view/FoodLog/RecordFood'
+import { FoodLog } from './view/FoodLog/FoodLog';
 
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
+import { CreateExercisePlan } from './view/ExercisePlan/CreateExercisePlan';
+import { CreateWorkout } from './view/ExercisePlan/CreateWorkout';
+import { WorkoutExerciseSearch } from './view/ExercisePlan/WorkoutExerciseSearch';
 
-import { Setting } from './view/Settings/settingView';
+import { Setting } from './view/Settings/Setting';
 import { OptionalSurvey } from './view/Settings/Survey';
 import { Plan } from './view/Settings/Plan.js';
 
@@ -118,6 +121,11 @@ const App = () => {
         <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
         <Stack.Screen name ="Plan" component = {Plan} /> 
         <Stack.Screen name="Color Theme" component={ColorTheme} />
+        <Stack.Group>
+          <Stack.Screen name="Create Exercise Plan" component={CreateExercisePlan}/>
+          <Stack.Screen name="Create Workout" component={CreateWorkout}/>
+          <Stack.Screen name="Workout Exercise Search" component={WorkoutExerciseSearch}/>
+        </Stack.Group>
       </Stack.Navigator>
     )
   }

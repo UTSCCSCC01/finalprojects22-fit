@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
-import { styles } from '../style';
-import { cleanString, numberToTime } from '../utility/format.js';
-import { getFoodSavedPlans, deleteFoodSavedPlans } from '../controller/FoodLogController'
-import { postUserActivity, getUserActivity, patchUserActivity } from '../controller/userActivityController'
-import { retrieveUserId } from '../utility/dataHandler.js'
+import { styles } from '../../style';
+import { cleanString } from '../../utility/format.js';
+import { getFoodSavedPlans, deleteFoodSavedPlans } from '../../controller/Food/FoodLogController'
+import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/UserActivity/userActivityController'
+import { retrieveUserId } from '../../utility/dataHandler.js'
 
 export function FoodLog({ navigation, route }) {
   /* Create hooks */

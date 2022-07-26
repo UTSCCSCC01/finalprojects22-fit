@@ -89,6 +89,33 @@ router.get("/:userId/bmetric", async (req, res) => {
     } 
 });
 
+// GET - Fetch list of body metric records of the user given the id
+router.get("/:userId/workoutPlan", async (req, res) => {
+    try {
+        let user = await User.findOne({
+            _id: req.params.userId,
+        });
+        if (user) {
+            // user is found
+            res.status(200).json({
+                status: 200,
+                data: user.workout_plan,
+            });
+        } else {
+            // user cannot be found in db
+            res.status(400).json({
+                status: 400,
+                message: "User not found",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    } 
+});
+
 // PUT - Update the user given the id from the Users Collection
 router.put("/:userId", async (req, res) => {
     try {
@@ -153,6 +180,32 @@ router.put("/:userId/bmetric/:bid", async (req, res) => {
             } },
             { new: true },
         );
+        if (user) {
+            res.status(200).json({
+                status: 200,
+                data: user,
+            });
+        } else {
+            res.status(400).json({
+                status: 400, 
+                message: "User not found/Update cannot be done",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    }
+});
+
+// PATCH - Update the user given the id from the Users Collection
+//       by updating their workout plan info
+router.patch("/:userId", async (req, res) => {
+    try {
+        let user = await User.findByIdAndUpdate(req.params.userId, req.body, {
+            new: true,
+        });
         if (user) {
             res.status(200).json({
                 status: 200,

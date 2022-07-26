@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Text, View, Button, TextInput} from 'react-native';
-import { styles } from '../style';
-import { cleanString, cleanNum } from '../utility/format.js';
-import { postSavedFood, patchSavedFood } from '../controller/RecordFoodController.js'
-import { retrieveUserId } from '../utility/dataHandler.js'
+import { styles } from '../../style';
+import { cleanString, cleanNum } from '../../utility/format.js';
+import { postSavedFood, patchSavedFood } from '../../controller/Food/RecordFoodController.js'
+import { retrieveUserId } from '../../utility/dataHandler.js'
 
 
 export function RecordFood({ route, navigation }) {

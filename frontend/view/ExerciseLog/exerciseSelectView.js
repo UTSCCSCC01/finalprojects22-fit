@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
-import { styles } from '../style/styles';
-import { cleanString } from '../utility/format.js';
-import { getExercisesByGroup, getExercisesBySearch } from '../controller/exerciseSelectController.js'
-import { getCustomizedExercisesByGroup, getCustomizedExercisesBySearch } from '../controller/exerciseCustomizedSelectController.js'
+import { styles } from '../../style/styles';
+import { cleanString } from '../../utility/format.js';
+import { getExercisesByGroup, getExercisesBySearch } from '../../controller/Exercise/exerciseSelectController.js'
+import { getCustomizedExercisesByGroup, getCustomizedExercisesBySearch } from '../../controller/exerciseCustomizedSelectController.js'
 
 export function ExerciseSelect({ route, navigation }) {
   /* Create hooks */

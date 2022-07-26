@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { styles } from '../style/styles';
-import { cleanString, numberToTime } from '../utility/format.js';
-import { postSet, patchSet } from '../controller/exerciseRecorderController.js'
-import { retrieveUserId, retrieveUserMetrics } from '../utility/dataHandler.js'
+import { styles } from '../../style/styles';
+import { cleanString } from '../../utility/format.js';
+import { postSet, patchSet } from '../../controller/Exercise/exerciseRecorderController.js'
+import { retrieveUserId, retrieveUserMetrics } from '../../utility/dataHandler.js'
 
 export function ExerciseRecorder({ route, navigation }) {
   /* Create hooks */

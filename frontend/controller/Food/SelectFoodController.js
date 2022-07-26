@@ -1,4 +1,4 @@
-import { baseURI } from '../utility/constants.js';
+import { baseURI } from '../../utility/constants.js';
 
 export const getFoodsByGroup = async (group) => {
   const response = await fetch(baseURI.concat('/foods/Groups/').concat(group));

@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Button } from 'react-native';
-import { styles } from '../../style';
+import { View, TouchableOpacity, Text } from 'react-native';
+import { styles } from '../../style/styles';
 
 export function Setting({ navigation }) {
 

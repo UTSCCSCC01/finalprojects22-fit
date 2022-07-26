@@ -48,7 +48,7 @@ export function CreateExercisePlan({ navigation }) {
     const planId = cleanString(json.data._id);
     // Associate plan with the user
     addPlanToUser(planId);
-    navigation.navigate("Settings");
+    navigation.navigate("Setting");
   }
 
   // Function for forcing components to update

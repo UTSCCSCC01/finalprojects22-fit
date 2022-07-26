@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ScrollView, View, ActivityIndicator, TouchableOpacity, Text, FlatList } from 'react-native';
-import { cleanString } from '../../utility/format.js';
+import { ScrollView, View, ActivityIndicator, Text } from 'react-native';
 import { styles } from '../../style/styles';
 import { getExerciseById } from '../../controller/Exercise/exerciseLogController.js';
 
@@ -13,11 +12,13 @@ export function ViewExercisePlan({ navigation, route }) {
   const { workout } = route.params;
   const workoutData = [[],[],[],[],[],[],[]];
 
+  // Get exercise by the given id
   const getExercise = async (id) => {
     const json = await getExerciseById(id);
     return json.data.ExerciseName;
   }
 
+  // Set up our state variables, in paticular the exercises for each workout
   const setWorkoutData = async (freq) => {
     for (let i = 0; i < freq; i++){
       for (let j = 0; j < workout.workouts[i].length; j++){

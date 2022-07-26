@@ -22,6 +22,7 @@ export function SelectExercisePlan({ navigation, route }) {
     }
   }
 
+  // Styling
   const formatCell = (item) => {
     if (selected == item){
       return <View style={styles.flatListSearchItemHighlighted}>
@@ -35,16 +36,19 @@ export function SelectExercisePlan({ navigation, route }) {
     }
   }
 
+  // Handle item press, highlights the paticular workout
   const handlePress = (item) => {
     setSelected(item);
   }
   
+  // Handle logic for saving a plan to your account
   const handleSaveWorkout = () => {
     if (selected != null){
       console.log("not implemented");
     }
   }
 
+  // Handle logic for viewing a workout
   const handleViewWorkout = () => {
     if (selected != null){
       navigation.navigate('View Exercise Plan', {

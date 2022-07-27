@@ -72,6 +72,8 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 * ExercisePlan folder:
     * CreateExercisePlan.js: Page which allows users to begin creating their exercise plans.
     * CreateWorkout.js: Page which allows users to add/delete specific exercises from the given workout
+    * SelectExercisePlan.js: Page which allows users to view the default exercise plans.
+    * ViewExercisePlan.js: Page which shows the previously selected exercise plan in more detail.
     * WorkoutExerciseSearch.js: Page which allows users to search for exercises to add to their workouts.
 * Calendar folder:
     * calendarView.js: A page containing a calendar that acts as an interface for tracking user activity.

@@ -96,15 +96,6 @@ export const styles = StyleSheet.create({
     height: 45,
     fontSize: 16,
   },
-  flatListSearchItemHighlighted: {
-    borderColor: primaryOrange,
-    borderWidth: 2,
-    padding: 10,
-    margin: 2,
-    fontSize: 16,
-    height: 45,
-    fontSize: 16,
-  },
   flatListSearchDeleteItem: {
     backgroundColor: '#FF7272',
     borderColor: 'gray',
@@ -127,6 +118,22 @@ export const styles = StyleSheet.create({
     borderColor: 'black',
     borderwidth: 1,
     justifyContent: 'flex-start',
+  },
+  WorkoutPlanContainer: {
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+    flex: 1,
+    padding: 5,
+    justifyContent: 'flex-start',
+    fontSize: 16,
+  },
+  WorkoutPlanContainerHighlighted: {
+    borderColor: primaryOrange,
+    borderWidth: 2,
+    flex: 1,
+    padding: 5,
+    justifyContent: 'flex-start',
+    fontSize: 16,
   },
   setButtonContainer: {
     flex: 4,
@@ -237,6 +244,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ExerciseLogUtilityButton:{
+    backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 5,
+    height: 40,
+    width: 150,
+    justifyContent: 'center',
+  },
+  ExerciseLogUtilityButtonGray:{
     backgroundColor: primaryPurple,
     borderRadius: 10,
     margin: 5,

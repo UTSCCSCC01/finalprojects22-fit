@@ -59,14 +59,20 @@ export function SelectExercisePlan({ navigation }) {
 
   // Styling
   const formatCell = (item) => {
+    let duration = item.workout_length;
+    let frequency = item.workouts.length;
     if (selected == item){
-      return <View style={styles.flatListSearchItemHighlighted}>
+      return <View style={styles.WorkoutPlanContainerHighlighted}>
         <Text> {item.name} </Text>
+        <Text> Duration: {duration} weeks </Text>
+        <Text> frequency: {frequency} workouts/week </Text>
       </View>
     }
     else {
-      return <View style={styles.flatListSearchItem}>
+      return <View style={styles.WorkoutPlanContainer}>
         <Text> {item.name} </Text>
+        <Text> Duration: {duration} weeks </Text>
+        <Text> frequency: {frequency} workouts/week </Text>
       </View>
     }
   }
@@ -103,7 +109,7 @@ export function SelectExercisePlan({ navigation }) {
     <View style={styles.container}>
       <View style={styles.rowContainer}>
         <TouchableOpacity
-            style={styles.generalButton}
+            style={selected == null ? styles.ExerciseLogUtilityButtonGray : styles.ExerciseLogUtilityButton}
             onPress={() => handleViewWorkout()}
           >
           <View>
@@ -111,7 +117,7 @@ export function SelectExercisePlan({ navigation }) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-            style={styles.generalButton}
+            style={selected == null ? styles.ExerciseLogUtilityButtonGray : styles.ExerciseLogUtilityButton}
             onPress={() => handleSaveWorkout()}
           >
           <View>

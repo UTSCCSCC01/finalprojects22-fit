@@ -19,6 +19,7 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 * SaveFood.js: contains models for SaveFoods.
 * UserActivity.js: contains models for tracking user activity.
 * WorkoutPlan.js: contains models for exercise plans
+* LongTermGoal.js: contains models for long term goals
 
 **routes:** directory that contains files that define server endpoints.
 
@@ -30,6 +31,7 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 * savefodd.js: defines endpoints for getting, updating, creating and deleting savefoods.
 * userActivity.js: defines enpoints for getting, updating, and creating user activity.
 * workoutPlan.js: defines endpoints for getting, updating, and deleting workout plans.
+* longTermGoals.js: defines endpoints for getting, creating and deleting long term goals. 
 
 **config.js:** config file that holds the credentials to connect to the MongoDB Atlas database
 
@@ -78,7 +80,12 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 * Calendar folder:
     * calendarView.js: A page containing a calendar that acts as an interface for tracking user activity.
     * trackActivitySelectView.js: Intermediary page between the calendar page and tracking pages
-
+* LongtermGoal folder:
+    * selectGoal.js: A menu for selecting a long term goal type
+    * completePlan.js: A page for setting a workout plan as the long term goal
+    * weightGoal.js: A page for setting weight lose/gain as the long term goal
+    * trackLongTermGoal: A page for tracking user progress/completeness of his goal
+    
 **controller**: directory that contains js files corresponding to views that handles database calls.
 
 * BodyMetric folder:
@@ -92,6 +99,8 @@ The Fit-project is comprised of a frontend portion and backend portion. The summ
 * UserActivity folder:
     * userActivityController.js: handles database calls dealing with keeping track of a user's general activity
     * calendarController.js: handles database calls for the calendar page.
+longtermgoal
+    * longTermGoalController.js: handles database calls for long term goal(creating and tracking) pages. 
 
 **style**: directory containing stylesheets
 

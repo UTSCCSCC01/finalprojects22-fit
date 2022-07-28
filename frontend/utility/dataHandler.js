@@ -26,6 +26,18 @@ export const storeUserMetrics = async (metric) => {
   }
 };
 
+export const storeGoalId = async (goalId) => {
+  try {
+
+    await AsyncStorage.setItem(
+      'goalId',
+      goalId
+    );
+  } catch (error) {
+    // Error saving data
+  }
+};
+
 // Fetching data:
 
 export const retrieveUserId = async () => {
@@ -50,5 +62,22 @@ export const retrieveUserMetrics = async () => {
     }
   } catch (error) {
     // Error retrieving data
+  }
+};
+
+export const retrieveGoalId = async () => {
+  try {
+    const value = await AsyncStorage.getItem('goalId');
+    if (value !== null) {
+      return value;
+    }
+    
+    else if (value === null) {
+      // user has no goal
+      return '';
+    }
+  } catch (error) {
+    return '';
+    
   }
 };

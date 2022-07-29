@@ -39,7 +39,6 @@ import { Plan } from './view/Settings/Plan.js';
 import {SelectGoal} from './view/LongtermGoal/selectGoal.js';
 import {WeightGoal} from './view/LongtermGoal/weightGoal.js';
 import {CompletePlan} from './view/LongtermGoal/completePlan.js';
-import {TrackLongTermGoal} from './view/LongtermGoal/trackLongTermGoal.js';
 
 import { ExerciseCustomized } from './view/exerciseCustomizedView.js';
 
@@ -189,7 +188,6 @@ const App = () => {
           <Stack.Group>
             <Stack.Screen name="Welcome" component={Login} />
             <Stack.Screen name="Main Page" component={MainPage} />
-            <Stack.Screen name="Track Long Term Goal" component={TrackLongTermGoal} />
             <Stack.Screen name="Survey" component={UserSurvey} />
             
             <Stack.Screen

@@ -22,27 +22,21 @@ export function WeightGoal({ navigation }) {
                 value = entry.value;
             }
         }));
-        // console.log(value);
+        console.log(value);
         return value; 
     }
 
-    /* Pull user's body metrics */
-    const getBMetric = async () => {
+    //check if today's weight is logged
+    const tryGetTodayWeight = async () => {
         const json = await getBodyMetric();
         setData(json.data);
-    }
-
-    //check if today's weight is logged
-    const tryGetTodayWeight = async() => {
-        // console.log("trygettodayweight");
-        // get today dates
-        // var todayDate = new Date().toISOString().substring(0,10); //2020-07-10 15:00:00.000
+        console.log(data);
         var todayDate = new Date();
         todayDate.setHours(0,0,0,0);
-      
         if (getTodayWeight(todayDate)!=0){
             setStartingWeight(getTodayWeight(todayDate));
-            // console.log(startingWeight);
+            console.log("getting starting weight");
+            console.log(startingWeight);
         }
         else {
             Alert.alert(
@@ -52,23 +46,6 @@ export function WeightGoal({ navigation }) {
             return;
         }
     }
-
-    // React.useEffect(() => {
-    //     navigation.addListener('focus', () => {
-    //         // Reset activityData so event is triggered later
-    //         setData(null);
-    //         getBMetric();
-    //         Promise.resolve(getBMetric())
-    //         .then(() => tryGetTodayWeight());
-    //     });
-    // }, []);
-
-    React.useEffect(() => {
-        getBMetric();
-        if (data !== null){
-            tryGetTodayWeight();
-        }
-    }, []);
 
     // if input startingWeight and targetWeight, in correct format, "weightrecorder"
     const validInput = () => {
@@ -135,11 +112,11 @@ export function WeightGoal({ navigation }) {
 
     return (
         <View style={styles.recorderContainer}>
-            {/* <Text>{"Current weight:"} startingWeight</Text> */}
-            {/* <Button style={styles.button} title='Get Starting/Today Weight' onPress={()=>{
+            <Button style={styles.button} title='Get Starting/Today Weight' onPress={()=>{
                 tryGetTodayWeight();
-            }}></Button> */}
-            <Text>{"Current Weight:"} {startingWeight}</Text>
+            }}></Button>
+            <Text>{"Current weight:"} {startingWeight}</Text>
+            {/* <Text>{"Current Weight:"} {startingWeight}</Text> */}
             <Text>{"Set Target weight(must differ from current weight by at least 2.5 kg)"}</Text>
             <View style={styles.exerciseInputContainer}>
                 <TouchableOpacity

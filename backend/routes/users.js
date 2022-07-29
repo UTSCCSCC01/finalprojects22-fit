@@ -172,6 +172,33 @@ router.put("/:userId", async (req, res) => {
     }
 });
 
+// PUT - Update the user with an additional friend appended
+router.put("/:userId/friend/:fId", async (req, res) => {
+    try {
+        let user = await User.findByIdAndUpdate(
+            req.params.userId,
+            { $push: { friends: req.params.fId } },
+            { new: true },
+        );
+        if (user) {
+            res.status(200).json({
+                status: 200,
+                data: user,
+            });
+        } else {
+            res.status(404).json({
+                status: 404, 
+                message: "User not found/Update cannot be done",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    }
+});
+
 // PUT - Update the user given the id from the Users Collection
 //       by appending a new body_metrics record
 router.put("/:userId/bmetric", async (req, res) => {

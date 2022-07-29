@@ -11,7 +11,7 @@ import {
   ScrollView } from 'react-native';
 import { styles } from '../../style/styles';
 import { useFocusEffect } from '@react-navigation/native';
-import { getUsers, getAllUserFReqs } from '../../controller/Search/searchController';
+import { getUsers, getAllUserFReqs, deleteFreqs, addUserFriend } from '../../controller/Search/searchController';
 import SearchBar from "react-native-dynamic-search-bar";
 
 export default function SearchScreen ({ route, navigation }) {
@@ -26,10 +26,43 @@ export default function SearchScreen ({ route, navigation }) {
     const [loading, setLoading] = useState(false);
     const [searchText, setSearchText] = useState("");
 
+    const confirmFReqs = async (rid, fid) => {
+        try {
+            const res = await addUserFriend(fid);
+            if (res == null) {
+                alert("Adding friend unsuccessful!");
+                return;
+            }
+            const res2 = await deleteFreqs(rid);
+            if (res2 == null) {
+                alert("Processing Friend Request unsuccessful!");
+                return;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const deleteFreq = async (rid) => {
+        try {
+            const res = await deleteFreqs(rid);
+            if (res == null) {
+                alert("Processing Friend Request unsuccessful!");
+                return;
+            }
+            await getFriendReqs();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const getFriendReqs = async () => {
         try {
           const res = await getAllUserFReqs();
-          if (res == null) return;
+          if (res == null) {
+            setFriendReq([]);
+            return;
+          }
           setFriendReq(res.data);
         } catch (error) {
           console.error(error);
@@ -81,10 +114,17 @@ export default function SearchScreen ({ route, navigation }) {
                     <Text style={styles.freqHeader}>{item.from_username}</Text>
                     <View style={{flexDirection: 'row', position: 'absolute', right: 20}}>
                         <TouchableOpacity
+                            onPress={() => {
+                                confirmFReqs(item._id, item.from_user);
+                            }}
                             style={styles.freqConfirmContainer}>
                             <Text style={styles.freqConfirmText}>Confirm</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={() => {
+                                console.log(item._id);
+                                deleteFreq(item._id);
+                            }}
                             style={styles.freqDeleteContainer}>
                             <Text style={styles.freqDeleteText}>Delete</Text>
                         </TouchableOpacity>

@@ -350,4 +350,21 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     color: "green",
   },
+  searchTabTitle: {
+    marginLeft: '12%',
+    marginTop: 5,
+    marginBottom: 10,
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: "left",
+    color: primaryPurple
+  },
+  searchTabSubtitle: {
+    marginLeft: '12%',
+    marginBottom: 5,
+    fontSize: 15,
+    textAlign: "left",
+    color: primaryPurple
+  }
+
 });

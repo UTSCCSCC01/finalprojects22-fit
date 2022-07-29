@@ -7,6 +7,9 @@ let friendRequestSchema = new Schema(
     from_user: {
       type: String,
     },
+    from_username: {
+      type: String,
+    },
     to_user: {
       type: String,
     },

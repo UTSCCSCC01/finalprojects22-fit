@@ -25,8 +25,7 @@ router.get("/list/:userid", async (req, res) => {
         let freq = await fRequest.find({
             "to_user": req.params.userid 
         });
-        console.log(freq);
-        if (freq) {
+        if (freq.length !== 0) {
             res.status(200).json({
                 status: 200,
                 data: freq,

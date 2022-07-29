@@ -30,7 +30,6 @@ export default function SearchScreen ({ route, navigation }) {
         try {
           const res = await getAllUserFReqs();
           if (res == null) return;
-          console.log(res.data)
           setFriendReq(res.data);
         } catch (error) {
           console.error(error);
@@ -78,10 +77,19 @@ export default function SearchScreen ({ route, navigation }) {
     const renderFReqItem = ({item}) => {
         return (
             <View>
-                <Text style={styles.searchTabTitle}>{item.username}</Text>
-                <Text style={styles.searchTabSubtitle}>{item.display_name}</Text>
-                <TouchableOpacity>Confirm</TouchableOpacity>
-                <TouchableOpacity>Delete</TouchableOpacity>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={styles.freqHeader}>{item.from_username}</Text>
+                    <View style={{flexDirection: 'row', position: 'absolute', right: 20}}>
+                        <TouchableOpacity
+                            style={styles.freqConfirmContainer}>
+                            <Text style={styles.freqConfirmText}>Confirm</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.freqDeleteContainer}>
+                            <Text style={styles.freqDeleteText}>Delete</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
     )}
 

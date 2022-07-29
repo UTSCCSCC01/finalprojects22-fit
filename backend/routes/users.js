@@ -69,7 +69,8 @@ router.get("/search/:query", async (req, res) => {
             "$or" :[
                 {"display_name": new RegExp(req.params.query, 'i')},
                 {"username": new RegExp(req.params.query, 'i')}
-            ]}
+            ]}, 
+            { "_id": 1, "display_name": 1, "username": 1 }
         );
         if (user) {
             // user is found

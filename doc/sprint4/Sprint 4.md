@@ -2,7 +2,7 @@
 
 ## Sprint Goal
 
-The goal to finish for this sprint is to finish the user stories FIT-43, FIT-102, FIT-103, FIT-104, FIT-10, to add additional features on top of our base from sprint1 to sprint4
+The goal to finish for this sprint is to finish the user stories FIT-43, FIT-102, FIT-103, FIT-104, FIT-105, to add additional features on top of our base from sprint1 to sprint4
 
 ## Tasks Breakdown
 
@@ -29,16 +29,6 @@ Assigned to: Collin Chan
 - FIT-118 Allow user to modify the components
 - FIT-119 Allow users to access the short term goals' information
 - FIT-120 Create frontend for displaying other users
-
-### User Story: FIT-73 TDEE Calculation
-
-Assigned to: Vincent Liang
-
-Subtasks:
-
-- FIT-99 Calculate TDEE feature
-- FIT-100 Set Daily Caloric Budget
-- FIT-101	Assign proper themes for pages
 
 ### User Story: FIT-105 Workout Plan
 

@@ -32,6 +32,7 @@ import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import { UserProvider } from './context/UserContext';
+import SetShortTerm from './components/SetShortTermGoalComponent';
 
 import { Setting } from './view/Settings/settingView';
 import { OptionalSurvey } from './view/Settings/Survey';
@@ -69,6 +70,22 @@ const App = () => {
           }}/>
       </ProfileStack.Navigator>
     )
+  }
+
+  const Main_Stack = () => {
+    return(
+      <Stack.Navigator
+        screenOptions={{
+        headerStyle: { backgroundColor: '#4E598C' },
+        headerTintColor: '#fff',
+    }}
+        initialRouteName="MainPage">
+        <Stack.Group>
+          <Stack.Screen name="MainPage" component={MainPage} />
+          <Stack.Screen name="Set Short Term" component={SetShortTerm} />
+        </Stack.Group>
+      </Stack.Navigator>
+    );
   }
 
   const Tracking_Stack = () => {
@@ -153,7 +170,7 @@ const App = () => {
         >
           <Tabbar.Screen
             name="MainPage"
-            component={MainPage} />
+            component={Main_Stack} />
           <Tabbar.Screen
             name="ProfileTab"
             component={Profile_Stack}

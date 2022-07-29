@@ -53,4 +53,65 @@ export const styles = StyleSheet.create({
        borderWidth: 1,
        borderColor: 'green',
     },
+<<<<<<< Updated upstream
+=======
+    mainPressable:{
+        backgroundColor:primaryOrange,
+        padding: 10,
+        borderRadius: 6,
+    },
+    subPressable:{
+        backgroundColor:primaryPurple,
+        padding: 10,
+        borderRadius: 6,
+    },
+    textInPressable:{
+        fontSize: 18,
+        textAlign: 'center',
+        color: '#FFFFFF',
+    },
+    primaryOrangeText:{
+        color: primaryOrange
+    },
+    primaryOrangeTextAlt:{
+        color: primaryOrange,
+        maxWidth: 175
+    },
+    breakingLine: {
+        marginVertical: 8,
+        textAlign: 'left',
+        borderBottomColor: '#a0a0a0', 
+        borderBottomWidth: 1, 
+        fontSize:0
+    },
+    mainPageElement:{
+        padding:10,
+        marginVertical:12,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 17
+    },
+    mainPageText:{
+        fontSize:25,
+        fontWeight: 'bold'
+    },
+    grid:{
+        margin:10,
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginHorizontal: "auto",
+    },
+    progressBar:{
+        margin: 10
+    },
+    mainSelectionElement:{
+        minWidth: 180,
+        maxWidth:180,
+        padding:20,
+        marginVertical:12,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 17
+    },
+>>>>>>> Stashed changes
 });

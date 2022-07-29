@@ -22,13 +22,14 @@ router.post("/", async (req, res) => {
 // GET - Fetch all friend requests that are sent to userid in Friend Request Collection
 router.get("/list/:userid", async (req, res) => {
     try {
-        let users = await fRequest.find({
-            to_user: req.params.userid 
+        let freq = await fRequest.find({
+            "to_user": req.params.userid 
         });
-        if (users) {
+        console.log(freq);
+        if (freq) {
             res.status(200).json({
                 status: 200,
-                data: users,
+                data: freq,
             });
         } else {
             res.status(404).json({

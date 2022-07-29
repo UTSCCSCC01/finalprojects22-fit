@@ -11,7 +11,7 @@ import {
   ScrollView } from 'react-native';
 import { styles } from '../../style/styles';
 import { useFocusEffect } from '@react-navigation/native';
-import { getUsers } from '../../controller/Search/searchController';
+import { getUsers, getAllUserFReqs } from '../../controller/Search/searchController';
 import SearchBar from "react-native-dynamic-search-bar";
 
 export default function SearchScreen ({ route, navigation }) {
@@ -25,6 +25,17 @@ export default function SearchScreen ({ route, navigation }) {
     const [friendReq, setFriendReq] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchText, setSearchText] = useState("");
+
+    const getFriendReqs = async () => {
+        try {
+          const res = await getAllUserFReqs();
+          if (res == null) return;
+          console.log(res.data)
+          setFriendReq(res.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
     const clearResults = () => {
         setSearchText("");
@@ -73,6 +84,12 @@ export default function SearchScreen ({ route, navigation }) {
                 <TouchableOpacity>Delete</TouchableOpacity>
             </View>
     )}
+
+    useFocusEffect(
+        React.useCallback(() => {
+          getFriendReqs();
+        }, [])
+    );
     
     return(
         <View style={{ flex: 1, marginTop: 50, justifyContent: 'center' }}>

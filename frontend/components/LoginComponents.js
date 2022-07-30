@@ -200,7 +200,12 @@ class Login extends Component {
             username: username,
             display_name: displayName,
             email: email,
-            password: password
+            password: password,
+            xp: 0,
+            body_metrics: [],
+            bio: "",
+            profile_pic: "",
+            medals: []
         });
     };
 }

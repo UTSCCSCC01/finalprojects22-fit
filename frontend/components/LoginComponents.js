@@ -200,7 +200,8 @@ class Login extends Component {
             username: username,
             display_name: displayName,
             email: email,
-            password: password
+            password: password,
+            friends: []
         });
     };
 }

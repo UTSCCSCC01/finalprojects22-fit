@@ -20,10 +20,8 @@ export default function SearchScreen ({ route, navigation }) {
     const primaryPurple = '#4E598C'
     const secondaryPurple = '#717FC0'
 
-    const [input, setInput] = useState("");
     const [results, setResults] = useState([]);
     const [friendReq, setFriendReq] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [searchText, setSearchText] = useState("");
 
     const confirmFReqs = async (rid, fid) => {
@@ -75,14 +73,11 @@ export default function SearchScreen ({ route, navigation }) {
     }
 
     const searchResults = async (text) => {
-        setLoading(true);
         try {
             const json = await getUsers(text);
             setResults(json.data);
         } catch (error) {
             console.error(error);
-        } finally {
-            setLoading(false)
         }
     }
 
@@ -122,7 +117,6 @@ export default function SearchScreen ({ route, navigation }) {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => {
-                                console.log(item._id);
                                 deleteFreq(item._id);
                             }}
                             style={styles.freqDeleteContainer}>

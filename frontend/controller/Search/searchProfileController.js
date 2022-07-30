@@ -7,3 +7,10 @@ export const getUserDetails = async (userid) => {
     const json = await response.json();
     return json;
 }
+
+export const getUserProfilePicture = async (uri) => {
+    const userId = await retrieveUserId();
+    const response = await fetch(uri);
+    const json = await response.json();
+    return json;
+  }

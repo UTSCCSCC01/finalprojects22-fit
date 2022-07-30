@@ -32,6 +32,7 @@ import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
 
 import SearchScreen from './view/Search/SearchScreen.js';
+import SearchProfile from './view/Search/SearchProfile.js';
 
 import { UserProvider } from './context/UserContext';
 import { CreateExercisePlan } from './view/ExercisePlan/CreateExercisePlan';
@@ -137,6 +138,7 @@ const App = () => {
     return (
       <SearchStack.Navigator>
         <SearchStack.Screen name="Explore" component={SearchScreen} options={{headerShown: false}}/>
+        <SearchStack.Screen name="Profile" component={SearchProfile}/>
       </SearchStack.Navigator>
     )
   }

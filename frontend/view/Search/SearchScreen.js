@@ -5,6 +5,7 @@ import {
   Image, 
   StyleSheet, 
   TouchableOpacity, 
+  TouchableHighlight,
   Text, 
   TextInput,
   View, 
@@ -94,12 +95,21 @@ export default function SearchScreen ({ route, navigation }) {
         );
     };
 
+    const navigateToProfile = (uid) => {
+        navigation.navigate('Profile', {
+            userId: uid,
+            isFriend: false,
+        });
+    }
+
     const renderSearchItem = ({item}) => {
         return (
-            <View>
-                <Text style={styles.searchTabTitle}>{item.username}</Text>
-                <Text style={styles.searchTabSubtitle}>{item.display_name}</Text>
-            </View>
+            <TouchableHighlight onPress={() => navigateToProfile(item._id)}>
+                <View>
+                    <Text style={styles.searchTabTitle}>{item.username}</Text>
+                    <Text style={styles.searchTabSubtitle}>{item.display_name}</Text>
+                </View>
+            </TouchableHighlight>
     )}
 
     const renderFReqItem = ({item}) => {

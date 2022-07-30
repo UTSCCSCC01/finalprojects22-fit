@@ -14,7 +14,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { getUserDetails, getUserProfilePicture } from '../../controller/Search/searchProfileController';
 import { medalDict } from '../../utility/constants';
 
-export default function ProfileScreen ({ route, navigation }) {
+export default function SearchProfile ({ route, navigation }) {
 
   const INITIAL_USER = {
     _id: "",
@@ -44,6 +44,8 @@ export default function ProfileScreen ({ route, navigation }) {
   const getUser = async () => {
     try {
       const json = await getUserDetails(userId);
+      setUser(json.data)
+      
       if (json.data.profile_pic !== undefined) {
         const pImg_link = json.data.profile_pic;
         if (pImg_link !== '') {
@@ -51,10 +53,34 @@ export default function ProfileScreen ({ route, navigation }) {
           setImage(pic.img_data);
         }
       }
-      setUser(json.data)
+
+      if(!user.hasOwnProperty('medals')) {
+        let u1 = user;
+        u1.medals = [];
+        setUser(u1);
+      }
+      if(!user.hasOwnProperty('profile_pic')) {
+        let u1 = user;
+        u1.profile_pic = "";
+        setUser(u1);
+      }
+      if(!user.hasOwnProperty('xp')) {
+        let u1 = user;
+        u1.xp = 0;
+        setUser(u1);
+        setUserLvl(1);
+        setXpProgress(0);
+      } else {
+        setUserLvl(Math.floor(json.data.xp / 10000) + 1);
+        setXpProgress(json.data.xp % 10000 / 10000);
+      }
+      if(!user.hasOwnProperty('bio')) {
+        let u1 = user;
+        u1.bio = "";
+        setUser(u1);
+      }
       navigation.setOptions({ title: json.data.username });
-      setUserLvl(Math.floor(json.data.xp / 10000) + 1);
-      setXpProgress(json.data.xp % 10000 / 10000);
+      console.log(user);
     } catch (error) {
       console.error(error);
     } finally {
@@ -156,7 +182,7 @@ export default function ProfileScreen ({ route, navigation }) {
               }
             </View>
             
-            {/* Medals Section */}
+            {/* Medals Section 
             <View style={{position: 'absolute', right: 30, flexDirection: 'row'}}>
               { user.medals.slice(0,3).map(medal => {
                 const medalSrc = medalDict.find(m => m.name === medal).src;
@@ -176,7 +202,7 @@ export default function ProfileScreen ({ route, navigation }) {
                   </View>
                 )
               })}
-              </View>
+              </View>*/}
             <View style={styles.level}>
               <Text style={{color: primaryPurple, fontWeight: "bold", fontSize: 12}}>{userLvl}</Text>
             </View>
@@ -203,7 +229,7 @@ export default function ProfileScreen ({ route, navigation }) {
                 }}
                 style={styles.appButtonContainer}
               >
-                <Text style={styles.appButtonText}>Edit Profile</Text>
+                <Text style={styles.appButtonText}>+ Add Friend</Text>
               </TouchableOpacity>
 
               {/* Bio Section */}

@@ -63,37 +63,6 @@ router.get("/:userId", async (req, res) => {
     } 
 });
 
-// GET - Fetch users based on a string that is in user's display name/ first name/ last name/ username from the Users Collection
-router.get("/search/:query", async (req, res) => {
-    try {
-        let user = await User.find({
-            "$or" :[
-                {"display_name": new RegExp(req.params.query, 'i')},
-                {"username": new RegExp(req.params.query, 'i')}
-            ]}, 
-            { "_id": 1, "display_name": 1, "username": 1 }
-        );
-        if (user) {
-            // user is found
-            res.status(200).json({
-                status: 200,
-                data: user,
-            });
-        } else {
-            // user cannot be found in db
-            res.status(404).json({
-                status: 404,
-                message: "User not found",
-            });
-        }
-    } catch (err) {
-        res.status(400).json({
-            status: 400,
-            message: err.message,
-        });
-    } 
-});
-
 // GET - Fetch list of body metric records of the user given the id
 router.get("/:userId/bmetric", async (req, res) => {
     try {
@@ -187,33 +156,6 @@ router.put("/:userId", async (req, res) => {
         } else {
             res.status(400).json({
                 status: 400, 
-                message: "User not found/Update cannot be done",
-            });
-        }
-    } catch (err) {
-        res.status(400).json({
-            status: 400,
-            message: err.message,
-        });
-    }
-});
-
-// PUT - Update the user with an additional friend appended
-router.put("/:userId/friend/:fId", async (req, res) => {
-    try {
-        let user = await User.findByIdAndUpdate(
-            req.params.userId,
-            { $push: { friends: req.params.fId } },
-            { new: true },
-        );
-        if (user) {
-            res.status(200).json({
-                status: 200,
-                data: user,
-            });
-        } else {
-            res.status(404).json({
-                status: 404, 
                 message: "User not found/Update cannot be done",
             });
         }

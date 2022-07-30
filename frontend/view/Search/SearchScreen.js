@@ -12,7 +12,7 @@ import {
   ScrollView } from 'react-native';
 import { styles } from '../../style/styles';
 import { useFocusEffect } from '@react-navigation/native';
-import { getUsers, getAllUserFReqs, deleteFreqs, addUserFriend } from '../../controller/Search/searchController';
+import { getUsers, getFReq, getCurrUser, getAllUserFReqs, deleteFreqs, addUserFriend } from '../../controller/Search/searchController';
 import SearchBar from "react-native-dynamic-search-bar";
 
 export default function SearchScreen ({ route, navigation }) {
@@ -21,9 +21,11 @@ export default function SearchScreen ({ route, navigation }) {
     const primaryPurple = '#4E598C'
     const secondaryPurple = '#717FC0'
 
+    const [friends, setFriends] = useState([]);
     const [results, setResults] = useState([]);
     const [friendReq, setFriendReq] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const [currentUsername, setCurrentUsername] = useState("");
 
     const confirmFReqs = async (rid, fid) => {
         try {
@@ -55,14 +57,16 @@ export default function SearchScreen ({ route, navigation }) {
         }
     }
 
-    const getFriendReqs = async () => {
+    const getData = async () => {
         try {
           const res = await getAllUserFReqs();
-          if (res == null) {
-            setFriendReq([]);
-            return;
+          if (res !== null) {
+            setFriendReq(res.data);
           }
-          setFriendReq(res.data);
+
+          const res2 = await getCurrUser();
+          if (res2.data.hasOwnProperty("friends")) setFriends(res2.data.friends);
+          if (res2.data.hasOwnProperty("username")) setCurrentUsername(res2.data.username);
         } catch (error) {
           console.error(error);
         }
@@ -76,7 +80,8 @@ export default function SearchScreen ({ route, navigation }) {
     const searchResults = async (text) => {
         try {
             const json = await getUsers(text);
-            setResults(json.data);
+            setResults(json);
+            console.log(json)
         } catch (error) {
             console.error(error);
         }
@@ -95,10 +100,15 @@ export default function SearchScreen ({ route, navigation }) {
         );
     };
 
-    const navigateToProfile = (uid) => {
+    const navigateToProfile = async (uid) => {
+        const isF = friends.some(f => f === uid );
+        const reqSent = await getFReq(uid);
+        const rSent = reqSent === null ? false : true;
         navigation.navigate('Profile', {
             userId: uid,
-            isFriend: false,
+            isFriend: isF,
+            reqSent: rSent,
+            currUsername: currentUsername,
         });
     }
 
@@ -139,7 +149,7 @@ export default function SearchScreen ({ route, navigation }) {
 
     useFocusEffect(
         React.useCallback(() => {
-          getFriendReqs();
+          getData();
         }, [])
     );
     
@@ -157,12 +167,14 @@ export default function SearchScreen ({ route, navigation }) {
             ?
                 <View>
                     <Text style={styles.header2}>Pending Friend Requests</Text>
-                    <FlatList
-                        data={friendReq}          
-                        renderItem={renderFReqItem}          
-                        keyExtractor={item => item._id}  
-                        ItemSeparatorComponent={renderSeparator}                         
-                    />
+                    {friendReq.length !== 0
+                    ?   <FlatList
+                            data={friendReq}          
+                            renderItem={renderFReqItem}          
+                            keyExtractor={item => item._id}  
+                            ItemSeparatorComponent={renderSeparator}                         
+                        />
+                    :   <Text style={styles.noFReq}>~No Pending Friend Requests~</Text>}
                 </View> 
             : 
             <View> 

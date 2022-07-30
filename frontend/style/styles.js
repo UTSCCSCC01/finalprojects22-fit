@@ -403,6 +403,11 @@ export const styles = StyleSheet.create({
     color: primaryPurple,
     fontSize: 20,
     padding: 15
+  }, 
+  noFReq: {
+    color: 'gray',
+    fontSize: 20,
+    padding: 10,
+    textAlign: 'center'
   }
-
 });

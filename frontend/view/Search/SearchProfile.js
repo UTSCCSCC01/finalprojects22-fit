@@ -11,7 +11,7 @@ import {
   ScrollView } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { useFocusEffect } from '@react-navigation/native';
-import { getUserDetails, getUserProfilePicture } from '../../controller/Search/searchProfileController';
+import { getUserDetails, getUserProfilePicture, sendFriendRequest } from '../../controller/Search/searchProfileController';
 import { medalDict } from '../../utility/constants';
 
 export default function SearchProfile ({ route, navigation }) {
@@ -25,36 +25,20 @@ export default function SearchProfile ({ route, navigation }) {
     bio: "",
   }
 
-  const INITIAL_WEIGHT = {
-    data: [],
-    labels: [],
-  }
-
   const primaryOrange = '#FF8C42'
   const primaryPurple = '#4E598C'
   const secondaryPurple = '#717FC0'
 
-  const { userId } = route.params;
+  const { userId, isFriend, reqSent, currUsername } = route.params;
   const [isLoading, setLoading] = useState(true);
   const [user, setUser] = useState(INITIAL_USER);
   const [userLvl, setUserLvl] = useState(0);
   const [xpProgress, setXpProgress] = useState(0);
   const [image, setImage] = useState('');
+  const [reqIsSent, setReqIsSent] = useState(reqSent);
 
-  const getUser = async () => {
-    try {
-      const json = await getUserDetails(userId);
-      setUser(json.data)
-      
-      if (json.data.profile_pic !== undefined) {
-        const pImg_link = json.data.profile_pic;
-        if (pImg_link !== '') {
-          const pic = await getUserProfilePicture(pImg_link);
-          setImage(pic.img_data);
-        }
-      }
-
-      if(!user.hasOwnProperty('medals')) {
+  useEffect(() => {
+    if(!user.hasOwnProperty('medals')) {
         let u1 = user;
         u1.medals = [];
         setUser(u1);
@@ -70,21 +54,42 @@ export default function SearchProfile ({ route, navigation }) {
         setUser(u1);
         setUserLvl(1);
         setXpProgress(0);
-      } else {
-        setUserLvl(Math.floor(json.data.xp / 10000) + 1);
-        setXpProgress(json.data.xp % 10000 / 10000);
       }
       if(!user.hasOwnProperty('bio')) {
         let u1 = user;
         u1.bio = "";
         setUser(u1);
       }
+  }, [user]);
+
+  const getUser = async () => {
+    try {
+      const json = await getUserDetails(userId);
+      setUser(json.data)
+      
+      //if (json.data.profile_pic !== undefined) {
+      //  const pImg_link = json.data.profile_pic;
+      //  if (pImg_link !== '') {
+      //    const pic = await getUserProfilePicture(pImg_link);
+      //    setImage(pic.img_data);
+      //  }
+      //}
       navigation.setOptions({ title: json.data.username });
-      console.log(user);
+      setUserLvl(Math.floor(json.data.xp / 10000) + 1);
+      setXpProgress(json.data.xp % 10000 / 10000);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleSendFReq = async () => {
+    try {
+        const json = await sendFriendRequest(userId, currUsername);
+        setReqIsSent(true);
+    } catch (error) {
+        console.log(error)
     }
   }
 
@@ -95,6 +100,13 @@ export default function SearchProfile ({ route, navigation }) {
   );
 
   const styles = StyleSheet.create({
+    disabledAppButtonContainer: {
+        borderWidth: 2,
+        borderColor: primaryOrange,
+        borderRadius: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+    },
     appButtonContainer: {
       backgroundColor: primaryOrange,
       borderRadius: 15,
@@ -117,6 +129,12 @@ export default function SearchProfile ({ route, navigation }) {
       color: "#fff",
       fontWeight: "bold",
       alignSelf: "center",
+    },
+    disabledAppbuttonText: {
+        fontSize: 15,
+        color: primaryOrange,
+        fontWeight: "bold",
+        alignSelf: "center",
     },
     displayText: {
       fontSize: 15,
@@ -149,15 +167,14 @@ export default function SearchProfile ({ route, navigation }) {
       alignItems:"center"
     }
   });
-
   return (
     <ScrollView>
       <View style={{ paddingTop: 20 }}>
         {isLoading ? <ActivityIndicator/> :(
           <View>
             <View style={styles.pImg}>
-              {
-                image === undefined || image === '' ? 
+              {/*{
+                image === undefined || image === '' ? */}
                   <Image
                   source={require('../../assets/default_p_img.png')}
                   style={{
@@ -168,7 +185,7 @@ export default function SearchProfile ({ route, navigation }) {
                     borderWidth: 3,
                     borderColor: primaryPurple,
                   }} /> 
-                  : 
+                  {/*}: 
                   <Image
                     source={{uri: 'data:image/png;base64,'.concat(image) }}
                     style={{
@@ -179,7 +196,7 @@ export default function SearchProfile ({ route, navigation }) {
                       borderWidth: 3,
                       borderColor: primaryPurple,
                     }} />
-              }
+              }*/}
             </View>
             
             {/* Medals Section 
@@ -220,17 +237,23 @@ export default function SearchProfile ({ route, navigation }) {
               </View>
             </View>
             <View style={{paddingTop: 20, paddingLeft: 30, paddingRight: 30,}}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('Edit Profile', { 
-                    data: user,
-                    image: image
-                  });
-                }}
-                style={styles.appButtonContainer}
-              >
-                <Text style={styles.appButtonText}>+ Add Friend</Text>
-              </TouchableOpacity>
+                { (isFriend || reqIsSent)
+                ? <View
+                    style={styles.disabledAppButtonContainer}
+                    >
+                        { isFriend ?
+                        <Text style={styles.disabledAppbuttonText}>Friends</Text>
+                        : 
+                        <Text style={styles.disabledAppbuttonText}>Request Sent</Text>}
+                </View>
+                : <TouchableOpacity
+                    onPress={() => {
+                        handleSendFReq(userId);
+                    }}
+                    style={styles.appButtonContainer}
+                >
+                    <Text style={styles.appButtonText}>+ Add Friend</Text>
+                </TouchableOpacity>}
 
               {/* Bio Section */}
               <View style={{paddingTop: 20}}>

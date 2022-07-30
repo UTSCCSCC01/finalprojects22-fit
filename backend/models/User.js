@@ -56,6 +56,9 @@ let userSchema = new Schema(
     workout_plan: {
       type: mongoose.ObjectId, default: null,
     },
+    friends: {
+      type: [String]
+    },
   },
   { timestamps: true }
 );

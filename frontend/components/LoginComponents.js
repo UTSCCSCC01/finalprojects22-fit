@@ -205,7 +205,8 @@ class Login extends Component {
             body_metrics: [],
             bio: "",
             profile_pic: "",
-            medals: []
+            medals: [],
+            friends: []
         });
     };
 }

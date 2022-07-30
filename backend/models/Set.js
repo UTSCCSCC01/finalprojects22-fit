@@ -19,6 +19,9 @@ let setScheme = new Schema(
   second_value: {
     type: Number,
   },
+  completed: {
+    type: Boolean, default: true,
+  },
   date: {
     type: Date,
   }

@@ -1,11 +1,15 @@
 const express = require("express");
-const Exercise = require("../models/Exercises");
+const CustomizedExercise = require("../models/CustomizedExercises");
 const router = express.Router();
 
-// GET - Fetch all exercises from the exercises Collection
-router.get("/list", async (req, res) => {
+// GET - Fetch all customized exercises of user userId
+router.get("/:userId/list", async (req, res) => {
     try {
-        let exercises = await Exercise.find();
+        let exercises = await CustomizedExercise.find(
+            {
+                userId: {$regex: req.params.userId},
+            }
+        );
         res.status(200).json({
             status: 200,
             data: exercises,
@@ -18,10 +22,12 @@ router.get("/list", async (req, res) => {
     }
 });
 
-// GET - Fetch the exercises given the muscle group
-router.get("/Groups/:MuscleGroup", async (req, res) => {
+// GET - Fetch customized exercises of user userId given the muscle group
+router.get("/:userId/Groups/:MuscleGroup", async (req, res) => {
     try {
-        let exercises = await Exercise.find({
+        let exercises = await CustomizedExercise.find({
+            // userId
+          userId: {$regex: req.params.userId},
           MuscleGroup: { $regex: req.params.MuscleGroup},
         });
         if (exercises) {
@@ -45,10 +51,11 @@ router.get("/Groups/:MuscleGroup", async (req, res) => {
     } 
 });
 
-// GET - Fetch the exercises give the exercise name
-router.get("/Search/:ExerciseName", async (req, res) => {
+// GET - Fetch the customized exercise give the exercise name
+router.get("/:userId/Search/:ExerciseName", async (req, res) => {
   try {
-      let exercises = await Exercise.find({
+      let exercises = await CustomizedExercise.find({
+        userId: {$regex: req.params.userId},
         ExerciseName: { $regex: req.params.ExerciseName},
       });
       if (exercises) {
@@ -72,31 +79,21 @@ router.get("/Search/:ExerciseName", async (req, res) => {
   } 
 });
 
-// GET - Fetch the exercises given the exercise ID
-router.get("/id/:exerciseId", async (req, res) => {
+// POST - Creates new object in the CustomizedExercises Collection
+router.post("/", async (req, res) => {
     try {
-        let exercises = await Exercise.findOne({
-          _id: req.params.exerciseId,
+        let set = new CustomizedExercise(req.body);
+        post = await set.save();
+        res.status(200).json({
+            status: 200,
+            data: post,
         });
-        if (exercises) {
-            // exercises are found
-            res.status(200).json({
-                status: 200,
-                data: exercises,
-            });
-        } else {
-            // user cannot be found in db
-            res.status(400).json({
-                status: 400,
-                message: "no exercises found",
-            });
-        }
     } catch (err) {
         res.status(400).json({
             status: 400,
             message: err.message,
         });
-    } 
-  });
+    }
+});
 
 module.exports = router;

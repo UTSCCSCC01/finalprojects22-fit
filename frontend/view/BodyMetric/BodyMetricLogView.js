@@ -4,7 +4,7 @@ import { styles } from '../../style/styles';
 import { cleanString } from '../../utility/format.js';
 import { retrieveUserId } from '../../utility/dataHandler.js';
 import { getBodyMetric } from '../../controller/BodyMetric/bodyMetricLogController' ;
-import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/userActivityController';
+import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/UserActivity/userActivityController';
 import moment from 'moment';
 
 export function BodyMetricLog({ navigation, route }) {

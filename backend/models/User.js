@@ -53,6 +53,9 @@ let userSchema = new Schema(
     medals: {
       type: [String],
     }
+    workout_plan: {
+      type: mongoose.ObjectId, default: null,
+    },
   },
   { timestamps: true }
 );

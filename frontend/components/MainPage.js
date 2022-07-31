@@ -111,14 +111,30 @@ class MainPage extends Component{
     ProgressList = ()=>{
         //Returns the progress list. Mock data by now and awaits for further implementation
         return(           
-                <View>
-                    <Text>700 calories to burn</Text>
-                    <Text>800L water to go</Text>
-                    <Text>2km to run</Text>
-                    <Text>5 push-ups to do</Text>
+            <View style={styles.mainPageElement}>
+                <View style={styles.grid}>
+                    {
+                        this.state.progress.map((exercise)=>{
+                            return(
+                                <View style={styles.progressBar} key={exercise.exerciseName}>
+                                    <CircularProgress
+                                    activeStrokeColor = '#FF8C42'
+                                    radius={70}
+                                    progressValueFontSize={15}
+                                    value={exercise.metric}
+                                    maxValue={exercise.goal}
+                                    valueSuffix={exercise.exerciseName+' to go'}/>
+                                </View>
+                                
+                                // <Text>{exercise.metric}{exercise.exerciseName} to go</Text>
+                            )
+                        })
+                    }
                 </View>
-            
-        );
+                
+            </View>
+        
+    );
         
         
     }
@@ -146,7 +162,8 @@ class MainPage extends Component{
         }
 
         return(
-            <View>
+            <View style={styles.mainPageElement}>
+                <Pressable onPress={()=>{updateNeedUpDate(0)}}><Text>Refresh</Text></Pressable>
                 {this.state.dataRetrieved == 1? 
                     this.state.goals != null ?
                     <View style={styles.grid}> 
@@ -164,7 +181,7 @@ class MainPage extends Component{
                                     showProgressValue={false}/>
                             </Pressable>
                         </View>)})}
-                    </View> : <View style={styles.mainPageElement}><Text style={styles.title}>No goals now. Add your goal right now!</Text></View>
+                    </View> : <Text style={styles.title}>No goals now. Add your goal right now!</Text>
                      : <Text>Loading goals...</Text>}
             </View>
         );

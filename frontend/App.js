@@ -30,6 +30,7 @@ import { FoodLog } from './view/FoodLog';
 
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
+import SetShortTerm from './components/SetShortTermGoalComponent';
 
 import { UserProvider } from './context/UserContext';
 
@@ -65,6 +66,22 @@ const App = () => {
     )
   }
 
+  const Main_Stack = () => {
+    return(
+      <Stack.Navigator
+        screenOptions={{
+        headerStyle: { backgroundColor: '#4E598C' },
+        headerTintColor: '#fff',
+    }}
+        initialRouteName="MainPage">
+        <Stack.Group>
+          <Stack.Screen name="MainPage" component={MainPage} />
+          <Stack.Screen name="Set Short Term" component={SetShortTerm} />
+        </Stack.Group>
+      </Stack.Navigator>
+    );
+  }
+
   const Tracking_Stack = () => {
     return (
       <Stack.Navigator
@@ -83,6 +100,7 @@ const App = () => {
           <Stack.Screen name="Select Exercise Group" component={ExerciseGroupSelect} />
           <Stack.Screen name="Select Exercise" component={ExerciseSelect} />
           <Stack.Screen name="Record Exercise" component={ExerciseRecorder} />
+          <Stack.Screen name="Create Exercise" component={ExerciseCustomized} />
         </Stack.Group>
         <Stack.Group>
           <Stack.Screen name="Food Log" component={FoodLog} />
@@ -98,6 +116,22 @@ const App = () => {
     )
   }
 
+  const Setting_Stack = () => {
+    return (
+      <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: '#4E598C' },
+            headerTintColor: '#fff',
+        }}
+        initialRouteName="Setting"
+      >
+        <Stack.Screen name="Setting" component={Setting} />
+        <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
+        <Stack.Screen name ="Plan" component = {Plan} /> 
+        <Stack.Screen name="Color Theme" component={ColorTheme} />
+      </Stack.Navigator>
+    )
+  }
   const Tabbar_Stack = () => {
     return (
       <Tabbar.Navigator
@@ -112,6 +146,8 @@ const App = () => {
                 iconName = focused ? 'account-circle' : 'account-circle';
               } else if (route.name === 'TrackingStack') {
                 iconName = focused ? 'calendar-today' : 'calendar-today';
+              } else if (route.name ==='SettingStack') {
+                iconName = focused ? 'settings' : 'settings';
               }
               return <MaterialIcons name={iconName} size={35} color={color} />;
             },
@@ -128,7 +164,7 @@ const App = () => {
         >
           <Tabbar.Screen
             name="MainPage"
-            component={MainPage} />
+            component={Main_Stack} />
           <Tabbar.Screen
             name="ProfileTab"
             component={Profile_Stack}
@@ -136,6 +172,11 @@ const App = () => {
           <Tabbar.Screen
             name="TrackingStack"
             component={Tracking_Stack}
+            options={{headerShown: false}}
+            />
+            <Tabbar.Screen
+            name="SettingStack"
+            component={Setting_Stack}
             options={{headerShown: false}}
             />
       </Tabbar.Navigator>
@@ -156,6 +197,7 @@ const App = () => {
             <Stack.Screen name="Welcome" component={Login} />
             <Stack.Screen name="Main Page" component={MainPage} />
             <Stack.Screen name="Survey" component={UserSurvey} />
+            
             <Stack.Screen
               name="Main TabBar"
               component={Tabbar_Stack}

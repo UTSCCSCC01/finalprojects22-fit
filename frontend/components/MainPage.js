@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,useState } from 'react';
 import { Text, View, Button, ScrollView, Pressable} from 'react-native';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
@@ -66,10 +66,10 @@ class MainPage extends Component{
                 margin: 5
             }}>
                 <this.WelcomeText/>
-                {this.progressList()}
+                <this.ProgressList/>
                 <this.TrackMetrics/>
                 <Text style={styles.mainPageText}>Daily Goals</Text>
-                {this.dailyGoalList()}
+                <this.DailyGoalList/>
                 <Text style={styles.mainPageText}>Long Term Goals</Text>
                 {this.longTermGoalList()}       
             </ScrollView>
@@ -91,7 +91,7 @@ class MainPage extends Component{
                 <View style={styles.grid}>
                     <Pressable
                         onPress={()=>{
-                            this.props.navigation.navigate('TrackingStack')
+                            this.props.navigation.navigate('Set Short Term')
                         }}
                         >
                         <CircularProgress
@@ -101,7 +101,6 @@ class MainPage extends Component{
                             maxValue={10}
                             title={'+ Add metrics'}
                             showProgressValue={false}/>
-                        <Text style={styles.primaryOrangeText}>1000 xp</Text>
                     </Pressable>
                 </View>
                 
@@ -109,30 +108,14 @@ class MainPage extends Component{
         )
     }
 
-    progressList(){
+    ProgressList = ()=>{
         //Returns the progress list. Mock data by now and awaits for further implementation
         return(           
-                <View style={styles.mainPageElement}>
-                    <View style={styles.grid}>
-                        {
-                            this.state.progress.map((exercise)=>{
-                                return(
-                                    <View style={styles.progressBar} key={exercise.exerciseName}>
-                                        <CircularProgress
-                                        activeStrokeColor = '#FF8C42'
-                                        radius={70}
-                                        progressValueFontSize={15}
-                                        value={exercise.metric}
-                                        maxValue={exercise.goal}
-                                        valueSuffix={exercise.exerciseName+' to go'}/>
-                                    </View>
-                                    
-                                    // <Text>{exercise.metric}{exercise.exerciseName} to go</Text>
-                                )
-                            })
-                        }
-                    </View>
-                    
+                <View>
+                    <Text>700 calories to burn</Text>
+                    <Text>800L water to go</Text>
+                    <Text>2km to run</Text>
+                    <Text>5 push-ups to do</Text>
                 </View>
             
         );
@@ -140,39 +123,52 @@ class MainPage extends Component{
         
     }
 
-    dailyGoalList(){
+    DailyGoalList = ()=>{
         //Returns the daily goal list. Mock data by now and awaits for further implementation
+        const [needUpDate, updateNeedUpDate] = useState(0)
+        const [id, updateId] = useState('')
+
+
+        const api = axios.create({
+            baseURL: baseURL
+        })
+        if(needUpDate != 1){
+            api.get('/shorttermgoals/'+ this.context).then((res) => {
+                if(res == null){
+                    this.setState({goals: null})
+                }else{
+                    this.setState({goals: res.data.data})
+                }
+                console.log(this.state.goals)
+                this.setState({dataRetrieved: 1})
+                updateNeedUpDate(1)
+            })
+        }
+
         return(
-            <View style={styles.mainPageElement}>
-                    <View style={styles.grid}>
-                        {
-                            this.state.goal.map((exercise)=>{
-                                return(
-                                    <View style={styles.progressBar} key={exercise.exerciseName}>
-                                        <CircularProgress
-                                        activeStrokeColor = '#FF8C42'
-                                        radius={70}
-                                        progressValueFontSize={15}
-                                        value={exercise.metric}
-                                        maxValue={exercise.goal}
-                                        valueSuffix={exercise.exerciseName+' to go'}/>
-                                        <Text style={styles.primaryOrangeText}>1000 xp</Text>
-                                    </View>
-                                    
-                                    // <Text>{exercise.metric}{exercise.exerciseName} to go</Text>
-                                )
-                            })
-                        }
-                    </View>
-                    
-                </View>
-            // <View style={styles.mainPageElement}>
-            //     <Text>Do 3/5 push-ups</Text>
-            //     <Text>drink 0.6/2L water</Text>
-            // </View>
+            <View>
+                {this.state.dataRetrieved == 1? 
+                    this.state.goals != null ?
+                    <View style={styles.grid}> 
+                        {this.state.goals.map((item)=>{return(
+                        <View style={styles.mainSelectionElement} key={item._id}>
+                            <Text style={styles.primaryOrangeTextAlt}>{item.description}</Text>
+                            <Pressable
+                                onPress={()=>{updateId(item._id)}}>
+                                <CircularProgress
+                                    activeStrokeColor = '#FF8C42'
+                                    radius={70}
+                                    titleFontSize={15}
+                                    maxValue={10}
+                                    title={item.xp+ "XP"}
+                                    showProgressValue={false}/>
+                            </Pressable>
+                        </View>)})}
+                    </View> : <View style={styles.mainPageElement}><Text style={styles.title}>No goals now. Add your goal right now!</Text></View>
+                     : <Text>Loading goals...</Text>}
+            </View>
         );
-        
-    }
+     }
 
     longTermGoalList(){
         //Returns the long term goal list. Mock data by now and awaits for further implementation

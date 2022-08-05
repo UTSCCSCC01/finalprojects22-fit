@@ -89,6 +89,7 @@ class Login extends Component {
         )
     }   
 
+
     GreetingInterface = () => {
         return(
             <View style={styles.mainInterface}>
@@ -121,7 +122,7 @@ class Login extends Component {
                             style={styles.mainPressable}
                             onPress={()=>(this.setState({
                                 checkIn: 1,
-                                login: 0
+                                register: 0
                             }))}>
                                 <Text style={styles.textInPressable}>Login</Text>
                             </Pressable>
@@ -130,7 +131,7 @@ class Login extends Component {
                             style={styles.subPressable}
                             onPress={()=>(this.setState({
                                 checkIn: 1,
-                                login: 1
+                                register: 1
                             }))}>
                                 <Text style={styles.textInPressable}>Register</Text>
                             </Pressable>
@@ -163,7 +164,11 @@ class Login extends Component {
                 <TextInput 
                     style={styles.textInput}
                     onChangeText={(text)=>{
-                    setEmail(text);}} placeholder='Enter your Email address'/>
+                        setEmail(text);
+                        var loginUserName = text;
+                        this.setState({
+                            email: loginUserName
+                        })}} placeholder='Enter your Email address'/>
                 <TextInput 
                     style={styles.textInput}
                     onChangeText={(text)=>{
@@ -182,7 +187,13 @@ class Login extends Component {
                     <Text style={styles.breakingLine}></Text>
                     <Pressable 
                         style={styles.subPressable}
-                        onPress={()=>this.registered(username, email, password, displayName)}>
+                        onPress={()=>{
+                            var mail = this.state.email
+                            this.setState({
+                                login : mail
+                            })
+                            this.registered(username, email, password, displayName)
+                            }}>
                             <Text style={styles.textInPressable}>Register</Text>
                         </Pressable>
                 </View>
@@ -206,6 +217,7 @@ class Login extends Component {
                                         email: loginUserName
                                     })}} placeholder='Email'/>
                                 <TextInput 
+                                    secureTextEntry={true}
                                     style={styles.textInput}
                                     onChangeText={(text)=>{
                                     var loginPassword = text;                              
@@ -233,6 +245,7 @@ class Login extends Component {
                     <View>
                         <Text style={styles.title}>Register</Text>
                         <this.TextHandler/>
+                        <SetContextComp content = {this.state.login} indicator = {true}/>
                     </View>
                 );
         }
@@ -293,6 +306,7 @@ class Login extends Component {
         const [loginCred, setLoginCred] = useState(this.context);
         const [found, setFound] = useState(false);
 
+
         //useUserContext();
         ///useUpdateUserContext();
         useEffect(()=>{
@@ -311,7 +325,6 @@ class Login extends Component {
                                 if(res.data.data[i].password == this.state.password){
                                     loginIndicator = 1;
                                     this.setState({login: res.data.data[i].email});
-                                    console.log("found yeah\n"+ res.data.data[i].email);
                                     setFound(true);                                    
                                     setFound(false);
                                     this.props.navigation.navigate('Main TabBar');
@@ -321,8 +334,6 @@ class Login extends Component {
                         }
                         if(loginIndicator == 0){
                             alert('Email or password invalid!');
-                        }else{
-                            //console.log("cnmshould work")
                         }
                     } 
                 })
@@ -367,8 +378,14 @@ class Login extends Component {
                         if(!/[A-Z]/.test(password)){
                             alert("Password must contain 1 uppercase letter")
                         }else{
+                            
                             this.post(username, email, password, displayName);
+                            console.log("this is"+this.state.login+" "+email);
                             this.props.navigation.navigate('Survey');
+                            
+                                
+                            
+                            
                         }
                     }
                 }   

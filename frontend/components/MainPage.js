@@ -99,7 +99,7 @@ class MainPage extends Component{
                             radius={70}
                             titleFontSize={15}
                             maxValue={10}
-                            title={'+ Add metrics'}
+                            title={'+ Add Goal'}
                             showProgressValue={false}/>
                     </Pressable>
                 </View>

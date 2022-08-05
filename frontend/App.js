@@ -164,7 +164,8 @@ const App = () => {
         >
           <Tabbar.Screen
             name="MainPage"
-            component={Main_Stack} />
+            component={Main_Stack} 
+            options={{headerShown: false}}/>
           <Tabbar.Screen
             name="ProfileTab"
             component={Profile_Stack}

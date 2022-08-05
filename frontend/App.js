@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { LogBox  } from 'react-native';
 import Login from './components/LoginComponents';
+LogBox.ignoreAllLogs();
 import { styles, lightGray } from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -30,6 +31,7 @@ import { FoodLog } from './view/FoodLog/FoodLog';
 
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
+import SetShortTerm from './components/SetShortTermGoalComponent';
 
 import { UserProvider } from './context/UserContext';
 import { CreateExercisePlan } from './view/ExercisePlan/CreateExercisePlan';
@@ -72,6 +74,22 @@ const App = () => {
           }}/>
       </ProfileStack.Navigator>
     )
+  }
+
+  const Main_Stack = () => {
+    return(
+      <Stack.Navigator
+        screenOptions={{
+        headerStyle: { backgroundColor: '#4E598C' },
+        headerTintColor: '#fff',
+    }}
+        initialRouteName="MainPage">
+        <Stack.Group>
+          <Stack.Screen name="Home" component={MainPage} />
+          <Stack.Screen name="Set Short Term" component={SetShortTerm} />
+        </Stack.Group>
+      </Stack.Navigator>
+    );
   }
 
   const Tracking_Stack = () => {
@@ -161,7 +179,8 @@ const App = () => {
         >
           <Tabbar.Screen
             name="MainPage"
-            component={MainPage} />
+            component={Main_Stack} 
+            options={{headerShown: false}}/>
           <Tabbar.Screen
             name="TrackingStack"
             component={Tracking_Stack}

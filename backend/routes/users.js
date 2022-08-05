@@ -112,6 +112,11 @@ router.put("/:userId/img", upload.single("file"), async (req, res) => {
                 message: "User not found/Update cannot be done"
             })
         }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
     }
 });
 

@@ -2,7 +2,7 @@ import React, { Component, useContext, useEffect, useState } from 'react';
 import { Text, View, TextInput, Button, Pressable, Image } from 'react-native';
 import { styles } from '../style';
 import axios from 'axios';
-const baseURL = 'http://10.0.2.2:3000'
+import { baseURI } from '../utility/constants.js';
 import {storeUserId} from "../utility/dataHandler"
 import { UserContext, UpdateUserContext } from '../context/UserContext';
 import { LogBox } from 'react-native';
@@ -316,7 +316,7 @@ class Login extends Component {
                 let isAPISubscribed = true
                 var loginIndicator = 0;
                 const api = axios.create({
-                    baseURL: baseURL
+                    baseURL: baseURI
                 })
                 api.get('/users/list').then((res) => {
                     //console.log(res.data.data);
@@ -400,7 +400,7 @@ class Login extends Component {
         //This is the post request handler. This uses the axios api to post a request to
         //the database.
         const api = axios.create({
-            baseURL: baseURL
+            baseURL: baseURI
         })
         await api.post('/users', {
             username: username,

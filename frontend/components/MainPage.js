@@ -5,7 +5,7 @@ import axios from 'axios';
 import { styles } from '../style';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { add } from 'react-native-reanimated';
-const baseURL = 'http://10.0.2.2:3000';
+import { baseURI } from '../utility/constants.js';
 
 class MainPage extends Component{
     static contextType = UserContext;
@@ -38,7 +38,7 @@ class MainPage extends Component{
 
     render(){
         const api = axios.create({
-            baseURL: baseURL
+            baseURL: baseURI
         })
         var loginIndicator = 0;
         if(this.state.displayName == ''){
@@ -146,7 +146,7 @@ class MainPage extends Component{
 
 
         const api = axios.create({
-            baseURL: baseURL
+            baseURL: baseURI
         })
         if(needUpDate != 1){
             api.get('/shorttermgoals/'+ this.context).then((res) => {

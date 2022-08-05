@@ -4,7 +4,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 import { styles } from '../style';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
-const baseURL = 'http://10.0.2.2:3000';
+import { baseURI } from '../utility/constants.js';
 
 
 class SetShortTerm extends Component{
@@ -36,7 +36,7 @@ class SetShortTerm extends Component{
 
 
         const api = axios.create({
-            baseURL: baseURL
+            baseURL: baseURI
         })
         if(needUpDate != 1){
             api.get('/shorttermgoals/'+ this.context).then((res) => {
@@ -108,7 +108,7 @@ class SetShortTerm extends Component{
         //This is the post request handler. This uses the axios api to post a request to
         //the database.
         const api = axios.create({
-            baseURL: baseURL
+            baseURL: baseURI
         })
         await api.post('/shorttermgoals', {
             description: description,

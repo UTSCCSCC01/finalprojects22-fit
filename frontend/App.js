@@ -29,6 +29,7 @@ import { FoodLog } from './view/FoodLog';
 
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
+import ExperienceScreen from './view/Profile/ExperienceScreen';
 
 import { UserProvider } from './context/UserContext';
 
@@ -68,7 +69,21 @@ const App = () => {
             headerTintColor: 'black',
             headerBackTitleVisible: false
           }}/>
+      <ProfileStack.Screen
+          name="Check Experience"
+          component={ExperienceScreen}
+          options= {{
+            headerRightContainerStyle: {
+              paddingRight: 10,
+            },
+            headerLeftContainerStyle: {
+              paddingLeft: 10,
+            },
+            headerTintColor: 'black',
+            headerBackTitleVisible: false
+          }}/>
       </ProfileStack.Navigator>
+
     )
   }
 

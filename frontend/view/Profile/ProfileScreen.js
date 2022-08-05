@@ -176,6 +176,17 @@ export default function ProfileScreen ({ route, navigation }) {
               <Text style={styles.appButtonText}>Edit Profile</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Check Experience', {
+                  data: user
+                });
+              }}
+              style={styles.appButtonContainer}
+            >
+              <Text style={styles.appButtonText}>Check Experience</Text>
+            </TouchableOpacity>
+
             {/* Bio Section */}
             <View style={{paddingTop: 20}}>
               <Text style={styles.sectionTitle}>Bio</Text>

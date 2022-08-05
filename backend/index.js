@@ -20,6 +20,8 @@ const savedfoodRouter = require("./routes/savedfood");
 const foodsRouter = require("./routes/foods");
 const customizedExercisesRouter = require("./routes/customizedExercises");
 const workoutPlanRouter = require("./routes/workoutPlan");
+const shortTermGoalRouter = require("./routes/shortTermGoal");
+
 
 app.use(logger("dev"));
 
@@ -120,6 +122,7 @@ app.delete("/file/:filename", async (req, res) => {
     });
   }
 });
+app.use("/shorttermgoals", shortTermGoalRouter);
 
 app.listen(port, function () {
   console.log("Running on " + port);

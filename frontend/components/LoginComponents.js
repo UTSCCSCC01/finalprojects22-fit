@@ -3,6 +3,7 @@ import { Text, View, TextInput, Button, Pressable, Image } from 'react-native';
 import { styles } from '../style';
 import axios from 'axios';
 const baseURL = 'http://10.0.2.2:3000'
+import {storeUserId} from "../utility/dataHandler"
 import { UserContext, UpdateUserContext } from '../context/UserContext';
 import { LogBox } from 'react-native';
 LogBox.ignoreAllLogs();
@@ -325,6 +326,7 @@ class Login extends Component {
                                 if(res.data.data[i].password == this.state.password){
                                     loginIndicator = 1;
                                     this.setState({login: res.data.data[i].email});
+                                    storeUserId(res.data.data[i]._id);
                                     setFound(true);                                    
                                     setFound(false);
                                     this.props.navigation.navigate('Main TabBar');

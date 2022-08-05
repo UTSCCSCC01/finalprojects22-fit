@@ -13,14 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/LoginComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/LoginComponents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/SetShortTermGoalComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/SetShortTermGoalComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utility/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utility/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

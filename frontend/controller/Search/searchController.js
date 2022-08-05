@@ -13,9 +13,8 @@ export const getUsers = async (query_text) => {
   return result;
 }
 
-export const getFReq = async (uid) => {
-  const userId = await retrieveUserId();
-  const response = await fetch(baseURI.concat('/friendReq/list/').concat(userId).concat("/").concat(uid)); 
+export const getFReq = async (uid1, uid2) => {
+  const response = await fetch(baseURI.concat('/friendReq/list/').concat(uid1).concat("/").concat(uid2)); 
   if (!response.ok) return null;
   const json = await response.json();
   return json;
@@ -57,5 +56,15 @@ export const addUserFriend = async (fid) => {
   });
   if (!response.ok) return null;
   const json = await response.json();
+  const response2 = await fetch(baseURI.concat('/users/').concat(fid).concat('/friend/').concat(userId), {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: null
+  });
+  if (!response2.ok) return null;
+  const json2 = await response2.json();
   return json;
 }

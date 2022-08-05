@@ -13,6 +13,7 @@ import {
 import { styles } from '../../style/styles';
 import { useFocusEffect } from '@react-navigation/native';
 import { getUsers, getFReq, getCurrUser, getAllUserFReqs, deleteFreqs, addUserFriend } from '../../controller/Search/searchController';
+import { retrieveUserId } from '../../utility/dataHandler.js';
 import SearchBar from "react-native-dynamic-search-bar";
 
 export default function SearchScreen ({ route, navigation }) {
@@ -34,13 +35,15 @@ export default function SearchScreen ({ route, navigation }) {
                 alert("Adding friend unsuccessful!");
                 return;
             }
-            const res2 = await deleteFreqs(rid);
-            if (res2 == null) {
+            const res3 = await deleteFreqs(rid);
+            if (res3 == null) {
                 alert("Processing Friend Request unsuccessful!");
                 return;
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setFriendReq(friendReq.filter(req => req._id != rid));
         }
     }
 
@@ -51,9 +54,11 @@ export default function SearchScreen ({ route, navigation }) {
                 alert("Processing Friend Request unsuccessful!");
                 return;
             }
-            await getFriendReqs();
+            await getData();
         } catch (error) {
             console.log(error);
+        } finally {
+            setFriendReq(friendReq.filter(req => req._id != rid));
         }
     }
 
@@ -100,26 +105,30 @@ export default function SearchScreen ({ route, navigation }) {
         );
     };
 
-    const navigateToProfile = async (uid) => {
-        const isF = friends.some(f => f === uid );
-        const reqSent = await getFReq(uid);
-        const rSent = reqSent === null ? false : true;
+    const navigateToProfile = async (uid2) => {
+        const isF = friends.some(f => f === uid2 );
+        const uid1 = await retrieveUserId();
+        const reqSent1 = await getFReq(uid1, uid2); // check if current user has sent a req to uid2
+        const reqSent2 = await getFReq(uid2, uid1); // check if uid2 has sent a req to current user
+        const rSent = reqSent1 === null ? false : true;
+        const rFrom = reqSent2 === null ? false : true;
         navigation.navigate('Profile', {
-            userId: uid,
+            userId: uid2,
             isFriend: isF,
             reqSent: rSent,
+            reqFrom: rFrom,
             currUsername: currentUsername,
         });
     }
 
     const renderSearchItem = ({item}) => {
         return (
-            <TouchableHighlight onPress={() => navigateToProfile(item._id)}>
+            <TouchableOpacity underlayColor={secondaryPurple} onPress={() => navigateToProfile(item._id)}>
                 <View>
                     <Text style={styles.searchTabTitle}>{item.username}</Text>
                     <Text style={styles.searchTabSubtitle}>{item.display_name}</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
     )}
 
     const renderFReqItem = ({item}) => {

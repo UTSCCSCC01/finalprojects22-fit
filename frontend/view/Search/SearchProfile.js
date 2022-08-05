@@ -29,13 +29,14 @@ export default function SearchProfile ({ route, navigation }) {
   const primaryPurple = '#4E598C'
   const secondaryPurple = '#717FC0'
 
-  const { userId, isFriend, reqSent, currUsername } = route.params;
+  const { userId, isFriend, reqSent, reqFrom, currUsername } = route.params;
   const [isLoading, setLoading] = useState(true);
   const [user, setUser] = useState(INITIAL_USER);
   const [userLvl, setUserLvl] = useState(0);
   const [xpProgress, setXpProgress] = useState(0);
   const [image, setImage] = useState('');
   const [reqIsSent, setReqIsSent] = useState(reqSent);
+  const [hasReqFrom, setHasReqFrom] = useState(reqFrom);
 
   useEffect(() => {
     if(!user.hasOwnProperty('medals')) {
@@ -237,14 +238,14 @@ export default function SearchProfile ({ route, navigation }) {
               </View>
             </View>
             <View style={{paddingTop: 20, paddingLeft: 30, paddingRight: 30,}}>
-                { (isFriend || reqIsSent)
+                { (isFriend || reqIsSent || hasReqFrom)
                 ? <View
                     style={styles.disabledAppButtonContainer}
                     >
                         { isFriend ?
                         <Text style={styles.disabledAppbuttonText}>Friends</Text>
                         : 
-                        <Text style={styles.disabledAppbuttonText}>Request Sent</Text>}
+                        <Text style={styles.disabledAppbuttonText}>{hasReqFrom ? "Has Sent You a Request" : "Request Sent"}</Text>}
                 </View>
                 : <TouchableOpacity
                     onPress={() => {
@@ -253,7 +254,7 @@ export default function SearchProfile ({ route, navigation }) {
                     style={styles.appButtonContainer}
                 >
                     <Text style={styles.appButtonText}>+ Add Friend</Text>
-                </TouchableOpacity>}
+                </TouchableOpacity> }
 
               {/* Bio Section */}
               <View style={{paddingTop: 20}}>

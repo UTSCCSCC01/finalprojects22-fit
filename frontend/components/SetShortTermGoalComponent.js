@@ -45,7 +45,7 @@ class SetShortTerm extends Component{
                 }else{
                     this.setState({goals: res.data.data})
                 }
-                console.log(this.state.goals)
+                // console.log(this.state.goals)
                 this.setState({dataRetrieved: 1})
                 updateNeedUpDate(1)
             })

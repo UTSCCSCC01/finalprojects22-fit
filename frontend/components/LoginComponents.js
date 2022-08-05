@@ -14,12 +14,12 @@ export const SetContextComp = (content) => {
     const use = useContext(UpdateUserContext);
     const loginCred = useContext(UserContext);
     //console.log("check if the same: "+loginCred + content.content)
-    console.log("call set context: " + content.content + " " + loginCred);
+    // console.log("call set context: " + content.content + " " + loginCred);
     let isMounted = true;
     useEffect(()=>{
-        console.log("useEffect: "+ isMounted)
+        // console.log("useEffect: "+ isMounted)
         if(loginCred == false && content.content != loginCred && isMounted == true && content.content != undefined && content.indicator == true ){     
-            console.log("set "+content.content + loginCred);
+            // console.log("set "+content.content + loginCred);
             use(content.content);
         }
         return(()=>{
@@ -380,7 +380,7 @@ class Login extends Component {
                         }else{
                             
                             this.post(username, email, password, displayName);
-                            console.log("this is"+this.state.login+" "+email);
+                            // console.log("this is"+this.state.login+" "+email);
                             this.props.navigation.navigate('Survey');
                             
                                 

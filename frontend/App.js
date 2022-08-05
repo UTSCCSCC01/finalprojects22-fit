@@ -85,7 +85,7 @@ const App = () => {
     }}
         initialRouteName="MainPage">
         <Stack.Group>
-          <Stack.Screen name="MainPage" component={MainPage} />
+          <Stack.Screen name="Home" component={MainPage} />
           <Stack.Screen name="Set Short Term" component={SetShortTerm} />
         </Stack.Group>
       </Stack.Navigator>

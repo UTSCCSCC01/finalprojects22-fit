@@ -29,6 +29,33 @@ router.get("/:planId", async (req, res) => {
     } 
 });
 
+// GET - Fetch workout plans corresponding to a usr
+router.get("/userPlans/:userId", async (req, res) => {
+    try {
+        let workoutPlan = await WorkoutPlan.find({
+            userId: req.params.userId,
+        });
+        if (workoutPlan) {
+            // user set history is found
+            res.status(200).json({
+                status: 200,
+                data: workoutPlan,
+            });
+        } else {
+            // user set history cannot be found in db
+            res.status(400).json({
+                status: 400,
+                message: "Error in fetching workouts",
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            status: 400,
+            message: err.message,
+        });
+    } 
+});
+
 // POST - Creates new object in the workout plan Collection
 router.post("/", async (req, res) => {
     try {

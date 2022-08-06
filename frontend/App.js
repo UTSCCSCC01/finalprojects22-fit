@@ -37,6 +37,8 @@ import { UserProvider } from './context/UserContext';
 import { CreateExercisePlan } from './view/ExercisePlan/CreateExercisePlan';
 import { CreateWorkout } from './view/ExercisePlan/CreateWorkout';
 import { WorkoutExerciseSearch } from './view/ExercisePlan/WorkoutExerciseSearch';
+import { SelectExercisePlan } from './view/ExercisePlan/SelectExercisePlan';
+import { ViewExercisePlan } from './view/ExercisePlan/ViewExercisePlan';
 
 import { Setting } from './view/Settings/Setting';
 import { OptionalSurvey } from './view/Settings/Survey';
@@ -141,6 +143,8 @@ const App = () => {
         <Stack.Screen name="Color Theme" component={ColorTheme} />
         <Stack.Group>
           <Stack.Screen name="Create Exercise Plan" component={CreateExercisePlan}/>
+          <Stack.Screen name="Select Exercise Plan" component={SelectExercisePlan}/>
+          <Stack.Screen name="View Exercise Plan" component={ViewExercisePlan}/>
           <Stack.Screen name="Create Workout" component={CreateWorkout}/>
           <Stack.Screen name="Workout Exercise Search" component={WorkoutExerciseSearch}/>
         </Stack.Group>

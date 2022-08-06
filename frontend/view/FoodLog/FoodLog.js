@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { ActivityIndicator, Button, FlatList, Text, View } from 'react-native';
-import { styles } from '../../style';
-import { cleanString } from '../../utility/format.js';
+import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
+import { styles } from '../../style/styles.js';
+import { cleanString, numberToTime, cleanNum } from '../../utility/format.js';
 import { getFoodSavedPlans, deleteFoodSavedPlans } from '../../controller/Food/FoodLogController'
 import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/UserActivity/userActivityController'
 import { retrieveUserId } from '../../utility/dataHandler.js'
 
 export function FoodLog({ navigation, route }) {
   /* Create hooks */
-  const [isLoading, savedplanLoading] = React.useState(true);
-  const [data, savedplanData] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState(null);
   const [activityData, setActivityData] = React.useState(null);
-  const [logMode, savedplanLogMode] = React.useState('select');
+  const [logMode, setLogMode] = React.useState('select');
 
   const { date } = route.params;
 
@@ -19,11 +19,11 @@ export function FoodLog({ navigation, route }) {
   const getSavedPlans = async () => {
     try {
       const json = await getFoodSavedPlans(cleanString(date));
-      savedplanData(json.data);
+      setData(json.data);
     } catch (error) {
       console.error(error);
     } finally {
-      savedplanLoading(false);
+      setLoading(false);
     }
   }
 
@@ -52,7 +52,7 @@ export function FoodLog({ navigation, route }) {
     const has_data = cleanString(data) === "[]" ? false : true;
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
-      userId: userId, 
+      userId: userId,
       food_activity: has_data,
       date: date,
     });
@@ -65,13 +65,25 @@ export function FoodLog({ navigation, route }) {
     const has_data = cleanString(data) === "[]" ? false : true;
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
-      userId: userId, 
+      userId: userId,
       food_activity: has_data,
       date: date,
     });
 
     const json = await patchUserActivity(id, body);
   }
+
+   const formatCell = (item) => {
+        return (
+          <View style={styles.flatListTextContainer}>
+            <Text style={styles.flatListText}>Food Name: {item.food_name}</Text>
+            <Text style={styles.flatListText}>Calorie: {cleanNum(item.calorie)} g</Text>
+            <Text style={styles.flatListText}>Carbohydrate: {cleanNum(item.carbohydrate)} g</Text>
+            <Text style={styles.flatListText}>Fat: {cleanNum(item.fat)} g</Text>
+            <Text style={styles.flatListText}>Protein: {cleanNum(item.protein)} g</Text>
+          </View>
+        );
+   }
 
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
@@ -92,7 +104,7 @@ export function FoodLog({ navigation, route }) {
         date: item.date,
       })
     }
-    savedplanLogMode('select')
+    setLogMode('select')
   }
 
   /* Change colour of the borders depending on the queued action */
@@ -108,12 +120,8 @@ export function FoodLog({ navigation, route }) {
     }
   }
 
-  const formatCell = (item) => {
-     return item.food_name;
-  }
-
   // Create activity if none exists. Update as necessary if it does
-  const addExerciseActivity = () => {
+  const addFoodActivity = () => {
     if (cleanString(activityData) === '[]'){
       createUserActivity();
     }
@@ -137,36 +145,48 @@ export function FoodLog({ navigation, route }) {
   React.useEffect(() => {
     if (activityData != null){
       if (data != null){
-        addExerciseActivity();
+        addFoodActivity();
       }
     }
   }, [activityData]);
 
   return (
     <View style={styles.container}>
-      {isLoading ? <ActivityIndicator/> : (
-      <FlatList
-        data={data}
-        keyExtractor={(item,index) => item._id}
-        renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
-      />
-      )}
-      <View style={styles.fixToText}>
-        <Button
-          title="Log a new food"
-          onPress={() => navigation.navigate('Select Food Category', {
-            date: date,
-          })}
-        />
-        <Button
-          title="Update an food"
-          onPress={() => savedplanLogMode(logMode === 'update' ? 'select' : 'update')}
-        />
-        <Button
-          title="Delete an food"
-          onPress={() => savedplanLogMode(logMode === 'delete' ? 'select' : 'delete')}
-        />
-      </View>
+       <View style={styles.exerciseLogButtonsContainer}>
+         <View style={styles.rowContainer}>
+           <TouchableOpacity
+             style={styles.generalButton}
+             onPress={() => navigation.navigate('Select Food Category', {
+             date: date,
+             })}
+           >
+             <Text style={styles.generalButtonFont}> Log a new Food </Text>
+           </TouchableOpacity>
+           <TouchableOpacity
+             style={styles.generalButton}
+             onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
+           >
+             <Text style={styles.generalButtonFont}> Update a Food </Text>
+           </TouchableOpacity>
+         </View>
+         <View style={styles.rowContainer}>
+           <TouchableOpacity
+             style={styles.generalButton}
+             onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
+           >
+             <Text style={styles.generalButtonFont}> Delete a Food </Text>
+           </TouchableOpacity>
+         </View>
+       </View>
+       <View style={styles.flatListContainer}>
+         {isLoading ? <ActivityIndicator/> : (
+         <FlatList
+           data={data}
+           keyExtractor={(item, index) => item._id}
+           renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
+         />
+         )}
+       </View>
     </View>
   );
 }

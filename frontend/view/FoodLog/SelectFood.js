@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ActivityIndicator, FlatList, Text, View} from 'react-native';
-import { styles } from '../../style';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { styles } from '../../style/styles.js';
 import { cleanString } from '../../utility/format.js';
 import { getFoodsByGroup, getFoodsBySearch } from '../../controller/Food/SelectFoodController.js'
 
@@ -64,7 +64,7 @@ export function SelectFood({ route, navigation }) {
                   <FlatList
                     data={data}
                     keyExtractor={(item, index) => item._id}
-                    renderItem={({item}) => <Text style={styles.item} onPress={()=> getItem(item)}>{item.FoodName}</Text>}
+                    renderItem={({item}) => <Text style={styles.flatListSearchItem} onPress={()=> getItem(item)}>{item.FoodName}</Text>}
                   />
               )}
         </View>

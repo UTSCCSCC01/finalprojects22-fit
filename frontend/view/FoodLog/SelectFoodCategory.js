@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, Button, TextInput, Alert } from 'react-native';
-import { styles } from '../../style';
+import { View, ScrollView, TextInput, TouchableOpacity, Text } from 'react-native';
+import { styles } from '../../style/styles.js';
 
 export function SelectFoodCategory({ navigation, route }) {
   const { date } = route.params;
@@ -16,190 +16,238 @@ export function SelectFoodCategory({ navigation, route }) {
               })}
               placeholder="Search for food"
             />
-            <Button
-              title="Dairy and Egg Products"
+            <ScrollView vertical>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Dairy and Egg Products',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Spices and Herbs"
+            >
+              <Text style={styles.generalButtonFont}> Dairy and Egg Products </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Spices and Herbs',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Babyfoods"
+            >
+              <Text style={styles.generalButtonFont}> Spices and Herbs </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Babyfoods',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Fats and Oils"
+            >
+              <Text style={styles.generalButtonFont}> Babyfoods </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Fats and Oils',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Poultry Products"
+            >
+              <Text style={styles.generalButtonFont}> Fats and Oils </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Poultry Products',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Soups, Sauces and Gravies"
+            >
+              <Text style={styles.generalButtonFont}> Poultry Products </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Soups, Sauces and Gravies',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Sausages and Luncheon meats"
+            >
+              <Text style={styles.generalButtonFont}> Soups, Sauces and Gravies </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Sausages and Luncheon meats',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Breakfast cereals"
+            >
+              <Text style={styles.generalButtonFont}> Sausages and Luncheon meats </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Breakfast cereals',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Fruits and fruit juices"
+            >
+              <Text style={styles.generalButtonFont}> Breakfast cereals </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Fruits',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Pork Products"
+            >
+              <Text style={styles.generalButtonFont}> Fruits </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Pork Products',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Vegetables and Vegetable Products"
+            >
+              <Text style={styles.generalButtonFont}> Pork Products </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Vegetables and Vegetable Products',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Nuts and Seeds"
+            >
+              <Text style={styles.generalButtonFont}> Vegetables and Vegetable Products </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Nuts and Seeds',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Beef Products"
+            >
+              <Text style={styles.generalButtonFont}> Nuts and Seeds </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Beef',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Beverages"
+            >
+              <Text style={styles.generalButtonFont}> Beef </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Beverages',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Finfish and Shellfish Products"
+            >
+              <Text style={styles.generalButtonFont}> Beverages </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Finfish and Shellfish Products',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Legumes and Legume Products"
+            >
+              <Text style={styles.generalButtonFont}> Finfish and Shellfish Products </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Legumes and Legume Products',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Lamb, Veal and Game"
+            >
+              <Text style={styles.generalButtonFont}> Legumes and Legume Products </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Lamb, Veal and Game',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Baked Products"
+            >
+              <Text style={styles.generalButtonFont}> Lamb, Veal and Game </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Baked Products',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Sweets"
+            >
+              <Text style={styles.generalButtonFont}> Baked Products </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Sweets',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Cereals, Grains and Pasta"
+            >
+              <Text style={styles.generalButtonFont}> Sweets </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Cereals, Grains and Pasta',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Fast Foods"
+            >
+              <Text style={styles.generalButtonFont}> Cereals, Grains and Pasta </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Fast Foods',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Mixed Dishes"
+            >
+              <Text style={styles.generalButtonFont}> Fast Foods </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Mixed Dishes',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
-            <Button
-              title="Snacks"
+            >
+              <Text style={styles.generalButtonFont}> Mixed Dishes </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.generalButton}
               onPress={() => navigation.navigate('Select Food', {
                 foodType: 'Snacks',
                 SearchType: 'Group',
                 date: date,
               })}
-            />
+            >
+              <Text style={styles.generalButtonFont}> Snacks </Text>
+            </TouchableOpacity>
+            </ScrollView>
          </View>
     );
 }

@@ -41,6 +41,9 @@ import { WorkoutExerciseSearch } from './view/ExercisePlan/WorkoutExerciseSearch
 import { Setting } from './view/Settings/Setting';
 import { OptionalSurvey } from './view/Settings/Survey';
 import { Plan } from './view/Settings/Plan.js';
+import {CalorieBudget}  from './view/Settings/CalorieBudget.js';
+import {ManualBudget}  from './view/Settings/ManualBudget.js';
+import {AutoBudget}  from './view/Settings/AutoBudget.js';
 
 import { ExerciseCustomized } from './view/exerciseCustomizedView.js';
 
@@ -139,6 +142,9 @@ const App = () => {
         <Stack.Screen name= "Optional Survey" component={OptionalSurvey} />
         <Stack.Screen name ="Plan" component = {Plan} /> 
         <Stack.Screen name="Color Theme" component={ColorTheme} />
+        <Stack.Screen name="Calorie Budget" component={CalorieBudget} />
+        <Stack.Screen name="Automatic Budget" component={AutoBudget} />
+        <Stack.Screen name="Manual Budget" component={ManualBudget} />
         <Stack.Group>
           <Stack.Screen name="Create Exercise Plan" component={CreateExercisePlan}/>
           <Stack.Screen name="Create Workout" component={CreateWorkout}/>

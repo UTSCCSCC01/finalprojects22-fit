@@ -311,9 +311,9 @@ class Login extends Component {
         //useUserContext();
         ///useUpdateUserContext();
         useEffect(()=>{
+            let isAPISubscribed = false
             if(login == 1){
-                setLogin(0);
-                let isAPISubscribed = true
+                isAPISubscribed = true
                 var loginIndicator = 0;
                 const api = axios.create({
                     baseURL: baseURI
@@ -329,6 +329,7 @@ class Login extends Component {
                                     storeUserId(res.data.data[i]._id);
                                     setFound(true);                                    
                                     setFound(false);
+                                    setLogin(0);
                                     this.props.navigation.navigate('Main TabBar');
                                     
                                 }

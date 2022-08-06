@@ -4,6 +4,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const multer = require('multer');
+const Grid = require("gridfs-stream");
 
 // specify port number here
 const port = 3000;
@@ -18,8 +20,8 @@ const savedfoodRouter = require("./routes/savedfood");
 const foodsRouter = require("./routes/foods");
 const customizedExercisesRouter = require("./routes/customizedExercises");
 const workoutPlanRouter = require("./routes/workoutPlan");
-const freiendReqRouter = require("./routes/friendRequests");
 const shortTermGoalRouter = require("./routes/shortTermGoal");
+
 
 app.use(logger("dev"));
 
@@ -37,6 +39,13 @@ mongoose.connect(dbUrl, options, (err) => {
   if (err) console.log(err);
 });
 
+const conn = mongoose.connection;
+conn.once("open", function () {
+  gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: "photos"
+  });
+});
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -50,8 +59,6 @@ app.use("/savedfood", savedfoodRouter);
 app.use("/foods", foodsRouter);
 app.use("/customizedExercises", customizedExercisesRouter);
 app.use("/workoutPlans", workoutPlanRouter);
-app.use("/shorttermgoals", shortTermGoalRouter);
-app.use("/friendReq", freiendReqRouter);
 
 app.get("/file/:filename", async (req, res) => {
   try {
@@ -115,6 +122,7 @@ app.delete("/file/:filename", async (req, res) => {
     });
   }
 });
+app.use("/shorttermgoals", shortTermGoalRouter);
 
 app.listen(port, function () {
   console.log("Running on " + port);

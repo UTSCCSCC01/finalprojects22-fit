@@ -33,9 +33,6 @@ import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
 import SetShortTerm from './components/SetShortTermGoalComponent';
 
-import SearchScreen from './view/Search/SearchScreen.js';
-import SearchProfile from './view/Search/SearchProfile.js';
-
 import { UserProvider } from './context/UserContext';
 import { CreateExercisePlan } from './view/ExercisePlan/CreateExercisePlan';
 import { CreateWorkout } from './view/ExercisePlan/CreateWorkout';
@@ -52,7 +49,6 @@ import { ExerciseCustomized } from './view/exerciseCustomizedView.js';
 const Stack = createNativeStackNavigator();
 const Tabbar = createBottomTabNavigator();
 const ProfileStack = createStackNavigator();
-const SearchStack = createStackNavigator();
 
 const primaryOrange = "#FF8C42";
 const secondaryPurple = "#717FC0";
@@ -155,16 +151,6 @@ const App = () => {
       </Stack.Navigator>
     )
   }
-
-  const Search_Stack = () => {
-    return (
-      <SearchStack.Navigator>
-        <SearchStack.Screen name="Explore" component={SearchScreen} options={{headerShown: false}}/>
-        <SearchStack.Screen name="Profile" component={SearchProfile}/>
-      </SearchStack.Navigator>
-    )
-  }
-
   const Tabbar_Stack = () => {
     return (
       <Tabbar.Navigator
@@ -181,8 +167,6 @@ const App = () => {
                 iconName = focused ? 'calendar-today' : 'calendar-today';
               } else if (route.name ==='SettingStack') {
                 iconName = focused ? 'settings' : 'settings';
-              } else if (route.name === 'SearchTab') {
-                iconName = focused ? 'search' : 'search';
               }
               return <MaterialIcons name={iconName} size={35} color={color} />;
             },
@@ -201,10 +185,6 @@ const App = () => {
             name="MainPage"
             component={Main_Stack} 
             options={{headerShown: false}}/>
-          <Tabbar.Screen
-            name="SearchTab"
-            component={Search_Stack}
-            options={{headerShown: false}} />
           <Tabbar.Screen
             name="TrackingStack"
             component={Tracking_Stack}

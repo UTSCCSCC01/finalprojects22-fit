@@ -262,7 +262,7 @@ export default function SearchProfile ({ route, navigation }) {
                 <View
                   style={styles.displayContainer}
                 >
-                  <Text style={styles.displayText}>{user.bio === '' ? "~ User has not added a bio yet ~": user.bio}</Text>
+                  <Text style={styles.displayText}>{user.bio === '' ? "~ User not added a bio yet ~": user.bio}</Text>
                 </View>
               </View>
             </View>

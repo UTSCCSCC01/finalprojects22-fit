@@ -1,4 +1,4 @@
-import { retrieveUserId } from '../../utility/dataHandler.js'
+import { retrieveUserId } from '../../utility/dataHandler.js';
 import { baseURI } from '../../utility/constants.js';
 
 export const patchUserProfile = async (body) => {

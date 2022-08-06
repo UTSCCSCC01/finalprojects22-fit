@@ -204,7 +204,7 @@ const App = () => {
           <Tabbar.Screen
             name="SearchTab"
             component={Search_Stack}
-            options={{headerShown: false}} />
+            options={{headerShown: true}} />
           <Tabbar.Screen
             name="TrackingStack"
             component={Tracking_Stack}

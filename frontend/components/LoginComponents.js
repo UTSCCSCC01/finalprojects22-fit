@@ -408,11 +408,7 @@ class Login extends Component {
             display_name: displayName,
             email: email,
             password: password,
-            xp: 0,
-            body_metrics: [],
-            bio: "",
-            profile_pic: "",
-            medals: []
+            friends: []
         });
     };
 

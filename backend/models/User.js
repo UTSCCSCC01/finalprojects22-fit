@@ -14,16 +14,6 @@ const bodymetrics = new Schema({
   }
 });
 
-const imgSchema = new Schema(
-  {
-    img: {
-      data: Buffer,
-      contentType: String
-    },
-  },
-  { timestamps: true }
-);
-
 let userSchema = new Schema(
   {
     username: {
@@ -34,9 +24,6 @@ let userSchema = new Schema(
     },
     email: {
       type: String,
-    },
-    profile_pic: { 
-      data: imgSchema
     },
     display_name: {
       type: String,
@@ -50,11 +37,11 @@ let userSchema = new Schema(
     body_metrics: {
       type: [bodymetrics],
     },
-    medals: {
-      type: [String],
-    },
     workout_plan: {
       type: mongoose.ObjectId, default: null,
+    },
+    friends: {
+      type: [String]
     },
   },
   { timestamps: true }

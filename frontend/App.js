@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { LogBox  } from 'react-native';
 import Login from './components/LoginComponents';
+LogBox.ignoreAllLogs();
 import { styles, lightGray } from './style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -30,6 +31,7 @@ import { FoodLog } from './view/FoodLog/FoodLog';
 
 import ProfileScreen from './view/Profile/ProfileScreen.js';
 import EditProfileScreen from './view/Profile/EditProfileScreen';
+import SetShortTerm from './components/SetShortTermGoalComponent';
 
 import SearchScreen from './view/Search/SearchScreen.js';
 import SearchProfile from './view/Search/SearchProfile.js';
@@ -38,6 +40,8 @@ import { UserProvider } from './context/UserContext';
 import { CreateExercisePlan } from './view/ExercisePlan/CreateExercisePlan';
 import { CreateWorkout } from './view/ExercisePlan/CreateWorkout';
 import { WorkoutExerciseSearch } from './view/ExercisePlan/WorkoutExerciseSearch';
+import { SelectExercisePlan } from './view/ExercisePlan/SelectExercisePlan';
+import { ViewExercisePlan } from './view/ExercisePlan/ViewExercisePlan';
 
 import { Setting } from './view/Settings/Setting';
 import { OptionalSurvey } from './view/Settings/Survey';
@@ -76,6 +80,22 @@ const App = () => {
           }}/>
       </ProfileStack.Navigator>
     )
+  }
+
+  const Main_Stack = () => {
+    return(
+      <Stack.Navigator
+        screenOptions={{
+        headerStyle: { backgroundColor: '#4E598C' },
+        headerTintColor: '#fff',
+    }}
+        initialRouteName="MainPage">
+        <Stack.Group>
+          <Stack.Screen name="Home" component={MainPage} />
+          <Stack.Screen name="Set Short Term" component={SetShortTerm} />
+        </Stack.Group>
+      </Stack.Navigator>
+    );
   }
 
   const Tracking_Stack = () => {
@@ -127,6 +147,8 @@ const App = () => {
         <Stack.Screen name="Color Theme" component={ColorTheme} />
         <Stack.Group>
           <Stack.Screen name="Create Exercise Plan" component={CreateExercisePlan}/>
+          <Stack.Screen name="Select Exercise Plan" component={SelectExercisePlan}/>
+          <Stack.Screen name="View Exercise Plan" component={ViewExercisePlan}/>
           <Stack.Screen name="Create Workout" component={CreateWorkout}/>
           <Stack.Screen name="Workout Exercise Search" component={WorkoutExerciseSearch}/>
         </Stack.Group>
@@ -177,7 +199,8 @@ const App = () => {
         >
           <Tabbar.Screen
             name="MainPage"
-            component={MainPage} />
+            component={Main_Stack} 
+            options={{headerShown: false}}/>
           <Tabbar.Screen
             name="SearchTab"
             component={Search_Stack}

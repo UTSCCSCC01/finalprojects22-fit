@@ -12,18 +12,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/LoginComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/LoginComponents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/FoodLogController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/controller/RecordFoodController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/RecordFoodController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/controller/SelectFoodController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/SelectFoodController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/view/RecordFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/RecordFood.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +20,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="2AZZi9XLEy04WO4EdE3iuTUBOzv" />
   <component name="ProjectViewState">
@@ -54,7 +51,6 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="85a491e2-4309-49cf-ad80-f0aed0590e56" name="Changes" comment="" />
       <created>1655219195059</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -75,5 +71,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

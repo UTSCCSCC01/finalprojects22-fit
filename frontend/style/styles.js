@@ -49,6 +49,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
+  exercisePlanViewHeader: {
+    color: primaryOrange,
+    fontSize: 22,
+    padding: 10,
+    fontWeight: "bold",
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   header2: {
     color: 'gray',
     fontSize: 20,
@@ -110,6 +118,22 @@ export const styles = StyleSheet.create({
     borderColor: 'black',
     borderwidth: 1,
     justifyContent: 'flex-start',
+  },
+  WorkoutPlanContainer: {
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+    flex: 1,
+    padding: 5,
+    justifyContent: 'flex-start',
+    fontSize: 16,
+  },
+  WorkoutPlanContainerHighlighted: {
+    borderColor: primaryOrange,
+    borderWidth: 2,
+    flex: 1,
+    padding: 5,
+    justifyContent: 'flex-start',
+    fontSize: 16,
   },
   setButtonContainer: {
     flex: 4,
@@ -220,6 +244,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ExerciseLogUtilityButton:{
+    backgroundColor: primaryPurple,
+    borderRadius: 10,
+    margin: 5,
+    height: 40,
+    width: 150,
+    justifyContent: 'center',
+  },
+  ExerciseLogUtilityButtonGray:{
     backgroundColor: primaryPurple,
     borderRadius: 10,
     margin: 5,

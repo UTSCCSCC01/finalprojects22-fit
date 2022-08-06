@@ -19,6 +19,7 @@ const foodsRouter = require("./routes/foods");
 const customizedExercisesRouter = require("./routes/customizedExercises");
 const workoutPlanRouter = require("./routes/workoutPlan");
 const freiendReqRouter = require("./routes/friendRequests");
+const shortTermGoalRouter = require("./routes/shortTermGoal");
 
 app.use(logger("dev"));
 
@@ -49,7 +50,71 @@ app.use("/savedfood", savedfoodRouter);
 app.use("/foods", foodsRouter);
 app.use("/customizedExercises", customizedExercisesRouter);
 app.use("/workoutPlans", workoutPlanRouter);
+app.use("/shorttermgoals", shortTermGoalRouter);
 app.use("/friendReq", freiendReqRouter);
+
+app.get("/file/:filename", async (req, res) => {
+  try {
+      const file = await gfs.find({ filename: req.params.filename }).toArray()
+      if (file.length === 0) {
+        res.status(200).json({
+          status: 400,
+          message: "file not found"
+        })
+      }
+      const file_id = file[0]._id;
+      const obj_id = new mongoose.Types.ObjectId(file_id);
+      const downloadStream = gfs.openDownloadStream(obj_id);
+      
+      res.setHeader('Content-Type', 'application/json');
+      const buffer = [];
+      res.status(200);
+
+      downloadStream.on('data', (chunk) => {
+        buffer.push(chunk);
+      });
+
+      downloadStream.on('error', async (error) => {
+        reject(error);
+      });
+
+      downloadStream.on('end', async () => {
+        const fbuffer = Buffer.concat(buffer);
+        const base64 = fbuffer.toString('base64');
+        res.end(JSON.stringify({status: 200, img_data: base64}));
+      });
+  } catch (err) {
+    res.status(400).json({
+      status: 400,
+      message: err.message,
+    });
+  }
+});
+
+app.delete("/file/:filename", async (req, res) => {
+  try {
+      const file = await gfs.find({filename: req.params.filename}).toArray();
+      if (file.length > 0) {
+        const file_id = file[0]._id;
+        const obj_id = new mongoose.Types.ObjectId(file_id);
+        await gfs.delete(obj_id);
+        res.status(200).json({
+          status: 200,
+          message: "Sucessfully deleted file",
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          message: "file not found",
+        });
+      }
+  } catch (err) {
+    res.status(400).json({
+      status: 400,
+      message: err.message,
+    });
+  }
+});
 
 app.listen(port, function () {
   console.log("Running on " + port);

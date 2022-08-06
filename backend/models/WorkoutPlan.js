@@ -4,6 +4,9 @@ let Schema = mongoose.Schema;
 
 let workoutPlanScheme = new Schema(
 {
+  name: {
+    type: String,
+  },
   userId: {
     type: mongoose.ObjectId,
   },
@@ -12,6 +15,9 @@ let workoutPlanScheme = new Schema(
   },
   workout_counter: {
     type: Number,
+  },
+  shared_plan: {
+    type: Boolean,
   },
   workouts: {
     type: [[mongoose.ObjectId]],

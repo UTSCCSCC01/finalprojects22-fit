@@ -117,7 +117,7 @@ router.get("/:userId/bmetric", async (req, res) => {
             status: 400,
             message: err.message,
         });
-    } 
+    }
 });
 
 // GET - Fetch list of body metric records of the user given the id

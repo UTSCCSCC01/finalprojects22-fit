@@ -7,6 +7,12 @@ export const getWorkoutPlan = async (workoutPlanId) => {
   return json;
 }
 
+export const getDefaultWorkoutPlan = async () => {
+  const response = await fetch(baseURI.concat('/workoutPlans/userPlans/62dda03f75cb760db8bb4e8b'));
+  const json = await response.json();
+  return json;
+}
+
 export const postExercisePlan = async (body) => {
   const response = await fetch(baseURI.concat('/workoutPlans/'), {
     method: 'POST',

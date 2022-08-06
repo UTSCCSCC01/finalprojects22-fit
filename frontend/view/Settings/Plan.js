@@ -87,6 +87,10 @@ export function Plan ({navigation}) {
   return (
     <View>
       <Text> Plan recommended is: {plan}.</Text>
+      <Button
+          title='Set plan'
+          onPress={() => navigation.navigate('Select Exercise Plan')}>
+       </Button>
     </View>
   );
 

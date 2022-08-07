@@ -24,6 +24,7 @@ export function Setting({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.settingsOptionsContiner}
+          onPress={() => navigation.navigate('Manual Budget')}
         >
         <View style={styles.settingsOption}>
           <Text style={styles.flatListText}> Set Caloric Budget </Text>

@@ -10,17 +10,12 @@ import {
   View, 
   ScrollView } from 'react-native';
 import * as Progress from 'react-native-progress';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useFocusEffect } from '@react-navigation/native';
 import { LineChart, PieChart } from "react-native-chart-kit";
-import { 
-  getUserProfile, 
-  getUserProfilePicture,
-  getUserSavedFoods
-} from '../../controller/Profile/profileController';
+import { useFocusEffect } from '@react-navigation/native';
+import { getUserDetails, getUserProfilePicture, getUserSavedFoods, sendFriendRequest } from '../../controller/Search/searchProfileController';
 import { medalDict } from '../../utility/constants';
 
-export default function ProfileScreen ({ route, navigation }) {
+export default function SearchProfile ({ route, navigation }) {
 
   const INITIAL_USER = {
     _id: "",
@@ -40,6 +35,7 @@ export default function ProfileScreen ({ route, navigation }) {
   const primaryPurple = '#4E598C'
   const secondaryPurple = '#717FC0'
 
+  const { userId, isFriend, reqSent, reqFrom, currUsername } = route.params;
   const [isLoading, setLoading] = useState(true);
   const [user, setUser] = useState(INITIAL_USER);
   const [userLvl, setUserLvl] = useState(0);
@@ -47,10 +43,39 @@ export default function ProfileScreen ({ route, navigation }) {
   const [image, setImage] = useState('');
   const [weight, setWeight] = useState(INITIAL_WEIGHT);
   const [food, setFood] = useState([]);
+  const [reqIsSent, setReqIsSent] = useState(reqSent);
+  const [hasReqFrom, setHasReqFrom] = useState(reqFrom);
+
+  useEffect(() => {
+    if(!user.hasOwnProperty('medals')) {
+        let u1 = user;
+        u1.medals = [];
+        setUser(u1);
+      }
+      if(!user.hasOwnProperty('profile_pic')) {
+        let u1 = user;
+        u1.profile_pic = "";
+        setUser(u1);
+      }
+      if(!user.hasOwnProperty('xp')) {
+        let u1 = user;
+        u1.xp = 0;
+        setUser(u1);
+        setUserLvl(1);
+        setXpProgress(0);
+      }
+      if(!user.hasOwnProperty('bio')) {
+        let u1 = user;
+        u1.bio = "";
+        setUser(u1);
+      }
+  }, [user]);
 
   const getUser = async () => {
     try {
-      const json = await getUserProfile();
+      const json = await getUserDetails(userId);
+      setUser(json.data)
+      
       if (json.data.profile_pic !== undefined) {
         const pImg_link = json.data.profile_pic;
         if (pImg_link !== '') {
@@ -58,7 +83,6 @@ export default function ProfileScreen ({ route, navigation }) {
           setImage(pic.img_data);
         }
       }
-      setUser(json.data)
       getWeightData(json.data);
       await getFoodData(json.data._id);
       navigation.setOptions({ title: json.data.username });
@@ -158,6 +182,15 @@ export default function ProfileScreen ({ route, navigation }) {
     }
   };
 
+  const handleSendFReq = async () => {
+    try {
+        const json = await sendFriendRequest(userId, currUsername);
+        setReqIsSent(true);
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
   useFocusEffect(
     React.useCallback(() => {
       getUser();
@@ -165,6 +198,13 @@ export default function ProfileScreen ({ route, navigation }) {
   );
 
   const styles = StyleSheet.create({
+    disabledAppButtonContainer: {
+        borderWidth: 2,
+        borderColor: primaryOrange,
+        borderRadius: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+    },
     appButtonContainer: {
       backgroundColor: primaryOrange,
       borderRadius: 15,
@@ -187,6 +227,12 @@ export default function ProfileScreen ({ route, navigation }) {
       color: "#fff",
       fontWeight: "bold",
       alignSelf: "center",
+    },
+    disabledAppbuttonText: {
+        fontSize: 15,
+        color: primaryOrange,
+        fontWeight: "bold",
+        alignSelf: "center",
     },
     displayText: {
       fontSize: 15,
@@ -219,7 +265,6 @@ export default function ProfileScreen ({ route, navigation }) {
       alignItems:"center"
     }
   });
-
   return (
     <ScrollView>
       <View style={{ paddingTop: 20 }}>
@@ -227,7 +272,8 @@ export default function ProfileScreen ({ route, navigation }) {
           <View>
             <View style={styles.pImg}>
               {
-                image === undefined || image === '' ? 
+                image === undefined || image === '' 
+                ?
                   <Image
                   source={require('../../assets/default_p_img.png')}
                   style={{
@@ -254,7 +300,7 @@ export default function ProfileScreen ({ route, navigation }) {
             
             {/* Medals Section */}
             <View style={{position: 'absolute', right: 40, flexDirection: 'row'}}>
-              { user.medals.slice(0,3).map(medal => {
+              { user.medals !== undefined && user.medals.slice(0,3).map(medal => {
                 const medalSrc = medalDict.find(m => m.name === medal).src;
                 return (
                   <View key={medal} style={{ flexDirection: 'column', width: 60}}>
@@ -273,6 +319,7 @@ export default function ProfileScreen ({ route, navigation }) {
                 )
               })}
               </View>
+
             <View style={styles.level}>
               <Text style={{color: primaryPurple, fontWeight: "bold", fontSize: 12}}>{userLvl}</Text>
             </View>
@@ -290,17 +337,23 @@ export default function ProfileScreen ({ route, navigation }) {
               </View>
             </View>
             <View style={{paddingTop: 20, paddingLeft: 30, paddingRight: 30,}}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('Edit Profile', { 
-                    data: user,
-                    image: image
-                  });
-                }}
-                style={styles.appButtonContainer}
-              >
-                <Text style={styles.appButtonText}>Edit Profile</Text>
-              </TouchableOpacity>
+                { (isFriend || reqIsSent || hasReqFrom)
+                ? <View
+                    style={styles.disabledAppButtonContainer}
+                    >
+                        { isFriend ?
+                        <Text style={styles.disabledAppbuttonText}>Friends</Text>
+                        : 
+                        <Text style={styles.disabledAppbuttonText}>{hasReqFrom ? "Has Sent You a Request" : "Request Sent"}</Text>}
+                </View>
+                : <TouchableOpacity
+                    onPress={() => {
+                        handleSendFReq(userId);
+                    }}
+                    style={styles.appButtonContainer}
+                >
+                    <Text style={styles.appButtonText}>+ Add Friend</Text>
+                </TouchableOpacity> }
 
               {/* Bio Section */}
               <View style={{paddingTop: 20}}>
@@ -313,6 +366,8 @@ export default function ProfileScreen ({ route, navigation }) {
               </View>
 
               {/* Weight Section */}
+              { isFriend 
+              ?
               <View style={{paddingTop: 20}}>
                 <Text style={styles.sectionTitle}>Body Weight</Text>
                 <View
@@ -341,8 +396,11 @@ export default function ProfileScreen ({ route, navigation }) {
                   }
                 </View>
               </View>
+              : null }
 
               {/* Saved Foods Section */}
+              { isFriend 
+              ?
               <View style={{paddingTop: 20}}>
                 <Text style={styles.sectionTitle}>Nutrition Today</Text>
                 <View
@@ -362,6 +420,7 @@ export default function ProfileScreen ({ route, navigation }) {
                   }
                 </View>
               </View>
+              : null }
             </View>
           </View>
         )}

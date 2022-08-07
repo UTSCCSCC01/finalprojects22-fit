@@ -21,7 +21,7 @@ const foodsRouter = require("./routes/foods");
 const customizedExercisesRouter = require("./routes/customizedExercises");
 const workoutPlanRouter = require("./routes/workoutPlan");
 const shortTermGoalRouter = require("./routes/shortTermGoal");
-
+const freiendReqRouter = require("./routes/friendRequests");
 
 app.use(logger("dev"));
 
@@ -59,6 +59,8 @@ app.use("/savedfood", savedfoodRouter);
 app.use("/foods", foodsRouter);
 app.use("/customizedExercises", customizedExercisesRouter);
 app.use("/workoutPlans", workoutPlanRouter);
+app.use("/shorttermgoals", shortTermGoalRouter);
+app.use("/friendReq", freiendReqRouter);
 
 app.get("/file/:filename", async (req, res) => {
   try {
@@ -122,7 +124,6 @@ app.delete("/file/:filename", async (req, res) => {
     });
   }
 });
-app.use("/shorttermgoals", shortTermGoalRouter);
 
 app.listen(port, function () {
   console.log("Running on " + port);

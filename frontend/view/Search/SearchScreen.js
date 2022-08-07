@@ -86,7 +86,6 @@ export default function SearchScreen ({ route, navigation }) {
         try {
             const json = await getUsers(text);
             setResults(json);
-            console.log(json)
         } catch (error) {
             console.error(error);
         }

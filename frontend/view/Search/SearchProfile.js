@@ -191,7 +191,7 @@ export default function SearchProfile ({ route, navigation }) {
     }
   }
 
-  useFocusEffect(
+  useFocusEffect( 
     React.useCallback(() => {
       getUser();
     }, [])

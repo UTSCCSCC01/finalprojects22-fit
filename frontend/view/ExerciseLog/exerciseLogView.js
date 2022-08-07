@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../../style/styles';
 import { cleanString, numberToTime } from '../../utility/format.js';
-import { getExerciseSets, deleteExerciseSet, getExerciseById } from '../../controller/Exercise/exerciseLogController' 
+import { getExerciseSets, deleteExerciseSet, getExerciseById } from '../../controller/Exercise/exerciseLogController'
 import { postUserActivity, getUserActivity, patchUserActivity } from '../../controller/UserActivity/userActivityController'
 import { retrievePlanId, retrieveUserId, storeUserPlan } from '../../utility/dataHandler.js'
 import { getWorkoutPlan, patchWorkoutPlan, patchUser, deleteWorkoutPlan } from '../../controller/Exercise/workoutPlanController';
@@ -27,8 +27,8 @@ export function ExerciseLog({ navigation, route }) {
     const isCardio = cleanString(json.data.MuscleGroup) === 'Cardio' ? true : false;
 
     const body = {
-      _id: index, 
-      userId: userId, 
+      _id: index,
+      userId: userId,
       exercise_name: exerciseName,
       is_cardio: isCardio,
       first_value: 0,
@@ -48,8 +48,8 @@ export function ExerciseLog({ navigation, route }) {
       const workoutFrequency = json.data.workouts.length;
       const workout = json.data.workouts[workoutCounter % workoutFrequency];
       const workoutData = [];
-      
-      for (let i = 0; i < workout.length; i++){
+
+      for (let i = 0; i < workout.length; i++) {
         workoutData.push(await getSetFromExercise(workout[i], i));
       }
       return workoutData;
@@ -62,10 +62,10 @@ export function ExerciseLog({ navigation, route }) {
   const getSets = async () => {
     try {
       const json = await getExerciseSets(cleanString(date));
-      if (json.data.length == 0){
+      if (json.data.length == 0) {
         // Need to check if user has a plan in place
         const userPlanId = await retrievePlanId();
-        if (userPlanId == 'null'){
+        if (userPlanId == 'null') {
           setData(json.data);
         }
         else {
@@ -124,7 +124,7 @@ export function ExerciseLog({ navigation, route }) {
     const has_exercise = cleanString(data) === "[]" ? false : hasCompleted;
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
-      userId: userId, 
+      userId: userId,
       exercise_activity: has_exercise,
       date: date,
     });
@@ -132,14 +132,14 @@ export function ExerciseLog({ navigation, route }) {
     const json = await postUserActivity(body);
   }
 
-  
+
   // update exercise activity in today's user activity object
   const updateUserActivity = async (id) => {
     const userId = await retrieveUserId();
     const has_exercise = cleanString(data) === "[]" ? false : hasCompleted;
     /* bundle parameters into JSON format */
     const body = JSON.stringify({
-      userId: userId, 
+      userId: userId,
       exercise_activity: has_exercise,
       date: date,
     });
@@ -152,9 +152,9 @@ export function ExerciseLog({ navigation, route }) {
     const userId = await retrieveUserId();
 
     // Loop through all exercises and save them in database
-    for (let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
       const body = JSON.stringify({
-        userId: userId, 
+        userId: userId,
         exercise_name: data[i].exercise_name,
         is_cardio: data[i].is_cardio,
         first_value: data[i].first_value,
@@ -176,10 +176,10 @@ export function ExerciseLog({ navigation, route }) {
     const workout_weeks = json.data.workout_length;
 
     // True if user has completed all perscribed workouts
-    if (workout_counter >= workout_frequency * workout_weeks){
+    if (workout_counter >= workout_frequency * workout_weeks) {
       // remove planId from user object
       const body = JSON.stringify({
-        workout_plan : null,
+        workout_plan: null,
       });
       patchUser(body);
 
@@ -190,7 +190,7 @@ export function ExerciseLog({ navigation, route }) {
     else {
       // Update workout counter
       const body = JSON.stringify({
-        workout_counter : cleanString(workout_counter),
+        workout_counter: cleanString(workout_counter),
       });
       patchWorkoutPlan(body);
     }
@@ -199,29 +199,30 @@ export function ExerciseLog({ navigation, route }) {
   // Marks the exercise as completed
   const markCompleted = (item) => {
     item.completed = true;
-
     // Need to perform additional actions if this was the first
     // exercise to be completed from a workout plan.
-    if (!hasCompleted){
-      savePlannedExercises();
+    if (!hasCompleted) {
+
+      Promise.resolve(savePlannedExercises())
+        .then(() => getSets())
+        .then(() => getActivity());
       incrementWorkoutCounter();
-      setHasCompleted(true);
     } else {
       // Need to still update the exercises...
       Promise.resolve(updateSet(item))
-      .then(() => getSets());
+        .then(() => getSets());
     }
   }
 
   /* Perform update/delete depending on queued action */
   const doEvent = (item) => {
-    if (logMode === 'delete' && item.completed == true){
+    if (logMode === 'delete' && item.completed == true) {
       setActivityData(null);
       Promise.resolve(deleteSets(cleanString(item._id)))
-      .then(() => getSets())
-      .then(() => getActivity());
+        .then(() => getSets())
+        .then(() => getActivity());
     }
-    else if (logMode === 'update' && item.completed == true){
+    else if (logMode === 'update' && item.completed == true) {
       navigation.navigate('Record Exercise', {
         exercise_name: item.exercise_name,
         exercise_group: item.is_cardio ? 'Cardio' : 'Not Cardio',
@@ -235,35 +236,35 @@ export function ExerciseLog({ navigation, route }) {
     setLogMode('select')
   }
 
-    // Create activity if none exists. Update as necessary if it does
-    const addExerciseActivity = () => {
-      if (cleanString(activityData) === '[]'){
-        createUserActivity();
-      }
-      else {
-        const activity = JSON.stringify(activityData[0]);
-        var json = JSON.parse(activity);
-        var id = JSON.stringify(json._id);
-        updateUserActivity(cleanString(id));
-      }
+  // Create activity if none exists. Update as necessary if it does
+  const addExerciseActivity = () => {
+    if (cleanString(activityData) === '[]') {
+      createUserActivity();
     }
+    else {
+      const activity = JSON.stringify(activityData[0]);
+      var json = JSON.parse(activity);
+      var id = JSON.stringify(json._id);
+      updateUserActivity(cleanString(id));
+    }
+  }
 
   /* Change colour of the borders depending on the queued action */
   const selectStyle = (item) => {
-    if (logMode === 'delete' && item.completed == true){
+    if (logMode === 'delete' && item.completed == true) {
       return styles.flatListDeleteItem;
     }
     else if (logMode === 'update' && item.completed == true) {
       return styles.flatListUpdateItem;
     }
-    else{
+    else {
       return styles.flatListItem;
     }
   }
 
   /* TO DO: need to be able to change metrics based on user preferences */
   const formatCell = (item) => {
-    if (item.is_cardio){
+    if (item.is_cardio) {
       return (
         <View style={selectStyle(item)}>
           <View style={styles.flatListTextContainer}>
@@ -272,26 +273,26 @@ export function ExerciseLog({ navigation, route }) {
               <Text style={styles.flatListText}>Time: {numberToTime(item.first_value)}</Text>
               <Text style={styles.flatListText}>Distance: {item.second_value} km</Text>
             </View>
-            {!item.completed ?             
+            {!item.completed ?
               <View style={styles.saveButtonContainer}>
                 <Text style={styles.smallHeaderFont}>complete</Text>
                 <TouchableOpacity
-                    onPress={() => markCompleted(item)}
-                  >
+                  onPress={() => markCompleted(item)}
+                >
                   <MaterialIcons
                     name='check-circle-outline'
                     size={45}
                     color='#CFD1D0'
                   />
                 </TouchableOpacity>
-              </View> : 
-              <View/>
+              </View> :
+              <View />
             }
           </View>
         </View>
       );
     }
-    else{
+    else {
       return (
         <View style={selectStyle(item)}>
           <View style={styles.flatListTextContainer}>
@@ -300,20 +301,20 @@ export function ExerciseLog({ navigation, route }) {
               <Text style={styles.flatListText}>Weight: {item.first_value} kg</Text>
               <Text style={styles.flatListText}>Reps: {item.second_value} </Text>
             </View>
-            {!item.completed ?             
+            {!item.completed ?
               <View style={styles.saveButtonContainer}>
                 <Text style={styles.smallHeaderFont}>complete</Text>
                 <TouchableOpacity
-                    onPress={() => markCompleted(item)}
-                  >
+                  onPress={() => markCompleted(item)}
+                >
                   <MaterialIcons
                     name='check-circle-outline'
                     size={45}
                     color='#CFD1D0'
                   />
                 </TouchableOpacity>
-              </View> : 
-              <View/>
+              </View> :
+              <View />
             }
           </View>
         </View>
@@ -328,69 +329,69 @@ export function ExerciseLog({ navigation, route }) {
       // Reset activityData so event is triggered later
       setActivityData(null);
       Promise.resolve(getSets())
-      .then(() => getActivity());
+        .then(() => getActivity());
     });
   }, []);
 
 
   React.useEffect(() => {
-    if (activityData != null){
-      if (data != null){
-        addExerciseActivity();
-      }
+    if (activityData != null) {
+      addExerciseActivity();
     }
   }, [activityData]);
 
 
   React.useEffect(() => {
     if (activityData != null) {
-      addExerciseActivity()
+      if (data != null) {
+        addExerciseActivity()
+      }
     }
   }, [hasCompleted]);
 
   return (
-      <View style={styles.container}>
-        <View style={styles.exerciseLogButtonsContainer}>
-          <View style={styles.rowContainer}>
-            <TouchableOpacity
-              style={styles.ExerciseLogUtilityButton}
-              onPress={() => navigation.navigate('Select Exercise Group', {
-                date: date,
-              })}
-            >
-              <Text style={styles.generalButtonFont}> Log new exercise </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.ExerciseLogUtilityButton}
-              onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
-            >
-              <Text style={styles.generalButtonFont}> Update an exercise </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.rowContainer}>
-            <TouchableOpacity
-              style={styles.ExerciseLogUtilityButton}
-              onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
-            >
-              <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
-            </TouchableOpacity>
-            <TouchableOpacity	
-              style={styles.generalButton}	
-              onPress={() => navigation.navigate('Create Exercise')}	
-            >	
-              <Text style={styles.generalButtonFont}> Create Exercise </Text>	
-            </TouchableOpacity>
-          </View>
+    <View style={styles.container}>
+      <View style={styles.exerciseLogButtonsContainer}>
+        <View style={styles.rowContainer}>
+          <TouchableOpacity
+            style={styles.ExerciseLogUtilityButton}
+            onPress={() => navigation.navigate('Select Exercise Group', {
+              date: date,
+            })}
+          >
+            <Text style={styles.generalButtonFont}> Log new exercise </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.ExerciseLogUtilityButton}
+            onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
+          >
+            <Text style={styles.generalButtonFont}> Update an exercise </Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.flatListContainer}>
-          {isLoading ? <ActivityIndicator/> : (
+        <View style={styles.rowContainer}>
+          <TouchableOpacity
+            style={styles.ExerciseLogUtilityButton}
+            onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
+          >
+            <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.generalButton}
+            onPress={() => navigation.navigate('Create Exercise')}
+          >
+            <Text style={styles.generalButtonFont}> Create Exercise </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.flatListContainer}>
+        {isLoading ? <ActivityIndicator /> : (
           <FlatList
             data={data}
             keyExtractor={(item, index) => item._id}
-            renderItem={({item}) => <TouchableOpacity onPress={()=> doEvent(item)}>{formatCell(item)}</TouchableOpacity>}
+            renderItem={({ item }) => <TouchableOpacity onPress={() => doEvent(item)}>{formatCell(item)}</TouchableOpacity>}
           />
-          )}
-        </View>
+        )}
       </View>
+    </View>
   );
 }

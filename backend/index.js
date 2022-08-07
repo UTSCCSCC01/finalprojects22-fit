@@ -21,7 +21,7 @@ const foodsRouter = require("./routes/foods");
 const customizedExercisesRouter = require("./routes/customizedExercises");
 const workoutPlanRouter = require("./routes/workoutPlan");
 const shortTermGoalRouter = require("./routes/shortTermGoal");
-const freiendReqRouter = require("./routes/friendRequests");
+const friendReqRouter = require("./routes/friendRequests");
 
 app.use(logger("dev"));
 
@@ -60,7 +60,7 @@ app.use("/foods", foodsRouter);
 app.use("/customizedExercises", customizedExercisesRouter);
 app.use("/workoutPlans", workoutPlanRouter);
 app.use("/shorttermgoals", shortTermGoalRouter);
-app.use("/friendReq", freiendReqRouter);
+app.use("/friendReq", friendReqRouter);
 
 app.get("/file/:filename", async (req, res) => {
   try {

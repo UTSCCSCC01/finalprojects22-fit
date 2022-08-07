@@ -206,9 +206,11 @@ router.put("/:userId", async (req, res) => {
 // PUT - Update the user with an additional friend appended
 router.put("/:userId/friend/:fId", async (req, res) => {
     try {
-        let user = await User.findByIdAndUpdate(req.params.userId, 
-            { $push: { friends: req.params.fId } }, 
-            { new : true });
+        let user = await User.findByIdAndUpdate(
+            req.params.userId,
+            { $push: { friends: req.params.fId } },
+            { new: true },
+        );
         if (user) {
             res.status(200).json({
                 status: 200,

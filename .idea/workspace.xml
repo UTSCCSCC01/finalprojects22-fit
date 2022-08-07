@@ -12,7 +12,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="Changes" />
+    <list default="true" id="1b8c93d2-e021-486e-be66-07f9db68f279" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/controller/ManualBudgetController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/view/Settings/AutoBudget.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/view/Settings/CalorieBudget.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/view/Settings/ManualBudget.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/controller/Profile/editProfileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controller/Profile/editProfileController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utility/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utility/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog/FoodLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog/FoodLog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog/RecordFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog/RecordFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog/SelectFood.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog/SelectFood.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/FoodLog/SelectFoodCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/FoodLog/SelectFoodCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/Settings/Plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/Settings/Plan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/view/Settings/Setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/view/Settings/Setting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

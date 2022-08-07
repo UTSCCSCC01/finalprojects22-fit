@@ -12,7 +12,7 @@ export function Plan ({navigation}) {
   const getPlan = async (planId) => {
     try {
       const response = await axios.get(
-        'http://localhost:3000/plans/'.concat(planId),
+        'http://192.168.2.69:3000/plans/'.concat(planId),
       );
       setPlan(response.data.data.planContent);
       

@@ -49,7 +49,7 @@ router.get("/Groups/:MuscleGroup", async (req, res) => {
 router.get("/Search/:ExerciseName", async (req, res) => {
   try {
       let exercises = await Exercise.find({
-        ExerciseName: { $regex: req.params.ExerciseName},
+        ExerciseName: { $regex: req.params.ExerciseName, '$options' : 'i' },
       });
       if (exercises) {
           // exercises are found

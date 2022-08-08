@@ -75,12 +75,16 @@ export function FoodLog({ navigation, route }) {
 
    const formatCell = (item) => {
         return (
-          <View style={styles.flatListTextContainer}>
-            <Text style={styles.flatListText}>Food Name: {item.food_name}</Text>
-            <Text style={styles.flatListText}>Calorie: {cleanNum(item.calorie)} g</Text>
-            <Text style={styles.flatListText}>Carbohydrate: {cleanNum(item.carbohydrate)} g</Text>
-            <Text style={styles.flatListText}>Fat: {cleanNum(item.fat)} g</Text>
-            <Text style={styles.flatListText}>Protein: {cleanNum(item.protein)} g</Text>
+          <View style={selectStyle(item)}>
+            <View style={styles.flatListTextContainer}>
+              <View style={styles.setInfoContainer}>
+                <Text style={styles.flatListText}>Food Name: {item.food_name}</Text>
+                <Text style={styles.flatListText}>Calorie: {cleanNum(item.calorie)} kcal</Text>
+                <Text style={styles.flatListText}>Carbohydrate: {cleanNum(item.carbohydrate)} g</Text>
+                <Text style={styles.flatListText}>Fat: {cleanNum(item.fat)} g</Text>
+                <Text style={styles.flatListText}>Protein: {cleanNum(item.protein)} g</Text>
+              </View>
+            </View>
           </View>
         );
    }
@@ -110,13 +114,13 @@ export function FoodLog({ navigation, route }) {
   /* Change colour of the borders depending on the queued action */
   const selectStyle = () => {
     if (logMode === 'delete'){
-      return styles.deleteItem;
+      return styles.flatListDeleteItem;
     }
     else if (logMode === 'update') {
-      return styles.updateItem;
+      return styles.flatListUpdateItem;
     }
     else{
-      return styles.item;
+      return styles.flatListItem;
     }
   }
 
@@ -155,7 +159,7 @@ export function FoodLog({ navigation, route }) {
        <View style={styles.exerciseLogButtonsContainer}>
          <View style={styles.rowContainer}>
            <TouchableOpacity
-             style={styles.generalButton}
+             style={styles.ExerciseLogUtilityButton}
              onPress={() => navigation.navigate('Select Food Category', {
              date: date,
              })}
@@ -163,7 +167,7 @@ export function FoodLog({ navigation, route }) {
              <Text style={styles.generalButtonFont}> Log a new Food </Text>
            </TouchableOpacity>
            <TouchableOpacity
-             style={styles.generalButton}
+             style={styles.ExerciseLogUtilityButton}
              onPress={() => setLogMode(logMode === 'update' ? 'select' : 'update')}
            >
              <Text style={styles.generalButtonFont}> Update a Food </Text>
@@ -171,7 +175,7 @@ export function FoodLog({ navigation, route }) {
          </View>
          <View style={styles.rowContainer}>
            <TouchableOpacity
-             style={styles.generalButton}
+             style={styles.ExerciseLogUtilityButton}
              onPress={() => setLogMode(logMode === 'delete' ? 'select' : 'delete')}
            >
              <Text style={styles.generalButtonFont}> Delete a Food </Text>
@@ -183,7 +187,7 @@ export function FoodLog({ navigation, route }) {
          <FlatList
            data={data}
            keyExtractor={(item, index) => item._id}
-           renderItem={({item}) => <Text style= {selectStyle()} onPress={()=> doEvent(item)}>{formatCell(item)}</Text>}
+           renderItem={({item}) => <TouchableOpacity onPress={()=> doEvent(item)}>{formatCell(item)}</TouchableOpacity>}
          />
          )}
        </View>

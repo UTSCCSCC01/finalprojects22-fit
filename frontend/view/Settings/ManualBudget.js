@@ -33,7 +33,7 @@ const getBudget = async () => {
 return (
    <View style={styles.recorderContainer}>
             <View style={styles.headercontainer2}>
-               <Text style={styles.header2}>{"Calorie Budget: (g)"}</Text>
+               <Text style={styles.header2}>{"Calorie Budget: (kcal)"}</Text>
            </View>
         <View style={styles.exerciseInputContainer}>
             <TouchableOpacity

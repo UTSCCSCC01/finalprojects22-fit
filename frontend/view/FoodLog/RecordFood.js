@@ -82,7 +82,7 @@ export function RecordFood({ route, navigation }) {
     <View style={styles.recorderContainer}>
           <Text style={styles.header1}>{cleanString(food_name)}</Text>
           <View style={styles.headercontainer2}>
-            <Text style={styles.header2}>{"Calories: (g)"}</Text>
+            <Text style={styles.header2}>{"Calories: (kcal)"}</Text>
           </View>
           <View style={styles.exerciseInputContainer}>
             <TouchableOpacity

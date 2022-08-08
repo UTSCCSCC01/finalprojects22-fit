@@ -376,7 +376,7 @@ export function ExerciseLog({ navigation, route }) {
             <Text style={styles.generalButtonFont}> Delete an Exercise </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.generalButton}
+            style={styles.ExerciseLogUtilityButton}
             onPress={() => navigation.navigate('Create Exercise')}
           >
             <Text style={styles.generalButtonFont}> Create Exercise </Text>
